@@ -1,0 +1,9 @@
+.hoverChoose {
+    border: 1px solid #ebc50c;
+}
+
+.hoverChoose:hover {
+    cursor: pointer;
+    border: 1px solid #3ce8a6;
+    transition: 0.3s;
+}

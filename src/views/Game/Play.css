@@ -1,0 +1,8 @@
+.hoverHere {
+    text-decoration: underline;
+}
+
+.hoverHere:hover {
+    cursor: pointer;
+    color: #f26666;
+}
