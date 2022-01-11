@@ -5,6 +5,8 @@ import { ReactComponent as ArrowUpIcon } from "../../assets/icons/arrow-up.svg";
 import { ReactComponent as CaretDownIcon } from "../../assets/icons/caret-down.svg";
 import { useWeb3Context } from "src/hooks/web3Context";
 
+import "./topbar.scss";
+
 function ConnectMenu({ theme }) {
   const { connect, disconnect, connected, web3, chainID } = useWeb3Context();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -60,7 +62,22 @@ function ConnectMenu({ theme }) {
       className="wallet-menu"
       id="wallet-menu"
     >
-      <Button
+
+      <div className="header">
+        <div className="d-flex align-items-center justify-content-between">
+          <div className="logo d-flex align-items-center">
+            <img src={require('./logo.png').default} alt="" />
+            <h1>Dashboard</h1>
+          </div>
+          <div className="d-flex align-items-center gap">
+            <Button className="connect">Connect wallet</Button>
+            <Button className="connect2">Qqqq</Button>
+            <Button className="toggle">aa</Button>
+          </div>
+        </div>
+      </div>
+
+      {/* <Button
         className={buttonStyles}
         variant="contained"
         color="secondary"
@@ -71,13 +88,13 @@ function ConnectMenu({ theme }) {
         onMouseLeave={() => setIsHovering(false)}
         key={1}
       >
-        {buttonText}
+       {buttonText}
         {pendingTransactions.length > 0 && (
           <Slide direction="left" in={isHovering} {...{ timeout: 333 }}>
             <SvgIcon className="caret-down" component={CaretDownIcon} htmlColor={primaryColor} />
           </Slide>
         )}
-      </Button>
+      </Button> */}
 
       <Popper id={id} open={open} anchorEl={anchorEl} placement="bottom-end" transition>
         {({ TransitionProps }) => {

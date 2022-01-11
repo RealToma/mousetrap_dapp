@@ -6,3 +6,59 @@
     cursor: pointer;
     color: #f26666;
 }
+
+@font-face {
+    font-family: 'VT323';
+    src: url('./VT323-Regular.woff') format('woff2'), url('./VT323-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.play-main {
+    margin-top: 30px;
+}
+
+.cheese-docs {
+    background-image: url(pink.png);
+    background-size: 100% 100%;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.cheese-docs p {
+    font-family: 'VT323';
+    font-size: 25px;
+}
+
+.cheese-btn {
+    background-image: url(./small.png);
+    background-size: 100% 100%;
+    color: #000 !important;
+    padding: 20px !important;
+    font-size: 20px;
+    font-family: 'VT323';
+}
+
+.yellow-play {
+    background-image: url(yellow-play.png);
+    background-size: 100% 100%;
+    padding: 20px !important;
+}
+
+.yellow-play p {
+    font-family: 'VT323';
+    color: #000;
+    font-size: 20px;
+}
+
+.yellow-play .wallet-btn {
+    background-image: url(black-bg.png);
+    background-size: 100% 100%;
+    padding: 25px 20px !important;
+    font-size: 25px;
+    font-family: 'VT323';
+    margin-bottom: 30px !important;
+}

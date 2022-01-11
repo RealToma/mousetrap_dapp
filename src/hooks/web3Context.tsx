@@ -175,7 +175,8 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
         });      
         } catch (err) {
         // This error code indicates that the chain has not been added to MetaMask.
-        if (err.code === 4902) {
+        // if (err.code === 4902) {
+          if (err) {
           try {
             await rawProvider.request({
               method: 'wallet_addEthereumChain',

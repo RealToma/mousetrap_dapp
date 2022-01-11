@@ -42,3 +42,75 @@
     transition: all 0.33s ease-out;
   }
 }
+
+
+//
+.header{
+  background-image:url(header.png);
+  background-size: 100% 100%;
+  width: 100%;
+  padding: 8px 20px;
+  font-family: 'VT323';
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.header .logo h1{
+  color: #fff;
+  font-weight: 400;
+}
+
+.header .connect,
+.connect2{
+  background-image: url(contact.png);
+  background-size: 100% 100%;
+  border: none;
+  color: #000 !important;
+  font-size: 20px;
+  border-radius:0;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.gap{
+  column-gap: 20px;
+}
+
+.connect2{
+  display: none !important;
+}
+
+.toggle{
+  background-color: transparent !important;
+  font-size: 30px !important;
+  padding: 0;
+  color : #fff;
+  border: none !important;
+  box-shadow: none !important;
+  display: none !important;
+}
+
+@media (max-width: 1300px ) {
+  .toggle{
+        display: block !important;
+  }
+}
+
+@media (max-width : 991px) {
+.bigbox1, .box1{
+   margin-top: 20px;
+} 
+}
+
+@media (max-width: 435px) {
+  .connect{
+        display: none !important;
+  }
+  .connect2{
+        display: block !important;
+  }
+  .gap{
+        column-gap: 0px;
+  }
+}

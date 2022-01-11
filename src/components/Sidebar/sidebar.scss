@@ -169,3 +169,137 @@
     }
   }
 }
+
+
+// ======redevelop
+@font-face {
+  font-family: 'VT323';
+  src: url('VT323-Regular.woff') format('woff2'),
+      url('VT323-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.MuiDrawer-paper{
+  top: 120px!important;
+  height: calc(100vh - 120px) !important;
+}
+
+.sidebar-con{
+  background-image: url(sidebar.png);
+  background-size: 100% 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-center{
+  justify-content: center;
+}
+
+.sidebar-head{
+  background-image: url(sidebar-text.png) !important;
+  background-size: 100% 100%;
+  color: #FFD500 !important;
+  text-decoration: none !important;
+  width: fit-content;
+  height: fit-content;
+  margin: 0 auto;
+  font-family: 'VT323';
+  background-color: transparent !important;
+  border: none;
+  box-shadow: none !important;
+  padding: 0 20px !important;
+  margin-top: 20px;
+  font-size: 30px !important;
+}
+
+.dapp-menu-links{
+  justify-content: center !important;
+}
+
+.dapp-nav a{
+  margin-left: 0;
+}
+
+.sidebar-head.active{
+  background-image: url(contact.png) !important;
+  background-size: 100% 100%;
+  color: #000 !important;
+}
+
+.sidebar-head span{
+  font-size: 20px !important; 
+  font-weight: 500;
+}   
+
+.bond{
+  background-color: #292828;
+  padding: 15px !important;
+  display: flex;
+  color: #fff;
+  font-family: 'VT323';
+  column-gap: 20px;
+}
+
+.bond .bond-left span{
+  color: rgba(255, 255, 255, 0.466);
+  font-family: 'VT323';
+  font-size: 20px;
+}
+
+.bond .bond-left h5{
+  font-size: 24px !important;
+}
+
+ .bond .bond-right span{
+  background-color: #5BB66B;
+  color: #fff;
+  padding: 0 10px;
+  font-size: 20px;
+  margin-top: 26px;
+  display: block;
+}
+
+.social{
+  margin-top: 20px;
+}
+
+ .social .docs-btn{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.social .docs-btn button{
+  background-color: #292828;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 5px 10px;
+  font-size: 25px;
+  font-family: 'VT323';
+}
+
+.social .icon{
+  display: flex;
+  column-gap: 15px;
+}
+
+.social .icon button{
+  background-color: #292828 !important;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+}
+
+@media (max-width: 1300px) {
+  .sidebar-main{
+        margin-left: -300px;
+  }
+  .sidebar-con{
+        padding-top: 0 !important;
+  }
+}

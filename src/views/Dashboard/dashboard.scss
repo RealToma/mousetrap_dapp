@@ -1,108 +1,212 @@
 #treasury-dashboard-view {
-  overflow-y: hidden;
-  overflow-x: hidden;
-  height: 100%;
-  // width: 100%;
-  min-width: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  overflow-y: auto;
-  -ms-overflow-style: none !important; /* IE and Edge */
-  scrollbar-width: none !important; /* Firefox */
-  &::-webkit-scrollbar {
-    display: none !important;
-  }
-
-  .cheez-card {
-    max-width: unset !important;
-    width: 100%;
-    margin: auto;
-    max-height: 355px;
-    .card-header {
-      margin-bottom: 1rem;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 100%;
+    // width: 100%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: auto;
+    -ms-overflow-style: none !important;
+    /* IE and Edge */
+    scrollbar-width: none !important;
+    /* Firefox */
+    &::-webkit-scrollbar {
+        display: none !important;
     }
-    &.cheez-chart-card {
-      .chart-card-header {
-        padding: 0px 20px !important;
-        min-width: 300px;
-      }
-      height: 355px;
-    }
-  }
-  .hover:hover {
-    cursor: pointer;
-  }
-  .hover2:hover {
-    cursor: pointer;
-  }
-  .hoverDisabled:hover {
-    cursor: pointer;
-  }
-  .hero-metrics {
-    width: 100%;
-    margin-bottom: 23px;
-    text-align: center;
     .cheez-card {
-      max-width: unset !important;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
-      h5 {
-        font-weight: bold;
-      }
-      div.metric {
-        margin: 3px;
-        min-width: 140px;
-        width: 30%;
-      }
+        max-width: unset !important;
+        width: 100%;
+        margin: auto;
+        max-height: 355px;
+        .card-header {
+            margin-bottom: 1rem;
+        }
+        &.cheez-chart-card {
+            .chart-card-header {
+                padding: 0px 20px !important;
+                min-width: 300px;
+            }
+            height: 355px;
+        }
     }
-  }
-  .data-grid {
-    overflow: hidden;
-  }
+    .hover:hover {
+        cursor: pointer;
+    }
+    .hover2:hover {
+        cursor: pointer;
+    }
+    .hoverDisabled:hover {
+        cursor: pointer;
+    }
+    .hero-metrics {
+        width: 100%;
+        margin-bottom: 23px;
+        text-align: center;
+        .cheez-card {
+            max-width: unset !important;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            h5 {
+                font-weight: bold;
+            }
+            div.metric {
+                margin: 3px;
+                min-width: 140px;
+                width: 30%;
+            }
+        }
+    }
+    .data-grid {
+        overflow: hidden;
+    }
 }
 
 .smaller {
-  .cheez-card {
-    width: 97%;
-  }
-  .hero-metrics .cheez-card {
-    > .MuiBox-root {
-      flex-direction: column;
-      align-items: flex-start;
-      flex-wrap: wrap;
+    .cheez-card {
+        width: 97%;
     }
-    div.metric {
-      text-align: left !important;
+    .hero-metrics .cheez-card {
+        >.MuiBox-root {
+            flex-direction: column;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        div.metric {
+            text-align: left !important;
+        }
     }
-  }
 }
 
 .mobile {
-  div.metric {
-    white-space: nowrap;
-    min-width: 30% !important;
-    max-width: 60%;
-    text-align: left !important;
-    &.market,
-    &.price,
-    &.wsoprice,
-    &.circ,
-    &.bpo,
-    &.index {
-      flex-direction: column;
-      align-items: flex-start;
+    div.metric {
+        white-space: nowrap;
+        min-width: 30% !important;
+        max-width: 60%;
+        text-align: left !important;
+        &.market,
+        &.price,
+        &.wsoprice,
+        &.circ,
+        &.bpo,
+        &.index {
+            flex-direction: column;
+            align-items: flex-start;
+        }
     }
-  }
 }
 
 .very-small {
-  .hero-metrics .cheez-card {
-    > .MuiBox-root {
-      flex-direction: column;
-      justify-content: center;
+    .hero-metrics .cheez-card {
+        >.MuiBox-root {
+            flex-direction: column;
+            justify-content: center;
+        }
     }
-  }
+}
+
+// 
+body {
+    background-color: #fff;
+}
+
+.main-dash {
+    height: calc(100vh - 96px);
+}
+
+.dashboard-main {
+    margin-top: 120px;
+    margin-left: 300px;
+    width: calc(100% - 300px);
+    transition: 0.5s;
+}
+
+.bg-light {
+    background-image: url(bg-light.png), url(bg-gray.png);
+    background-repeat: no-repeat;
+    background-position: left center, right center;
+}
+
+.dashboard-home {
+    margin-top: 30px;
+}
+
+.dashboard-home .box1 {
+    background-image: url(wight.png);
+    background-size: 100% 100%;
+    padding: 10px;
+}
+
+.dashboard-home .box1 span,
+.bigbox-text span {
+    color: #565656;
+    font-family: 'VT323';
+    font-size: 20px;
+}
+
+.dashboard-home .box1 h4,
+.bigbox-text h4 {
+    color: #000;
+    font-family: 'VT323';
+    font-size: 35px;
+}
+
+.dashboard-home .box1.active {
+    background-image: url(yellow.png);
+    background-size: 100% 100%;
+}
+
+.dashboard-home .bigbox1 {
+    background-image: url(yellow-big.png);
+    background-size: 100% 100%;
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.get-start-main {
+    background-image: url(pink.png);
+    background-size: 100% 100%;
+    padding: 60px 40px;
+    display: flex;
+}
+
+.get-start-main p {
+    font-size: 40px;
+    font-family: 'VT323';
+    color: #fff;
+}
+
+.get-start-main .start-btn {
+    background-image: url(get-start.png);
+    background-size: 100% 100%;
+    font-family: 'VT323';
+    width: 100%;
+    height: 60px;
+    font-size: 30px;
+    border: none;
+    border-radius: 0;
+    box-shadow: none !important;
+}
+
+
+/* .cheezy-img{
+  position:fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+} */
+
+@media (max-width: 1300px) {
+    .dashboard-main {
+        margin-left: 0;
+        width: 100%;
+    }
 }

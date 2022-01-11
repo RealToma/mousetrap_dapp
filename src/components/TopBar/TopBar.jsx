@@ -35,6 +35,23 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }) {
   const address = useAddress();
 
   return (
+    // <>
+    //   <div className="header">
+    //     <div className="d-flex align-items-center justify-content-between">
+    //       <div className="logo d-flex align-items-center">
+    //         <img src={require('./logo.png').default} alt="" />
+    //         <h1>Dashboard</h1>
+    //       </div>
+    //       <div className="d-flex align-items-center gap">
+    //         {/* <Button className="connect">Connect wallet  */}
+    //         <ConnectMenu theme={theme} />
+    //         {/* </Button> */}
+    //         <Button className="connect2">Qqqq</Button>
+    //         <Button className="toggle">aa</Button>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </>
     <AppBar position="sticky" className={classes.appBar} elevation={0}>
       <Toolbar disableGutters className="dapp-topbar">
         <Button>
@@ -62,13 +79,8 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }) {
         >
           <SvgIcon component={MenuIcon} />
         </Button>
-
-        <Box display="flex">
-          {!isVerySmallScreen && <CheezMenu />}
-
           <ConnectMenu theme={theme} />
-
-        </Box>
+          hhh
       </Toolbar>
     </AppBar>
   );
