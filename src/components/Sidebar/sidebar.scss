@@ -1,305 +1,326 @@
 .sidebar {
-  min-width: 90px;
-  z-index: 2;
-  border-radius: 0 !important;
+    min-width: 90px;
+    z-index: 2;
+    border-radius: 0 !important;
 }
 
 .MuiDrawer-paper .MuiPaper-root {
-  border-radius: 0 !important;
+    border-radius: 0 !important;
 }
 
 .dapp-sidebar {
-  height: 100%;
-  overflow: hidden;
-  border-radius: 0 !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+    height: 100%;
+    overflow: hidden;
+    border-radius: 0 !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .dapp-sidebar-inner {
-  height: 100%;
-  overflow: auto;
+    height: 100%;
+    overflow: auto;
 }
 
 .branding-header {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-  width: 100%;
-  align-items: center;
-  text-decoration: none;
-  margin: 30px 0 10px 0;
-  .branding-header-icon {
-    width: 50px;
-    display: block;
-    margin: 0 auto;
-  }
-  .wallet-link {
-    margin: 10px;
-  }
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    text-decoration: none;
+    margin: 30px 0 10px 0;
+    .branding-header-icon {
+        width: 50px;
+        display: block;
+        margin: 0 auto;
+    }
+    .wallet-link {
+        margin: 10px;
+    }
 }
 
 .dapp-menu-top {
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  margin-bottom: 33px;
-  min-height: max-content;
-  .dapp-nav {
     display: flex;
-    flex-flow: column;
-  }
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-bottom: 33px;
+    min-height: max-content;
+    .dapp-nav {
+        display: flex;
+        flex-flow: column;
+    }
 }
 
 .dapp-menu-bottom {
-  height: 40vh;
-  min-height: 5vh;
+    height: 40vh;
+    min-height: 5vh;
 }
 
 .dapp-menu-links {
-  min-height: 35vh;
-  display: flex;
-  align-items: center;
+    min-height: 35vh;
+    display: flex;
+    align-items: center;
 }
+
 .dapp-nav a {
-  margin-top: 0.7rem;
-  margin-left: 33px;
-  align-items: center;
-  margin-bottom: 0.5rem;
-  svg {
-    width: 20px;
-    height: 20px;
-    margin-right: 12px;
-    vertical-align: -4px;
-  }
+    margin-top: 0.7rem;
+    margin-left: 33px;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 12px;
+        vertical-align: -4px;
+    }
 }
 
 .dapp-menu-external-links {
-  display: flex;
-  flex-flow: column;
-  align-items: flex-start;
-  justify-content: center;
-  margin-left: 33px;
-  h6 {
     display: flex;
-    align-self: center;
-  }
-  a {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    margin-bottom: 15px;
-  }
-  a svg {
-    width: 20px;
-    height: 20px;
-    margin-right: 12px;
-    vertical-align: middle;
-  }
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 33px;
+    h6 {
+        display: flex;
+        align-self: center;
+    }
+    a {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    a svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 12px;
+        vertical-align: middle;
+    }
 }
 
 .bond-discounts {
-  text-align: left;
-  color: #999999;
-  padding-left: 33px;
-  margin-top: 8px;
-  > p {
-    margin-left: 33px;
-  }
-  .bond {
-    display: block;
-    padding: unset;
-    margin-bottom: 0 0 1px 0;
-    text-decoration: none !important;
-    .bond-pair-roi {
-      float: right;
-      margin-left: 33px;
+    text-align: left;
+    color: #999999;
+    padding-left: 33px;
+    margin-top: 8px;
+    >p {
+        margin-left: 33px;
     }
-  }
+    .bond {
+        display: block;
+        padding: unset;
+        margin-bottom: 0 0 1px 0;
+        text-decoration: none !important;
+        .bond-pair-roi {
+            float: right;
+            margin-left: 33px;
+        }
+    }
 }
 
 .social-row {
-  display: flex;
-  flex-flow: row;
-  justify-content: space-evenly;
-  padding: 1.3rem;
-  a {
-    &:hover {
-      transform: scale(1.1);
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+    padding: 1.3rem;
+    a {
+        &:hover {
+            transform: scale(1.1);
+        }
+        img {
+            height: 20px;
+            width: 20px;
+        }
     }
-    img {
-      height: 20px;
-      width: 20px;
-    }
-  }
 }
 
 .mobile .show .dapp-sidebar {
-  .dapp-menu-links {
-    flex-flow: row !important;
-    justify-content: center !important;
-  }
-  .dapp-menu-external-links {
-    padding-top: 3em;
-    line-height: 200% !important;
-    justify-content: center;
-  }
-  .dapp-nav,
-  .dapp-menu-external-links {
-    flex-flow: column !important;
-    justify-content: flex-start;
-    margin: auto;
-    a {
-      padding: 0;
-      svg {
-        align-self: center;
-      }
+    .dapp-menu-links {
+        flex-flow: row !important;
+        justify-content: center !important;
     }
-  }
-  .dapp-menu-external-links a {
-    justify-content: left;
-  }
-  .dapp-nav {
-    .dapp-menu-data.discounts {
-      margin-top: 2.5em;
-      .bond-discounts {
-        display: none;
-      }
+    .dapp-menu-external-links {
+        padding-top: 3em;
+        line-height: 200% !important;
+        justify-content: center;
     }
-  }
+    .dapp-nav,
+    .dapp-menu-external-links {
+        flex-flow: column !important;
+        justify-content: flex-start;
+        margin: auto;
+        a {
+            padding: 0;
+            svg {
+                align-self: center;
+            }
+        }
+    }
+    .dapp-menu-external-links a {
+        justify-content: left;
+    }
+    .dapp-nav {
+        .dapp-menu-data.discounts {
+            margin-top: 2.5em;
+            .bond-discounts {
+                display: none;
+            }
+        }
+    }
 }
-
 
 // ======redevelop
 @font-face {
-  font-family: 'VT323';
-  src: url('VT323-Regular.woff') format('woff2'),
-      url('VT323-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+    font-family: 'VT323';
+    src: url('VT323-Regular.woff') format('woff2'), url('VT323-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
-.MuiDrawer-paper{
-  top: 120px!important;
-  height: calc(100vh - 120px) !important;
+.sidebar-main {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    width: 300px;
+    height: calc(100vh - 120px) !important;
+    transition: 1s;
+    padding: 0 20px;
 }
 
-.sidebar-con{
-  background-image: url(sidebar.png);
-  background-size: 100% 100%;
-  height: 100%;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
+.MuiDrawer-paper {
+    background-image: none !important;
+    background-size: 100% 100%;
+    top: 120px!important;
+    height: calc(100vh - 120px) !important;
+    backdrop-filter: blur(0px) !important;
 }
 
-.sidebar-center{
-  justify-content: center;
+.sidebar-con {
+    background-image: url(sidebar.png);
+    background-size: 100% 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
-.sidebar-head{
-  background-image: url(sidebar-text.png) !important;
-  background-size: 100% 100%;
-  color: #FFD500 !important;
-  text-decoration: none !important;
-  width: fit-content;
-  height: fit-content;
-  margin: 0 auto;
-  font-family: 'VT323';
-  background-color: transparent !important;
-  border: none;
-  box-shadow: none !important;
-  padding: 0 20px !important;
-  margin-top: 20px;
-  font-size: 30px !important;
+.sidebar-center {
+    justify-content: center;
 }
 
-.dapp-menu-links{
-  justify-content: center !important;
+.sidebar-head {
+    background-image: url(sidebar-text.png) !important;
+    background-size: 100% 100%;
+    color: #FFD500 !important;
+    text-decoration: none !important;
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    font-family: 'VT323';
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin-top: 20px;
+    font-size: 30px !important;
+    display: flex !important;
+    align-items: center;
+    text-decoration: none !important;
 }
 
-.dapp-nav a{
-  margin-left: 0;
+.MuiLink-root.active {
+    text-decoration: none !important;
 }
 
-.sidebar-head.active{
-  background-image: url(contact.png) !important;
-  background-size: 100% 100%;
-  color: #000 !important;
+.sidebar-head.active {
+    background-image: url(./contact.png) !important;
+    background-size: 100% 100%;
+    color: #000 !important;
 }
 
-.sidebar-head span{
-  font-size: 20px !important; 
-  font-weight: 500;
-}   
-
-.bond{
-  background-color: #292828;
-  padding: 15px !important;
-  display: flex;
-  color: #fff;
-  font-family: 'VT323';
-  column-gap: 20px;
+.dapp-menu-links {
+    justify-content: center !important;
 }
 
-.bond .bond-left span{
-  color: rgba(255, 255, 255, 0.466);
-  font-family: 'VT323';
-  font-size: 20px;
+.dapp-nav a {
+    margin-left: 0;
 }
 
-.bond .bond-left h5{
-  font-size: 24px !important;
+.sidebar-head span {
+    font-size: 20px !important;
+    font-weight: 500;
 }
 
- .bond .bond-right span{
-  background-color: #5BB66B;
-  color: #fff;
-  padding: 0 10px;
-  font-size: 20px;
-  margin-top: 26px;
-  display: block;
+.bond {
+    background-color: #292828;
+    padding: 15px !important;
+    display: flex;
+    color: #fff;
+    font-family: 'VT323';
+    column-gap: 20px;
 }
 
-.social{
-  margin-top: 20px;
+.bond .bond-left span {
+    color: rgba(255, 255, 255, 0.466);
+    font-family: 'VT323';
+    font-size: 20px;
 }
 
- .social .docs-btn{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+.bond .bond-left h5 {
+    font-size: 24px !important;
 }
 
-.social .docs-btn button{
-  background-color: #292828;
-  border: none;
-  box-shadow: none;
-  border-radius: 0;
-  padding: 5px 10px;
-  font-size: 25px;
-  font-family: 'VT323';
+.bond .bond-right span {
+    background-color: #5BB66B;
+    color: #fff;
+    padding: 0 10px;
+    font-size: 20px;
+    margin-top: 26px;
+    display: block;
 }
 
-.social .icon{
-  display: flex;
-  column-gap: 15px;
+.social {
+    margin-top: 20px;
 }
 
-.social .icon button{
-  background-color: #292828 !important;
-  color: #fff;
-  border: none;
-  border-radius: 0;
+.social .docs-btn {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.social .docs-btn button {
+    background-color: #292828;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 5px 10px;
+    font-size: 25px;
+    font-family: 'VT323';
+}
+
+.social .icon {
+    display: flex;
+    column-gap: 15px;
+}
+
+.social .icon button {
+    background-color: #292828 !important;
+    color: #fff;
+    border: none;
+    border-radius: 0;
 }
 
 @media (max-width: 1300px) {
-  .sidebar-main{
+    .sidebar-main {
         margin-left: -300px;
-  }
-  .sidebar-con{
+    }
+    .sidebar-con {
         padding-top: 0 !important;
-  }
+    }
+    .makeStyles-content-5 {
+        margin-left: 0 !important;
+    }
 }

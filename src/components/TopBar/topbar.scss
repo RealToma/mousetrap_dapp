@@ -4,7 +4,7 @@
   button {
     white-space: nowrap !important;
     overflow: hidden !important;
-    margin: 6px !important;
+    margin-left: 6px !important;
     min-width: fit-content !important;
     &#hamburger {
       padding: 11px !important;
@@ -56,6 +56,8 @@
   left: 0;
 }
 
+
+
 .header .logo h1{
   color: #fff;
   font-weight: 400;
@@ -91,6 +93,82 @@
   display: none !important;
 }
 
+.ip-address{
+  z-index: 999;
+  color: #fff;
+  margin-right: 230px !important;
+    margin-top: 20px !important;
+    background-color: transparent !important;
+    border: none;
+    box-shadow: none;
+}
+
+.cheez-menu{
+  font-size: 20px !important;
+}
+
+#cheez-menu-button{
+  padding: 9px;
+}
+
+#cheez-menu-button:hover{
+  background-color:#FFAC01 !important;
+}
+
+.cheese-modal{
+  background-image: url(modal-bg.png);
+  background-size: 100% 100%;
+  position: fixed !important;
+  padding: 44px 32px 21px 18px;
+  top: 20px !important;
+  right: -50px !important;
+  width: 300px !important;
+  text-align: center;
+}
+
+.cheese-modal p{
+  font-size: 20px;
+  margin-bottom: 0;
+}
+
+.bg-dark{
+  background-color: rgba(54, 56, 64, 0.4);
+  color: #fff !important;
+  padding-bottom: -2px;
+  box-shadow: none !important;
+}
+
+.bg-dark3{
+  background-color: rgba(54, 56, 64, 0.4);
+  color: #fff !important;
+  padding-bottom: -2px;
+  box-shadow: none !important;
+  display: none !important;
+}
+
+.buy{
+  background-image: url(green.png);
+  background-size: 100% 100%;
+  padding: 20px;
+  width: 100%;
+  border: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  font-size: 20px;
+  color: #000 !important;
+}
+
+.yellow-box{
+  background-image: url(yellow-box.png);
+  background-size: 100% 100%;
+  padding: 10px 20px;
+  border: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  font-size: 20px;
+  color: #000 !important;
+}
+
 @media (max-width: 1300px ) {
   .toggle{
         display: block !important;
@@ -112,5 +190,14 @@
   }
   .gap{
         column-gap: 0px;
+  }
+  .bg-dark{
+    display: none !important;
+  }
+  .bg-dark3{
+    display: block !important;
+  }
+  .deck{
+    display: none !important;
   }
 }

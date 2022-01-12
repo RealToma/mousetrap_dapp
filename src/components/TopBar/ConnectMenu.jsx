@@ -4,6 +4,9 @@ import { Box, Button, SvgIcon, Typography, Popper, Paper, Divider, Link, Slide, 
 import { ReactComponent as ArrowUpIcon } from "../../assets/icons/arrow-up.svg";
 import { ReactComponent as CaretDownIcon } from "../../assets/icons/caret-down.svg";
 import { useWeb3Context } from "src/hooks/web3Context";
+import { BsList } from 'react-icons/bs'
+import { FaWallet } from 'react-icons/fa'
+import Sidebar from '../../components/Sidebar/NavContent'
 
 import "./topbar.scss";
 
@@ -39,7 +42,7 @@ function ConnectMenu({ theme }) {
 
   const primaryColor = theme === "light" ? "#49A1F2" : "#F8CC82";
   const buttonStyles =
-    "pending-txn-container" + (isHovering && pendingTransactions.length > 0 ? " hovered-button" : "");
+    "pending-txn-container" + (isHovering && pendingTransactions.length > 0 ? "hovered-button deck" : "deck");
 
   const getEtherscanUrl = txnHash => {
     return chainID === 4 ? "https://rinkeby.etherscan.io/tx/" + txnHash : "https://etherscan.io/tx/" + txnHash;
@@ -55,6 +58,8 @@ function ConnectMenu({ theme }) {
     setConnected(connected);
   }, [web3, connected]);
 
+  const [toggleMenu, setToggleMenu] = useState(false);
+
   return (
     <div
       onMouseEnter={e => (pendingTransactions && pendingTransactions.length > 0 ? handleClick(e) : null)}
@@ -63,21 +68,33 @@ function ConnectMenu({ theme }) {
       id="wallet-menu"
     >
 
-      <div className="header">
+      {/* <div className="header">
         <div className="d-flex align-items-center justify-content-between">
           <div className="logo d-flex align-items-center">
             <img src={require('./logo.png').default} alt="" />
             <h1>Dashboard</h1>
           </div>
           <div className="d-flex align-items-center gap">
-            <Button className="connect">Connect wallet</Button>
-            <Button className="connect2">Qqqq</Button>
-            <Button className="toggle">aa</Button>
+            <Button className="connect"
+              onClick={clickFunc}
+              onMouseOver={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
+              key={1}>
+              {buttonText}
+            </Button>
+            <Button className="connect2"
+              onClick={clickFunc}
+              onMouseOver={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
+              key={1}><FaWallet /></Button>
+           <Button className="toggle" onClick={() => setToggleMenu(!toggleMenu)}><BsList /></Button>
+            { toggleMenu ? <Sidebar  /> : <></>}
+            
           </div>
         </div>
-      </div>
+      </div> */}
 
-      {/* <Button
+      <Button
         className={buttonStyles}
         variant="contained"
         color="secondary"
@@ -88,13 +105,13 @@ function ConnectMenu({ theme }) {
         onMouseLeave={() => setIsHovering(false)}
         key={1}
       >
-       {buttonText}
+        <span className="cheez-menu">{buttonText}</span>
         {pendingTransactions.length > 0 && (
           <Slide direction="left" in={isHovering} {...{ timeout: 333 }}>
             <SvgIcon className="caret-down" component={CaretDownIcon} htmlColor={primaryColor} />
           </Slide>
         )}
-      </Button> */}
+      </Button>
 
       <Popper id={id} open={open} anchorEl={anchorEl} placement="bottom-end" transition>
         {({ TransitionProps }) => {

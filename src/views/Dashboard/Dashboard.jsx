@@ -132,19 +132,30 @@ function Dashboard() {
           <Col lg={4} md={6} sm={12}>
             <div className={`${boxactive === 1 ? "active" : ""} box1 p-4`} onClick={() => setBoxActive(1)}>
               <span>Market Cap</span>
-              <h4>$1,665,812</h4>
+              <h4>
+                {marketCap && formatCurrency(marketCap, 0)}
+                {!marketCap && <Skeleton type="text" width="150px" style={{ margin: "0 auto" }} />}
+              </h4>
             </div>
           </Col>
           <Col lg={4} md={6} sm={12}>
             <div className={`${boxactive === 2 ? "active" : ""} box1 p-4`} onClick={() => setBoxActive(2)}>
               <span>Cheez Price</span>
-              <h4>$22.58</h4>
+              <h4>
+                {marketPrice ? formatCurrency(marketPrice, 2) : <Skeleton type="text" width="150px" style={{ margin: "0 auto" }} />}
+              </h4>
             </div>
           </Col>
           <Col lg={4} md={6} sm={12}>
             <div className={`${boxactive === 3 ? "active" : ""} box1 p-4`} onClick={() => setBoxActive(3)}>
               <span>Staked 🧀 / Circulating 🧀</span>
-              <h4>64259 / 67216</h4>
+              <h4>
+                {stakedCheese ? (
+                  parseInt(stakedCheese) + " / " + parseInt(circSupply)
+                ) : (
+                  <Skeleton type="text" width="150px" style={{ margin: "0 auto" }} />
+                )}
+              </h4>
             </div>
           </Col>
         </Row>
@@ -155,19 +166,36 @@ function Dashboard() {
           <Col lg={4} md={6} sm={12}>
             <div className={`${boxactive === 4 ? "active" : ""} box1 p-4`} onClick={() => setBoxActive(4)}>
               <span>CheeseDAO Treasury</span>
-              <h4>$3,126,041</h4>
+              <h4>{isAppLoading ? (
+                <Skeleton width="180px" type="text" style={{ margin: "0 auto" }} />
+              ) : (
+                new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                  maximumFractionDigits: 0,
+                  minimumFractionDigits: 0,
+                }).format(treasuryBalance)
+              )}</h4>
             </div>
           </Col>
           <Col lg={4} md={6} sm={12}>
             <div className={`${boxactive === 5 ? "active" : ""} box1 p-4`} onClick={() => setBoxActive(5)}>
               <span>APY</span>
-              <h4>74,675% APY</h4>
+              <h4>
+                {correctAPY ? correctAPY.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "% APY" : <Skeleton type="text" />}
+              </h4>
             </div>
           </Col>
           <Col lg={4} md={6} sm={12}>
             <div className={`${boxactive === 6 ? "active" : ""} box1 p-4`} onClick={() => setBoxActive(6)}>
               <span>Runway</span>
-              <h4>172 days</h4>
+              <h4>
+                {currentRunway ? (
+                  `${currentRunway.toFixed(0)} days`
+                ) : (
+                  <Skeleton type="text" width="150px" style={{ margin: "0 auto" }} />
+                )}
+              </h4>
             </div>
           </Col>
         </Row>
@@ -179,7 +207,13 @@ function Dashboard() {
               <img src={require('./mouse.png').default} alt="" width={150} />
               <div className="bigbox-text">
                 <span>Mouse in Maze</span>
-                <h4>3148 Mouse</h4>
+                <h4>
+                  {miceStaked ? (
+                    `${miceStaked} Mice`
+                  ) : (
+                    <Skeleton type="text" width="150px" style={{ margin: "0 auto" }} />
+                  )}
+                </h4>
               </div>
             </div>
           </Col>
@@ -188,7 +222,13 @@ function Dashboard() {
               <img src={require('./cat.png').default} alt="" />
               <div className="bigbox-text">
                 <span>Cats in Maze</span>
-                <h4>3148 Mouse</h4>
+                <h4>
+                  {catsStaked ? (
+                    `${catsStaked} Cats`
+                  ) : (
+                    <Skeleton type="text" width="150px" style={{ margin: "0 auto" }} />
+                  )}
+                </h4>
               </div>
             </div>
           </Col>
@@ -197,7 +237,13 @@ function Dashboard() {
               <img src={require('./mouse-trap.png').default} alt="" />
               <div className="bigbox-text">
                 <span>Traps in Maze</span>
-                <h4>481 Traps</h4>
+                <h4>
+                  {trapsStaked ? (
+                    `${trapsStaked} Traps`
+                  ) : (
+                    <Skeleton type="text" width="150px" style={{ margin: "0 auto" }} />
+                  )}
+                </h4>
               </div>
             </div>
           </Col>

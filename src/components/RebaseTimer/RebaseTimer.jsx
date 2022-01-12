@@ -63,7 +63,7 @@ function RebaseTimer() {
   }, [secondsToRebase, secondsToRefresh]);
 
   return (
-    <Box className="rebase-timer">
+    <Box className="rebase-timer line-height">
       <Typography variant="body2">
         {currentBlock ? (
           secondsToRebase > 0 ? (

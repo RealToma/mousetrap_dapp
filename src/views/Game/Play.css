@@ -46,6 +46,7 @@
     background-image: url(yellow-play.png);
     background-size: 100% 100%;
     padding: 20px !important;
+    height: 100%;
 }
 
 .yellow-play p {
@@ -61,4 +62,30 @@
     font-size: 25px;
     font-family: 'VT323';
     margin-bottom: 30px !important;
+    margin-top: 90px;
+}
+
+.data-sub span{
+    color: #000;
+    font-family: 'VT323';
+    font-size: 20px;
+}
+
+.modal-bg-main{
+    background-image: url(modal-play.png) !important;
+    background-size: 100% 100%;
+    background-color: transparent !important;
+    padding: 40px 50px;
+}
+
+.modal-content{
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.modal-bg-main p{
+    color: #000 !important;
+    margin-top: 20px;
+    font-size: 20px;
+    font-family: 'VT323';
 }

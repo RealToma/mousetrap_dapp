@@ -1,13 +1,16 @@
-import { AppBar, Toolbar, Box, Button, SvgIcon, Link } from "@material-ui/core";
+import { AppBar, Toolbar, Box, SvgIcon, Link } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { ReactComponent as MenuIcon } from "../../assets/icons/hamburger.svg";
 import CheezMenu from "./CheezMenu.jsx";
 import ConnectMenu from "./ConnectMenu.jsx";
-import "./topbar.scss";
 import { trim, shorten } from "../../helpers";
 import { useAddress, useWeb3Context } from "src/hooks/web3Context";
 import { Typography } from "@material-ui/core";
+import "./topbar.scss";
+import { Button } from 'react-bootstrap'
+
+
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -35,39 +38,18 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }) {
   const address = useAddress();
 
   return (
-    // <>
-    //   <div className="header">
-    //     <div className="d-flex align-items-center justify-content-between">
-    //       <div className="logo d-flex align-items-center">
-    //         <img src={require('./logo.png').default} alt="" />
-    //         <h1>Dashboard</h1>
-    //       </div>
-    //       <div className="d-flex align-items-center gap">
-    //         {/* <Button className="connect">Connect wallet  */}
-    //         <ConnectMenu theme={theme} />
-    //         {/* </Button> */}
-    //         <Button className="connect2">Qqqq</Button>
-    //         <Button className="toggle">aa</Button>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </>
     <AppBar position="sticky" className={classes.appBar} elevation={0}>
       <Toolbar disableGutters className="dapp-topbar">
-        <Button>
-      <Box display="flex">
+        <Button className="ip-address">
           {address && (
-            <div className="wallet-link">
-              <Link href={`https://explorer.harmony.one/address/${address}`} target="_blank">
-                <Typography variant="body1" style={{marginLeft: "5%", marginTop: ".5%"}}>
+            <Link href={`https://explorer.harmony.one/address/${address}`} target="_blank">
+              <p variant="body1">
                 {shorten(address)}
-                </Typography>
-              </Link>
-            </div>
+              </p>
+            </Link>
           )}
-        </Box>
         </Button>
-        <Button
+        {/* <Button
           id="hamburger"
           aria-label="open drawer"
           edge="start"
@@ -78,9 +60,23 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }) {
           className={classes.menuButton}
         >
           <SvgIcon component={MenuIcon} />
-        </Button>
-          <ConnectMenu theme={theme} />
-          hhh
+        </Button> */}
+
+        <div className="header">
+          <div className="d-flex justify-content-between align-items-center">
+            <div className="logo d-flex align-items-center">
+              <img src={require('./logo.png').default} alt="" />
+              <h1>Dashboard</h1>
+            </div>
+            <Box display="flex">
+              {address && (
+                <CheezMenu />
+              )}
+              <ConnectMenu theme={theme} />
+
+            </Box>
+          </div>
+        </div>
       </Toolbar>
     </AppBar>
   );

@@ -199,6 +199,8 @@ function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
+      <img className="cartoon" src={require('./cartoon.png').default} alt="" />
+      
       <CssBaseline />
       <div className={`app ${isSmallerScreen && "tablet"} ${isSmallScreen && "mobile"} ${theme}`}>
         <Messages />
@@ -295,7 +297,7 @@ function App() {
       {isSmallerScreen || trollboxOpen ? (
               <></>
             ) : (
-          <Button variant="outlined" color="primary" onClick={toggleTrollbox}>CheesyChat</Button>
+          <Button  color="primary" onClick={toggleTrollbox}><img className="chat" src={require('./chat.png').default} alt="" /></Button>
           )}
       </div>
 

@@ -253,6 +253,10 @@
     color: #000 !important;
     font-size: 20px !important;
     font-family: 'VT323';
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    line-height: 50px;
 }
 
 .bg-wight {
@@ -273,6 +277,10 @@
     flex-direction: column;
 }
 
+.text-black{
+    color: #000 !important;
+}
+
 .wall-btn .wallet-btn {
     background-image: url(black-bg.png);
     background-size: 100% 100%;
@@ -285,3 +293,107 @@
     margin-top: 20px;
     background-color: transparent !important;
 }
+
+.modal-bg{
+    background-image: url(modal.png);
+    background-size: 100% 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.MuiBox-root-19{
+    display: block !important;
+}
+
+.modal-footer{
+    font-family: 'VT323';
+    font-size: 20px !important;
+    background-image: url(modal-footer.png);
+    background-size: 100% 100%;
+    padding: 0 !important;
+    justify-content: center !important;
+    box-shadow: none !important;
+    border: none !important;
+    color: #000 !important;
+}
+
+.search-bar span{
+    color: #000;
+    font-family: 'VT323';
+    font-size: 20px;
+}
+
+.search-box{
+    border: 3px solid #939393;
+    padding: 5px 10px;
+}
+
+.search-box input{
+    height: 100%;
+    background-color: transparent !important;
+    border: none;
+    outline: none;
+}
+
+.search-box span{
+    background-color: #FFD500;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.stake-cheez{
+    padding: 20px;
+    color: #000 !important;
+    font-family: 'VT323';
+    border: none !important;
+    box-shadow: none !important;
+    white-space: nowrap;
+}
+
+.gap{
+    column-gap: 20px;
+}
+
+.MuiTabs-centered{
+    justify-content: left !important;
+}
+
+.border-bot{
+    border-bottom: 2px solid #000;
+}
+
+.green{
+    color: #000 !important;
+    font-family: 'VT323';
+    padding: 0 20px !important;
+    white-space: nowrap;
+    padding: 10px 15px !important;
+ border: none!important;
+}
+
+.green.active{
+    background-image: url(green-bg.png) !important;
+    background-size: 100% 100% !important;
+}
+
+.pink{
+    
+    color: #000 !important;
+    font-family: 'VT323';
+    padding: 0 20px !important;
+    white-space: nowrap;
+    padding: 10px 15px !important;
+    border: none!important;
+}
+
+.pink.active{
+    background-image: url(pink-bg.png);
+    background-size: 100% 100%;
+    color: #ffff !important;
+}
+
+.PrivateTabIndicator-colorPrimary-16{
+    background-color: transparent !important;
+}
+

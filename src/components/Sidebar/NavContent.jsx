@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import Social from "./Social";
 import externalUrls from "./externalUrls";
 import { trim, shorten } from "../../helpers";
@@ -24,6 +24,7 @@ import ControllerIcon from "./joystick.png";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./sidebar.scss";
 import { Button } from "react-bootstrap";
+// import {  useLocation } from 'react-router';
 
 function NavContent() {
   const [isActive] = useState();
@@ -60,9 +61,83 @@ function NavContent() {
     return false;
   }, []);
 
+  let location = useLocation();
+  console.log(location);
+
   return (
     <>
-      <Paper className="dapp-sidebar px-3 py-2">
+
+      <div className="sidebar-main">
+        <div className="sidebar-con pt-5 px-3">
+          <Link component={NavLink}
+            id="dash-nav"
+            to="/">
+            <Button className={`${location.pathname === '/dashboard' ? "active" : ""} sidebar-head p-2`} >
+              <span className="mb-0">Dashboard</span>
+            </Button>
+          </Link>
+          <Link component={NavLink}
+            id="stake-nav"
+            to="/play">
+            <Button className={`${location.pathname === '/play' ? "active" : ""} sidebar-head p-2`}>
+              <span className="mb-0">Play</span>
+            </Button>
+          </Link>
+          <Link component={NavLink}
+                  id="stake-nav"
+                  to="/ageing">
+            <Button className={`${location.pathname === '/ageing' ? "active" : ""} sidebar-head p-2`} >
+              <span className="mb-0">Ageing</span>
+            </Button>
+          </Link>
+          <Link  component={NavLink}
+                id="spawn-nav"
+                to="/nfts">
+            <Button className={`${location.pathname === '/nfts' ? "active" : ""} sidebar-head p-2`}>
+              <span className="mb-0">My NFTs</span>
+            </Button>
+          </Link>
+          <Link component={NavLink}
+                  id="spawn-nav"
+                  to="/marketplace">
+            <Button className={`${location.pathname === '/marketplace' ? "active" : ""} sidebar-head p-2`} >
+              <span className="mb-0">Marketplace</span>
+            </Button>
+          </Link>
+          <Link component={NavLink}
+                  id="spawn-nav"
+                  to="/bridge">
+            <Button className={`${location.pathname === '/bridge' ? "active" : ""} sidebar-head p-2`}>
+              <span className="mb-0">Bridge</span>
+            </Button>
+          </Link>
+          <Link component={NavLink}
+                  id="bond-nav"
+                  to="/bonds">
+            <Button className={`${location.pathname === '/bonds' ? "active" : ""} sidebar-head p-2`} >
+              <span className="mb-0">Bond</span>
+            </Button>
+          </Link>
+          <div className="bond mt-3">
+            <div className="bond-left">
+              <span>Bond discounts</span>
+              <h5>CHEEZ-DAI LP</h5>
+            </div>
+            <div className="bond-right">
+              <span>3.15%</span>
+            </div>
+          </div>
+          <div className="social">
+            <div className="docs-btn">
+              <Button>Docs</Button>
+              <Button className="mt-3">Merch</Button>
+            </div>
+            <Social />
+          </div>
+        </div>
+      </div>
+
+      {/* <Paper className="dapp-sidebar px-3 py-2">
         <Box className="dapp-sidebar-inner" display="flex" justifyContent="space-between" flexDirection="column">
           <div className="dapp-menu-top sidebar-center">
 
@@ -126,7 +201,7 @@ function NavContent() {
                 </Typography>
               </Link> */}
 
-                <Link
+      {/* <Link
                   component={NavLink}
                   id="spawn-nav"
                   to="/nfts"
@@ -183,8 +258,8 @@ function NavContent() {
                   </Typography>
                 </Link>
 
-                <div className="dapp-menu-data discounts">
-                  {/* <div className="bond-discounts">
+                <div className="dapp-menu-data discounts"> */}
+      {/* <div className="bond-discounts">
                     <Typography variant="body2">Bond discounts</Typography>
                     {bonds.filter(b => b.isAvailable[chainID]).map((bond, i) => (
                       <Link component={NavLink} to={`/bonds/${bond.name}`} key={i} className={"bond"}>
@@ -202,7 +277,7 @@ function NavContent() {
                     ))}
                   </div> */}
 
-                  {/* <Link
+      {/* <Link
                     id="bridge-nav"
                     href="https://synapseprotocol.com/?inputCurrency=USDC&outputCurrency=DAI&outputChain=1666600000"
                     target="_blank"
@@ -215,12 +290,12 @@ function NavContent() {
                     </Typography>
                   </Link> */}
 
-                </div>
+      {/* </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <div className="bond mt-2">
+      {/* <div className="bond mt-2">
             <div className="bond-left">
               <span>Bond discounts</span>
               <h5>CHEEZ-DAI LP</h5>
@@ -228,10 +303,10 @@ function NavContent() {
             <div className="bond-right">
               <span>3.15%</span>
             </div>
-          </div>
+          </div> */}
 
-          <Box className="dapp-menu-bottom" display="flex" justifyContent="space-between" flexDirection="column">
-            {/* <div className="dapp-menu-external-links">
+      {/* <Box className="dapp-menu-bottom" display="flex" justifyContent="space-between" flexDirection="column"> */}
+      {/* <div className="dapp-menu-external-links">
               {Object.keys(externalUrls).map((link, i) => {
                 return (
                   <Link key={i} href={`${externalUrls[link].url}`} target="_blank">
@@ -241,7 +316,7 @@ function NavContent() {
                 );
               })}
             </div> */}
-            <div className="social">
+      {/* <div className="social">
               <div className="docs-btn">
                 <Button>Docs</Button>
                 <Button className="mt-3">Merch</Button>
@@ -250,7 +325,7 @@ function NavContent() {
             <Social />
           </Box>
         </Box>
-      </Paper>
+      </Paper> */}
 
     </>
   );
