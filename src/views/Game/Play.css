@@ -62,7 +62,6 @@
     font-size: 25px;
     font-family: 'VT323';
     margin-bottom: 30px !important;
-    margin-top: 90px;
 }
 
 .data-sub span{
@@ -88,4 +87,30 @@
     margin-top: 20px;
     font-size: 20px;
     font-family: 'VT323';
+}
+.stake-wallet-btn{
+    font-family: 'VT323';
+    background-color: #37C98C !important;
+    color: #000 !important;
+    width: 100% !important;
+    max-width: 542px;
+    align-self: center;
+    justify-self: center;
+}
+
+.play-timer{
+    margin-top: 0px !important;
+    font-family: 'VT323';
+    color: #000 !important;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 425px) {
+    .cheese-docs{
+        flex-direction: column;
+    }
+    .cheese-docs button{
+        margin-top: 20px;
+    }
 }

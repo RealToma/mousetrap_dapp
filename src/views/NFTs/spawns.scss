@@ -278,7 +278,7 @@
     padding: 15px !important;
     border-radius: 0 !important;
     background-color: transparent !important;
-    color: #000;
+    color: #000 !important;
     border: none;
     box-shadow: none !important;
     font-family: 'VT323';
@@ -310,4 +310,117 @@
     box-shadow: none !important;
     background-color: transparent !important;
     border: none !important;
+}
+
+.modal-bg{
+    width: calc(100% - 40px);
+    background-image: url(modal-bg.png) !important;
+    background-size: 100% 100%;
+    background-color: transparent !important;
+    padding: 40px 50px;
+}
+
+.modal-bg h3{
+    color: #000 !important;
+    font-family: 'VT323';
+}
+
+.border-box{
+    border-radius: 0 !important;
+    border: 2px solid rgb(163, 163, 163);
+    padding: 5px;
+}
+
+.border-box.active{
+    border: 2px solid rgb(0, 0, 0);
+    box-shadow: 5px 4px 0 #fcce02;
+}
+
+.main-modal-box input{
+    appearance: none;
+    position: relative;
+    z-index: 9999;
+}
+
+.main-modal-box input::before{
+    content: "";
+    position: absolute;
+    left: -8px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #000;
+}
+
+.main-modal-box input::after{
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #000;
+    left: -3px;
+    top: 5px;
+    display : none;
+}
+
+.main-modal-box input:checked::after{
+    display: block;
+}
+
+.amount-box span{
+    color: #000;
+    font-family: 'VT323';
+    font-size: 20px;
+}
+
+.amount-fild{
+    width: 100%;
+    background-color: transparent;
+    border: 3px solid #939393;
+    padding: 10px 15px;
+    z-index: 9999;
+}
+
+.transfer-btn{
+    background-image: url(green-btn-bg.png);
+    background-size: 100% 100%;
+    color:rgb(0, 0, 0) !important;
+    font-size: 20px;
+    margin: 0 auto;
+    border-radius: 0px;
+    border: none;
+    background-color: transparent !important;
+    font-family: 'VT323';
+}
+
+.text-modal h2, .text-modal p{
+    color: #D41F56 !important;
+    font-family: 'VT323';
+}
+
+.text-modal p{
+    font-size: 20px;
+}
+
+.gray-text h2{
+    color: #000;
+    font-family: 'VT323';
+}
+
+.gray-text span{
+    color: gray;
+    font-family: 'VT323';
+    font-size: 18px;
+}
+
+.gray-text p{
+    color: #000;
+    font-family: 'VT323';
+    font-size: 20px;
+    overflow: hidden;
+}
+
+@media (max-width: 472px) {
+    .main-modal-box{
+        margin-top: 50px;
+    }
 }

@@ -7,10 +7,11 @@ import { useWeb3Context } from "src/hooks/web3Context";
 import { BsList } from 'react-icons/bs'
 import { FaWallet } from 'react-icons/fa'
 import Sidebar from '../../components/Sidebar/NavContent'
+import { ReactComponent as MenuIcon } from "../../assets/icons/hamburger.svg";
 
 import "./topbar.scss";
 
-function ConnectMenu({ theme }) {
+function ConnectMenu({ theme, handleDrawerToggle }) {
   const { connect, disconnect, connected, web3, chainID } = useWeb3Context();
   const [anchorEl, setAnchorEl] = useState(null);
   const [isConnected, setConnected] = useState(connected);
@@ -94,24 +95,39 @@ function ConnectMenu({ theme }) {
         </div>
       </div> */}
 
-      <Button
-        className={buttonStyles}
-        variant="contained"
-        color="secondary"
-        size="large"
-        style={pendingTransactions.length > 0 ? { color: primaryColor } : {}}
-        onClick={clickFunc}
-        onMouseOver={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
-        key={1}
-      >
-        <span className="cheez-menu">{buttonText}</span>
-        {pendingTransactions.length > 0 && (
-          <Slide direction="left" in={isHovering} {...{ timeout: 333 }}>
-            <SvgIcon className="caret-down" component={CaretDownIcon} htmlColor={primaryColor} />
-          </Slide>
-        )}
-      </Button>
+      <div className="d-flex align-items-center">
+        <Button
+          className={buttonStyles}
+          variant="contained"
+          color="secondary"
+          size="large"
+          style={pendingTransactions.length > 0 ? { color: primaryColor } : {}}
+          onClick={clickFunc}
+          onMouseOver={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+          key={1}
+        >
+          <span className="cheez-menu">{buttonText}</span>
+          {pendingTransactions.length > 0 && (
+            <Slide direction="left" in={isHovering} {...{ timeout: 333 }}>
+              <SvgIcon className="caret-down" component={CaretDownIcon} htmlColor={primaryColor} />
+            </Slide>
+          )}
+        </Button>
+        {/* <Button className="toggle" onClick={() => setToggleMenu(!toggleMenu)}><BsList /></Button> */}
+        <Button
+          id="hamburger"
+          aria-label="open drawer"
+          edge="start"
+          size="large"
+          variant="contained"
+          color="secondary"
+          onClick={handleDrawerToggle}
+          className="toggle"
+        >
+          <SvgIcon component={MenuIcon} />
+        </Button>
+      </div>
 
       <Popper id={id} open={open} anchorEl={anchorEl} placement="bottom-end" transition>
         {({ TransitionProps }) => {

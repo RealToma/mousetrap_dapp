@@ -207,9 +207,9 @@ function App() {
         <TopBar theme={theme} toggleTheme={toggleTheme} handleDrawerToggle={handleDrawerToggle} />
         <nav className={classes.drawer}>
           {isSmallerScreen ? (
-            <NavDrawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
+            <NavDrawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle}  />
           ) : (
-            <Sidebar />
+            <Sidebar  />
           )}
         </nav>
 

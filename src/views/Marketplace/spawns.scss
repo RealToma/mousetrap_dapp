@@ -244,4 +244,220 @@
   }
 }
 
+// redevelop
 
+.market-main{
+  margin-top: 30px;
+}
+
+.gap{
+  column-gap: 20px;
+}
+
+.floor-box{
+  background-image: url(yellow.png);
+  background-size: 100% 100%;
+  padding: 20px;
+}
+
+.floor-text span{
+  color: gray;
+  font-size: 20px;
+  font-family: 'VT323';
+}
+
+.floor-text h3{
+  font-family: 'VT323';
+  color: #000;
+  margin-bottom: 0;
+  margin-top: 15px;
+}
+
+.main-btn-box{
+  border-bottom: 3px solid #000;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main-btn-box button{
+  padding: 0 15px;
+  border: none;
+  color: #000 !important;
+  box-shadow: none !important;
+  display: flex;
+  font-family: 'VT323';
+  align-items: center;
+  column-gap: 15px;
+  border-radius: 0;
+  background-color: transparent !important;
+  cursor: pointer;
+}
+
+.main-btn-box button.active{
+  background-color: #292828 !important;
+  color: #fff !important;
+}
+
+.pagination .short{
+  padding: 0;
+  font-family: 'VT323';
+  color: #FFAC01;
+  background-color: transparent !important;
+  border: none;
+  font-size: 20px;
+  box-shadow: none !important;
+}
+
+.pagination-btns{
+  column-gap: 5px;
+}
+
+.pagination-btns button{
+  padding: 0;
+  background-color: transparent !important;
+  border: none;
+  box-shadow: none !important;
+}
+
+.pagination-btns .pages{
+  border: 2px solid gray;
+  color: gray;
+  padding: 5px;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+}
+
+.pagination-btns button{
+  color: gray;
+}
+
+.pagination-btns .pages.active{
+  background-color: #FFAC01 !important;
+  color: #000 !important;
+  border: 2px solid #FFAC01;
+}
+
+.pagination{
+  padding-bottom: 18px;
+  border-bottom: 2px solid #FFAC01;
+}
+
+.table tbody tr td{
+  font-family: 'VT323';
+  font-size: 20px;
+  vertical-align: middle;
+  border: none !important;
+}
+
+.table tbody tr td span{
+  color: gray;
+}
+
+.table tbody tr.active{
+  background-color: #FFE794 !important;
+}
+
+.table .by{
+  background-color: transparent !important;
+  color: #000 !important;
+  border: none;
+  background-image: url(yellow.png);
+  background-size: 100% 100%;
+  font-size: 20px;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.sales h3{
+  font-family: 'VT323';
+  color: #000;
+  font-size: 40px;
+}
+
+.sales-box{
+  text-align: center;
+  background-image: url(wight-bg.png);
+  background-size: 100% 100%;
+  padding: 20px 30px 30px 30px;
+}
+
+.sales-box span{
+  color: #000;
+  font-size: 20px;
+  font-family: 'VT323';
+  display: block;
+}
+
+.box-total h5{
+  color: gray !important;
+  font-family: 'VT323';
+}
+
+.no-wrap{
+  white-space: nowrap !important;
+}
+
+.main{
+  background-color: #fff;
+  box-shadow: 6px 7px 0 #8080807a;
+}
+
+.preview{
+  text-align: left;
+  padding: 20px 0 10px 0;
+}
+
+.preview h2{
+  color: #000;
+  font-family: 'VT323';
+}
+
+.preview span{
+  color: #000;
+  font-family: 'VT323';
+  font-size: 20px;
+}
+
+.preview input{
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  border: 3px solid #292828;
+  padding: 10px;
+}
+
+.approve{
+  background-image: url(green-bg.png);
+  background-size: 100% 100%;
+  color: #000 !important;
+  font-family: 'VT323';
+  font-size: 20px;
+  border: none;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  border-radius: 0;
+}
+
+@media (max-width: 460px) {
+  .main-btn-box button{
+    width: 100%;
+  }
+}
+
+@media (max-width: 320px) {
+  .pagination{
+    flex-direction: column;
+    
+  }
+  .pagination-btns{
+    margin: 0 !important;
+    margin-top: 20px !important;
+    justify-content: center !important;
+  }
+}

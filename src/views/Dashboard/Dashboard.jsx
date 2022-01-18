@@ -28,7 +28,7 @@ function Dashboard() {
   const theme = useTheme();
   const smallerScreen = useMediaQuery("(max-width: 650px)");
   const verySmallScreen = useMediaQuery("(max-width: 379px)");
-  const { chainID } = useWeb3Context();
+  const { chainID, address } = useWeb3Context();
   const networkID = chainID;
 
   const marketPrice = useSelector(state => {
@@ -123,7 +123,7 @@ function Dashboard() {
   const correctAPY = (stakingAPY * 100)
   const trimmedStakingAPY = trim(stakingAPY * 100, 1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-  const [boxactive,setBoxActive] = useState();
+  const [boxactive, setBoxActive] = useState();
 
   return (
     <>
@@ -249,18 +249,23 @@ function Dashboard() {
           </Col>
         </Row>
       </div>
-      <div className="get-start-main mt-5">
-        <Row className="align-items-center w-100">
-          <Col lg={9} md={12}>
-            <p>Donec lobortis auctor posuere amet egestas vulputate lacus consequat.</p>
-          </Col>
-          <Col lg={3} md={12}>
-            <div>
-              <Button className="start-btn">GET STARTED</Button>
-            </div>
-          </Col>
-        </Row>
-      </div>
+      {!address ? (
+        <div className="get-start-main mt-5">
+          <Row className="align-items-center w-100">
+            <Col lg={9} md={12}>
+              <p>Donec lobortis auctor posuere amet egestas vulputate lacus consequat.</p>
+            </Col>
+            <Col lg={3} md={12}>
+              <div>
+                <Button className="start-btn">GET STARTED</Button>
+              </div>
+            </Col>
+          </Row>
+        </div>
+      ) : (
+        <></>
+      )}
+
     </>
     // <div id="treasury-dashboard-view" className={`${smallerScreen && "smaller"} ${verySmallScreen && "very-small"}`}>
     //   <Container

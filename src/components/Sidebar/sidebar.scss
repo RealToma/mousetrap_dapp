@@ -313,9 +313,11 @@
     border-radius: 0;
 }
 
+
 @media (max-width: 1300px) {
     .sidebar-main {
         margin-left: -300px;
+        top: 118px;
     }
     .sidebar-con {
         padding-top: 0 !important;

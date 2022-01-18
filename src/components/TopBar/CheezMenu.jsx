@@ -71,13 +71,13 @@ function CheezMenu() {
       onMouseLeave={e => handleClick(e)}
       id="cheez-menu-button-hover"
     >
-      <Button id="cheez-menu-button" className="bg-dark" size="large" variant="contained" color="secondary"  aria-describedby={id}>
+      <Button id="cheez-menu-button" className="bg-dark" size="large" variant="contained" color="secondary" aria-describedby={id}>
         <Typography><span className="cheez-menu">
           By Cheez</span></Typography>
       </Button>
-      <Button id="cheez-menu-button" className="bg-dark3" size="large" variant="contained" color="secondary"  aria-describedby={id}>
+      <Button id="cheez-menu-button" className="bg-dark3" size="large" variant="contained" color="secondary" aria-describedby={id}>
         <Typography><span className="cheez-menu">
-          < AiFillShopping/></span></Typography>
+          < AiFillShopping /></span></Typography>
       </Button>
 
 
@@ -87,20 +87,20 @@ function CheezMenu() {
           return (
             <>
               <div className="cheese-modal">
-              <Link
-                    href={`https://app.sushi.com/swap?inputCurrency=${daiAddress}&outputCurrency=0xBbD83eF0c9D347C85e60F1b5D2c58796dBE1bA0d`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                <Button className="buy">Buy on Sushiswap </Button>
+                <Link
+                  href={`https://app.sushi.com/swap?inputCurrency=${daiAddress}&outputCurrency=0xBbD83eF0c9D347C85e60F1b5D2c58796dBE1bA0d`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Button className="buy" >Buy on Sushiswap ↗️</Button>
                 </Link>
                 <p className="my-3">Add token to wallet</p>
                 <div>
-                  <Button className="yellow-box">CHEEZ</Button>
-                  <Button className="yellow-box">sCHEEZ</Button>
+                  <Button className="yellow-box" onClick={addTokenToWallet("CHEEZ", OHM_ADDRESS)}>🧀CHEEZ</Button>
+                  <Button className="yellow-box" onClick={addTokenToWallet("CHEEZ", OHM_ADDRESS)}>🧀sCHEEZ</Button>
                 </div>
               </div>
-              </> 
+            </>
             // <Fade {...TransitionProps} timeout={100}>
             //   <Paper className="cheez-menu" elevation={1}>
             //     <Box component="div" className="buy-tokens">
@@ -135,7 +135,7 @@ function CheezMenu() {
             //     </Box>
             //   </Paper>
             // </Fade>
-            
+
           );
         }}
       </Popper>

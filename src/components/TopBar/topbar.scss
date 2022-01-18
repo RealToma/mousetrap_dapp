@@ -20,6 +20,14 @@
 .pending-txn-container {
   display: flex;
   align-items: center;
+  background-image: url(contact.png);
+  background-size: 100% 100%;
+  border: none;
+  color: #000 !important;
+  font-size: 20px;
+  border-radius:0;
+  border: none !important;
+  box-shadow: none !important;
   .MuiButton-label {
     margin-right: 0;
     transition: all 0.33s ease-out;
@@ -86,11 +94,18 @@
 .toggle{
   background-color: transparent !important;
   font-size: 30px !important;
-  padding: 0;
   color : #fff;
   border: none !important;
   box-shadow: none !important;
   display: none !important;
+  display: flex;
+  align-items: center;
+  padding: 0 !important;
+  z-index: 999;
+}
+
+.toggle span{
+  display: flex;
 }
 
 .ip-address{
@@ -173,15 +188,21 @@
   .toggle{
         display: block !important;
   }
+  .ip-address{
+    margin-right: 262px !important;
+  }
 }
 
 @media (max-width : 991px) {
 .bigbox1, .box1{
    margin-top: 20px;
 } 
+.ip-address{
+  display: none;
+}
 }
 
-@media (max-width: 435px) {
+@media (max-width: 478px) {
   .connect{
         display: none !important;
   }
@@ -199,5 +220,8 @@
   }
   .deck{
     display: none !important;
+  }
+  .header .logo h1{
+    display: none;
   }
 }

@@ -272,7 +272,7 @@ function Play() {
           </Col>
         </Row>
         <Row className="mt-5 justify-content-center mb-5">
-          <Col lg={4} md={6} sm={12} className="mt-3">
+          <Col lg={4} md={6} sm={12} className="mt-5">
             <div className="yellow-play text-center">
 
               <img src={require('./mouse.png').default} alt="" width={150} />
@@ -333,67 +333,26 @@ function Play() {
                 </>
               )}
 
-              <Button
-                className="wallet-btn mt-5"
-                onClick={handleShow}
-              >
-                Enter the Maze
-              </Button>
-
-              <Modal show={show} onHide={handleClose}>
-                <Modal.Body className="modal-bg-main">
-                  <div >
-                    <Box className="stake-action-area border-bot">
-                      <Tabs
-                        key={String(zoomed)}
-                        centered
-                        value={view}
-                        textColor="primary"
-                        indicatorColor="primary"
-                        className="stake-tab-buttons"
-                        // onChange={changeView}
-                        aria-label="stake tabs"
-                      >
-                        <Tab className={`${tabActive === 1 ? "active" : ""} green`} label="Stake" {...a11yProps(0)} onClick={() => setTabActive(1)} />
-                        <Tab className={`${tabActive === 2 ? "active" : ""} pink`} label="Unstake" {...a11yProps(1)} onClick={() => setTabActive(2)} />
-                      </Tabs>
-                    </Box>
-                    <div className="search-bar mt-3 px-3">
-                      <span>Max Available: 0</span>
-                      <div className="d-flex align-items-center gap">
-                        <div className="search-box d-flex align-items-center justify-content-between w-100">
-                          <input type="text" className="w-100" />
-                          <span>MAX</span>
-                        </div>
-                        {tabActive === 1 ?
-                          <Button className={`${tabActive === 1 ? "active" : ""} green`}>Stake CHEEZ</Button> :
-                          <Button className={`${tabActive === 2 ? "active" : ""} pink`}>Unstake CHEEZ</Button>
-                        }
-                      </div>
-                    </div>
-                    <p>Your Cat has found</p>
-                    <Box style={{ width: "fit-content", marginTop: '15px', marginBottom: "15px" }} >
-                      <Button
-                        className="stake-button modal-footer"
-                        variant="outlined"
-                        color="primary"
-                        disabled={isPendingTxn(pendingTransactions, "claim")}
-                        onClick={() => {
-                          onChangeStake("claim");
-                        }}
-                        style={{ marginLeft: "2%" }}
-                      >
-                        {txnButtonText(pendingTransactions, "claiming", "Claim Warmup")}
-                      </Button>
-
-                    </Box>
-                  </div>
-                </Modal.Body>
-              </Modal>
-
+              {!address ? (
+                <>{modalButton}</>
+              ) : (
+                <>
+                  <Button
+                    className="stake-wallet-btn mt-5"
+                    onClick={handleShow}
+                    variant="outlined"
+                    color="primary"
+                  >
+                    Enter the Maze
+                  </Button>
+                </>
+              )}
+            </div>
+            <div className="play-timer">
+              <GameTimer />
             </div>
           </Col>
-          <Col lg={4} md={6} sm={12} className="mt-3">
+          <Col lg={4} md={6} sm={12} className="mt-5">
             <div className="yellow-play text-center">
               <img src={require('./cat.png').default} alt="" width={150} />
               {!address ? (
@@ -456,202 +415,24 @@ function Play() {
                 </>
               )}
 
-              <Button
-                className="wallet-btn mt-5"
-                onClick={handleShow}
-              >
-                Enter the Maze
-              </Button>
-
-              <Modal show={show} onHide={handleClose}>
-                <Modal.Body className="modal-bg-main">
-                  <div >
-                    <Box className="stake-action-area border-bot">
-                      <Tabs
-                        key={String(zoomed)}
-                        centered
-                        value={view}
-                        textColor="primary"
-                        indicatorColor="primary"
-                        className="stake-tab-buttons"
-                        // onChange={changeView}
-                        aria-label="stake tabs"
-                      >
-                        <Tab className={`${tabActive === 1 ? "active" : ""} green`} label="Stake" {...a11yProps(0)} onClick={() => setTabActive(1)} />
-                        <Tab className={`${tabActive === 2 ? "active" : ""} pink`} label="Unstake" {...a11yProps(1)} onClick={() => setTabActive(2)} />
-                      </Tabs>
-                    </Box>
-                    <div className="search-bar mt-3 px-3">
-                      <span>Max Available: 0</span>
-                      <div className="d-flex align-items-center gap">
-                        <div className="search-box d-flex align-items-center justify-content-between w-100">
-                          <input type="text" className="w-100" />
-                          <span>MAX</span>
-                        </div>
-                        {tabActive === 1 ?
-                          <Button className={`${tabActive === 1 ? "active" : ""} green`}>Stake CHEEZ</Button> :
-                          <Button className={`${tabActive === 2 ? "active" : ""} pink`}>Unstake CHEEZ</Button>
-                        }
-                      </div>
-                    </div>
-                    <p>Your Cat has found</p>
-                    <Box style={{ width: "fit-content", marginTop: '15px', marginBottom: "15px" }} >
-                      <Button
-                        className="stake-button modal-footer"
-                        variant="outlined"
-                        color="primary"
-                        disabled={isPendingTxn(pendingTransactions, "claim")}
-                        onClick={() => {
-                          onChangeStake("claim");
-                        }}
-                        style={{ marginLeft: "2%" }}
-                      >
-                        {txnButtonText(pendingTransactions, "claiming", "Claim Warmup")}
-                      </Button>
-
-                    </Box>
-                  </div>
-                </Modal.Body>
-              </Modal>
-
-              <Modal
-                open={catMazeModal}
-                onClose={handleCatClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-                style={{ width: smallerScreen || verySmallScreen ? '85%' : '40%', margin: "0 auto", marginTop: smallerScreen || verySmallScreen ? '15%' : '5%' }}
-              >
-                <Box>
-                  <Paper style={{ paddingTop: "2%" }}>
-                    <Paper style={{ background: "transparent", width: "85%", margin: "0 auto" }}>
-                      <Typography variant="h3" color="textSecondary" style={{ textAlign: "center", paddingTop: "2%", paddingBottom: "2%", marginTop: "1%", marginBottom: "2%" }}>The Maze</Typography>
-                    </Paper>
-                    <Tabs
-                      key={String(zoomed)}
-                      centered
-                      value={view}
-                      style={{ color: "#3ce8a6" }}
-                      indicatorColor="success"
-                      className="stake-tab-buttons"
-                      onChange={changeView}
-                      aria-label="stake tabs"
-                    >
-                      <Tab label="Stake" {...a11yProps(0)} />
-                      <Tab label="Unstake" {...a11yProps(1)} />
-                    </Tabs>
-                    <Box style={{ display: "flex", justifyContent: "center" }}>
-                      <TabPanel value={view} index={0} className="stake-tab-panel">
-                        {isAllowanceDataLoading ? (
-                          <Skeleton />
-                        ) : address && isGameApproved ? (
-                          <Box style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                            <TextField
-                              id="filled-number"
-                              label={`Max Available: ${catBalance}`}
-                              type="number"
-                              value={catStakeAmount}
-                              onChange={(e) => { setCatStakeAmount(e.target.value) }}
-                              style={{ marginBottom: "5%" }}
-                              InputLabelProps={{
-                                shrink: true,
-                              }}
-                              variant="outlined"
-                            />
-                            <Button
-                              className="stake-button"
-                              variant="outlined"
-                              color="primary"
-                              style={{ marginBottom: "2%", marginRight: "2%" }}
-                              disabled={isPendingTxn(pendingTransactions, "game_stake")}
-                              onClick={() => {
-                                onStake(1, catStakeAmount);
-                              }}
-                            >
-                              {txnButtonText(pendingTransactions, "Entering Maze", "Stake Cats")}
-                            </Button>
-                          </Box>
-                        ) : (
-                          <Button
-                            className="stake-button"
-                            variant="outlined"
-                            color="primary"
-                            style={{ marginBottom: "2%", marginRight: "2%" }}
-                            disabled={isPendingTxn(pendingTransactions, "approve_game")}
-                            onClick={onSeekApproval}
-                          >
-                            {txnButtonText(pendingTransactions, "approve_game", "Approve")}
-                          </Button>
-                        )}
-                      </TabPanel>
-                      <TabPanel value={view} index={1} className="stake-tab-panel">
-                        {isAllowanceDataLoading ? (
-                          <Skeleton />
-                        ) : address ? (
-                          <Box style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                            <TextField
-                              id="filled-number"
-                              label={`Max Available: ${stakedCats}`}
-                              type="number"
-                              value={catUnstakeAmount}
-                              onChange={(e) => { setCatUnstakeAmount(e.target.value) }}
-                              style={{ marginBottom: "5%" }}
-                              InputLabelProps={{
-                                shrink: true,
-                              }}
-                              variant="outlined"
-                            />
-                            <Button
-                              className="stake-button"
-                              variant="outlined"
-                              color="primary"
-                              style={{ marginBottom: "2%", marginRight: "2%" }}
-                              disabled={isPendingTxn(pendingTransactions, "game_unstake")}
-                              onClick={() => {
-                                onUnstake(1, catUnstakeAmount);
-                              }}
-                            >
-                              {txnButtonText(pendingTransactions, "Leaving Maze", "Unstake Cats")}
-                            </Button>
-                          </Box>
-                        ) : (
-                          <Button
-                            className="stake-button"
-                            variant="outlined"
-                            color="primary"
-                            disabled={isPendingTxn(pendingTransactions, "approve_unstaking")}
-                            style={{ marginBottom: "2%", marginRight: "2%" }}
-                            onClick={onSeekApproval}
-                          >
-                            {txnButtonText(pendingTransactions, "approve_unstaking", "Approve")}
-                          </Button>
-                        )}
-                      </TabPanel>
-                    </Box>
-                    <Box style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                      {catBalance != null || undefined ? (
-                        <Typography variant="body1" style={{ marginBottom: "3%", textAlign: "center" }}>Your {catBalance > 1 ? 'Cats have' : 'Cat has'} found <span style={{ color: "#ebc50c" }}>{parseFloat(ethers.utils.formatUnits(rewardsCats, 9).toString()).toFixed(3)}</span> CHEEZ in the Maze</Typography>
-                      ) : (<></>)}
-
-                      <Button
-                        className="stake-button"
-                        variant="outlined"
-                        color="primary"
-                        disabled={isPendingTxn(pendingTransactions, "game_claim")}
-                        style={{ margin: "0 auto", marginBottom: "5%", width: "50%" }}
-                        onClick={() => {
-                          onClaim(1);
-                        }}
-                      >
-                        {txnButtonText(pendingTransactions, "game_claim", "Claim Rewards")}
-                      </Button>
-                    </Box>
-                  </Paper>
-                </Box>
-              </Modal>
+              {!address ? (
+                <>{modalButton}</>
+              ) : (
+                <>
+                  <Button
+                    className="stake-wallet-btn mt-5"
+                    onClick={handleShow}
+                    variant="outlined"
+                    color="primary"
+                  >
+                    Enter the Maze
+                  </Button>
+                </>
+              )}
 
             </div>
           </Col>
-          <Col lg={4} md={6} sm={12} className="mt-3">
+          <Col lg={4} md={6} sm={12} className="mt-5">
             <div className="yellow-play text-center">
               <img src={require('./mouse-trap.png').default} alt="" width={150} />
 
@@ -687,184 +468,75 @@ function Play() {
                 </>
               )}
 
-              <Button
-                className="wallet-btn"
-                onClick={handleShow}
-              >
-                Enter the Maze
-              </Button>
-
-              <Modal show={show} onHide={handleClose}>
-                <Modal.Body className="modal-bg-main">
-                  <div >
-                    <Box className="stake-action-area border-bot">
-                      <Tabs
-                        key={String(zoomed)}
-                        centered
-                        value={view}
-                        textColor="primary"
-                        indicatorColor="primary"
-                        className="stake-tab-buttons"
-                        // onChange={changeView}
-                        aria-label="stake tabs"
-                      >
-                        <Tab className={`${tabActive === 1 ? "active" : ""} green`} label="Stake" {...a11yProps(0)} onClick={() => setTabActive(1)} />
-                        <Tab className={`${tabActive === 2 ? "active" : ""} pink`} label="Unstake" {...a11yProps(1)} onClick={() => setTabActive(2)} />
-                      </Tabs>
-                    </Box>
-                    <div className="search-bar mt-3 px-3">
-                      <span>Max Available: 0</span>
-                      <div className="d-flex align-items-center gap">
-                        <div className="search-box d-flex align-items-center justify-content-between w-100">
-                          <input type="text" className="w-100" />
-                          <span>MAX</span>
-                        </div>
-                        {tabActive === 1 ?
-                          <Button className={`${tabActive === 1 ? "active" : ""} green`}>Stake CHEEZ</Button> :
-                          <Button className={`${tabActive === 2 ? "active" : ""} pink`}>Unstake CHEEZ</Button>
-                        }
-                      </div>
-                    </div>
-                    <p>Your Cat has found</p>
-                    <Box style={{ width: "fit-content", marginTop: '15px', marginBottom: "15px" }} >
-                      <Button
-                        className="stake-button modal-footer"
-                        variant="outlined"
-                        color="primary"
-                        disabled={isPendingTxn(pendingTransactions, "claim")}
-                        onClick={() => {
-                          onChangeStake("claim");
-                        }}
-                        style={{ marginLeft: "2%" }}
-                      >
-                        {txnButtonText(pendingTransactions, "claiming", "Claim Warmup")}
-                      </Button>
-
-                    </Box>
-                  </div>
-                </Modal.Body>
-              </Modal>
-
-              <Modal
-                open={trapMazeModal}
-                onClose={handleTrapClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-                style={{ width: smallerScreen || verySmallScreen ? '85%' : "40%", margin: "0 auto", marginTop: smallerScreen || verySmallScreen ? '15%' : '5%' }}
-              >
-                <Box>
-                  <Paper style={{ paddingTop: "2%" }}>
-                    <Paper style={{ background: "transparent", width: "85%", margin: "0 auto" }}>
-                      <Typography variant="h3" color="textSecondary" style={{ textAlign: "center", paddingTop: "2%", paddingBottom: "2%", marginTop: "1%", marginBottom: "2%" }}>The Maze</Typography>
-                    </Paper>
-                    <Tabs
-                      key={String(zoomed)}
-                      centered
-                      value={view}
-                      style={{ color: "#3ce8a6" }}
-                      indicatorColor="success"
-                      className="stake-tab-buttons"
-                      onChange={changeView}
-                      aria-label="stake tabs"
-                    >
-                      <Tab label="Stake" {...a11yProps(0)} />
-                      <Tab label="Unstake" {...a11yProps(1)} />
-                    </Tabs>
-                    <Box style={{ display: "flex", justifyContent: "center" }}>
-                      <TabPanel value={view} index={0} className="stake-tab-panel">
-                        {isAllowanceDataLoading ? (
-                          <Skeleton />
-                        ) : address && isGameApproved ? (
-                          <Box style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                            <TextField
-                              id="filled-number"
-                              label={`Max Available: ${trapBalance}`}
-                              type="number"
-                              value={trapStakeAmount}
-                              onChange={(e) => { setTrapStakeAmount(e.target.value) }}
-                              style={{ marginBottom: "5%" }}
-                              InputLabelProps={{
-                                shrink: true,
-                              }}
-                              variant="outlined"
-                            />
-                            <Button
-                              className="stake-button"
-                              variant="outlined"
-                              color="primary"
-                              style={{ marginBottom: "2%", marginRight: "2%" }}
-                              disabled={isPendingTxn(pendingTransactions, "game_stake")}
-                              onClick={() => {
-                                onStake(2, trapStakeAmount);
-                              }}
-                            >
-                              {txnButtonText(pendingTransactions, "Entering Maze", "Stake Traps")}
-                            </Button>
-                          </Box>
-                        ) : (
-                          <Button
-                            className="stake-button"
-                            variant="outlined"
-                            color="primary"
-                            style={{ marginBottom: "2%", marginRight: "2%" }}
-                            disabled={isPendingTxn(pendingTransactions, "approve_game")}
-                            onClick={onSeekApproval}
-                          >
-                            {txnButtonText(pendingTransactions, "approve_game", "Approve")}
-                          </Button>
-                        )}
-                      </TabPanel>
-                      <TabPanel value={view} index={1} className="stake-tab-panel">
-                        {isAllowanceDataLoading ? (
-                          <Skeleton />
-                        ) : address ? (
-                          <Box style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                            <TextField
-                              id="filled-number"
-                              label={`Max Available: ${stakedTraps}`}
-                              type="number"
-                              value={trapUnstakeAmount}
-                              onChange={(e) => { setTrapUnstakeAmount(e.target.value) }}
-                              style={{ marginBottom: "5%" }}
-                              InputLabelProps={{
-                                shrink: true,
-                              }}
-                              variant="outlined"
-                            />
-                            <Button
-                              className="stake-button"
-                              variant="outlined"
-                              color="primary"
-                              style={{ marginBottom: "2%", marginRight: "2%" }}
-                              disabled={isPendingTxn(pendingTransactions, "game_unstake")}
-                              onClick={() => {
-                                onUnstake(2, trapUnstakeAmount);
-                              }}
-                            >
-                              {txnButtonText(pendingTransactions, "Leaving Maze", "Unstake Traps")}
-                            </Button>
-                          </Box>
-                        ) : (
-                          <Button
-                            className="stake-button"
-                            variant="outlined"
-                            color="primary"
-                            disabled={isPendingTxn(pendingTransactions, "approve_unstaking")}
-                            style={{ marginBottom: "2%", marginRight: "2%" }}
-                            onClick={onSeekApproval}
-                          >
-                            {txnButtonText(pendingTransactions, "approve_unstaking", "Approve")}
-                          </Button>
-                        )}
-                      </TabPanel>
-                    </Box>
-                  </Paper>
-                </Box>
-              </Modal>
+              {!address ? (
+                <>{modalButton}</>
+              ) : (
+                <>
+                  <Button
+                    className="stake-wallet-btn mt-5"
+                    onClick={handleShow}
+                    variant="outlined"
+                    color="primary"
+                  >
+                    Enter the Maze
+                  </Button>
+                </>
+              )}
             </div>
           </Col>
         </Row>
       </div>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Body className="modal-bg-main">
+          <div >
+            <Box className="stake-action-area border-bot">
+              <Tabs
+                key={String(zoomed)}
+                centered
+                value={view}
+                textColor="primary"
+                indicatorColor="primary"
+                className="stake-tab-buttons"
+                // onChange={changeView}
+                aria-label="stake tabs"
+              >
+                <Tab className={`${tabActive === 1 ? "active" : ""} green`} label="Stake" {...a11yProps(0)} onClick={() => setTabActive(1)} />
+                <Tab className={`${tabActive === 2 ? "active" : ""} pink`} label="Unstake" {...a11yProps(1)} onClick={() => setTabActive(2)} />
+              </Tabs>
+            </Box>
+            <div className="search-bar mt-3 px-3">
+              <span>Max Available: 0</span>
+              <div className="d-flex align-items-center gap">
+                <div className="search-box d-flex align-items-center justify-content-between w-100">
+                  <input type="text" className="w-100" />
+                  <span>MAX</span>
+                </div>
+                {tabActive === 1 ?
+                  <Button className={`${tabActive === 1 ? "active" : ""} green`}>Stake CHEEZ</Button> :
+                  <Button className={`${tabActive === 2 ? "active" : ""} pink`}>Unstake CHEEZ</Button>
+                }
+              </div>
+            </div>
+            <p>Your Cat has found</p>
+            <Box style={{ width: "fit-content", marginTop: '15px', marginBottom: "15px" }} >
+              <Button
+                className="stake-button modal-footer"
+                variant="outlined"
+                color="primary"
+                disabled={isPendingTxn(pendingTransactions, "claim")}
+                onClick={() => {
+                  onChangeStake("claim");
+                }}
+                style={{ marginLeft: "2%" }}
+              >
+                {txnButtonText(pendingTransactions, "claiming", "Claim Warmup")}
+              </Button>
+
+            </Box>
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 }

@@ -294,7 +294,7 @@
     background-color: transparent !important;
 }
 
-.modal-bg{
+.modal-bg-stake{
     background-image: url(modal.png);
     background-size: 100% 100%;
     max-width: 500px;
@@ -397,3 +397,13 @@
     background-color: transparent !important;
 }
 
+@media (max-width: 436px) {
+    .max-search{
+        flex-direction: column;
+    }
+
+    .max-search button{
+        width:100%; 
+        margin-top: 10px;
+    }
+}

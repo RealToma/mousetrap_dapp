@@ -72,7 +72,7 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }) {
               {address && (
                 <CheezMenu />
               )}
-              <ConnectMenu theme={theme} />
+              <ConnectMenu theme={theme} handleDrawerToggle={handleDrawerToggle} />
 
             </Box>
           </div>

@@ -23,21 +23,25 @@ function NavDrawer({ mobileOpen, handleDrawerToggle }) {
   const classes = useStyles();
 
   return (
-    // <Drawer
-    //   variant="temporary"
-    //   anchor={"left"}
-    //   open={mobileOpen}
-    //   onClose={handleDrawerToggle}
-    //   onClick={handleDrawerToggle}
-    //   classes={{
-    //     paper: classes.drawerPaper,
-    //   }}
-    //   ModalProps={{
-    //     keepMounted: true, // Better open performance on mobile.
-    //   }}
-    // >
-      <NavContent />
-    // </Drawer>
+    <>
+      {/* <Drawer
+        variant="temporary"
+        anchor={"left"}
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        onClick={handleDrawerToggle}
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile.
+        }}
+      >
+
+      </Drawer> */}
+      <NavContent mobileOpen={mobileOpen} />
+    </>
+
   );
 }
 

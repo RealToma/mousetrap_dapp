@@ -68,7 +68,7 @@ function RebaseTimer() {
         {currentBlock ? (
           secondsToRebase > 0 ? (
             <>
-              <strong>{rebaseString}</strong> to next rebase
+              ⏳<strong>{rebaseString}</strong> to next rebase
             </>
           ) : (
             <strong>rebasing</strong>

@@ -231,7 +231,7 @@ function Ageing() {
           </div>
         ) : (
           <>
-            <div className="modal-bg">
+            <div className="modal-bg-stake">
               <div className="wall-con">
                 <div className="staking-area">
                   <Box className="stake-action-area border-bot">
@@ -251,7 +251,7 @@ function Ageing() {
                   </Box>
                   <div className="search-bar mt-3 px-3">
                     <span>Max Available: 0</span>
-                    <div className="d-flex align-items-center gap">
+                    <div className="d-flex align-items-center gap max-search">
                       <div className="search-box d-flex align-items-center justify-content-between w-100">
                         <input type="text" className="w-100" />
                         <span>MAX</span>
