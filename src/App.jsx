@@ -27,6 +27,7 @@ import NFTs from "./views/NFTs/NFTs";
 import Activity from "./views/Marketplace/Activity";
 import NFTStaking from "./views/NFTStaking/NFTStaking";
 import Play from "./views/Game/Play";
+import Governance from "./views/Governance/Governance";
 import WidgetBot from '@widgetbot/react-embed'
 import MarketGate from './views/MarketGate/MarketGate';
 import CheezPass from "./views/CheezPass/CheezPass";
@@ -257,6 +258,10 @@ function App() {
 
             <Route path="/play">
               <Play />
+            </Route>
+
+            <Route path="/governance">
+              <Governance />
             </Route>
 
             <Route path="/bonds">

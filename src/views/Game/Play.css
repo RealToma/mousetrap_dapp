@@ -88,14 +88,18 @@
     font-size: 20px;
     font-family: 'VT323';
 }
+
 .stake-wallet-btn{
     font-family: 'VT323';
-    background-color: #37C98C !important;
+    background-image: url(green-btn-bg.png);
+    background-size: 100% 100%;
     color: #000 !important;
     width: 100% !important;
-    max-width: 542px;
+    max-width: 100%;
     align-self: center;
     justify-self: center;
+    padding: 20px 0 !important;
+    border: none !important;
 }
 
 .play-timer{
@@ -104,6 +108,87 @@
     color: #000 !important;
     display: flex;
     justify-content: center;
+}
+
+.mini-modal-1{
+    background-image: url(mini-modal.png);
+    background-size: 100% 100%;
+    padding: 50px 50px;
+    color: #000;
+    font-family: 'VT323';
+}
+
+.caution{
+    text-align: center;
+    color: #D41F56;
+}
+
+.caution p{
+    font-size: 20px;
+}
+
+.list{
+    text-align: left;
+}
+
+.list span{
+    font-size: 18px;
+}
+
+.list p{
+    margin-bottom: 0;
+}
+
+.mini-tab ul{
+    border-bottom: 2px solid #000;
+    padding-bottom: 1px;
+}
+
+.mini-tab ul li button{
+    border: none !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    font-size: 20px;
+    color: gray;
+}
+
+.mini-tab ul li button:hover{
+    color: gray;
+}
+
+.green{
+    background-image: url(mini-green.png);
+    background-size: 100% 100%;
+    padding: 20px;
+}
+
+.mini-def{
+    column-gap: 5px;
+    color: #000;
+    font-family: "VT323";
+    font-size: 20px;
+}
+
+.stake-button{
+    background-size: 100% 100%;
+    background-image: url(mini-wight.png);
+    padding: 20px;
+    width: fit-content;
+    border-radius: 0 !important;
+    margin-top: 15px !important;
+    color: #000 !important;
+    font-family: "VT323" !important;
+    font-size: 20px !important;
+}
+
+.mini-tab .pink{
+    background-image: url(pink-btn.png);
+    background-size: 100% 100%;
+    border-radius: 0 !important;
+}
+
+.mini-tab .pink span{
+    color: #fff !important;
 }
 
 @media (max-width: 425px) {

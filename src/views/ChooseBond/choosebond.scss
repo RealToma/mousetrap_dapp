@@ -145,3 +145,234 @@
     }
   }
 }
+
+@font-face {
+  font-family: 'VT323';
+  src: url('VT323-Regular.woff') format('woff2'), url('VT323-Regular.woff2') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.bond-main{
+  margin-top: 30px;
+  color: #000;
+  font-family: 'VT323';
+}
+
+.wight-bg{
+  background-image: url(wight-fram.png);
+  background-size: 100% 100%;
+  padding: 30px;
+  color: #000;
+  font-family: 'VT323';
+  height: 100%;
+}
+
+.wight-bg.active{
+  background-image: url(active.png) !important;
+  background-size: 100% 100%;
+}
+
+.green-toc{
+  background-color: #5BB66B;
+  color: #fff;
+  display: block;
+  padding: 5px;
+  border-radius: 8px;
+  border: 2px solid #40A251;
+  font-size: 15px !important;
+}
+
+.bond-table{
+  background-color: #fff;
+  padding: 15px;
+  box-shadow: 5px 5px 0 #c4c4c46b;
+}
+
+.bond-table table thead tr th{
+  font-size: 20px !important;
+  color: #FFAC01;
+  font-weight: 400;
+  text-align:right;
+}
+
+.bond-table table thead tr th:nth-child(1){
+  text-align: left;
+}
+
+.bond-table table thead {
+  border-bottom: 2px solid #FFAC01;
+}
+
+.bond-table table tbody tr td{
+  vertical-align: middle;
+  font-size: 20px;
+  text-align: right;
+}
+
+.bond-table table tbody tr td span{
+  font-size: 18px;
+  color: gray;
+}
+
+.wight-bg span{
+  font-size: 20px;
+}
+
+.gap{
+  column-gap: 20px;
+}
+
+.bond-heding{
+  width: fit-content;
+    text-align: left;
+}
+
+.modal-bond{
+  background-image: url(bond-modal.png);
+  background-size: 100% 100%;
+  padding: 50px 40px !important;
+  color: #000;
+  font-family: 'VT323';
+}
+
+.bond-btn{
+  background-image: url(bond-btn.png);
+  background-size: 100% 100%;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  color: #000 !important;
+  padding: 10px 20px !important;
+  box-shadow: none !important;
+}
+
+.bg-wight-bond{
+  background-image: url(wight-modal-img.png);
+  background-size: 100% 100%;
+  padding: 20px;
+}
+
+.tabs{
+  border-bottom: 2px solid #000;
+}
+
+.tabs-btn{
+  color: #000 !important;
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  border: none !important; 
+  font-size: 20px !important;
+  font-weight: 500;
+  box-shadow: none !important;
+}
+
+.tabs-btn.active{
+  background-image: url(tabs-green.png);
+  background-size: 100% 100%;
+}
+
+.search-bar input{
+  background-color: transparent;
+  outline: none;
+  width: 100%;
+  border: none;
+}
+
+.border-gray{
+  border: 2px solid gray;
+  padding: 5px;
+}
+
+.max{
+  background-color: #FFD500;
+  border-radius: 8px;
+  padding: 3px;
+  border: 2px solid #FFAC01;
+}
+
+.approve-btn{
+  background-image: url(approve.png);
+  background-size: 100% 100%;
+  color: #000 !important;
+  font-size: 20px !important;
+  border:  none !important;
+  background-color: transparent !important;
+  border-radius: 0 !important;
+}
+
+.bond-def span{
+  font-size: 20px;
+}
+
+.setting{
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.setting-modal{
+  background-image: url(setting-modal-bg.png);
+  background-size: 100% 100%;
+  padding: 40px 40px !important;
+  color: #000;
+  font-family: 'VT323';
+}
+
+.w-250{
+  width: 250px;
+}
+
+.setting-modal span{
+  font-size: 18px;
+}
+
+.setting-modal input{
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  border: 3px solid gray;
+  padding: 10px 5px;
+  display: block;
+}
+
+.setting-modal p{
+  font-size: 15px;
+  color: gray;
+}
+
+.maintabs ul li button{
+  border: none !important;
+  border-radius: 0 !important;
+  font-size: 20px;
+  color: gray;
+}
+
+.maintabs ul{
+  border-bottom: 2px solid #000;
+  padding-bottom: 1px;
+}
+
+.maintabs ul li button:hover{
+  color: gray;
+}
+
+.mini-bg-gray{
+  background-image: url(bg-gray.png);
+  background-size: 100% 100%;
+  text-align: center;
+  padding: 10px 20px;
+  color: #000 !important;
+  border: none !important;
+  background-color: transparent !important;
+  border-radius: 0;
+  width: 100%;
+  cursor: pointer !important;
+}
+
+.text-black{
+  color: #000;
+  margin-bottom: 20px !important;
+  font-size: 16px !important;
+}

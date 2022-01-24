@@ -408,7 +408,9 @@ function Activity() {
                               </div>
                             </td>
                             <td>
-                              <Button className="by no-wrap" onClick={() => { buyButtonMdalShow(), setMousePurchaseOrder(`${listing.offerId}`), setAmount(`${listing.amount}`), setTotal(`${listing.price}`), setFrom(`${listing.admin}`), setAvailable(`${listing.amount}`) }}>Buy mouse</Button>
+                              <div className="d-flex justify-content-end">
+                                <Button className="by no-wrap" onClick={() => { buyButtonMdalShow(), setMousePurchaseOrder(`${listing.offerId}`), setAmount(`${listing.amount}`), setTotal(`${listing.price}`), setFrom(`${listing.admin}`), setAvailable(`${listing.amount}`) }}>Buy mouse</Button>
+                              </div>
                             </td>
                           </tr>
                         ))}
@@ -431,7 +433,9 @@ function Activity() {
                               </div>
                             </td>
                             <td>
-                              <Button className="by no-wrap" onClick={() => { buyButtonMdalShow(), setMousePurchaseOrder(`${listing.offerId}`), setAmount(`${listing.amount}`), setTotal(`${listing.price}`), setFrom(`${listing.admin}`), setAvailable(`${listing.amount}`) }}>Buy mouse</Button>
+                              <div className="d-flex justify-content-end">
+                                <Button className="by no-wrap" onClick={() => { buyButtonMdalShow(), setMousePurchaseOrder(`${listing.offerId}`), setAmount(`${listing.amount}`), setTotal(`${listing.price}`), setFrom(`${listing.admin}`), setAvailable(`${listing.amount}`) }}>Buy mouse</Button>
+                              </div>
                             </td>
                           </tr>
                         ))}
@@ -487,7 +491,10 @@ function Activity() {
                               </div>
                             </td>
                             <td>
-                              <Button className="by no-wrap" onClick={() => { buyButtonMdalShow(), setCatPurchaseOrder(`${listing.offerId}`), toggleCatModal(), setAmount(`${listing.amount}`), setTotal(`${listing.price}`), setFrom(`${listing.admin}`), setAvailable(`${listing.amount}`) }}>Buy mouse</Button>
+                              <div className="d-flex justify-content-end">
+
+                                <Button className="by no-wrap" onClick={() => { buyButtonMdalShow(), setCatPurchaseOrder(`${listing.offerId}`), toggleCatModal(), setAmount(`${listing.amount}`), setTotal(`${listing.price}`), setFrom(`${listing.admin}`), setAvailable(`${listing.amount}`) }}>Buy mouse</Button>
+                              </div>
                             </td>
                           </tr>
                         ))}
@@ -566,7 +573,10 @@ function Activity() {
                               </div>
                             </td>
                             <td>
-                              <Button className="by no-wrap" onClick={() => { buyButtonMdalShow(), setTrapPurchaseOrder(`${listing.offerId}`), toggleTrapModal(), setTotal(`${listing.price}`), setFrom(`${listing.admin}`), setAvailable(`${listing.amount}`) }}>Buy mouse</Button>
+                              <div className="d-flex justify-content-end">
+
+                                <Button className="by no-wrap" onClick={() => { buyButtonMdalShow(), setTrapPurchaseOrder(`${listing.offerId}`), toggleTrapModal(), setTotal(`${listing.price}`), setFrom(`${listing.admin}`), setAvailable(`${listing.amount}`) }}>Buy mouse</Button>
+                              </div>
                             </td>
                           </tr>
                         ))}
@@ -645,7 +655,10 @@ function Activity() {
                               </div>
                             </td>
                             <td>
-                              <Button className="by no-wrap" onClick={() => { buyButtonMdalShow(), setPassPurchaseOrder(`${listing.offerId}`), togglePassModal(), setAmount(`${listing.amount}`), setTotal(`${listing.price}`), setFrom(`${listing.admin}`), setAvailable(`${listing.amount}`) }}>Buy mouse</Button>
+                              <div className="d-flex justify-content-end">
+                                <Button className="by no-wrap" onClick={() => { buyButtonMdalShow(), setPassPurchaseOrder(`${listing.offerId}`), togglePassModal(), setAmount(`${listing.amount}`), setTotal(`${listing.price}`), setFrom(`${listing.admin}`), setAvailable(`${listing.amount}`) }}>Buy mouse</Button>
+
+                              </div>
                             </td>
                           </tr>
                         ))}

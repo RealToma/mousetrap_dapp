@@ -1,0 +1,405 @@
+@font-face {
+    font-family: 'VT323';
+    src: url('VT323-Regular.woff') format('woff2'), url('VT323-Regular.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.governance{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.tabs-con{
+    width: 1200px;
+    max-width: 100%;
+}
+
+.governance ul{
+    border-bottom: 3px solid #000;
+    padding-bottom: 1px;
+}
+
+.governance ul li button{
+    border: none !important;
+    font-family: 'VT323';
+    font-size: 25px;
+    background-color: transparent !important;
+    border: none;
+    border-radius: 0 !important;
+    color: #000 !important;
+}
+
+.governance .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+    background-image: url(tab-bg.png);
+    background-size: 100% 100%;
+    color: #000;
+}
+
+.overview-sub{
+    color: #000;
+    font-family: 'VT323';
+}
+
+.overviw-btn{
+    background-size: 100% 100%;
+    background-image: url(./wight.png);
+    color: #000;
+    font-family: 'VT323';
+    padding: 30px 30px;
+}
+
+.overviw-btn span{
+    color: gray;
+    font-size: 16px;
+}
+
+.overviw-btn p{
+    color: gray;
+    margin-bottom: 0;
+}
+
+.overview-list{
+    background-color: #fbfbfb;
+    box-shadow: 7px 7px 0 #8080804d;
+}
+
+.overview-list table thead tr th{
+    font-size: 20px;
+    font-weight: 500;
+    color: #FFAC01;
+    vertical-align: middle;
+}
+
+.overview-list table thead tr{
+    background-color: #F4FBD7;
+}
+
+.overview-list table tbody{
+    border-top: 2px solid #FFAC01 !important;
+}
+
+.overview-list table tbody tr td span{
+    color: #000;
+}
+
+.overview-list table tbody tr td{
+    vertical-align: middle;
+}
+
+.overview-list table tbody tr{
+    border-bottom: 1px solid rgb(218, 218, 218);
+}
+
+.overview-list table tbody tr.active{
+    background-color: #FFE794;
+}
+
+.pagination span{
+    color: gray;
+    font-size: 20px;
+}
+
+.b-0{
+    border: none !important;
+}
+
+.proposals-sub{
+    font-family: 'VT323';
+}
+
+.proposal-header{
+    background-color: #F4FBD7;
+    border-bottom: 1px solid #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pro-btns button{
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0px !important;
+    color: rgb(117, 117, 117) !important;
+    border-bottom: 2px solid transparent;
+    font-size: 18px;
+}
+
+.pro-btns button.active{
+    border-bottom: 2px solid #000 !important;
+    color: #000 !important;
+}
+
+.searchbar input{
+    background-color: #FDFFF4;
+    border: 1px solid gray;
+    padding: 8px 10px;
+    width: 200px;
+    max-width: 200px;
+    font-size: 15px;
+}
+
+.token{
+    background-color: #F4FBD7;
+    border: 2px solid #FFAC01;
+    font-size: 15px;
+    padding: 3px;
+}
+
+.title-span{
+    margin-left: 200px;
+}
+
+.overview-list table tbody tr td span{
+    white-space: nowrap;
+}
+
+.overview-list table tbody tr td, .overview-list table thead tr th{
+    padding: 10px 20px !important;
+}
+
+.trasury-sub{
+    font-family: 'VT323';
+    color: #000;
+}
+
+.trasury-header span{
+    color: gray !important;
+    font-size: 15px;
+}
+
+.trasury-box{
+    background-image: url(treasury-wight.png);
+    background-size: 100% 100%;
+    padding: 25px;
+}
+
+.trasury-box span{
+    font-size: 18px;
+}
+
+.trasury-box p{
+    font-size: 15px;
+    color: gray;
+}
+
+.trasury-box.active{
+    background-image: url(chezz-price.png);
+    background-size: 100% 100%;
+}
+
+.trasury-list-header{
+    background-color: #F4FBD7;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #000;
+}
+
+.filter{
+    background-image: url(filter.png);
+    background-size: 100% 100%;
+    border: none;
+    background-color: transparent !important;
+    border-radius: 0;
+    color: #000 !important;
+}
+
+.trasury-list{
+    background-color: #fbfbfb;
+    box-shadow: 7px 7px 0 #8080804d;
+}
+
+.text-b{
+    color: #0500FF !important;
+}
+
+.date h5{
+    color: #000 !important;
+}
+
+.date p{
+    color: gray;
+    font-size: 15px;
+}
+
+.wallet-con ul{
+    margin-top: 10px;
+    border: none !important;
+}
+
+.wallet-con ul li button{
+    font-size: 18px;
+    color: gray !important;
+    background-image: none !important;
+    padding-left: 0;
+}
+
+.wallet-con ul li button.active{
+    color: #000 !important;
+}
+
+.deposit-sub{
+    color: #000;
+    font-family: 'VT323';
+}
+
+.lock-list{
+    background-color: #f0f0f0;
+    box-shadow: 5px 5px 0 #8080804d;
+    padding: 15px;
+}
+
+.lock-list table tbody td span{
+    color: #000;
+}
+
+.lock-list table tbody td{
+    vertical-align: middle;
+    text-align: right;
+}
+
+.lock-list table tbody td p{
+    color: gray !important;
+    font-size: 17px !important;
+}
+
+.text-left{
+    text-align: left;
+    width: fit-content;
+    margin-left: auto;
+}
+
+.duration-box{
+    border: 1px solid #000;
+    padding: 15px 30px;
+    font-size: 18px;
+}
+
+.lock-left p{
+    margin-bottom: 0;
+    margin: 20px 0;
+    font-size: 20px;
+}
+
+.data-input input{
+    border: 2px solid #292828;
+    background-color: transparent;
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+.def-yellow{
+    border: 1px solid #FFAC01;
+    padding: 10px;
+}
+
+.def-yellow p{
+    font-size: 20px;
+    color: #FFAC01;
+}
+
+.lock{
+    background-image: url(filter.png);
+    background-size: 100% 100%;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    color: #000;
+    font-size: 20px;
+}
+
+.gwei-box{
+    border: 2px solid #939393;
+    padding: 15px;
+}
+
+.gwei-box span{
+    font-size: 18px;
+    color: gray;
+}
+
+.gwei-box.active{
+    border: 2px solid #000;
+    box-shadow: 5px 5px 0 yellow;
+}
+
+.checkbox{
+    appearance: none;
+    position: relative;
+}
+
+.wrap{
+    flex-wrap: wrap;
+}
+
+.checkbox::before{
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border: 2px solid #939393;
+    top: -12px;
+    left: -30px;
+}
+
+.checkbox::after{
+    content: "";
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    background-color: #000;
+    top: -6px;
+    left: -24px;
+    display: none;
+}
+
+.checkbox:checked::after{
+    display: block;
+}
+
+.checkbox:checked::before{
+    border: 2px solid rgb(0, 0, 0);
+}
+
+
+.halp-w{
+    width: 50%;
+}
+
+@media (max-width: 768px) {
+    .halp-w{
+        width: 100%;
+    }
+}
+
+@media (max-width: 550px) {
+    .proposal-header{
+        flex-direction: column;
+    }
+
+    .proposal-header button{
+        width: 100%;
+    }
+    .pro-btns{
+        width: 100%;
+    }
+
+    .proposal-header .searchbar {
+        width: 100% !important;
+        margin: 15px 0;
+    }
+    .proposal-header .searchbar input{
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 320px) {
+    .tabs-con ul li {
+        width: 100%;
+    }
+}

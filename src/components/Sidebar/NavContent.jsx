@@ -146,13 +146,26 @@ function NavContent({ mobileOpen }) {
               <span className="mb-0">Bond</span>
             </Button>
           </Link>
+          <Link
+            component={NavLink}
+            id="bond-nav"
+            to="/governance"
+            isActive={(match, location) => {
+              return checkPage(match, location, "governance");
+            }}>
+            <Button className={`${location.pathname === '/governance' ? "active" : ""} sidebar-head p-2`} >
+              <span className="mb-0">Governance</span>
+            </Button>
+          </Link>
           <div className="bond mt-3">
-            <div className="bond-left">
-              <span>Bond discounts</span>
-              <h5>CHEEZ-DAI LP</h5>
-            </div>
-            <div className="bond-right">
-              <span>3.15%</span>
+            <div>
+              <div className="bond-left">
+                <span>Bond discounts</span>
+              </div>
+              <div className="bond-right">
+                <h5 className="mb-0">CHEEZ-DAI LP</h5>
+                <span>3.15%</span>
+              </div>
             </div>
           </div>
           <div className="social">

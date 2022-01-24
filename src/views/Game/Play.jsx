@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Paper, Button, Grid, Typography, Tab, InputAdornment, OutlinedInput, TextField, Tabs, Box, Zoom, Container, useMediaQuery, FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
+import { Paper, Button, Grid, Typography, InputAdornment, OutlinedInput, TextField, Box, Zoom, Container, useMediaQuery, FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
 import { useWeb3Context } from "src/hooks/web3Context";
 import { loadAccountDetails } from "../../slices/AccountSlice";
 import { useSelector, useDispatch, useAppSelector } from "react-redux";
@@ -17,7 +17,7 @@ import UnlockTimer from "../../components/GameTimer/UnlockTimer";
 
 import "./Play.css";
 import { textAlign } from "@material-ui/system";
-import { Col, Row, Modal } from "react-bootstrap";
+import { Col, Row, Modal, Tabs, Tab } from "react-bootstrap";
 
 
 function a11yProps(index) {
@@ -254,11 +254,17 @@ function Play() {
 
   const isAllowanceDataLoading = ((miceAllowance == null || catAllowance == null || trapAllowance == null) && view === 0)
 
-  const [show, setShow] = useState(false);
+  const [getStartModal, setGetStartModal] = useState(false);
+  const getStartModalClose = () => setGetStartModal(false);
+  const getStartModalShow = () => setGetStartModal(true);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [tabActive, setTabActive] = useState(1);
+  const [catModal, setCatModal] = useState(false);
+  const catModalClose = () => setCatModal(false);
+  const catModalShow = () => setCatModal(true);
+
+  const [cardModal, setCardModal] = useState(false);
+  const cardModalClose = () => setCardModal(false);
+  const cardModalShow = () => setCardModal(true);
 
   return (
     <>
@@ -271,13 +277,15 @@ function Play() {
             </div>
           </Col>
         </Row>
-        <Row className="mt-5 justify-content-center mb-5">
+        <Row className=" justify-content-center mb-5">
           <Col lg={4} md={6} sm={12} className="mt-5">
             <div className="yellow-play text-center">
-
               <img src={require('./mouse.png').default} alt="" width={150} />
               {!address ? (
-                <p>Connect your wallet to stake Mice</p>
+                <>
+                  <p>Connect your wallet to stake Mice</p>
+                  {modalButton}
+                </>
               ) : (
                 <>
                   <div className="data-row mt-3">
@@ -330,33 +338,139 @@ function Play() {
                       <Skeleton style={{ margin: "0 auto", width: "25px" }} />
                     )}
                   </div>
-                </>
-              )}
-
-              {!address ? (
-                <>{modalButton}</>
-              ) : (
-                <>
                   <Button
                     className="stake-wallet-btn mt-5"
-                    onClick={handleShow}
+                    onClick={getStartModalShow}
                     variant="outlined"
                     color="primary"
                   >
                     Enter the Maze
                   </Button>
+                  <Modal show={getStartModal} onHide={getStartModalClose}>
+                    <Modal.Body className="mini-modal-1">
+                      <div className="caution">
+                        <h2 className="mb-0">Caution</h2>
+                        <p>Entering the Maze is not without risk!</p>
+                        <div className="list">
+                          <span>Make sure you understand the following:</span>
+                          <div className="d-flex mt-3 align-items-start gap">
+                            <img src={require('./chees.png').default} alt="" />
+                            <p>You have a 5% chance of losing your Mouse to a MouseTrap when unstaking</p>
+                          </div>
+                          <div className="d-flex mt-1 align-items-start gap">
+                            <img src={require('./chees.png').default} alt="" />
+                            <p>You have a 45% chance of losing your CHEEZ rewards to Cats when unstaking</p>
+                          </div>
+                          <div className="d-flex mt-1 align-items-start gap">
+                            <img src={require('./chees.png').default} alt="" />
+                            <p>Claiming rewards has a 25% extortion fee paid to Cats</p>
+                          </div>
+                          <div className="d-flex mt-1 align-items-start gap">
+                            <img src={require('./chees.png').default} alt="" />
+                            <p>Unstaking requires 2 days worth of unclaimed rewards</p>
+                          </div>
+                          <div className="d-flex mt-1 align-items-start gap">
+                            <img src={require('./chees.png').default} alt="" />
+                            <p>Staking additional Mice will claim rewards and reset your 2-day staking lockup</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="mini-tab mt-4">
+                        <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
+                          <Tab eventKey="home" title="Stake">
+                            {isAllowanceDataLoading ? (
+                              <Skeleton />
+                            ) : address && isGameApproved ? (
+                              <div className="search-bar mt-3">
+                                <span>{`Max Available: ${mouseBalance}`}</span>
+                                <div className="d-flex align-items-center gap">
+                                  <div className="search-box d-flex align-items-center justify-content-between w-100">
+                                    <input type="text" className="w-100" value={mouseStakeAmount}
+                                      onChange={(e) => { setMouseStakeAmount(e.target.value) }} />
+                                  </div>
+                                  <Button
+                                    className="green"
+                                    disabled={isPendingTxn(pendingTransactions, "game_stake")}
+                                    onClick={() => {
+                                      onStake(0, mouseStakeAmount);
+                                    }}>{txnButtonText(pendingTransactions, "Entering Maze", "Stake Mice")}</Button>
+                                </div>
+                              </div>
+                            ) : (
+                              <Button
+                                className="green"
+                                disabled={isPendingTxn(pendingTransactions, "approve_game")}
+                                onClick={onSeekApproval}
+                              >
+                                {txnButtonText(pendingTransactions, "approve_game", "Approve")}
+                              </Button>
+                            )}
+                          </Tab>
+
+                          <Tab eventKey="profile" title="Unstake">
+                            {isAllowanceDataLoading ? (
+                              <Skeleton />
+                            ) : address ? (
+                              <div className="search-bar mt-3">
+                                <span>{`Max Available: ${stakedMice}`}</span>
+                                <div className="d-flex align-items-center gap">
+                                  <div className="search-box d-flex align-items-center justify-content-between w-100">
+                                    <input type="text" className="w-100" value={mouseUnstakeAmount}
+                                      onChange={(e) => { setMouseUnstakeAmount(e.target.value) }} />
+                          
+                                  </div>
+                                  <Button className="pink text-white"
+                                    disabled={isPendingTxn(pendingTransactions, "unstaking")}
+                                    onClick={() => {
+                                      onUnstake(0, mouseUnstakeAmount);
+                                    }} >
+                                    {txnButtonText(pendingTransactions, "Leaving Maze", "Unstake Mice")}
+                                  </Button>
+                                </div>
+                              </div>
+                            ) : (
+                              <Button className="pink text-white"
+                                disabled={isPendingTxn(pendingTransactions, "approve_unstaking")}
+                                onClick={onSeekApproval} >
+                                {txnButtonText(pendingTransactions, "approve_unstaking", "Approve")}
+                              </Button>
+                            )}
+                          </Tab>
+                        </Tabs>
+                        {stakedMice != undefined && rewardsMice != undefined ? (
+                          <span className="d-flex mini-def mt-3">Your {stakedMice > 1 ? 'Mice have' : 'Mouse has'} found <p className="mb-0 text-green">{parseFloat(ethers.utils.formatUnits(rewardsMice, 9).toString()).toFixed(3)}</p> CHEEZ in the Maze</span>
+                        ) : (
+                          <Skeleton style={{ margin: "0 auto", width: "25px" }} />
+                        )}
+                        <Button
+                          className="stake-button"
+                          disabled={isPendingTxn(pendingTransactions, "game_claim")}
+                          onClick={() => {
+                            onClaim(0);
+                          }}
+                        >
+                          {txnButtonText(pendingTransactions, "game_claim", "Claim Rewards")}
+                        </Button>
+                      </div>
+                    </Modal.Body>
+                  </Modal>
                 </>
               )}
             </div>
+
             <div className="play-timer">
               <GameTimer />
             </div>
+
           </Col>
           <Col lg={4} md={6} sm={12} className="mt-5">
             <div className="yellow-play text-center">
               <img src={require('./cat.png').default} alt="" width={150} />
               {!address ? (
-                <p>Connect your wallet to stake Cats</p>
+                <>
+                  <p>Connect your wallet to stake Cats</p>
+                  {modalButton}
+                </>
               ) : (
                 <>
                   <div className="data-row mt-3">
@@ -412,32 +526,109 @@ function Play() {
                       <Skeleton style={{ margin: "0 auto", width: "25px" }} />
                     )}
                   </div>
-                </>
-              )}
-
-              {!address ? (
-                <>{modalButton}</>
-              ) : (
-                <>
                   <Button
                     className="stake-wallet-btn mt-5"
-                    onClick={handleShow}
+                    onClick={catModalShow}
                     variant="outlined"
                     color="primary"
                   >
                     Enter the Maze
                   </Button>
+                  <Modal show={catModal} onHide={catModalClose}>
+                    <Modal.Body className="mini-modal-1">
+                      <div className="mini-tab mt-4">
+                        <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
+                          <Tab eventKey="home" title="Stake">
+
+                            {isAllowanceDataLoading ? (
+                              <Skeleton />
+                            ) : address && isGameApproved ? (
+                              <div className="search-bar mt-3">
+                                <span>{`Max Available: ${catBalance}`}</span>
+                                <div className="d-flex align-items-center gap">
+                                  <div className="search-box d-flex align-items-center justify-content-between w-100">
+                                    <input type="text" className="w-100" value={catStakeAmount}
+                                      onChange={(e) => { setCatStakeAmount(e.target.value) }} />
+                                  </div>
+                                  <Button className="green"
+                                    disabled={isPendingTxn(pendingTransactions, "game_stake")}
+                                    onClick={() => {
+                                      onStake(1, catStakeAmount);
+                                    }}>
+                                    {txnButtonText(pendingTransactions, "Entering Maze", "Stake Cats")}
+                                  </Button>
+                                </div>
+                              </div>
+                            ) : (
+                              <Button className="green"
+                                disabled={isPendingTxn(pendingTransactions, "approve_game")}
+                                onClick={onSeekApproval}>
+                                {txnButtonText(pendingTransactions, "approve_game", "Approve")}
+                              </Button>
+                            )}
+                          </Tab>
+                          <Tab eventKey="profile" title="Unstake">
+                            {isAllowanceDataLoading ? (
+                              <Skeleton />
+                            ) : address ? (
+                              <div className="search-bar mt-3">
+                                <span>{`Max Available: ${stakedCats}`}</span>
+                                <div className="d-flex align-items-center gap">
+                                  <div className="search-box d-flex align-items-center justify-content-between w-100">
+                                    <input type="text" className="w-100" value={catUnstakeAmount}
+                                      onChange={(e) => { setCatUnstakeAmount(e.target.value) }} />
+                          
+                                  </div>
+                                  <Button className="pink text-white"
+                                    disabled={isPendingTxn(pendingTransactions, "game_unstake")}
+                                    onClick={() => {
+                                      onUnstake(1, catUnstakeAmount);
+                                    }}>
+                                    {txnButtonText(pendingTransactions, "Leaving Maze", "Unstake Cats")}
+                                  </Button>
+                                </div>
+                              </div>
+                            ) : (
+                              <Button
+                                className="pink text-white"
+                                disabled={isPendingTxn(pendingTransactions, "approve_unstaking")}
+                                onClick={onSeekApproval}>
+                                {txnButtonText(pendingTransactions, "approve_unstaking", "Approve")}
+                              </Button>
+                            )}
+                          </Tab>
+                        </Tabs>
+                        {catBalance != null || undefined ? (
+                          <span className="d-flex mini-def mt-3">Your {catBalance > 1 ? 'Cats have' : 'Cat has'} found <p className="mb-0 text-green">{parseFloat(ethers.utils.formatUnits(rewardsCats, 9).toString()).toFixed(3)}</p> CHEEZ in the Maze</span>
+                        ) : (<></>)}
+
+                        <Button
+                          className="stake-button"
+                          disabled={isPendingTxn(pendingTransactions, "game_claim")}
+                          onClick={() => {
+                            onClaim(1);
+                          }}
+                        >
+                          {txnButtonText(pendingTransactions, "game_claim", "Claim Rewards")}
+                        </Button>
+                      </div>
+                    </Modal.Body>
+                  </Modal>
                 </>
               )}
 
             </div>
           </Col>
+
           <Col lg={4} md={6} sm={12} className="mt-5">
             <div className="yellow-play text-center">
               <img src={require('./mouse-trap.png').default} alt="" width={150} />
 
               {!address ? (
-                <p>Connect your wallet to stake Traps</p>
+                <>
+                  <p>Connect your wallet to stake Traps</p>
+                  {modalButton}
+                </>
               ) : (
                 <>
                   <div className="data-row mt-3">
@@ -465,78 +656,89 @@ function Play() {
                       <Skeleton style={{ margin: "0 auto", width: "25px" }} />
                     )}
                   </div>
-                </>
-              )}
-
-              {!address ? (
-                <>{modalButton}</>
-              ) : (
-                <>
                   <Button
                     className="stake-wallet-btn mt-5"
-                    onClick={handleShow}
                     variant="outlined"
                     color="primary"
+                    onClick={cardModalShow}
                   >
                     Enter the Maze
                   </Button>
+                  <Modal show={cardModal} onHide={cardModalClose}>
+                    <Modal.Body className="mini-modal-1">
+                      <div className="mini-tab mt-4">
+                        <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
+                          <Tab eventKey="home" title="Stake">
+
+                            {isAllowanceDataLoading ? (
+                              <Skeleton />
+                            ) : address && isGameApproved ? (
+                              <div className="search-bar mt-3">
+                                <span>{`Max Available: ${trapBalance}`}</span>
+                                <div className="d-flex align-items-center gap">
+                                  <div className="search-box d-flex align-items-center justify-content-between w-100">
+                                    <input type="text" className="w-100" value={trapStakeAmount}
+                                      onChange={(e) => { setTrapStakeAmount(e.target.value) }}
+                                      style={{ marginBottom: "5%" }} />
+                          
+                                  </div>
+                                  <Button className="green"
+                                    disabled={isPendingTxn(pendingTransactions, "game_stake")}
+                                    onClick={() => {
+                                      onStake(2, trapStakeAmount);
+                                    }}>
+                                    {txnButtonText(pendingTransactions, "Entering Maze", "Stake Traps")}
+                                  </Button>
+                                </div>
+                              </div>
+                            ) : (
+                              <Button className="green"
+                                disabled={isPendingTxn(pendingTransactions, "approve_game")}
+                                onClick={onSeekApproval}>
+                                {txnButtonText(pendingTransactions, "approve_game", "Approve")}
+                              </Button>
+                            )}
+                          </Tab>
+                          <Tab eventKey="profile" title="Unstake">
+
+                            {isAllowanceDataLoading ? (
+                              <Skeleton />
+                            ) : address ? (
+                              <div className="search-bar mt-3">
+                                <span>{`Max Available: ${stakedTraps}`}</span>
+                                <div className="d-flex align-items-center gap">
+                                  <div className="search-box d-flex align-items-center justify-content-between w-100">
+                                    <input type="text" className="w-100" value={trapUnstakeAmount}
+                                      onChange={(e) => { setTrapUnstakeAmount(e.target.value) }} />
+                          
+                                  </div>
+                                  <Button className="pink text-white"
+                                    disabled={isPendingTxn(pendingTransactions, "game_unstake")}
+                                    onClick={() => {
+                                      onUnstake(2, trapUnstakeAmount);
+                                    }}>
+                                    {txnButtonText(pendingTransactions, "Leaving Maze", "Unstake Traps")}
+                                  </Button>
+                                </div>
+                              </div>
+                            ) : (
+                              <Button className="pink text-white"
+                                disabled={isPendingTxn(pendingTransactions, "approve_unstaking")}
+                                onClick={onSeekApproval}>
+                                {txnButtonText(pendingTransactions, "approve_unstaking", "Approve")}
+                              </Button>
+                            )}
+                          </Tab>
+                        </Tabs>
+                      </div>
+                    </Modal.Body>
+                  </Modal>
                 </>
               )}
             </div>
           </Col>
         </Row>
       </div>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Body className="modal-bg-main">
-          <div >
-            <Box className="stake-action-area border-bot">
-              <Tabs
-                key={String(zoomed)}
-                centered
-                value={view}
-                textColor="primary"
-                indicatorColor="primary"
-                className="stake-tab-buttons"
-                // onChange={changeView}
-                aria-label="stake tabs"
-              >
-                <Tab className={`${tabActive === 1 ? "active" : ""} green`} label="Stake" {...a11yProps(0)} onClick={() => setTabActive(1)} />
-                <Tab className={`${tabActive === 2 ? "active" : ""} pink`} label="Unstake" {...a11yProps(1)} onClick={() => setTabActive(2)} />
-              </Tabs>
-            </Box>
-            <div className="search-bar mt-3 px-3">
-              <span>Max Available: 0</span>
-              <div className="d-flex align-items-center gap">
-                <div className="search-box d-flex align-items-center justify-content-between w-100">
-                  <input type="text" className="w-100" />
-                  <span>MAX</span>
-                </div>
-                {tabActive === 1 ?
-                  <Button className={`${tabActive === 1 ? "active" : ""} green`}>Stake CHEEZ</Button> :
-                  <Button className={`${tabActive === 2 ? "active" : ""} pink`}>Unstake CHEEZ</Button>
-                }
-              </div>
-            </div>
-            <p>Your Cat has found</p>
-            <Box style={{ width: "fit-content", marginTop: '15px', marginBottom: "15px" }} >
-              <Button
-                className="stake-button modal-footer"
-                variant="outlined"
-                color="primary"
-                disabled={isPendingTxn(pendingTransactions, "claim")}
-                onClick={() => {
-                  onChangeStake("claim");
-                }}
-                style={{ marginLeft: "2%" }}
-              >
-                {txnButtonText(pendingTransactions, "claiming", "Claim Warmup")}
-              </Button>
-
-            </Box>
-          </div>
-        </Modal.Body>
-      </Modal>
     </>
   );
 }

@@ -349,6 +349,7 @@
     width: 20px;
     height: 20px;
     border: 2px solid #000;
+    top: 0;
 }
 
 .main-modal-box input::after{
@@ -362,8 +363,8 @@
     display : none;
 }
 
-.main-modal-box input:checked::after{
-    display: block;
+.main-modal-box input.active::after{
+    display: block !important;
 }
 
 .amount-box span{
@@ -417,6 +418,49 @@
     font-family: 'VT323';
     font-size: 20px;
     overflow: hidden;
+}
+
+.list-table table tbody tr td{
+    text-align: right;
+}
+
+.list-header h2{
+    color: #000;
+    font-family: 'VT323';
+}
+
+.td-con{
+    width: fit-content;
+    margin-left: auto;
+    text-align: left;
+}
+
+.create-btn{
+    color: #000;
+    font-size: 20px;
+    background-image: url(create-green.png);
+    background-size: 100% 100%;
+    font-family: 'VT323';
+    border: none;
+    background-color: transparent !important;
+    border-radius: 0;
+}
+
+.remove{
+    color: #fff;
+    font-size: 20px;
+    background-image: url(remove-pink.png);
+    background-size: 100% 100%;
+    font-family: 'VT323';
+    border: none;
+    background-color: transparent !important;
+    border-radius: 0;
+}
+
+.list-table{
+    background-color: #fff;
+    padding: 15px;
+    box-shadow: 5px 5px 0 #808080a8;
 }
 
 @media (max-width: 472px) {

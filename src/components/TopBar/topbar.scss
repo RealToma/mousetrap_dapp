@@ -126,9 +126,6 @@
   padding: 9px;
 }
 
-#cheez-menu-button:hover{
-  background-color:#FFAC01 !important;
-}
 
 .cheese-modal{
   background-image: url(modal-bg.png);
@@ -181,6 +178,18 @@
   background-color: transparent !important;
   box-shadow: none !important;
   font-size: 20px;
+  color: #000 !important;
+}
+
+.by-cheese{
+  background-image: url(contact.png);
+  background-size: 100% 100%;
+  color: #000 !important;
+}
+
+.disconnect{
+  background-image: url(white.png) !important;
+  background-size: 100% 100%;
   color: #000 !important;
 }
 

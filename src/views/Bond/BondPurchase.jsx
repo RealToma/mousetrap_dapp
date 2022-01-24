@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Box,
-  Button,
   FormControl,
   InputAdornment,
   InputLabel,
@@ -17,6 +16,7 @@ import { isPendingTxn, txnButtonText } from "src/slices/PendingTxnsSlice";
 import { Skeleton } from "@material-ui/lab";
 import useDebounce from "../../hooks/Debounce";
 import { error } from "../../slices/MessagesSlice";
+import { Button } from 'react-bootstrap'
 
 function BondPurchase({ bond, slippage, recipientAddress }) {
   const SECONDS_TO_REFRESH = 60;
@@ -37,9 +37,11 @@ function BondPurchase({ bond, slippage, recipientAddress }) {
   });
 
   const vestingPeriod = () => {
-    const vestingBlock = parseInt(currentBlock) + parseInt(bond.vestingTerm);
-    const seconds = secondsUntilBlock(currentBlock, vestingBlock);
-    return prettifySeconds(seconds, "day");
+    if (bond) {
+      const vestingBlock = parseInt(currentBlock) + parseInt(bond.vestingTerm);
+      const seconds = secondsUntilBlock(currentBlock, vestingBlock);
+      return prettifySeconds(seconds, "day");
+    }
   };
 
   async function onBond() {
@@ -126,58 +128,45 @@ function BondPurchase({ bond, slippage, recipientAddress }) {
   const isAllowanceDataLoading = bond.allowance == null;
 
   return (
-    <Box display="flex" flexDirection="column">
-      <Box display="flex" justifyContent="space-around" flexWrap="wrap">
-        {isAllowanceDataLoading ? (
-          <Skeleton width="200px" />
-        ) : (
-          <>
-            {!hasAllowance() ? (
-              <div className="help-text">
-                <em>
-                  <Typography variant="body1" align="center" color="textSecondary">
-                    First time bonding <b>{bond.displayName}</b>? <br /> Please approve CheeseDAO to use your{" "}
-                    <b>{bond.displayName}</b> for bonding.
-                  </Typography>
-                </em>
-              </div>
-            ) : (
-              <FormControl className="cheez-input" variant="outlined" color="primary" fullWidth>
-                <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-amount"
-                  type="number"
-                  value={quantity}
-                  onChange={e => setQuantity(e.target.value)}
-                  // startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                  labelWidth={55}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <Button variant="text" onClick={setMax}>
-                        Max
-                      </Button>
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-            )}
+    <>
+      {isAllowanceDataLoading ? (
+        <Skeleton width="200px" />
+      ) : (
+        <>
 
+          {!hasAllowance() ? (
+            <div className="help-text">
+              <em>
+                <Typography variant="body1" align="center" color="textSecondary" className="text-black">
+                  First time bonding <b>{bond.displayName}</b>? <br /> Please approve CheeseDAO to use your{" "}
+                  <b>{bond.displayName}</b> for bonding.
+                </Typography>
+              </em>
+            </div>
+          ) : (
+            <div className="search-bar mt-2">
+              <span>Amount</span>
+              <div className="d-flex gap">
+                <div className="border-gray d-flex align-items-center w-100">
+                  <input type="text" value={quantity}
+                    onChange={e => setQuantity(e.target.value)} />
+                  <span className="max" onClick={setMax}>Max</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="d-flex justify-content-center">
             {!bond.isAvailable[chainID] ? (
               <Button
-                variant="contained"
-                color="primary"
-                id="bond-btn"
-                className="transaction-button"
+                className="approve-btn"
                 disabled={true}
               >
-              Expired
+                Expired
               </Button>
             ) : hasAllowance() && bond.bondQuote > 0.01 ? (
               <Button
-                variant="outlined"
-                color="primary"
-                id="bond-btn"
-                className="transaction-button"
+                className="approve-btn"
                 disabled={isPendingTxn(pendingTransactions, "bond_" + bond.name)}
                 onClick={onBond}
               >
@@ -185,77 +174,55 @@ function BondPurchase({ bond, slippage, recipientAddress }) {
               </Button>
             ) : (
               <Button
-                variant="outlined"
-                color="primary"
-                id="bond-approve-btn"
-                className="transaction-button"
+                className="approve-btn"
                 disabled={isPendingTxn(pendingTransactions, "approve_" + bond.name)}
                 onClick={onSeekApproval}
               >
                 {txnButtonText(pendingTransactions, "approve_" + bond.name, "Approve")}
               </Button>
             )}
-          </>
-        )}
-      </Box>
-
-      <Slide direction="left" in={true} mountOnEnter unmountOnExit {...{ timeout: 533 }}>
-        <Box className="bond-data">
-          <div className="data-row">
-            <Typography>Your Balance</Typography>
-            <Typography>
-              {isBondLoading ? (
-                <Skeleton width="100px" />
-              ) : (
-                <>
-                  {trim(bond.balance, 4)} {displayUnits}
-                </>
-              )}
-            </Typography>
           </div>
-
-          <div className={`data-row`}>
-            <Typography>You Will Get</Typography>
-            <Typography id="bond-value-id" className="price-data">
-              {isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.bondQuote, 4) || "0"} CHEEZ`}
-            </Typography>
-          </div>
-
-          <div className={`data-row`}>
-            <Typography>Max You Can Buy</Typography>
-            <Typography id="bond-value-id" className="price-data">
-              {isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.maxBondPrice, 4) || "0"} CHEEZ`}
-            </Typography>
-          </div>
-
-          <div className="data-row">
-            <Typography>ROI</Typography>
-            <Typography>
-              {isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.bondDiscount * 100, 2)}%`}
-            </Typography>
-          </div>
-
-          <div className="data-row">
-            <Typography>Debt Ratio</Typography>
-            <Typography>
-              {isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.debtRatio / 10000000, 2)}%`}
-            </Typography>
-          </div>
-
-          <div className="data-row">
-            <Typography>Vesting Term</Typography>
-            <Typography>{isBondLoading ? <Skeleton width="100px" /> : vestingPeriod()}</Typography>
-          </div>
-
-          {recipientAddress !== address && (
-            <div className="data-row">
-              <Typography>Recipient</Typography>
-              <Typography>{isBondLoading ? <Skeleton width="100px" /> : shorten(recipientAddress)}</Typography>
-            </div>
-          )}
-        </Box>
-      </Slide>
-    </Box>
+        </>
+      )}
+      <div className="bond-def mt-3">
+        <div className="d-flex mt-2">
+          <span>Your Balance</span>
+          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
+          <span>{isBondLoading ? (
+            <Skeleton width="100px" />
+          ) : (
+            <>
+              {trim(bond.balance, 4)} {displayUnits}
+            </>
+          )}</span>
+        </div>
+        <div className="d-flex mt-2">
+          <span>You Will Get</span>
+          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
+          <span>{isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.bondQuote, 4) || "0"} CHEEZ`}</span>
+        </div>
+        <div className="d-flex mt-2">
+          <span>Max You Can Buy</span>
+          <span>_ _ _ _ _ _ _ _ _ _ _</span>
+          <span>{isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.maxBondPrice, 4) || "0"} CHEEZ`}</span>
+        </div>
+        <div className="d-flex mt-2">
+          <span>ROI</span>
+          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
+          <span>{isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.bondDiscount * 100, 2)}%`}</span>
+        </div>
+        <div className="d-flex mt-2">
+          <span>Debt Ratio</span>
+          <span> _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ </span>
+          <span>{isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.debtRatio / 10000000, 2)}%`}</span>
+        </div>
+        <div className="d-flex mt-2">
+          <span>Vesting Term</span>
+          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
+          <span>{isBondLoading ? <Skeleton width="100px" /> : vestingPeriod()}</span>
+        </div>
+      </div>
+    </>
   );
 }
 

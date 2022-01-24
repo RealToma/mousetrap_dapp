@@ -12,7 +12,7 @@ import { ReactComponent as MenuIcon } from "../../assets/icons/hamburger.svg";
 import "./topbar.scss";
 
 function ConnectMenu({ theme, handleDrawerToggle }) {
-  const { connect, disconnect, connected, web3, chainID } = useWeb3Context();
+  const { connect, disconnect, connected, web3, chainID, address } = useWeb3Context();
   const [anchorEl, setAnchorEl] = useState(null);
   const [isConnected, setConnected] = useState(connected);
   const [isHovering, setIsHovering] = useState(false);
@@ -43,7 +43,7 @@ function ConnectMenu({ theme, handleDrawerToggle }) {
 
   const primaryColor = theme === "light" ? "#49A1F2" : "#F8CC82";
   const buttonStyles =
-    "pending-txn-container" + (isHovering && pendingTransactions.length > 0 ? "hovered-button deck" : "deck");
+    "pending-txn-container" + (isHovering && pendingTransactions.length > 0 ? "hovered-button deck " : "deck ") + (address ? "disconnect" : " by-cheese");
 
   const getEtherscanUrl = txnHash => {
     return chainID === 4 ? "https://rinkeby.etherscan.io/tx/" + txnHash : "https://etherscan.io/tx/" + txnHash;
@@ -148,7 +148,8 @@ function ConnectMenu({ theme, handleDrawerToggle }) {
                 <Box className="add-tokens">
                   <Divider color="secondary" />
                   <Button
-                    size="large"
+                  
+                    size="large"F
                     variant="contained"
                     color="secondary"
                     onClick={disconnect}

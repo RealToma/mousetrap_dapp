@@ -64,18 +64,21 @@ function CheezMenu() {
   const open = Boolean(anchorEl);
   const id = "cheez-popper";
   const daiAddress = dai.getAddressForReserve(networkID);
+
+  const [byModal, setByModal] = useState();
+
   return (
     <Box
       component="div"
-      onMouseEnter={e => handleClick(e)}
-      onMouseLeave={e => handleClick(e)}
+      // onMouseEnter={e => handleClick(e)}
+      // onMouseLeave={e => handleClick(e)}
       id="cheez-menu-button-hover"
     >
-      <Button id="cheez-menu-button" className="bg-dark" size="large" variant="contained" color="secondary" aria-describedby={id}>
+      <Button id="cheez-menu-button" className="bg-dark by-cheese" size="large" variant="contained" color="secondary" aria-describedby={id} onClick={e => handleClick(e)}>
         <Typography><span className="cheez-menu">
           By Cheez</span></Typography>
       </Button>
-      <Button id="cheez-menu-button" className="bg-dark3" size="large" variant="contained" color="secondary" aria-describedby={id}>
+      <Button id="cheez-menu-button" className="bg-dark3" size="large" variant="contained" color="secondary" aria-describedby={id} onClick={e => handleClick(e)}> 
         <Typography><span className="cheez-menu">
           < AiFillShopping /></span></Typography>
       </Button>
@@ -86,13 +89,13 @@ function CheezMenu() {
         {({ TransitionProps }) => {
           return (
             <>
-              <div className="cheese-modal">
+              <div className={`${!byModal ? "" : "d-block"} cheese-modal`}>
                 <Link
                   href={`https://app.sushi.com/swap?inputCurrency=${daiAddress}&outputCurrency=0xBbD83eF0c9D347C85e60F1b5D2c58796dBE1bA0d`}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <Button className="buy" >Buy on Sushiswap ↗️</Button>
+                  <Button className="buy" onClick={e => handleClick(e)}>Buy on Sushiswap ↗️</Button>
                 </Link>
                 <p className="my-3">Add token to wallet</p>
                 <div>

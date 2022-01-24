@@ -9,7 +9,7 @@ import { useAddress, useWeb3Context } from "src/hooks/web3Context";
 import { Typography } from "@material-ui/core";
 import "./topbar.scss";
 import { Button } from 'react-bootstrap'
-
+import { useLocation } from 'react-router';
 
 
 const useStyles = makeStyles(theme => ({
@@ -33,6 +33,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function TopBar({ theme, toggleTheme, handleDrawerToggle }) {
+let location = useLocation();
+
   const classes = useStyles();
   const isVerySmallScreen = useMediaQuery("(max-width: 355px)");
   const address = useAddress();
@@ -66,7 +68,16 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }) {
           <div className="d-flex justify-content-between align-items-center">
             <div className="logo d-flex align-items-center">
               <img src={require('./logo.png').default} alt="" />
-              <h1>Dashboard</h1>
+              <h1>{location.pathname === '/' && <>Dashboard</>}
+              {location.pathname === '/dashboard' && <>Dashboard</>}
+              {location.pathname === '/play' && <>Play</>}
+              {location.pathname === '/ageing' && <>Ageing</>}
+              {location.pathname === '/nfts' && <>My NFTs</>}
+              {location.pathname === '/marketplace' && <>Marketplace</>}
+              {location.pathname === '/bridge' && <>Bridge</>}
+              {location.pathname === '/bonds' && <>Bond</>}
+              {location.pathname === '/governance' && <>Governance</>}</h1>
+              {/* <h1>Dashboard</h1> */}
             </div>
             <Box display="flex">
               {address && (

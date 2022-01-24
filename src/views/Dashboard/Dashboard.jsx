@@ -16,7 +16,7 @@ import { dai } from "src/helpers/AllBonds";
 import Cheesin from "./cheesin.png";
 import Farm from "./farm.jpeg";
 import { useWeb3Context } from "../../hooks/web3Context";
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Modal } from 'react-bootstrap'
 
 function Dashboard() {
   const [data, setData] = useState(null);
@@ -123,14 +123,20 @@ function Dashboard() {
   const correctAPY = (stakingAPY * 100)
   const trimmedStakingAPY = trim(stakingAPY * 100, 1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-  const [boxactive, setBoxActive] = useState();
+  const [boxactive, setBoxActive] = useState(2);
+
+  const [getStartModal, setGetStartModal] = useState(false);
+  const getStartModalClose = () => setGetStartModal(false);
+  const getStartModalShow = () => setGetStartModal(true);
+
+  const [modalNumber, setModalNumber] = useState(0);
 
   return (
     <>
       <div className="dashboard-home">
         <Row className="m-0 justify-content-center">
           <Col lg={4} md={6} sm={12}>
-            <div className={`${boxactive === 1 ? "active" : ""} box1 p-4`} onClick={() => setBoxActive(1)}>
+            <div className="box1 p-4">
               <span>Market Cap</span>
               <h4>
                 {marketCap && formatCurrency(marketCap, 0)}
@@ -139,7 +145,7 @@ function Dashboard() {
             </div>
           </Col>
           <Col lg={4} md={6} sm={12}>
-            <div className={`${boxactive === 2 ? "active" : ""} box1 p-4`} onClick={() => setBoxActive(2)}>
+            <div className="active box1 p-4" onClick={() => {window.open(`https://dexscreener.com/harmony/0x82723f6c0b32f28ddc2006b9cdbca6cee0ad957a`)}}>
               <span>Cheez Price</span>
               <h4>
                 {marketPrice ? formatCurrency(marketPrice, 2) : <Skeleton type="text" width="150px" style={{ margin: "0 auto" }} />}
@@ -147,7 +153,7 @@ function Dashboard() {
             </div>
           </Col>
           <Col lg={4} md={6} sm={12}>
-            <div className={`${boxactive === 3 ? "active" : ""} box1 p-4`} onClick={() => setBoxActive(3)}>
+            <div className="box1 p-4">
               <span>Staked 🧀 / Circulating 🧀</span>
               <h4>
                 {stakedCheese ? (
@@ -164,7 +170,7 @@ function Dashboard() {
       <div className="dashboard-home mt-5">
         <Row className="m-0 justify-content-center">
           <Col lg={4} md={6} sm={12}>
-            <div className={`${boxactive === 4 ? "active" : ""} box1 p-4`} onClick={() => setBoxActive(4)}>
+            <div className="box1 p-4">
               <span>CheeseDAO Treasury</span>
               <h4>{isAppLoading ? (
                 <Skeleton width="180px" type="text" style={{ margin: "0 auto" }} />
@@ -179,7 +185,7 @@ function Dashboard() {
             </div>
           </Col>
           <Col lg={4} md={6} sm={12}>
-            <div className={`${boxactive === 5 ? "active" : ""} box1 p-4`} onClick={() => setBoxActive(5)}>
+            <div className="box1 p-4">
               <span>APY</span>
               <h4>
                 {correctAPY ? correctAPY.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "% APY" : <Skeleton type="text" />}
@@ -187,7 +193,7 @@ function Dashboard() {
             </div>
           </Col>
           <Col lg={4} md={6} sm={12}>
-            <div className={`${boxactive === 6 ? "active" : ""} box1 p-4`} onClick={() => setBoxActive(6)}>
+            <div className="box1 p-4">
               <span>Runway</span>
               <h4>
                 {currentRunway ? (
@@ -203,7 +209,7 @@ function Dashboard() {
       <div className="dashboard-home mt-5">
         <Row className="m-0 justify-content-center">
           <Col lg={4} md={6} sm={12}>
-            <div className={`${boxactive === 4 ? "active" : ""} bigbox1 p-4`} onClick={() => setBoxActive(4)}>
+            <div className="box1 p-4">
               <img src={require('./mouse.png').default} alt="" width={150} />
               <div className="bigbox-text">
                 <span>Mouse in Maze</span>
@@ -218,7 +224,7 @@ function Dashboard() {
             </div>
           </Col>
           <Col lg={4} md={6} sm={12}>
-            <div className={`${boxactive === 5 ? "active" : ""} bigbox1 p-4`} onClick={() => setBoxActive(5)}>
+            <div className="box1 p-4">
               <img src={require('./cat.png').default} alt="" />
               <div className="bigbox-text">
                 <span>Cats in Maze</span>
@@ -233,7 +239,7 @@ function Dashboard() {
             </div>
           </Col>
           <Col lg={4} md={6} sm={12}>
-            <div className={`${boxactive === 6 ? "active" : ""} bigbox1 p-4`} onClick={() => setBoxActive(6)}>
+            <div className="box1 p-4">
               <img src={require('./mouse-trap.png').default} alt="" />
               <div className="bigbox-text">
                 <span>Traps in Maze</span>
@@ -253,11 +259,14 @@ function Dashboard() {
         <div className="get-start-main mt-5">
           <Row className="align-items-center w-100">
             <Col lg={9} md={12}>
-              <p>Donec lobortis auctor posuere amet egestas vulputate lacus consequat.</p>
+              <p>Are you new here?</p>
             </Col>
             <Col lg={3} md={12}>
               <div>
-                <Button className="start-btn">GET STARTED</Button>
+                <Button className="start-btn" onClick={() => {
+                  getStartModalShow(),
+                    setModalNumber(1)
+                }}>GET STARTED</Button>
               </div>
             </Col>
           </Row>
@@ -266,157 +275,175 @@ function Dashboard() {
         <></>
       )}
 
+      <Modal show={getStartModal} onHide={getStartModalClose}>
+        {modalNumber === 1 &&
+          <Modal.Body className="modal1">
+            <img src={require('./mouse-modal.png').default} alt="" />
+            <h3>Getting to Know You</h3>
+            <div className="text-align-left">
+              <p>Welcome! It’s really gouda to have you here.</p>
+              <p>To get started with CheeseDAO, you’ll need a few basic tools. A browser (Chrome or Brave are preferred) with a Metamask wallet extension installed and Harmony ONE tokens in it. Do you have any of these set up already?</p>
+            </div>
+            <div className="browser">
+              <img src={require('./crom.png').default} alt="" />
+              <img src={require('./firefox.png').default} alt="" />
+              <img src={require('./brave.png').default} alt="" />
+              <img src={require('./crom2.png').default} alt="" />
+            </div>
+            <div className="input-check mt-3">
+              <input type="radio" id="check1" name="browser" />
+              <label for="check1" >I use one of these browsers</label>
+            </div>
+            <div className="input-check mt-3">
+              <input type="radio" id="check2" name="browser" checked />
+              <label for="check2" >I don’t use these browsers</label>
+            </div>
+            <div className="metamask text-align-left mt-3">
+              <img src={require('./metamask.png').default} alt="" />
+              <div className="input-check mt-3">
+                <input type="radio" id="check3" name="browser2" checked />
+                <label for="check3" >I have Metamask</label>
+              </div>
+              <div className="input-check mt-3">
+                <input type="radio" id="check4" name="browser2" />
+                <label for="check4" >I don’t have Metamask</label>
+              </div>
+            </div>
+            <div className="metamask text-align-left mt-3">
+              <img src={require('./harmony.png').default} alt="" />
+              <div className="input-check mt-3">
+                <input type="radio" id="check5" name="harmony" checked />
+                <label for="check5" >I have some Harmony ONE</label>
+              </div>
+              <div className="input-check mt-3">
+                <input type="radio" id="check6" name="harmony" />
+                <label for="check6" >I don’t have any Harmony ONE</label>
+              </div>
+            </div>
+            <div className="back-next">
+              <Button className="back back-color" disabled  >Back</Button>
+              <Button className="next" onClick={() => { setModalNumber(2) }}>Next</Button>
+            </div>
+          </Modal.Body>
+        }
+
+        {modalNumber === 2 &&
+          <Modal.Body className=" modal2">
+            <div className="browser justify-content-center">
+              <img src={require('./crom.png').default} alt="" />
+              <img src={require('./firefox.png').default} alt="" />
+              <img src={require('./brave.png').default} alt="" />
+              <img src={require('./crom2.png').default} alt="" />
+            </div>
+            <h2 className="mt-2">Browser Setup</h2>
+            <p>Before you can set up your wallet, you’ll need to have one of the above four browsers installed on your computer. We think you’re cheddar off with Google Chrome or Brave, but any of them will work.</p>
+            <p>Once you have one of these browsers installed, click Next. </p>
+            <div className="back-next">
+              <Button className="back" onClick={() => { setModalNumber(1) }}>Back</Button>
+              <Button className="next" onClick={() => { setModalNumber(3) }}>Next</Button>
+            </div>
+          </Modal.Body>
+        }
+
+        {modalNumber === 3 &&
+          <Modal.Body className=" modal2">
+            <img src={require('./metamask-icon.png').default} alt="" />
+            <h2>Metamask</h2>
+            <p>To interact with CheeseDAO, you’ll need a browser extension called Metamask wallet. You can <span className="text-green">click here</span> to download the Metamask extension from the official website.</p>
+            <div className="d-flex align-items-center">
+              <Button><img src={require('./left-side.png').default} alt="" /></Button>
+              <div className="slider">
+                <img src={require('./slide1.png').default} alt="" />
+              </div>
+              <Button><img src={require('./right-side.png').default} alt="" /></Button>
+            </div>
+            <p className="mt-3">Click the blue ‘download’ button and, on the following page, select your browser and download Metamask. Follow any prompts to enable the extension and accept security permissions.</p>
+            <p>Once you see the Metamask welcome screen, click Next on this window. </p>
+            <div className="back-next">
+              <Button className="back" onClick={() => { setModalNumber(2) }}>Back</Button>
+              <Button className="next" onClick={() => { setModalNumber(4) }}>Next</Button>
+            </div>
+          </Modal.Body>
+        }
+
+        {modalNumber === 4 &&
+          <Modal.Body className="modal3">
+            <img src={require('./metamask-icon.png').default} alt="" />
+            <h2>Metamask</h2>
+            <p>Excellent.</p>
+            <p>Now that the Metamask extension is installed, we can configure it for CheeseDAO. This process takes only a few minutes. Your wallet information is extremely important and very sensitive. If you lose your seed phrase, no one can recover it for you which means that your account, along with your tokens and items, will be lost forever. Take the time to create a strong password and to securely store your recovery information. </p>
+            <p>Now, go ahead and click Get Started. If you had Metamask before, you can select Import Wallet, but chances are you’re new to this, so you’ll want to Create a Wallet. Follow the process to get your wallet up and running and come back to this page and click Next when you’re done.</p>
+            <div className="back-next">
+              <Button className="back" onClick={() => { setModalNumber(3) }}>Back</Button>
+              <Button className="next" onClick={() => { setModalNumber(5) }}>Next</Button>
+            </div>
+          </Modal.Body>
+        }
+
+        {modalNumber === 5 &&
+          <Modal.Body className="modal3">
+            <img src={require('./metamask-icon.png').default} alt="" />
+            <h2>Metamask</h2>
+            <p>You’re doing grate! Make sure to keep a hard copy of your seed phrase in a safe location.</p>
+            <p>Next, we’ll change a few settings. This is easy, because I’m going to give you the settings to copy and paste, direct from CheeseDAO’s documentation page. You’ll start this process by opening the extension and clicking at the top where it says Ethereum Mainnet. In the dropdown menu, choose Custom RPC and then copy/paste the following information:</p>
+            <p className="mb-0">Network Name: Harmony Mainnet</p>
+            <p className="mb-0">New RPC URL:<span className="text-blue"> https://api.harmony.one</span></p>
+            <p className="mb-0">Chain ID: 1666600000</p>
+            <p className="mb-0">Currency symbol: ONE</p>
+            <p className="mb-0"> Block Explorer URL: <span className="text-blue">https://explorer.harmony.one/</span></p>
+            <div className="back-next">
+              <Button className="back" onClick={() => { setModalNumber(4) }}>Back</Button>
+              <Button className="next" onClick={() => { setModalNumber(6) }}>Next</Button>
+            </div>
+          </Modal.Body>
+        }
+
+        {modalNumber === 6 &&
+          <Modal.Body className="modal3">
+            <img src={require('./harmony-icon.png').default} alt="" />
+            <h2>Harmony ONE Tokens</h2>
+            <p>Before I release you into the Cheesyverse, you’ll need to own some Harmony ONE tokens. CheeseDAO is hosted on the Harmony blockchain, so you’ll need these tokens both for gas fees (the transaction fees charged when trading tokens) and to convert into CHEEZ. </p>
+            <p >Gas fees on the Harmony network are very inexpensive, so even a single ONE token is enough gas for quite a while; however, you’ll want plenty of ONE to purchase CHEEZ and other tokens ingame. You can purchase ONE on a variety of exchanges. We cannot advise you on the pros and cons of each exchange, but some options to consider are Crypto.com, Binance or a direct purchase from Harmony’s vendor partner on their website.</p>
+            <p className="text-yelow">Note that if your vendor asks for a wallet address to deposit the tokens, you can get this address from Metamask. By default it’s just called Account 1 and you can copy the wallet address by clicking on it. If the vendor requires a ONE address, you can find yours by clicking the menu next to your wallet address and choosing “View in Explorer.”</p>
+            <p>Once you have acquired some ONE tokens, come back to this page and click Next.</p>
+            <div className="back-next">
+              <Button className="back" onClick={() => { setModalNumber(5) }}>Back</Button>
+              <Button className="next" onClick={() => { setModalNumber(7) }}>Next</Button>
+            </div>
+          </Modal.Body>
+        }
+
+        {modalNumber === 7 &&
+          <Modal.Body className="modal3">
+            <img src={require('./harmony-icon.png').default} alt="" />
+            <h2>Harmony ONE Tokens</h2>
+            <p>Queso, what’s next?</p>
+            <p >We need to transfer ONE tokens that you own into your Metamask wallet so that you can use them inside the game. You can click on Metamask to see your token balance and skip this step if the tokens are already in your wallet. Otherwise, you’ll need to use the options built in with your vendor to transfer the ONE tokens to your private Metamask wallet. </p>
+            <p>Generally, you’ll select an option like “send” or “transfer,” choose your token and the amount to move, and then enter the target wallet address. If you haven’t done this before, you can always transfer a small amount first to make sure it works, before moving your full balance.</p>
+            <p>Take it nice and cheesy, then come back to this page and click Next when you’re done.</p>
+            <div className="back-next">
+              <Button className="back" onClick={() => { setModalNumber(6) }}>Back</Button>
+              <Button className="next" onClick={() => { setModalNumber(8) }}>Next</Button>
+            </div>
+          </Modal.Body>
+        }
+
+        {modalNumber === 8 &&
+           <Modal.Body className="modal3">
+           <img src={require('./mouse-modal.png').default} alt="" />
+           <p className="mt-3">Gouda, very gouda. Now that we’ve set up the necessary tools, you may enter into the Cheesyverse.</p>
+           <p >At the bottom of this window, you’ll find the “BUY CHEEZ” button which will take you to SushiSwap, where you can swap your ONE tokens for CHEEZ tokens (always keep some ONE left over for gas!).</p>
+           <p>Once you have CHEEZ tokens, you can stake them on the Ageing tab, or you can visit the marketplace and trade game pieces. Game pieces can be staked on the Play tab to generate rewards – but brie-ware of the risks! </p>
+           <p>You’re on your own now, friend. I swiss you all the best.</p>
+           <div className="back-next">
+             <Button className="back" onClick={() => { setModalNumber(7) }}>Back</Button>
+             <Button className="next" disabled onClick={() => { setModalNumber(0); getStartModalClose() }}>Next</Button>
+           </div>
+         </Modal.Body>
+        }
+
+      </Modal>
     </>
-    // <div id="treasury-dashboard-view" className={`${smallerScreen && "smaller"} ${verySmallScreen && "very-small"}`}>
-    //   <Container
-    //     style={{
-    //       paddingLeft: smallerScreen || verySmallScreen ? "0" : "3.3rem",
-    //       paddingRight: smallerScreen || verySmallScreen ? "0" : "3.3rem",
-    //     }}
-    //   >
-    //     <Box className={`hero-metrics`}>
-    //       <Paper className="cheez-card" style={{marginBottom: "3%"}}>
-    //         <Box display="flex" flexWrap="wrap" justifyContent="space-between" alignItems="center">
-    //           <Box className="metric market">
-    //             <Typography variant="h6" color="textSecondary">
-    //               Market Cap
-    //             </Typography>
-    //             <Typography variant="h5">
-    //               {marketCap && formatCurrency(marketCap, 0)}
-    //               {!marketCap && <Skeleton type="text" width="150px" style={{margin: "0 auto"}} />}
-    //             </Typography>
-    //           </Box>
-
-    //           <Box className="metric price hover" onClick={() => {window.open(`https://dexscreener.com/harmony/0x82723f6c0b32f28ddc2006b9cdbca6cee0ad957a`)}} style={{border: "1px solid #ebc50c", borderRadius: "10px", paddingTop: "1%", paddingBottom: "1%"}}>
-    //             <Typography variant="h6" color="textSecondary">
-    //               CHEEZ Price
-    //             </Typography>
-    //             <Typography variant="h5">
-    //               {/* appleseed-fix */}
-    //               {marketPrice ? formatCurrency(marketPrice, 2) : <Skeleton type="text" width="150px" style={{margin: "0 auto"}} />}
-    //             </Typography>
-    //           </Box>
-
-    //           <Box className="metric circ">
-    //             <Typography variant="h6" color="textSecondary">
-    //               Staked 🧀 / Circulating 🧀
-    //             </Typography>
-    //             <Typography variant="h5">
-    //               {stakedCheese ? (
-    //                  parseInt(stakedCheese) + " / " + parseInt(circSupply)
-    //               ) : (
-    //                 <Skeleton type="text" width="150px" style={{margin: "0 auto"}} />
-    //               )}
-    //             </Typography>
-    //           </Box>
-
-    //           <Box className="metric price">
-    //           <Typography variant="h6" color="textSecondary">
-    //               CheeseDAO Treasury
-    //             </Typography>
-    //             <Typography variant="h5">
-    //               {isAppLoading ? (
-    //                 <Skeleton width="180px" type="text" style={{margin: "0 auto"}} />
-    //               ) : (
-    //                 new Intl.NumberFormat("en-US", {
-    //                   style: "currency",
-    //                   currency: "USD",
-    //                   maximumFractionDigits: 0,
-    //                   minimumFractionDigits: 0,
-    //                 }).format(treasuryBalance)
-    //               )}
-    //             </Typography>
-    //           </Box>
-
-    //           <Box className="metric price">
-    //           <Typography variant="h4">
-    //                     {stakingAPY ? (
-    //                       <><Typography variant="h5" color="textSecondary">
-    //                       APY 
-    //                       {/* <InfoTooltip
-    //                         message=
-    //                           {`${correctAPY.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}%`}
-    //                       /> */}
-    //                     </Typography>
-    //                     <Typography variant="h5">
-    //                       {correctAPY ? correctAPY.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "% APY" : <Skeleton type="text" />}
-    //                     </Typography>
-
-    //                     </>
-    //                     ) : (
-    //                       <Skeleton width="150px" style={{margin: "0 auto"}} />
-    //                     )}
-    //                   </Typography>
-    //           </Box>
-
-    //           <Box className="metric circ">
-    //             <Typography variant="h6" color="textSecondary">
-    //               Runway
-    //             </Typography>
-    //             <Typography variant="h5">
-    //               {currentRunway ? (
-    //                  `${currentRunway.toFixed(0)} days`
-    //               ) : (
-    //                 <Skeleton type="text" width="150px" style={{margin: "0 auto"}} />
-    //               )}
-    //             </Typography>
-    //           </Box>
-    //           <Box className="metric circ">
-    //             <Typography variant="h6" color="textSecondary">
-    //               Mice in Maze
-    //             </Typography>
-    //             <Typography variant="h5">
-    //               {miceStaked ? (
-    //                  `${miceStaked} Mice`
-    //               ) : (
-    //                 <Skeleton type="text" width="150px" style={{margin: "0 auto"}} />
-    //               )}
-    //             </Typography>
-    //           </Box>
-    //           <Box className="metric circ">
-    //             <Typography variant="h6" color="textSecondary">
-    //               Cats in Maze
-    //             </Typography>
-    //             <Typography variant="h5">
-    //               {catsStaked ? (
-    //                  `${catsStaked} Cats`
-    //               ) : (
-    //                 <Skeleton type="text" width="150px" style={{margin: "0 auto"}} />
-    //               )}
-    //             </Typography>
-    //           </Box>
-    //           <Box className="metric circ">
-    //             <Typography variant="h6" color="textSecondary">
-    //               Traps in Maze
-    //             </Typography>
-    //             <Typography variant="h5">
-    //               {trapsStaked ? (
-    //                  `${trapsStaked} Traps`
-    //               ) : (
-    //                 <Skeleton type="text" width="150px" style={{margin: "0 auto"}} />
-    //               )}
-    //             </Typography>
-    //           </Box>
-    //         </Box>
-    //       </Paper>
-    //     </Box>
-    //     <Box>
-    //     <Paper className="hover2" style={{marginTop: "4%", marginBottom: "3%", background: "transparent", height: "75px", border: "1px solid #FF0000"}} onClick={() => history.push('/nftstaking')}>
-    //         <Typography variant="h4" color="textSecondary" style={{textAlign: "center", paddingTop: "2%", paddingBottom: ".75%", color: "#3ce8a6"}}>Unstake from OG staking pools!</Typography>
-    //       </Paper>
-
-    //         <Paper style={{marginTop: "5%", marginBottom: "3%", background: "transparent", height: "100px", border: "1px solid #3ce8a6", display: "flex", flexFlow: "row-nowrap", justifyContent: "center"}}>
-    //           <Typography variant="h2" color="textSecondary" style={{textAlign: "center", paddingTop: "2%", paddingBottom: "2%", marginBottom: "2%", color: "#3ce8a6"}}>On-Chain Governance Coming Soon!</Typography>
-    //           <img src={Cheesin} alt="chessin mascot logo" style={{height: "50px", width: "50px", marginTop: "2%", marginLeft: "2%"}} />
-    //         </Paper>
-    //       </Box>
-    //       <Box>
-    //       <Paper className="hover2" style={{marginTop: "4%", marginBottom: "3%", background: "transparent", height: "75px", border: "1px solid #ebc50c"}} onClick={() => history.push('/nfts')}>
-    //         <Typography variant="h4" color="textSecondary" style={{textAlign: "center", paddingTop: "2%", paddingBottom: "2%", marginBottom: "2%", color: "#FFFFFF"}}>Take me to my NFTs!</Typography>
-    //       </Paper>
-    //     </Box>
-    //   </Container>
-    // </div>
   );
 }
 

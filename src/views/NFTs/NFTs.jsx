@@ -37,7 +37,9 @@ import CloseIcon from "./close.png";
 import { eachHourOfInterval } from "date-fns/esm";
 import CheezPassGif from "./cheezpass.gif";
 import CheezPass from "../CheezPass/CheezPass";
-import { Col, Row, Button, Modal } from "react-bootstrap";
+import { Col, Row, Button, Modal, Table } from "react-bootstrap";
+import { responsiveFontSizes } from '@material-ui/core/styles';
+import { storeQueryParameters } from './../../helpers/QueryParameterHelper';
 
 
 function Spawns() {
@@ -271,36 +273,108 @@ function Spawns() {
           )}
 
         </div>
-        <div className="get-start-main mt-5">
-          <Row className="align-items-center w-100">
-            <Col lg={9} md={12}>
-              <p>No listing yet, create a listing here for sale on the marketplace.</p>
-            </Col>
-            <Col lg={3} md={12}>
-              <div>
-                {!address ? (
-                  <>
+        {!address ? (
+          <>
+            <div className="get-start-main mt-5">
+              <Row className="align-items-center w-100">
+                <Col lg={9} md={12}>
+                  <p>No listing yet, create a listing here for sale on the marketplace.</p>
+                </Col>
+                <Col lg={3} md={12}>
+                  <div>
                     <Button className="start-btn">Create a Listing</Button>
-                  </>
+                  </div>
+                </Col>
+              </Row>
+            </div>
+          </>
+        ) : (
+          <>
+            {mouseBalance && catBalance && trapBalance ? (
+              <>
+                {myListings.length > 0 ? (
+                  <div className="list-main mt-5">
+                    <div className="list-header d-flex align-items-center justify-content-between">
+                      <h2>Your Listings</h2>
+                      <Button className="create-btn">Create a Listing</Button>
+                    </div>
+                    <div className="list-table">
+                      <Table responsive>
+                        <tbody>
+                          {myListings.map((listing) => (
+                            <tr>
+                              <td>
+                                <div className="d-flex align-items-center">
+
+                                  {listing.tokenId === 0 && listing.amount > 1 && listing.token === addresses[chainID].NFT_CONTRACT_ADDRESS ? <img src={Mouse} alt="mouse icon" style={{ height: "65px", width: "65px" }} /> : listing.tokenId === 0 && listing.amount <= 1 && listing.token === addresses[chainID].NFT_CONTRACT_ADDRESS ? <img src={Mouse} alt="mouse icon" style={{ height: "65px", width: "65px" }} /> : listing.tokenId === 1 && listing.amount > 1 ? <img src={Cat} alt="cat icon" style={{ height: "65px", width: "65px" }} /> : listing.tokenId === 2 && listing.amount > 1 ? <img src={MouseTrap} alt="mouse trap icon" style={{ height: "65px", width: "65px" }} /> : listing.tokenId === 2 ? <img src={MouseTrap} alt="mouse trap icon" style={{ height: "65px", width: "65px" }} /> : listing.tokenId === 1 ? <img src={Cat} alt="cat icon" style={{ height: "65px", width: "65px" }} /> : listing.tokenId === 0 && listing.amount > 1 && listing.token === addresses[chainID].CHEEZPASS_CONTRACT_ADDRESS ? <img src={CheezPassGif} alt="spinning logo for cheesepass" style={{ height: "65px", width: "65px" }} /> : listing.tokenId === 0 && listing.amount <= 1 && listing.token === addresses[chainID].CHEEZPASS_CONTRACT_ADDRESS ? <img src={CheezPassGif} alt="spinning logo for cheesepass" style={{ height: "65px", width: "65px" }} /> : ''}
+
+                                  <h5 className="mb-0">CHEEZ Pass</h5>
+                                </div>
+                              </td>
+                              <td>
+                                <div className="td-con">
+                                  <span>Qty:</span>
+                                  <h5>{listing.amount}</h5>
+                                </div>
+                              </td>
+                              <td>
+                                <div className="td-con">
+                                  <span>Price:</span>
+                                  <h5>{ethers.utils.formatUnits(`${listing.price}`, 9)} 🧀</h5>
+                                </div>
+                              </td>
+                              <td>
+                                <Button className="remove" disabled={isPendingTxn(pendingTransactions, "delete_nft")}
+                                  onClick={() => {
+                                    onDelete(listing.offerId)
+                                  }}>Remove</Button>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </Table>
+                    </div>
+                  </div>
                 ) : (
                   <>
-                    <Button className="start-btn" onClick={createNftModalShow}>Create a Listing</Button>
+                    <div className="get-start-main mt-5">
+                      <Row className="align-items-center w-100">
+                        <Col lg={9} md={12}>
+                          <p>No listing yet, create a listing here for sale on the marketplace.</p>
+                        </Col>
+                        <Col lg={3} md={12}>
+                          <div>
+                            <Button className="start-btn" onClick={createNftModalShow}>Create a Listing</Button>
+                          </div>
+                        </Col>
+                      </Row>
+                    </div>
                   </>
                 )}
-              </div>
-            </Col>
-          </Row>
-        </div>
+              </>
+            ) : (
+              <>
+                <Skeleton type="text" width="400px" style={{ margin: "0 auto", marginTop: "10%" }} />
+              </>)}
+
+          </>
+        )}
       </div>
 
-      <Modal show={transferNftModal} onHide={transferNftModalClose}>
+      <Modal show={transferNftModal} onHide={() => {transferNftModalClose()
+      setActive(1)  
+      setMouseSelect(true)
+      setTrapSelect(false)
+      setPassSelect(false)
+      setCatSelect(false)
+      }}>
         <Modal.Body className="modal-bg">
           <h3>Transfer NFT</h3>
 
           <Box>
             {transferID === null ? (
               <Box>
-                <Grid container style={{ columnGap: '20px', display: "flex", flexFlow: "row-nowrap", justifyContent: "center" }}>
+                <Grid container  style={{ columnGap: '20px', display: "flex", flexFlow: "row-nowrap", justifyContent: "center" }}>
                   <div className="main-modal-box text-center">
                     <Grid item className={`${active === 1 ? "active" : ""} border-box`} style={{ margin: "0 auto", marginBottom: verySmallScreen ? "5%" : smallerScreen ? "3%" : "0" }}>
                       <Paper style={{ display: "flex", flexDirection: "row", justifyContent: "center", background: "transparent" }}>
@@ -309,11 +383,12 @@ function Spawns() {
                         </div>
                       </Paper>
                     </Grid>
-                    <input className="mt-2 checkbox" type="radio" name="name" onClick={() => {
+                    <input className={`${active === 1 ? "active" : ""} mt-2 checkbox`} type="radio" name="name"  onClick={() => {
+                      setActive(1)
                       setMouseTransfer(true)
                       setMouseTrapTransfer(false)
                       setPassTransfer(false)
-                      setCatTransfer(false)
+                      setCatTransfer(false) 
                     }} />
                   </div>
                   <div className="main-modal-box text-center">
@@ -324,7 +399,7 @@ function Spawns() {
                         </div>
                       </Paper>
                     </Grid>
-                    <input className="mt-2 checkbox" type="radio" name="name" onClick={() => {
+                    <input className={`${active === 2 ? "active" : ""} mt-2 checkbox`} type="radio" name="name" onClick={() => {
                       setActive(2)
                       setCatTransfer(true)
                       setPassTransfer(false)
@@ -340,7 +415,7 @@ function Spawns() {
                         </div>
                       </Paper>
                     </Grid>
-                    <input className="mt-2 checkbox" type="radio" name="name" onClick={() => {
+                    <input className={`${active === 3 ? "active" : ""} mt-2 checkbox`} type="radio" name="name" onClick={() => {
                       setActive(3)
                       setMouseTrapTransfer(true)
                       setPassTransfer(false)
@@ -356,7 +431,7 @@ function Spawns() {
                         </div>
                       </Paper>
                     </Grid>
-                    <input className="mt-2 checkbox" type="radio" name="name" onClick={() => {
+                    <input className={`${active === 4 ? "active" : ""} mt-2 checkbox`} type="radio" name="name" onClick={() => {
                       setActive(4)
                       setPassTransfer(true)
                       setCatTransfer(false)
@@ -428,10 +503,14 @@ function Spawns() {
         </Modal.Body>
       </Modal>
 
-
-      <Modal show={createNftModal} onHide={createNftModalClose}>
+      <Modal show={createNftModal} onHide={() => {createNftModalClose(),
+      setActive(1)  
+      setMouseSelect(true)
+      setTrapSelect(false)
+      setPassSelect(false)
+      setCatSelect(false)}}>
         <Modal.Body className="modal-bg">
-          <h3>Transfer NFT</h3>
+          <h3>Create a Listing</h3>
 
           <Box>
             {transferID === null ? (
@@ -445,7 +524,8 @@ function Spawns() {
                         </div>
                       </Paper>
                     </Grid>
-                    <input className="mt-2 checkbox" type="radio" name="name" onClick={() => {
+                    <input className="mt-2 checkbox active" type="radio" name="name" onClick={() => {
+                      setActive(1)  
                       setMouseSelect(true)
                       setTrapSelect(false)
                       setPassSelect(false)
@@ -463,9 +543,9 @@ function Spawns() {
                     <input className="mt-2 checkbox" type="radio" name="name" onClick={() => {
                       setActive(2)
                       setCatSelect(true)
-                  setPassSelect(false)
-                  setTrapSelect(false)
-                  setMouseSelect(false)
+                      setPassSelect(false)
+                      setTrapSelect(false)
+                      setMouseSelect(false)
                     }} />
                   </div>
                   <div className="main-modal-box text-center">

@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Typography, Box, Slide } from "@material-ui/core";
+import { Typography, Box, Slide } from "@material-ui/core";
 import { redeemBond } from "../../slices/BondSlice";
 import { useWeb3Context } from "src/hooks/web3Context";
 import { trim, secondsUntilBlock, prettifySeconds, prettyVestingPeriod } from "../../helpers";
 import { isPendingTxn, txnButtonText } from "src/slices/PendingTxnsSlice";
 import { Skeleton } from "@material-ui/lab";
+import { Row, Col, Button, Modal, Tabs, Tab } from 'react-bootstrap';
 
 function BondRedeem({ bond }) {
   // const { bond: bondName } = bond;
@@ -36,9 +37,11 @@ function BondRedeem({ bond }) {
   };
 
   const vestingPeriod = () => {
-    const vestingBlock = parseInt(currentBlock) + parseInt(bondingState.vestingTerm);
-    const seconds = secondsUntilBlock(currentBlock, vestingBlock);
-    return prettifySeconds(seconds, "day");
+    if(bondingState){
+      const vestingBlock = parseInt(currentBlock) + parseInt(bondingState.vestingTerm);
+      const seconds = secondsUntilBlock(currentBlock, vestingBlock);
+      return prettifySeconds(seconds, "day");
+    }
   };
 
   useEffect(() => {
@@ -48,78 +51,63 @@ function BondRedeem({ bond }) {
   }, []);
 
   return (
-    <Box display="flex" flexDirection="column">
-      <Box display="flex" justifyContent="space-around" flexWrap="wrap">
-        <Button
-          variant="outlined"
-          color="primary"
-          id="bond-claim-btn"
-          className="transaction-button"
-          fullWidth
-          disabled={isPendingTxn(pendingTransactions, "redeem_bond_" + bond.name) || bond.pendingPayout == 0.0}
-          onClick={() => {
-            onRedeem({ autostake: false });
-          }}
-        >
-          {txnButtonText(pendingTransactions, "redeem_bond_" + bond.name, "Claim")}
-        </Button>
-        <Button
-          variant="outlined"
-          color="primary"
-          id="bond-claim-autostake-btn"
-          className="transaction-button"
-          fullWidth
-          disabled={
-            isPendingTxn(pendingTransactions, "redeem_bond_" + bond.name + "_autostake") || bond.pendingPayout == 0.0
-          }
-          onClick={() => {
-            onRedeem({ autostake: true });
-          }}
-        >
-          {txnButtonText(pendingTransactions, "redeem_bond_" + bond.name + "_autostake", "Claim and AutoAge")}
-        </Button>
-      </Box>
-
-      <Slide direction="right" in={true} mountOnEnter unmountOnExit {...{ timeout: 533 }}>
-        <Box className="bond-data">
-          <div className="data-row">
-            <Typography>Pending Rewards</Typography>
-            <Typography className="price-data">
-              {isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.interestDue, 4)} CHEEZ`}
-            </Typography>
-          </div>
-          <div className="data-row">
-            <Typography>Claimable Rewards</Typography>
-            <Typography className="price-data">
-              {isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.pendingPayout, 4)} CHEEZ`}
-            </Typography>
-          </div>
-          <div className="data-row">
-            <Typography>Time until fully vested</Typography>
-            <Typography className="price-data">{isBondLoading ? <Skeleton width="100px" /> : vestingTime()}</Typography>
-          </div>
-
-          <div className="data-row">
-            <Typography>ROI</Typography>
-            <Typography>
-              {isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.bondDiscount * 100, 2)}%`}
-            </Typography>
-          </div>
-
-          <div className="data-row">
-            <Typography>Debt Ratio</Typography>
-            <Typography>
-              {isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.debtRatio / 10000000, 2)}%`}
-            </Typography>
-          </div>
-
-          <div className="data-row">
-            <Typography>Vesting Term</Typography>
-            <Typography>{isBondLoading ? <Skeleton width="100px" /> : vestingPeriod()}</Typography>
-          </div>
-        </Box>
-      </Slide>
-    </Box>
+    <>
+      <Row>
+        <Col lg={6}>
+          <Button
+            className="mini-bg-gray"
+            // disabled={isPendingTxn(pendingTransactions, "redeem_bond_" + bond.name) || bond.pendingPayout == 0.0}
+            onClick={() => {
+              onRedeem({ autostake: false });
+            }}>
+            <h5 className="mb-0">{txnButtonText(pendingTransactions, "redeem_bond_" + bond.name, "Claim")}</h5>
+          </Button>
+        </Col>
+        <Col lg={6}>
+          <Button className="mini-bg-gray"
+            // disabled={
+            //   isPendingTxn(pendingTransactions, "redeem_bond_" + bond.name + "_autostake") || bond.pendingPayout == 0.0
+            // }
+            onClick={() => {
+              onRedeem({ autostake: true });
+            }}>
+            <h5 className="mb-0">{txnButtonText(pendingTransactions, "redeem_bond_" + bond.name + "_autostake", "Claim and AutoAge")}</h5>
+          </Button>
+        </Col>
+      </Row>
+      <div className="bond-def mt-3">
+        <div className="d-flex mt-2">
+          <span>Pending Rewards</span>
+          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
+          <span>{isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.interestDue, 4)} CHEEZ`}</span>
+        </div>
+        <div className="d-flex mt-2">
+          <span>Claimable Rewards</span>
+          <span>_ _ _ _ _ _ _ _ _ _ _ _ _</span>
+          <span>{isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.pendingPayout, 4)} CHEEZ`}</span>
+        </div>
+        <div className="d-flex mt-2">
+          <span>Time until fully vested</span>
+          <span>_ _ _ _ _ _ _ _ _ _ _</span>
+          <span>{isBondLoading ? <Skeleton width="100px" /> : vestingTime()}</span>
+        </div>
+        <div className="d-flex mt-2">
+          <span>ROI</span>
+          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
+          <span>{isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.bondDiscount * 100, 2)}%`}</span>
+        </div>
+        <div className="d-flex mt-2">
+          <span>Debt Ratio</span>
+          <span>_ _ _ _ _ _  _ _ _ _ _ _ _ _ _ _ _ _</span>
+          <span>{isBondLoading ? <Skeleton width="100px" /> : `${trim(bond.debtRatio / 10000000, 2)}%`}</span>
+        </div>
+        <div className="d-flex mt-2">
+          <span>Vesting Term</span>
+          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
+          <span>{isBondLoading ? <Skeleton width="100px" /> : vestingPeriod()}</span>
+        </div>
+      </div>
+    </>
   );
 }
 
