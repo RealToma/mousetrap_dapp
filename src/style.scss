@@ -34,6 +34,46 @@ body {
     z-index: 999;
 }
 
+.cartoon2 {
+    position: fixed;
+    top: 200px;
+    right: -40px;
+    z-index: 999;
+    transform: rotate(-90deg);
+}
+
+.cartoon3 {
+    position: fixed;
+    top: -40px;
+    left: 500px;
+    z-index: 999;
+    transform: rotate(180deg);
+}
+
+.cartoon4 {
+    position: fixed;
+    bottom: 50px;
+    left: -40px;
+    z-index: 999;
+    transform: rotate(90deg);
+}
+
+.cartoon5 {
+    position: fixed;
+    bottom: 400px;
+    left: -40px;
+    z-index: 999;
+    transform: rotate(90deg);
+}
+
+.cartoon6{
+    position: fixed;
+    top: 200px;
+    left: -40px;
+    z-index: 999;
+    transform: rotate(90deg);
+}
+
 .chat {
     position: fixed;
     bottom: 0px;

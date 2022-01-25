@@ -17,6 +17,8 @@ import Cheesin from "./cheesin.png";
 import Farm from "./farm.jpeg";
 import { useWeb3Context } from "../../hooks/web3Context";
 import { Row, Col, Modal } from 'react-bootstrap'
+import Slider from "react-slick";
+
 
 function Dashboard() {
   const [data, setData] = useState(null);
@@ -131,10 +133,34 @@ function Dashboard() {
 
   const [modalNumber, setModalNumber] = useState(0);
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 3000,
+  };
+
   return (
     <>
-      <div className="dashboard-home">
-        <Row className="m-0 justify-content-center">
+      <div className="dashboard-home dashboard-home-1">
+        <div className="banner">
+          <Slider {...settings}>
+            <div>
+              <img src={require('./banner.png').default} alt="" />
+            </div>
+            <div>
+              <img src={require('./banner.png').default} alt="" />
+            </div>
+            <div>
+              <img src={require('./banner.png').default} alt="" />
+            </div>
+          </Slider>
+        </div>
+        <Row className="m-0 mt-5 justify-content-center">
           <Col lg={4} md={6} sm={12}>
             <div className="box1 p-4">
               <span>Market Cap</span>
@@ -145,7 +171,7 @@ function Dashboard() {
             </div>
           </Col>
           <Col lg={4} md={6} sm={12}>
-            <div className="active box1 p-4" onClick={() => {window.open(`https://dexscreener.com/harmony/0x82723f6c0b32f28ddc2006b9cdbca6cee0ad957a`)}}>
+            <div className="active box1 p-4" onClick={() => { window.open(`https://dexscreener.com/harmony/0x82723f6c0b32f28ddc2006b9cdbca6cee0ad957a`) }}>
               <span>Cheez Price</span>
               <h4>
                 {marketPrice ? formatCurrency(marketPrice, 2) : <Skeleton type="text" width="150px" style={{ margin: "0 auto" }} />}
@@ -167,7 +193,7 @@ function Dashboard() {
         </Row>
       </div>
 
-      <div className="dashboard-home mt-5">
+      <div className="dashboard-home dashboard-home-2">
         <Row className="m-0 justify-content-center">
           <Col lg={4} md={6} sm={12}>
             <div className="box1 p-4">
@@ -429,17 +455,17 @@ function Dashboard() {
         }
 
         {modalNumber === 8 &&
-           <Modal.Body className="modal3">
-           <img src={require('./mouse-modal.png').default} alt="" />
-           <p className="mt-3">Gouda, very gouda. Now that we’ve set up the necessary tools, you may enter into the Cheesyverse.</p>
-           <p >At the bottom of this window, you’ll find the “BUY CHEEZ” button which will take you to SushiSwap, where you can swap your ONE tokens for CHEEZ tokens (always keep some ONE left over for gas!).</p>
-           <p>Once you have CHEEZ tokens, you can stake them on the Ageing tab, or you can visit the marketplace and trade game pieces. Game pieces can be staked on the Play tab to generate rewards – but brie-ware of the risks! </p>
-           <p>You’re on your own now, friend. I swiss you all the best.</p>
-           <div className="back-next">
-             <Button className="back" onClick={() => { setModalNumber(7) }}>Back</Button>
-             <Button className="next" disabled onClick={() => { setModalNumber(0); getStartModalClose() }}>Next</Button>
-           </div>
-         </Modal.Body>
+          <Modal.Body className="modal3">
+            <img src={require('./mouse-modal.png').default} alt="" />
+            <p className="mt-3">Gouda, very gouda. Now that we’ve set up the necessary tools, you may enter into the Cheesyverse.</p>
+            <p >At the bottom of this window, you’ll find the “BUY CHEEZ” button which will take you to SushiSwap, where you can swap your ONE tokens for CHEEZ tokens (always keep some ONE left over for gas!).</p>
+            <p>Once you have CHEEZ tokens, you can stake them on the Ageing tab, or you can visit the marketplace and trade game pieces. Game pieces can be staked on the Play tab to generate rewards – but brie-ware of the risks! </p>
+            <p>You’re on your own now, friend. I swiss you all the best.</p>
+            <div className="back-next">
+              <Button className="back" onClick={() => { setModalNumber(7) }}>Back</Button>
+              <Button className="next" disabled onClick={() => { setModalNumber(0); getStartModalClose() }}>Next</Button>
+            </div>
+          </Modal.Body>
         }
 
       </Modal>

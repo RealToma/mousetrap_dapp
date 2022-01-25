@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import Social from "./Social";
 import externalUrls from "./externalUrls";
@@ -20,10 +20,15 @@ import Factory from "./factory.png";
 import Spinning from "./spinningLogo.gif"
 import BridgeIcon from "./bridge.png";
 import ControllerIcon from "./joystick.png";
+import BondPurchase from "../../views/Bond/BondPurchase";
+import BondRedeem from "../../views/Bond/BondRedeem";
+import BondLogo from "../../components/BondLogo";
+import { Row, Col, Button, Modal, Tabs, Tab } from 'react-bootstrap'
+import { useSelector } from "react-redux";
+import { formatCurrency } from "../../helpers";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./sidebar.scss";
-import { Button } from "react-bootstrap";
 // import {  useLocation } from 'react-router';
 
 function NavContent({ mobileOpen }) {
@@ -31,6 +36,8 @@ function NavContent({ mobileOpen }) {
   const address = useAddress();
   const { bonds } = useBonds();
   const { chainID } = useWeb3Context();
+
+  const isBondLoading = useSelector(state => state.bonding.loading ?? true);
 
   const checkPage = useCallback((match, location, page) => {
     const currentPath = location.pathname.replace("/", "");
@@ -62,7 +69,31 @@ function NavContent({ mobileOpen }) {
   }, []);
 
   let location = useLocation();
-  console.log(location);
+
+  const [modalValue, setModalValue] = useState([]);
+
+  const [modal1, setModal1] = useState(false);
+  const Modal1Close = () => setModal1(false);
+  const Modal1Open = () => setModal1(true);
+
+  const [modal2, setModal2] = useState(false);
+  const Modal2Close = () => setModal2(false);
+  const Modal2Open = () => setModal2(true);
+
+  const [slippage, setSlippage] = useState(0.5);
+  const [recipientAddress, setRecipientAddress] = useState(address);
+
+  const onRecipientAddressChange = e => {
+    return setRecipientAddress(e.target.value);
+  };
+
+  useEffect(() => {
+    if (address) setRecipientAddress(address);
+  }, [address]);
+
+  const onSlippageChange = e => {
+    return setSlippage(e.target.value);
+  };
 
   return (
     <>
@@ -159,13 +190,25 @@ function NavContent({ mobileOpen }) {
           </Link>
           <div className="bond mt-3">
             <div>
-              <div className="bond-left">
+              <div className="bond-left mb-2">
                 <span>Bond discounts</span>
               </div>
-              <div className="bond-right">
-                <h5 className="mb-0">CHEEZ-DAI LP</h5>
-                <span>3.15%</span>
-              </div>
+              {bonds.filter(b => b.isAvailable[chainID]).map((bond, i) => (
+                <div key={i} onClick={() => {
+                  Modal1Open(),
+                  setModalValue(bond);
+                }}>
+                  {!bond.bondDiscount ? (
+                    <Skeleton variant="text" width={"150px"} />
+                  ) : (
+                    <div className="bond-right mt-2">
+                      <h5 className="mb-0">{bond.displayName}</h5>
+                      <span>{bond.bondDiscount && trim(bond.bondDiscount * 100, 2)}%</span>
+                    </div>
+                  )}
+                </div>
+              ))}
+
             </div>
           </div>
           <div className="social">
@@ -177,6 +220,65 @@ function NavContent({ mobileOpen }) {
           </div>
         </div>
       </div>
+
+      <Modal show={modal1} onHide={() => {
+        Modal1Close(),
+          setModalValue([]);
+      }}>
+        <Modal.Body className="modal-bond">
+          <div className="d-flex align-items-center justify-content-between">
+            <div className="d-flex gap align-items-center">
+              <BondLogo bond={modalValue} />
+              <h3 className="mb-0">CHEEZ-DAI LP</h3>
+            </div>
+            <Button className="setting" onClick={() => { Modal1Close(); Modal2Open(); }}>
+              <img src={require('./setting.svg').default} alt="" />
+            </Button>
+          </div>
+          <Row className="mt-3">
+            <Col lg={6} md={12} className="mt-3">
+              <div className="bg-wight-bond">
+                <span>Bond Price</span>
+                <h3 className="mb-0">{isBondLoading ? <Skeleton /> : formatCurrency(modalValue.bondPrice, 2)}</h3>
+              </div>
+            </Col>
+            <Col lg={6} md={12} className="mt-3">
+              <div className="bg-wight-bond">
+                <span>Market Price</span>
+                <h3 className="mb-0">{isBondLoading ? <Skeleton /> : formatCurrency(modalValue.marketPrice, 2)}</h3>
+              </div>
+            </Col>
+          </Row>
+
+          <div className="maintabs mt-4">
+            <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
+              <Tab eventKey="home" title="Bond">
+                <BondPurchase bond={modalValue} />
+              </Tab>
+              <Tab eventKey="profile" title="Redeem">
+                <BondRedeem bond={modalValue} />
+              </Tab>
+            </Tabs>
+          </div>
+        </Modal.Body>
+      </Modal>
+
+      <Modal show={modal2} onHide={Modal2Close}>
+        <Modal.Body className="setting-modal">
+          <h3>Settings</h3>
+          <div>
+            <span>Slippage</span>
+            <input type="text" value={slippage}
+              onChange={onSlippageChange} />
+            <p>Transaction may revert if price changes by more than slippage %</p>
+          </div>
+          <div>
+            <span>Recipient Address</span>
+            <input type="text" value={recipientAddress} onChange={onRecipientAddressChange} />
+            <p>Choose recipient address. By default, this is your currently connected address</p>
+          </div>
+        </Modal.Body>
+      </Modal>
 
       {/* <Paper className="dapp-sidebar px-3 py-2">
         <Box className="dapp-sidebar-inner" display="flex" justifyContent="space-between" flexDirection="column">

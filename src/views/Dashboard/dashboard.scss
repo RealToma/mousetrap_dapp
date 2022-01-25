@@ -358,9 +358,27 @@ body {
   color: #FFAC01;
 }
 
+.banner img{
+  width: 100%;
+  // height: 200px;
+}
+
+.dashboard-home-2{
+  margin-top: 30px;
+}
+
 @media (max-width: 1300px) {
   .dashboard-main {
     margin-left: 0;
     width: 100%;
+  }
+}
+
+@media (max-width: 425px) {
+  .dashboard-home-1{
+    margin-top: 50px !important;
+  }
+  .dashboard-home-2{
+    margin-top: 0px;
   }
 }

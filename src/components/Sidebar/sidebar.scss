@@ -255,12 +255,12 @@
 
 .bond {
     background-color: #292828;
-    padding: 15px !important;
     display: flex;
     color: #fff;
     font-family: 'VT323';
     column-gap: 20px;
     justify-content: center;
+    padding: 9px 9px;
 }
 
 .bond .bond-left span {
@@ -281,6 +281,7 @@
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     column-gap: 20px;
 }
 

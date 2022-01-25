@@ -32,7 +32,10 @@ import WidgetBot from '@widgetbot/react-embed'
 import MarketGate from './views/MarketGate/MarketGate';
 import CheezPass from "./views/CheezPass/CheezPass";
 
-import { Button } from "@material-ui/core" 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+import { Button } from "@material-ui/core"
 
 import { dark as darkTheme } from "./themes/dark.js";
 
@@ -112,7 +115,7 @@ function App() {
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [trollboxOpen, setTrollboxOpen] = useState(false);
-  const isSmallerScreen = useMediaQuery("(max-width: 980px)");
+  const isSmallerScreen = useMediaQuery("(max-width: 1300px)");
   const isSmallScreen = useMediaQuery("(max-width: 600px)");
 
   const { connect, hasCachedProvider, provider, chainID, connected } = useWeb3Context();
@@ -192,25 +195,31 @@ function App() {
     setTrollboxOpen(!trollboxOpen);
   };
 
-
-
   useEffect(() => {
     if (isSidebarExpanded) handleSidebarClose();
   }, [location]);
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <img className="cartoon" src={require('./cartoon.png').default} alt="" />
-      
+      {location.pathname === '/' && <><img className="cartoon" src={require('./cartoon.png').default} alt="" /></>}
+      {location.pathname === '/dashboard' && <><img className="cartoon" src={require('./cartoon.png').default} alt="" /></>}
+      {location.pathname === '/play' && <><img className="cartoon2" src={require('./cartoon.png').default} alt="" /></>}
+      {location.pathname === '/ageing' && <><img className="cartoon3" src={require('./cartoon.png').default} alt="" /></>}
+      {location.pathname === '/nfts' && <><img className="cartoon4" src={require('./cartoon.png').default} alt="" /></>}
+      {location.pathname === '/marketplace' && <><img className="cartoon5" src={require('./cartoon.png').default} alt="" /></>}
+      {location.pathname === '/bridge' && <><img className="cartoon" src={require('./cartoon.png').default} alt="" /></>}
+      {location.pathname === '/bonds' && <><img className="cartoon5" src={require('./cartoon.png').default} alt="" /></>}
+      {location.pathname === '/governance' && <><img className="cartoon6" src={require('./cartoon.png').default} alt="" /></>}
+
       <CssBaseline />
       <div className={`app ${isSmallerScreen && "tablet"} ${isSmallScreen && "mobile"} ${theme}`}>
         <Messages />
         <TopBar theme={theme} toggleTheme={toggleTheme} handleDrawerToggle={handleDrawerToggle} />
         <nav className={classes.drawer}>
           {isSmallerScreen ? (
-            <NavDrawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle}  />
+            <NavDrawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
           ) : (
-            <Sidebar  />
+            <Sidebar />
           )}
         </nav>
 
@@ -280,31 +289,31 @@ function App() {
         </div>
         <div className={classes.trollbox}>
           {isSmallerScreen || !trollboxOpen ? (
-              <></>
-            ) : (
-              <WidgetBot
+            <></>
+          ) : (
+            <WidgetBot
               height="400px"
               width="600px"
               server="912505477433294868"
               channel="920042358790291487"
               shard="https://emerald.widgetbot.io"
-            />  
-            )}
-      </div>
-      <div className={classes.closeTrollbox}>
-      {isSmallerScreen || !trollboxOpen ? (
-              <></>
-            ) : (
-          <Button onClick={toggleTrollbox}>__</Button>
+            />
           )}
-      </div>
-      <div className={classes.openTrollbox}>
-      {isSmallerScreen || trollboxOpen ? (
-              <></>
-            ) : (
-          <Button  color="primary" onClick={toggleTrollbox}><img className="chat" src={require('./chat.png').default} alt="" /></Button>
+        </div>
+        <div className={classes.closeTrollbox}>
+          {isSmallerScreen || !trollboxOpen ? (
+            <></>
+          ) : (
+            <Button onClick={toggleTrollbox}>__</Button>
           )}
-      </div>
+        </div>
+        <div className={classes.openTrollbox}>
+          {isSmallerScreen || trollboxOpen ? (
+            <></>
+          ) : (
+            <Button color="primary" onClick={toggleTrollbox}><img className="chat" src={require('./chat.png').default} alt="" /></Button>
+          )}
+        </div>
 
       </div>
 
