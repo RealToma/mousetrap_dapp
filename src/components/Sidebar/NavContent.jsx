@@ -17,17 +17,17 @@ import UnlockIcon from "./unlock.png";
 import ShoppingIcon from "./shopping-cart-icon.png";
 import Juggling from "./juggling.png";
 import Factory from "./factory.png";
-import Spinning from "./spinningLogo.gif"
+import Spinning from "./spinningLogo.gif";
 import BridgeIcon from "./bridge.png";
 import ControllerIcon from "./joystick.png";
 import BondPurchase from "../../views/Bond/BondPurchase";
 import BondRedeem from "../../views/Bond/BondRedeem";
 import BondLogo from "../../components/BondLogo";
-import { Row, Col, Button, Modal, Tabs, Tab } from 'react-bootstrap'
+import { Row, Col, Button, Modal, Tabs, Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { formatCurrency } from "../../helpers";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./sidebar.scss";
 // import {  useLocation } from 'react-router';
 
@@ -50,19 +50,19 @@ function NavContent({ mobileOpen }) {
     if ((currentPath.indexOf("bonds") >= 0 || currentPath.indexOf("choose_bond") >= 0) && page === "bonds") {
       return true;
     }
-    if ((currentPath.indexOf("genstatus") >= 0) && page === "genstatus") {
+    if (currentPath.indexOf("genstatus") >= 0 && page === "genstatus") {
       return true;
     }
-    if ((currentPath.indexOf("nfts") >= 0) && page === "nfts") {
+    if (currentPath.indexOf("nfts") >= 0 && page === "nfts") {
       return true;
     }
-    if ((currentPath.indexOf("marketplace") >= 0) && page === "marketplace") {
+    if (currentPath.indexOf("marketplace") >= 0 && page === "marketplace") {
       return true;
     }
-    if ((currentPath.indexOf("nftstaking") >= 0) && page === "nftstaking") {
+    if (currentPath.indexOf("nftstaking") >= 0 && page === "nftstaking") {
       return true;
     }
-    if ((currentPath.indexOf("play") >= 0) && page === "play") {
+    if (currentPath.indexOf("play") >= 0 && page === "play") {
       return true;
     }
     return false;
@@ -97,7 +97,6 @@ function NavContent({ mobileOpen }) {
 
   return (
     <>
-
       <div className={mobileOpen ? "sidebar-main m-0" : "sidebar-main"}>
         <div className="sidebar-con px-3">
           <Link
@@ -106,8 +105,9 @@ function NavContent({ mobileOpen }) {
             to="/"
             isActive={(match, location) => {
               return checkPage(match, location, "dashboard");
-            }}>
-            <Button className={`${location.pathname === '/dashboard' ? "active" : ""} sidebar-head p-2`} >
+            }}
+          >
+            <Button className={`${location.pathname === "/dashboard" ? "active" : ""} sidebar-head p-2`}>
               <span className="mb-0">Dashboard</span>
             </Button>
           </Link>
@@ -117,8 +117,9 @@ function NavContent({ mobileOpen }) {
             to="/play"
             isActive={(match, location) => {
               return checkPage(match, location, "play");
-            }}>
-            <Button className={`${location.pathname === '/play' ? "active" : ""} sidebar-head p-2`}>
+            }}
+          >
+            <Button className={`${location.pathname === "/play" ? "active" : ""} sidebar-head p-2`}>
               <span className="mb-0">Play</span>
             </Button>
           </Link>
@@ -128,8 +129,9 @@ function NavContent({ mobileOpen }) {
             to="/ageing"
             isActive={(match, location) => {
               return checkPage(match, location, "ageing");
-            }}>
-            <Button className={`${location.pathname === '/ageing' ? "active" : ""} sidebar-head p-2`} >
+            }}
+          >
+            <Button className={`${location.pathname === "/ageing" ? "active" : ""} sidebar-head p-2`}>
               <span className="mb-0">Ageing</span>
             </Button>
           </Link>
@@ -139,8 +141,9 @@ function NavContent({ mobileOpen }) {
             to="/nfts"
             isActive={(match, location) => {
               return checkPage(match, location, "nfts");
-            }}>
-            <Button className={`${location.pathname === '/nfts' ? "active" : ""} sidebar-head p-2`}>
+            }}
+          >
+            <Button className={`${location.pathname === "/nfts" ? "active" : ""} sidebar-head p-2`}>
               <span className="mb-0">My NFTs</span>
             </Button>
           </Link>
@@ -150,8 +153,9 @@ function NavContent({ mobileOpen }) {
             to="/marketplace"
             isActive={(match, location) => {
               return checkPage(match, location, "marketplace");
-            }}>
-            <Button className={`${location.pathname === '/marketplace' ? "active" : ""} sidebar-head p-2`} >
+            }}
+          >
+            <Button className={`${location.pathname === "/marketplace" ? "active" : ""} sidebar-head p-2`}>
               <span className="mb-0">Marketplace</span>
             </Button>
           </Link>
@@ -161,8 +165,9 @@ function NavContent({ mobileOpen }) {
             to="/bridge"
             isActive={(match, location) => {
               return checkPage(match, location, "marketplace");
-            }}>
-            <Button className={`${location.pathname === '/bridge' ? "active" : ""} sidebar-head p-2`}>
+            }}
+          >
+            <Button className={`${location.pathname === "/bridge" ? "active" : ""} sidebar-head p-2`}>
               <span className="mb-0">Bridge</span>
             </Button>
           </Link>
@@ -172,8 +177,9 @@ function NavContent({ mobileOpen }) {
             to="/bonds"
             isActive={(match, location) => {
               return checkPage(match, location, "bonds");
-            }}>
-            <Button className={`${location.pathname === '/bonds' ? "active" : ""} sidebar-head p-2`} >
+            }}
+          >
+            <Button className={`${location.pathname === "/bonds" ? "active" : ""} sidebar-head p-2`}>
               <span className="mb-0">Bond</span>
             </Button>
           </Link>
@@ -183,8 +189,9 @@ function NavContent({ mobileOpen }) {
             to="/governance"
             isActive={(match, location) => {
               return checkPage(match, location, "governance");
-            }}>
-            <Button className={`${location.pathname === '/governance' ? "active" : ""} sidebar-head p-2`} >
+            }}
+          >
+            <Button className={`${location.pathname === "/governance" ? "active" : ""} sidebar-head p-2`}>
               <span className="mb-0">Governance</span>
             </Button>
           </Link>
@@ -193,22 +200,25 @@ function NavContent({ mobileOpen }) {
               <div className="bond-left mb-2">
                 <span>Bond discounts</span>
               </div>
-              {bonds.filter(b => b.isAvailable[chainID]).map((bond, i) => (
-                <div key={i} onClick={() => {
-                  Modal1Open(),
-                  setModalValue(bond);
-                }}>
-                  {!bond.bondDiscount ? (
-                    <Skeleton variant="text" width={"150px"} />
-                  ) : (
-                    <div className="bond-right mt-2">
-                      <h5 className="mb-0">{bond.displayName}</h5>
-                      <span>{bond.bondDiscount && trim(bond.bondDiscount * 100, 2)}%</span>
-                    </div>
-                  )}
-                </div>
-              ))}
-
+              {bonds
+                .filter(b => b.isAvailable[chainID])
+                .map((bond, i) => (
+                  <div
+                    key={i}
+                    onClick={() => {
+                      Modal1Open(), setModalValue(bond);
+                    }}
+                  >
+                    {!bond.bondDiscount ? (
+                      <Skeleton variant="text" width={"150px"} />
+                    ) : (
+                      <div className="bond-right mt-2">
+                        <h5 className="mb-0">{bond.displayName}</h5>
+                        <span>{bond.bondDiscount && trim(bond.bondDiscount * 100, 2)}%</span>
+                      </div>
+                    )}
+                  </div>
+                ))}
             </div>
           </div>
           <div className="social">
@@ -221,18 +231,26 @@ function NavContent({ mobileOpen }) {
         </div>
       </div>
 
-      <Modal show={modal1} onHide={() => {
-        Modal1Close(),
-          setModalValue([]);
-      }}>
+      <Modal
+        show={modal1}
+        onHide={() => {
+          Modal1Close(), setModalValue([]);
+        }}
+      >
         <Modal.Body className="modal-bond">
           <div className="d-flex align-items-center justify-content-between">
             <div className="d-flex gap align-items-center">
               <BondLogo bond={modalValue} />
               <h3 className="mb-0">CHEEZ-DAI LP</h3>
             </div>
-            <Button className="setting" onClick={() => { Modal1Close(); Modal2Open(); }}>
-              <img src={require('./setting.svg').default} alt="" />
+            <Button
+              className="setting"
+              onClick={() => {
+                Modal1Close();
+                Modal2Open();
+              }}
+            >
+              <img src={require("./setting.svg").default} alt="" />
             </Button>
           </div>
           <Row className="mt-3">
@@ -268,8 +286,7 @@ function NavContent({ mobileOpen }) {
           <h3>Settings</h3>
           <div>
             <span>Slippage</span>
-            <input type="text" value={slippage}
-              onChange={onSlippageChange} />
+            <input type="text" value={slippage} onChange={onSlippageChange} />
             <p>Transaction may revert if price changes by more than slippage %</p>
           </div>
           <div>
@@ -469,7 +486,6 @@ function NavContent({ mobileOpen }) {
           </Box>
         </Box>
       </Paper> */}
-
     </>
   );
 }
