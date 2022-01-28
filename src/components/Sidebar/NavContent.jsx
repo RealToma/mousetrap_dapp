@@ -120,7 +120,7 @@ function NavContent({ mobileOpen }) {
             isActive={(match, location) => {
               return checkPage(match, location, "dashboard");
             }}>
-            <Button className={`${location.pathname === '/dashboard' ? "active" : ""} sidebar-head p-1 px-4`} >
+            <Button style={{ justifyContent: "center" }} className={`${location.pathname === '/dashboard' ? "active" : ""} sidebar-head`} >
               <span className="mb-0">Dashboard</span>
             </Button>
           </Link>
@@ -131,7 +131,7 @@ function NavContent({ mobileOpen }) {
             isActive={(match, location) => {
               return checkPage(match, location, "play");
             }}>
-            <Button className={`${location.pathname === '/play' ? "active" : ""} sidebar-head p-1 px-4`}>
+            <Button style={{ justifyContent: "center" }} className={`${location.pathname === '/play' ? "active" : ""} sidebar-head`}>
               <span className="mb-0">Play</span>
             </Button>
           </Link>
@@ -142,7 +142,7 @@ function NavContent({ mobileOpen }) {
             isActive={(match, location) => {
               return checkPage(match, location, "ageing");
             }}>
-            <Button className={`${location.pathname === '/ageing' ? "active" : ""} sidebar-head p-1 px-4`} >
+            <Button style={{ justifyContent: "center" }} className={`${location.pathname === '/ageing' ? "active" : ""} sidebar-head`} >
               <span className="mb-0">Ageing</span>
             </Button>
           </Link>
@@ -153,7 +153,7 @@ function NavContent({ mobileOpen }) {
             isActive={(match, location) => {
               return checkPage(match, location, "nfts");
             }}>
-            <Button className={`${location.pathname === '/nfts' ? "active" : ""} sidebar-head p-1 px-4`}>
+            <Button style={{ justifyContent: "center" }} className={`${location.pathname === '/nfts' ? "active" : ""} sidebar-head`}>
               <span className="mb-0">My NFTs</span>
             </Button>
           </Link>
@@ -164,7 +164,7 @@ function NavContent({ mobileOpen }) {
             isActive={(match, location) => {
               return checkPage(match, location, "marketplace");
             }}>
-            <Button className={`${location.pathname === '/marketplace' ? "active" : ""} sidebar-head p-1 px-4`} >
+            <Button style={{ justifyContent: "center" }} className={`${location.pathname === '/marketplace' ? "active" : ""} sidebar-head`} >
               <span className="mb-0">Marketplace</span>
             </Button>
           </Link>
@@ -175,7 +175,7 @@ function NavContent({ mobileOpen }) {
             isActive={(match, location) => {
               return checkPage(match, location, "marketplace");
             }}>
-            <Button className={`${location.pathname === '/bridge' ? "active" : ""} sidebar-head p-1 px-4`}>
+            <Button style={{ justifyContent: "center" }} className={`${location.pathname === '/bridge' ? "active" : ""} sidebar-head`}>
               <span className="mb-0">Bridge</span>
             </Button>
           </Link>
@@ -186,7 +186,7 @@ function NavContent({ mobileOpen }) {
             isActive={(match, location) => {
               return checkPage(match, location, "bonds");
             }}>
-            <Button className={`${location.pathname === '/bonds' ? "active" : ""} sidebar-head p-1 px-4`} >
+            <Button style={{ justifyContent: "center" }} className={`${location.pathname === '/bonds' ? "active" : ""} sidebar-head`} >
               <span className="mb-0">Bond</span>
             </Button>
           </Link>
@@ -197,7 +197,7 @@ function NavContent({ mobileOpen }) {
             isActive={(match, location) => {
               return checkPage(match, location, "governance");
             }}>
-            <Button className={`${location.pathname === '/governance' ? "active" : ""} sidebar-head p-1 px-4`} >
+            <Button style={{ justifyContent: "center" }} className={`${location.pathname === '/governance' ? "active" : ""} sidebar-head`} >
               <span className="mb-0">Governance</span>
             </Button>
           </Link>
@@ -246,6 +246,15 @@ function NavContent({ mobileOpen }) {
           setModalValue([]);
       }}>
         <Modal.Body className="modal-bond">
+          <button style={{
+            position: "absolute",
+            right: "0",
+            top: "-1px",
+            height: "24px",
+            width: "24px",
+            background: "transparent",
+            border: "none"
+          }} onClick={Modal1Close}></button>
           <div className="d-flex align-items-center justify-content-between">
             <div className="d-flex gap align-items-center">
               <BondLogo bond={modalValue} />
@@ -285,6 +294,15 @@ function NavContent({ mobileOpen }) {
 
       <Modal show={modal2} onHide={Modal2Close}>
         <Modal.Body className="setting-modal">
+          <button style={{
+            position: "absolute",
+            right: "0",
+            top: "-1px",
+            height: "24px",
+            width: "24px",
+            background: "transparent",
+            border: "none"
+          }} onClick={Modal2Close}></button>
           <h3>Settings</h3>
           <div>
             <span>Slippage</span>

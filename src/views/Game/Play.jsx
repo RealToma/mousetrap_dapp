@@ -348,6 +348,15 @@ function Play() {
                   </Button>
                   <Modal show={getStartModal} onHide={getStartModalClose}>
                     <Modal.Body className="mini-modal-1">
+                      <button style={{
+                        position: "absolute",
+                        right: "0",
+                        top: "-1px",
+                        height: "24px",
+                        width: "24px",
+                        background: "transparent",
+                        border: "none"
+                      }} onClick={getStartModalClose}></button>
                       <div className="caution">
                         <h2 className="mb-0">Caution</h2>
                         <p>Entering the Maze is not without risk!</p>
@@ -417,7 +426,7 @@ function Play() {
                                   <div className="search-box d-flex align-items-center justify-content-between w-100">
                                     <input type="text" className="w-100" value={mouseUnstakeAmount}
                                       onChange={(e) => { setMouseUnstakeAmount(e.target.value) }} />
-                          
+
                                   </div>
                                   <Button className="pink text-white"
                                     disabled={isPendingTxn(pendingTransactions, "unstaking")}
@@ -536,6 +545,15 @@ function Play() {
                   </Button>
                   <Modal show={catModal} onHide={catModalClose}>
                     <Modal.Body className="mini-modal-1">
+                      <button style={{
+                        position: "absolute",
+                        right: "0",
+                        top: "-1px",
+                        height: "24px",
+                        width: "24px",
+                        background: "transparent",
+                        border: "none"
+                      }} onClick={catModalClose}></button>
                       <div className="mini-tab mt-4">
                         <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
                           <Tab eventKey="home" title="Stake">
@@ -577,7 +595,7 @@ function Play() {
                                   <div className="search-box d-flex align-items-center justify-content-between w-100">
                                     <input type="text" className="w-100" value={catUnstakeAmount}
                                       onChange={(e) => { setCatUnstakeAmount(e.target.value) }} />
-                          
+
                                   </div>
                                   <Button className="pink text-white"
                                     disabled={isPendingTxn(pendingTransactions, "game_unstake")}
@@ -666,6 +684,15 @@ function Play() {
                   </Button>
                   <Modal show={cardModal} onHide={cardModalClose}>
                     <Modal.Body className="mini-modal-1">
+                      <button style={{
+                        position: "absolute",
+                        right: "0",
+                        top: "-1px",
+                        height: "24px",
+                        width: "24px",
+                        background: "transparent",
+                        border: "none"
+                      }} onClick={cardModalClose}></button>
                       <div className="mini-tab mt-4">
                         <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
                           <Tab eventKey="home" title="Stake">
@@ -680,7 +707,7 @@ function Play() {
                                     <input type="text" className="w-100" value={trapStakeAmount}
                                       onChange={(e) => { setTrapStakeAmount(e.target.value) }}
                                       style={{ marginBottom: "5%" }} />
-                          
+
                                   </div>
                                   <Button className="green"
                                     disabled={isPendingTxn(pendingTransactions, "game_stake")}
@@ -710,7 +737,7 @@ function Play() {
                                   <div className="search-box d-flex align-items-center justify-content-between w-100">
                                     <input type="text" className="w-100" value={trapUnstakeAmount}
                                       onChange={(e) => { setTrapUnstakeAmount(e.target.value) }} />
-                          
+
                                   </div>
                                   <Button className="pink text-white"
                                     disabled={isPendingTxn(pendingTransactions, "game_unstake")}

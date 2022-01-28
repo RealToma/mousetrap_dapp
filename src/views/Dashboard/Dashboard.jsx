@@ -306,6 +306,15 @@ function Dashboard() {
       <Modal show={getStartModal} onHide={getStartModalClose}>
         {modalNumber === 1 &&
           <Modal.Body className="modal1">
+            <button style={{
+              position: "absolute",
+              right: "0",
+              top: "-1px",
+              height: "24px",
+              width: "24px",
+              background: "transparent",
+              border: "none"
+            }} onClick={getStartModalClose}></button>
             <img src={require('./mouse-modal.png').default} alt="" />
             <h3>Getting to Know You</h3>
             <div className="text-align-left">
@@ -357,6 +366,15 @@ function Dashboard() {
 
         {modalNumber === 2 &&
           <Modal.Body className=" modal2">
+            <button style={{
+              position: "absolute",
+              right: "0",
+              top: "-1px",
+              height: "24px",
+              width: "24px",
+              background: "transparent",
+              border: "none"
+            }} onClick={getStartModalClose}></button>
             <div className="browser justify-content-center">
               <img src={require('./crom.png').default} alt="" />
               <img src={require('./firefox.png').default} alt="" />
@@ -375,6 +393,15 @@ function Dashboard() {
 
         {modalNumber === 3 &&
           <Modal.Body className=" modal2">
+            <button style={{
+              position: "absolute",
+              right: "0",
+              top: "-1px",
+              height: "24px",
+              width: "24px",
+              background: "transparent",
+              border: "none"
+            }} onClick={getStartModalClose}></button>
             <img src={require('./metamask-icon.png').default} alt="" />
             <h2>Metamask</h2>
             <p>To interact with CheeseDAO, you’ll need a browser extension called Metamask wallet. You can <span className="text-green">click here</span> to download the Metamask extension from the official website.</p>
@@ -396,6 +423,15 @@ function Dashboard() {
 
         {modalNumber === 4 &&
           <Modal.Body className="modal3">
+            <button style={{
+              position: "absolute",
+              right: "0",
+              top: "-1px",
+              height: "24px",
+              width: "24px",
+              background: "transparent",
+              border: "none"
+            }} onClick={getStartModalClose}></button>
             <img src={require('./metamask-icon.png').default} alt="" />
             <h2>Metamask</h2>
             <p>Excellent.</p>
@@ -410,6 +446,15 @@ function Dashboard() {
 
         {modalNumber === 5 &&
           <Modal.Body className="modal3">
+            <button style={{
+              position: "absolute",
+              right: "0",
+              top: "-1px",
+              height: "24px",
+              width: "24px",
+              background: "transparent",
+              border: "none"
+            }} onClick={getStartModalClose}></button>
             <img src={require('./metamask-icon.png').default} alt="" />
             <h2>Metamask</h2>
             <p>You’re doing grate! Make sure to keep a hard copy of your seed phrase in a safe location.</p>
@@ -428,6 +473,15 @@ function Dashboard() {
 
         {modalNumber === 6 &&
           <Modal.Body className="modal3">
+            <button style={{
+              position: "absolute",
+              right: "0",
+              top: "-1px",
+              height: "24px",
+              width: "24px",
+              background: "transparent",
+              border: "none"
+            }} onClick={getStartModalClose}></button>
             <img src={require('./harmony-icon.png').default} alt="" />
             <h2>Harmony ONE Tokens</h2>
             <p>Before I release you into the Cheesyverse, you’ll need to own some Harmony ONE tokens. CheeseDAO is hosted on the Harmony blockchain, so you’ll need these tokens both for gas fees (the transaction fees charged when trading tokens) and to convert into CHEEZ. </p>
@@ -443,6 +497,15 @@ function Dashboard() {
 
         {modalNumber === 7 &&
           <Modal.Body className="modal3">
+            <button style={{
+              position: "absolute",
+              right: "0",
+              top: "-1px",
+              height: "24px",
+              width: "24px",
+              background: "transparent",
+              border: "none"
+            }} onClick={getStartModalClose}></button>
             <img src={require('./harmony-icon.png').default} alt="" />
             <h2>Harmony ONE Tokens</h2>
             <p>Queso, what’s next?</p>
@@ -458,6 +521,15 @@ function Dashboard() {
 
         {modalNumber === 8 &&
           <Modal.Body className="modal3">
+            <button style={{
+              position: "absolute",
+              right: "0",
+              top: "-1px",
+              height: "24px",
+              width: "24px",
+              background: "transparent",
+              border: "none"
+            }} onClick={getStartModalClose}></button>
             <img src={require('./mouse-modal.png').default} alt="" />
             <p className="mt-3">Gouda, very gouda. Now that we’ve set up the necessary tools, you may enter into the Cheesyverse.</p>
             <p >At the bottom of this window, you’ll find the “BUY CHEEZ” button which will take you to SushiSwap, where you can swap your ONE tokens for CHEEZ tokens (always keep some ONE left over for gas!).</p>

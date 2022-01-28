@@ -194,6 +194,15 @@ function ChooseBond() {
           setModalValue([]);
       }}>
         <Modal.Body className="modal-bond">
+          <button style={{
+            position: "absolute",
+            right: "0",
+            top: "-1px",
+            height: "24px",
+            width: "24px",
+            background: "transparent",
+            border: "none"
+          }} onClick={Modal1Close}></button>
           <div className="d-flex align-items-center justify-content-between">
             <div className="d-flex gap align-items-center">
               <BondLogo bond={modalValue} />
@@ -233,6 +242,15 @@ function ChooseBond() {
 
       <Modal show={modal2} onHide={Modal2Close}>
         <Modal.Body className="setting-modal">
+          <button style={{
+            position: "absolute",
+            right: "0",
+            top: "-1px",
+            height: "24px",
+            width: "24px",
+            background: "transparent",
+            border: "none"
+          }} onClick={Modal2Close}></button>
           <h3>Settings</h3>
           <div>
             <span>Slippage</span>

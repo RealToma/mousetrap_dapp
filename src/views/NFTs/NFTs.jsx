@@ -414,8 +414,16 @@ function Spawns() {
         setCatSelect(false)
       }}>
         <Modal.Body className="modal-bg">
+          <button style={{
+            position: "absolute",
+            right: "0",
+            top: "-1px",
+            height: "24px",
+            width: "24px",
+            background: "transparent",
+            border: "none"
+          }} onClick={transferNftModalClose}></button>
           <h3>Transfer NFT</h3>
-
           <Box>
             {transferID === null ? (
               <Box>
@@ -512,6 +520,15 @@ function Spawns() {
 
       <Modal show={transferNftNextModal} onHide={transferNftNextModalClose}>
         <Modal.Body className="modal-bg text-center">
+          <button style={{
+            position: "absolute",
+            right: "0",
+            top: "-1px",
+            height: "24px",
+            width: "24px",
+            background: "transparent",
+            border: "none"
+          }} onClick={transferNftNextModalClose}></button>
           <div className="text-modal">
             <h2 className="text-pink">Caution!</h2>
             <p className="text-pink">This is on-chain, and cannot be reversed!</p>
@@ -558,6 +575,15 @@ function Spawns() {
         setCatSelect(false)
       }}>
         <Modal.Body className="modal-bg">
+          <button style={{
+            position: "absolute",
+            right: "0",
+            top: "-1px",
+            height: "24px",
+            width: "24px",
+            background: "transparent",
+            border: "none"
+          }} onClick={createNftModalClose}></button>
           <h3>Create a Listing</h3>
 
           <Box>

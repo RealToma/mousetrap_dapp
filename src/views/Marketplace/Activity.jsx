@@ -400,7 +400,7 @@ function Activity() {
                   </>
                 )}
 
-                  {/* pagination */}
+                {/* pagination */}
                 <div className="pagination-btns ms-auto d-flex align-items-center">
                   {
                     totalPage > 3
@@ -813,7 +813,15 @@ function Activity() {
 
         <Modal show={buyButtonMdal} onHide={buyButtonMdalClose}>
           <Modal.Body className="modal-bg text-center">
-
+            <button style={{
+              position: "absolute",
+              right: "0",
+              top: "-1px",
+              height: "24px",
+              width: "24px",
+              background: "transparent",
+              border: "none"
+            }} onClick={buyButtonMdalClose}></button>
             {passPurchaseOrder != null ? (
               <div className="preview">
                 <h2>Preview Order</h2>
@@ -1007,6 +1015,15 @@ function Activity() {
         {passPurchaseOrder != null ? (
           <Modal show={buyButtonMdal} onHide={() => { buyButtonMdalClose(), setPassPurchaseOrder(null), setAmount(null), setTotal(null), setFrom(null), setAvailable(null) }}>
             <Modal.Body className="modal-bg text-center">
+              <button style={{
+                position: "absolute",
+                right: "0",
+                top: "-1px",
+                height: "24px",
+                width: "24px",
+                background: "transparent",
+                border: "none"
+              }} onClick={buyButtonMdalClose}></button>
               <div className="preview">
                 <h2>Preview Order</h2>
                 <span>Available: {trim(cheezBalance, 4)} 🧀</span>
@@ -1060,6 +1077,15 @@ function Activity() {
         {mousePurchaseOrder != null ? (
           <Modal show={buyButtonMdal} onHide={() => { buyButtonMdalClose(), setMousePurchaseOrder(null), setAmount(null), setTotal(null), setFrom(null), setAvailable(null) }}>
             <Modal.Body className="modal-bg text-center">
+              <button style={{
+                position: "absolute",
+                right: "0",
+                top: "-1px",
+                height: "24px",
+                width: "24px",
+                background: "transparent",
+                border: "none"
+              }} onClick={buyButtonMdalClose}></button>
               <div className="preview">
                 <h2>Preview Order</h2>
                 <span>Available: {trim(cheezBalance, 4)} 🧀</span>
@@ -1112,6 +1138,15 @@ function Activity() {
         {catPurchaseOrder != null ? (
           <Modal show={buyButtonMdal} onHide={() => { buyButtonMdalClose(), setCatPurchaseOrder(null), setAmount(null), setTotal(null), setFrom(null), setAvailable(null) }}>
             <Modal.Body className="modal-bg text-center">
+              <button style={{
+                position: "absolute",
+                right: "0",
+                top: "-1px",
+                height: "24px",
+                width: "24px",
+                background: "transparent",
+                border: "none"
+              }} onClick={buyButtonMdalClose}></button>
               <div className="preview">
                 <h2>Preview Order</h2>
                 <span>Available: {trim(cheezBalance, 4)} 🧀</span>
@@ -1164,6 +1199,15 @@ function Activity() {
         {trapPurchaseOrder != null ? (
           <Modal show={buyButtonMdal} onHide={() => { buyButtonMdalClose(), setTrapPurchaseOrder(null), setAmount(null), setTotal(null), setFrom(null), setAvailable(null) }}>
             <Modal.Body className="modal-bg text-center">
+              <button style={{
+                position: "absolute",
+                right: "0",
+                top: "-1px",
+                height: "24px",
+                width: "24px",
+                background: "transparent",
+                border: "none"
+              }} onClick={buyButtonMdalClose}></button>
               <div className="preview">
                 <h2>Preview Order</h2>
                 <span>Available: {trim(cheezBalance, 4)} 🧀</span>
