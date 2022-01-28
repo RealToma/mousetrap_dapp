@@ -463,6 +463,14 @@
     box-shadow: 5px 5px 0 #808080a8;
 }
 
+.amount-arr{
+    color: red;
+    font-size: 18px;
+    margin-top: 5px;
+    display: block;
+    font-family: 'VT323';
+}
+
 @media (max-width: 472px) {
     .main-modal-box{
         margin-top: 50px;

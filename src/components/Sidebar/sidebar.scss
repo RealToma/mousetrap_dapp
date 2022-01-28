@@ -228,6 +228,7 @@
     display: flex !important;
     align-items: center;
     text-decoration: none !important;
+    padding: 5px 20px !important;
 }
 
 .MuiLink-root.active {
@@ -323,6 +324,10 @@
     color: #fff;
     border: none;
     border-radius: 0;
+}
+
+.slick-dots li button:before{
+    color: #ffd500 !important;
 }
 
 

@@ -228,6 +228,50 @@ function Spawns() {
 
 
   const [active, setActive] = useState(1);
+  const [amontArr, setAmountArr] = useState(false);
+
+  const settransferNFTsvalidation = () => {
+    if (transferAmount > 0) {
+      setAmountArr(false);
+      setActive(1)
+      setMouseSelect(true)
+      setTrapSelect(false)
+      setPassSelect(false)
+      setCatSelect(false)
+      transferNftModalClose();
+      transferNftNextModalShow();
+    } else {
+      setAmountArr(true)
+    }
+  }
+  const createListValidationForPass = () => {
+    if (amount > 0) {
+      setAmountArr(false);
+      setActive(1)
+      setMouseSelect(true)
+      setTrapSelect(false)
+      setPassSelect(false)
+      setCatSelect(false)
+      createNftModalClose();
+      onSeekPassApproval();
+    } else {
+      setAmountArr(true)
+    }
+  }
+  const createListingValidation = () => {
+    if (amount > 0) {
+      setAmountArr(false);
+      setActive(1)
+      setMouseSelect(true)
+      setTrapSelect(false)
+      setPassSelect(false)
+      setCatSelect(false)
+      createNftModalClose();
+      onSeekApproval();
+    } else {
+      setAmountArr(true)
+    }
+  }
 
   return (
     <>
@@ -361,12 +405,13 @@ function Spawns() {
         )}
       </div>
 
-      <Modal show={transferNftModal} onHide={() => {transferNftModalClose()
-      setActive(1)  
-      setMouseSelect(true)
-      setTrapSelect(false)
-      setPassSelect(false)
-      setCatSelect(false)
+      <Modal show={transferNftModal} onHide={() => {
+        transferNftModalClose()
+        setActive(1)
+        setMouseSelect(true)
+        setTrapSelect(false)
+        setPassSelect(false)
+        setCatSelect(false)
       }}>
         <Modal.Body className="modal-bg">
           <h3>Transfer NFT</h3>
@@ -374,7 +419,7 @@ function Spawns() {
           <Box>
             {transferID === null ? (
               <Box>
-                <Grid container  style={{ columnGap: '20px', display: "flex", flexFlow: "row-nowrap", justifyContent: "center" }}>
+                <Grid container style={{ columnGap: '20px', display: "flex", flexFlow: "row-nowrap", justifyContent: "center" }}>
                   <div className="main-modal-box text-center">
                     <Grid item className={`${active === 1 ? "active" : ""} border-box`} style={{ margin: "0 auto", marginBottom: verySmallScreen ? "5%" : smallerScreen ? "3%" : "0" }}>
                       <Paper style={{ display: "flex", flexDirection: "row", justifyContent: "center", background: "transparent" }}>
@@ -383,12 +428,12 @@ function Spawns() {
                         </div>
                       </Paper>
                     </Grid>
-                    <input className={`${active === 1 ? "active" : ""} mt-2 checkbox`} type="radio" name="name"  onClick={() => {
+                    <input className={`${active === 1 ? "active" : ""} mt-2 checkbox`} type="radio" name="name" onClick={() => {
                       setActive(1)
                       setMouseTransfer(true)
                       setMouseTrapTransfer(false)
                       setPassTransfer(false)
-                      setCatTransfer(false) 
+                      setCatTransfer(false)
                     }} />
                   </div>
                   <div className="main-modal-box text-center">
@@ -444,15 +489,16 @@ function Spawns() {
                 <div className="amount-box mt-5">
                   <div>
                     <span>Amount</span>
-                    <input className="amount-fild mt-2" type="text" onChange={(e) => { setTransferAmount(e.target.value) }} />
+                    <input className="amount-fild mt-2" type="text" onChange={(e) => { setTransferAmount(e.target.value); }} />
                   </div>
                   <div className="mt-3">
                     <span>0x Formatted address</span>
                     <input className="amount-fild mt-2" type="text" onChange={(e) => { setToAddress(e.target.value) }} />
                   </div>
                 </div>
+                {amontArr && <span className="amount-arr">Please fill amount more then 0.</span>}
                 <div className="d-flex justify-content-center mt-3">
-                  <Button className="transfer-btn" onClick={() => { transferNftModalClose(); transferNftNextModalShow(); }}>Confirm transfer</Button>
+                  <Button className="transfer-btn" onClick={() => { settransferNFTsvalidation(); }}>Confirm transfer</Button>
                 </div>
               </Box>
             ) : (
@@ -503,12 +549,14 @@ function Spawns() {
         </Modal.Body>
       </Modal>
 
-      <Modal show={createNftModal} onHide={() => {createNftModalClose(),
-      setActive(1)  
-      setMouseSelect(true)
-      setTrapSelect(false)
-      setPassSelect(false)
-      setCatSelect(false)}}>
+      <Modal show={createNftModal} onHide={() => {
+        createNftModalClose(),
+          setActive(1)
+        setMouseSelect(true)
+        setTrapSelect(false)
+        setPassSelect(false)
+        setCatSelect(false)
+      }}>
         <Modal.Body className="modal-bg">
           <h3>Create a Listing</h3>
 
@@ -524,8 +572,8 @@ function Spawns() {
                         </div>
                       </Paper>
                     </Grid>
-                    <input className="mt-2 checkbox active" type="radio" name="name" onClick={() => {
-                      setActive(1)  
+                    <input className={`${active === 1 ? "active" : ""} mt-2 checkbox`} type="radio" name="name" onClick={() => {
+                      setActive(1)
                       setMouseSelect(true)
                       setTrapSelect(false)
                       setPassSelect(false)
@@ -581,24 +629,51 @@ function Spawns() {
                     }} />
                   </div>
                 </Grid>
+                {mouseSelect === true || catSelect === true || trapSelect === true ? (
+                  <>
+                    <div className="amount-box mt-5">
+                      <div>
+                        <span>How Many {mouseSelect ? 'Mice' : catSelect ? 'Cats' : trapSelect ? 'Traps' : ''}?</span>
+                        <input className="amount-fild mt-2" type="text" onChange={(e) => { setAmount(e.target.value) }} />
+                      </div>
+                      <div className="mt-3">
+                        <span>Price of Each (in 🧀)</span>
+                        <input className="amount-fild mt-2" type="text"
+                          onChange={(e) => { setListPrice(e.target.value) }}
+                          InputLabelProps={{
+                            shrink: true,
+                          }} />
+                      </div>
+                    </div>
+                    {amontArr && <span className="amount-arr">Please fill  {mouseSelect ? 'Mice' : catSelect ? 'Cats' : trapSelect ? 'Traps' : ''} more then 0.</span>}
+                    <div className="d-flex justify-content-center mt-3">
+                      <Button className="transfer-btn" onClick={() => { createListingValidation() }}>Create a Listing</Button>
+                    </div>
+                  </>
+                ) : (<></>)}
 
-                <div className="amount-box mt-5">
-                  <div>
-                    <span>How Many {mouseSelect ? 'Mice' : catSelect ? 'Cats' : trapSelect ? 'Traps' : ''}?</span>
-                    <input className="amount-fild mt-2" type="text" onChange={(e) => { setAmount(e.target.value) }} />
-                  </div>
-                  <div className="mt-3">
-                    <span>Price of Each (in 🧀)</span>
-                    <input className="amount-fild mt-2" type="text"
-                      onChange={(e) => { setListPrice(e.target.value) }}
-                      InputLabelProps={{
-                        shrink: true,
-                      }} />
-                  </div>
-                </div>
-                <div className="d-flex justify-content-center mt-3">
-                  <Button className="transfer-btn" onClick={() => { createNftModalClose(); onSeekApproval(); }}>Create a Listing</Button>
-                </div>
+                {passSelect === true ? (
+                  <>
+                    <div className="amount-box mt-5">
+                      <div>
+                        <span>How Many {passSelect ? 'Passes' : ''}?</span>
+                        <input className="amount-fild mt-2" type="text" onChange={(e) => { setAmount(e.target.value) }} />
+                      </div>
+                      <div className="mt-3">
+                        <span>Price of Each (in 🧀)</span>
+                        <input className="amount-fild mt-2" type="text"
+                          onChange={(e) => { setListPrice(e.target.value) }}
+                          InputLabelProps={{
+                            shrink: true,
+                          }} />
+                      </div>
+                    </div>
+                    {amontArr && <span className="amount-arr">Please fill {passSelect ? 'Passes' : ''} more then 0.</span>}
+                    <div className="d-flex justify-content-center mt-3">
+                      <Button className="transfer-btn" onClick={() => { createListValidationForPass() }}>Create a Listing</Button>
+                    </div>
+                  </>
+                ) : (<></>)}
               </Box>
             ) : (
               <></>

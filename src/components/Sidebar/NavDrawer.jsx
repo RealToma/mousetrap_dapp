@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Drawer } from "@material-ui/core";
 import NavContent from "./NavContent.jsx";
 
-import "./sidebar.scss";
+import './sidebar.scss'
 
 const drawerWidth = 280;
 
@@ -41,6 +41,7 @@ function NavDrawer({ mobileOpen, handleDrawerToggle }) {
       </Drawer> */}
       <NavContent mobileOpen={mobileOpen} />
     </>
+
   );
 }
 

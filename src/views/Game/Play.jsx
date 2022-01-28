@@ -1,21 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Paper,
-  Button,
-  Grid,
-  Typography,
-  InputAdornment,
-  OutlinedInput,
-  TextField,
-  Box,
-  Zoom,
-  Container,
-  useMediaQuery,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-} from "@material-ui/core";
+import { Paper, Button, Grid, Typography, InputAdornment, OutlinedInput, TextField, Box, Zoom, Container, useMediaQuery, FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
 import { useWeb3Context } from "src/hooks/web3Context";
 import { loadAccountDetails } from "../../slices/AccountSlice";
 import { useSelector, useDispatch, useAppSelector } from "react-redux";
@@ -35,6 +19,7 @@ import "./Play.css";
 import { textAlign } from "@material-ui/system";
 import { Col, Row, Modal, Tabs, Tab } from "react-bootstrap";
 
+
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
@@ -44,10 +29,10 @@ function a11yProps(index) {
 
 function getTimeRemaining() {
   if (1640527200 < Math.floor(Date.now() / 1000)) {
-    return "The Linear Staking Rewards are Over and Unstaking is now Available, thank you!";
+    return "The Linear Staking Rewards are Over and Unstaking is now Available, thank you!"
   }
 
-  let totalseconds = 1640527200 - Math.floor(Date.now() / 1000);
+  let totalseconds = 1640527200 - Math.floor(Date.now() / 1000)
   var day = 86400;
   var hour = 3600;
   var minute = 60;
@@ -59,13 +44,14 @@ function getTimeRemaining() {
 
   if (seconds == 0) {
     seconds = 60;
-    minutes = minutes - 1;
+    minutes = minutes - 1
   }
 
-  return `${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds left until unstaking is available!`;
+  return `${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds left until unstaking is available!`
 }
 
 function Play() {
+
   const dispatch = useDispatch();
 
   const smallerScreen = useMediaQuery("(max-width: 650px)");
@@ -73,7 +59,7 @@ function Play() {
   const [spawnId, setSpawnId] = useState(0);
   const { provider, address, chainID, networkID, connect, connected } = useWeb3Context();
   const [approvalStatus, setApprovalStatus] = useState(false);
-  const accountDetails = useSelector(state => state.account);
+  const accountDetails = useSelector(state => state.account)
   const [view, setView] = useState(0);
   const [catView, setCatView] = useState(0);
   const [trapView, setTrapView] = useState(0);
@@ -83,11 +69,7 @@ function Play() {
   const [catQuantity, setCatQuantity] = useState(null);
   const currentTime = Math.floor(Date.now() / 1000);
   const stakingOpened = 1640527200 > currentTime;
-  const [countdown, setCountdown] = React.useState(
-    <>
-      <Skeleton width="150px" style={{ margin: "0 auto" }} />
-    </>,
-  );
+  const [countdown, setCountdown] = React.useState(<><Skeleton width="150px" style={{ margin: "0 auto" }} /></>);
   const [mouseMazeModal, setMouseMazeModal] = useState(false);
   const [mouseStakeAmount, setMouseStakeAmount] = useState(null);
   const [mouseUnstakeAmount, setMouseUnstakeAmount] = useState(null);
@@ -116,60 +98,60 @@ function Play() {
   });
 
   const mouseBalance = useSelector(state => {
-    return state.account.balances && state.account.balances.mouse;
-  });
+    return state.account.balances && state.account.balances.mouse
+  })
 
   const catBalance = useSelector(state => {
-    return state.account.balances && state.account.balances.cat;
-  });
+    return state.account.balances && state.account.balances.cat
+  })
 
   const trapBalance = useSelector(state => {
-    return state.account.balances && state.account.balances.trap;
-  });
+    return state.account.balances && state.account.balances.trap
+  })
 
   const miceStakedBalance = useSelector(state => {
-    return state.account.balances && state.account.balances.miceStakedBalance;
-  });
+    return state.account.balances && state.account.balances.miceStakedBalance
+  })
 
   const catStakedBalance = useSelector(state => {
-    return state.account.balances && state.account.balances.catStakedBalance;
-  });
+    return state.account.balances && state.account.balances.catStakedBalance
+  })
 
   const trapStakedBalance = useSelector(state => {
-    return state.account.balances && state.account.balances.trapStakedBalance;
-  });
+    return state.account.balances && state.account.balances.trapStakedBalance
+  })
 
   const micePendingRewards = useSelector(state => {
-    return state.account.balances && state.account.balances.micePendingRewards;
-  });
+    return state.account.balances && state.account.balances.micePendingRewards
+  })
 
   const catPendingRewards = useSelector(state => {
-    return state.account.balances && state.account.balances.catPendingRewards;
-  });
+    return state.account.balances && state.account.balances.catPendingRewards
+  })
 
   const trapPendingRewards = useSelector(state => {
-    return state.account.balances && state.account.balances.trapPendingRewards;
-  });
+    return state.account.balances && state.account.balances.trapPendingRewards
+  })
 
   const miceAllowance = useSelector(state => {
-    return state.account.staking && state.account.staking.miceAllowance;
-  });
+    return state.account.staking && state.account.staking.miceAllowance
+  })
 
   const catAllowance = useSelector(state => {
-    return state.account.staking && state.account.staking.catAllowance;
-  });
+    return state.account.staking && state.account.staking.catAllowance
+  })
 
   const trapAllowance = useSelector(state => {
-    return state.account.staking && state.account.staking.trapAllowance;
-  });
+    return state.account.staking && state.account.staking.trapAllowance
+  })
 
   const rewardsMice = useSelector(state => {
-    return state.account.game && state.account.game.miceRewards;
-  });
+    return state.account.game && state.account.game.miceRewards
+  })
 
   const rewardsCats = useSelector(state => {
-    return state.account.game && state.account.game.catRewards;
-  });
+    return state.account.game && state.account.game.catRewards
+  })
 
   const miceStaked = useSelector(state => {
     return state.app.miceStaked;
@@ -188,14 +170,14 @@ function Play() {
   });
 
   const myNextReward = useSelector(state => {
-    return (
-      parseFloat(state.app.nextMiceReward) * parseFloat(state.account.game && state.account.game.getStakedMice)
-    ).toFixed(3);
+    return (parseFloat(state.app.nextMiceReward) * parseFloat(state.account.game && state.account.game.getStakedMice)).toFixed(3)
   });
 
   const miceReward = useSelector(state => {
     return state.app && state.app.nextMiceReward;
   });
+
+
 
   const isAppLoading = useSelector(state => state.app.loading);
 
@@ -215,14 +197,15 @@ function Play() {
   const handleCatClose = () => setCatMazeModal(false);
   const handleTrapClose = () => setTrapMazeModal(false);
 
+
   useEffect(() => {
-    dispatch(loadAccountDetails({ networkID: chainID, address, provider: provider }));
+    dispatch(loadAccountDetails({ networkID: chainID, address, provider: provider }))
     if (approvalStatus === false) {
       if (accountDetails.minting) {
-        setApprovalStatus(accountDetails.minting.mintAllowance.gte(ethers.utils.parseUnits("60", 9)));
+        setApprovalStatus(accountDetails.minting.mintAllowance.gte(ethers.utils.parseUnits("60", 9)))
       }
     }
-  }, [loadAccountDetails, accountDetails.minting, approvalStatus]);
+  }, [loadAccountDetails, accountDetails.minting, approvalStatus])
 
   const onSeekApproval = async => {
     dispatch(changeApproval({ provider, networkID: chainID }));
@@ -233,12 +216,13 @@ function Play() {
   };
 
   const onUnstake = async (id, amount) => {
-    dispatch(gameUnstake({ id, amount, provider, networkID: chainID }));
-  };
+    dispatch(gameUnstake({ id, amount, provider, networkID: chainID }))
+  }
 
-  const onClaim = async id => {
+  const onClaim = async (id) => {
     dispatch(gameClaimRewards({ id, provider, networkID: chainID }));
   };
+
 
   const changeView = (event, newView) => {
     setView(newView);
@@ -253,22 +237,22 @@ function Play() {
   };
 
   const stakedMice = useSelector(state => {
-    return state.account.game && parseInt(state.account.game.getStakedMice);
-  });
+    return state.account.game && parseInt(state.account.game.getStakedMice)
+  })
 
   const stakedCats = useSelector(state => {
-    return state.account.game && parseInt(state.account.game.getStakedCats);
-  });
+    return state.account.game && parseInt(state.account.game.getStakedCats)
+  })
 
   const stakedTraps = useSelector(state => {
-    return state.account.game && parseInt(state.account.game.getStakedTraps);
-  });
+    return state.account.game && parseInt(state.account.game.getStakedTraps)
+  })
 
   const isGameApproved = useSelector(state => {
-    return state.account.minting && state.account.minting.gameAllowance;
-  });
+    return state.account.minting && state.account.minting.gameAllowance
+  })
 
-  const isAllowanceDataLoading = (miceAllowance == null || catAllowance == null || trapAllowance == null) && view === 0;
+  const isAllowanceDataLoading = ((miceAllowance == null || catAllowance == null || trapAllowance == null) && view === 0)
 
   const [getStartModal, setGetStartModal] = useState(false);
   const getStartModalClose = () => setGetStartModal(false);
@@ -288,25 +272,15 @@ function Play() {
         <Row>
           <Col lg={12}>
             <div className="cheese-docs p-5">
-              <p className="mb-0">
-                Know the risk! Read about how the game works{" "}
-                <span
-                  className="hoverHere"
-                  onClick={() => {
-                    window.open(`https://docs.cheesedao.xyz/components/game-rules`);
-                  }}
-                >
-                  here
-                </span>
-              </p>
+              <p className="mb-0">Know the risk! Read about how the game works <span className="hoverHere" onClick={() => { window.open(`https://docs.cheesedao.xyz/components/game-rules`) }}>here</span></p>
               <Button className="cheese-btn">CheeseDao Docs</Button>
             </div>
           </Col>
         </Row>
         <Row className=" justify-content-center mb-5">
-          <Col lg={4} md={8} sm={12} className="mt-5">
+          <Col lg={4} md={6} sm={12} className="mt-5">
             <div className="yellow-play text-center">
-              <img src={require("./mouse.png").default} alt="" width={150} />
+              <img src={require('./mouse.png').default} alt="" width={150} />
               {!address ? (
                 <>
                   <p>Connect your wallet to stake Mice</p>
@@ -319,15 +293,10 @@ function Play() {
                       <>
                         <div className="data-sub mt-2">
                           <span>Ready for the Maze</span>
-                          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
-                          <span>
-                            {mouseBalance} {mouseBalance > 1 ? "Mice" : "Mouse"}
-                          </span>
+                          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _</span>
+                          <span>{mouseBalance} {mouseBalance > 1 ? 'Mice' : 'Mouse'}</span>
                         </div>
-                      </>
-                    ) : (
-                      <></>
-                    )}
+                      </>) : (<></>)}
                   </div>
 
                   <div className="data-row">
@@ -335,13 +304,10 @@ function Play() {
                       <>
                         <div className="data-sub">
                           <span>In the Maze</span>
-                          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ __ _ _</span>
-                          <span>
-                            {stakedMice} {stakedMice > 1 ? "Mice" : "Mouse"}
-                          </span>
+                          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _ _ __ _  _</span>
+                          <span>{stakedMice} {stakedMice > 1 ? 'Mice' : 'Mouse'}</span>
                         </div>
-                      </>
-                    ) : (
+                      </>) : (
                       <></>
                     )}
                   </div>
@@ -351,11 +317,10 @@ function Play() {
                       <>
                         <div className="data-sub">
                           <span>CHEEZ in the Maze</span>
-                          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
-                          <span>{stakedMice > 1 ? "Mice have" : "Mouse has"}</span>
+                          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _</span>
+                          <span>{stakedMice > 1 ? 'Mice have' : 'Mouse has'}</span>
                         </div>
-                      </>
-                    ) : (
+                      </>) : (
                       <></>
                     )}
                   </div>
@@ -365,10 +330,8 @@ function Play() {
                       <>
                         <div className="data-sub">
                           <span>My next reward is</span>
-                          <span>_ _ _ _ _ _ _</span>
-                          <span>
-                            {myNextReward}🧀 ({miceReward} 🧀/ Mouse)
-                          </span>
+                          <span>_ _ _ _ _ _  _</span>
+                          <span>{myNextReward}🧀 ({miceReward} 🧀/ Mouse)</span>
                         </div>
                       </>
                     ) : (
@@ -391,23 +354,23 @@ function Play() {
                         <div className="list">
                           <span>Make sure you understand the following:</span>
                           <div className="d-flex mt-3 align-items-start gap">
-                            <img src={require("./chees.png").default} alt="" />
+                            <img src={require('./chees.png').default} alt="" />
                             <p>You have a 5% chance of losing your Mouse to a MouseTrap when unstaking</p>
                           </div>
                           <div className="d-flex mt-1 align-items-start gap">
-                            <img src={require("./chees.png").default} alt="" />
+                            <img src={require('./chees.png').default} alt="" />
                             <p>You have a 45% chance of losing your CHEEZ rewards to Cats when unstaking</p>
                           </div>
                           <div className="d-flex mt-1 align-items-start gap">
-                            <img src={require("./chees.png").default} alt="" />
+                            <img src={require('./chees.png').default} alt="" />
                             <p>Claiming rewards has a 25% extortion fee paid to Cats</p>
                           </div>
                           <div className="d-flex mt-1 align-items-start gap">
-                            <img src={require("./chees.png").default} alt="" />
+                            <img src={require('./chees.png').default} alt="" />
                             <p>Unstaking requires 2 days worth of unclaimed rewards</p>
                           </div>
                           <div className="d-flex mt-1 align-items-start gap">
-                            <img src={require("./chees.png").default} alt="" />
+                            <img src={require('./chees.png').default} alt="" />
                             <p>Staking additional Mice will claim rewards and reset your 2-day staking lockup</p>
                           </div>
                         </div>
@@ -422,24 +385,15 @@ function Play() {
                                 <span>{`Max Available: ${mouseBalance}`}</span>
                                 <div className="d-flex align-items-center gap">
                                   <div className="search-box d-flex align-items-center justify-content-between w-100">
-                                    <input
-                                      type="text"
-                                      className="w-100"
-                                      value={mouseStakeAmount}
-                                      onChange={e => {
-                                        setMouseStakeAmount(e.target.value);
-                                      }}
-                                    />
+                                    <input type="text" className="w-100" value={mouseStakeAmount}
+                                      onChange={(e) => { setMouseStakeAmount(e.target.value) }} />
                                   </div>
                                   <Button
                                     className="green"
                                     disabled={isPendingTxn(pendingTransactions, "game_stake")}
                                     onClick={() => {
                                       onStake(0, mouseStakeAmount);
-                                    }}
-                                  >
-                                    {txnButtonText(pendingTransactions, "Entering Maze", "Stake Mice")}
-                                  </Button>
+                                    }}>{txnButtonText(pendingTransactions, "Entering Maze", "Stake Mice")}</Button>
                                 </div>
                               </div>
                             ) : (
@@ -461,45 +415,30 @@ function Play() {
                                 <span>{`Max Available: ${stakedMice}`}</span>
                                 <div className="d-flex align-items-center gap">
                                   <div className="search-box d-flex align-items-center justify-content-between w-100">
-                                    <input
-                                      type="text"
-                                      className="w-100"
-                                      value={mouseUnstakeAmount}
-                                      onChange={e => {
-                                        setMouseUnstakeAmount(e.target.value);
-                                      }}
-                                    />
+                                    <input type="text" className="w-100" value={mouseUnstakeAmount}
+                                      onChange={(e) => { setMouseUnstakeAmount(e.target.value) }} />
+                          
                                   </div>
-                                  <Button
-                                    className="pink text-white"
+                                  <Button className="pink text-white"
                                     disabled={isPendingTxn(pendingTransactions, "unstaking")}
                                     onClick={() => {
                                       onUnstake(0, mouseUnstakeAmount);
-                                    }}
-                                  >
+                                    }} >
                                     {txnButtonText(pendingTransactions, "Leaving Maze", "Unstake Mice")}
                                   </Button>
                                 </div>
                               </div>
                             ) : (
-                              <Button
-                                className="pink text-white"
+                              <Button className="pink text-white"
                                 disabled={isPendingTxn(pendingTransactions, "approve_unstaking")}
-                                onClick={onSeekApproval}
-                              >
+                                onClick={onSeekApproval} >
                                 {txnButtonText(pendingTransactions, "approve_unstaking", "Approve")}
                               </Button>
                             )}
                           </Tab>
                         </Tabs>
                         {stakedMice != undefined && rewardsMice != undefined ? (
-                          <span className="d-flex mini-def mt-3">
-                            Your {stakedMice > 1 ? "Mice have" : "Mouse has"} found{" "}
-                            <p className="mb-0 text-green">
-                              {parseFloat(ethers.utils.formatUnits(rewardsMice, 9).toString()).toFixed(3)}
-                            </p>{" "}
-                            CHEEZ in the Maze
-                          </span>
+                          <span className="d-flex mini-def mt-3">Your {stakedMice > 1 ? 'Mice have' : 'Mouse has'} found <p className="mb-0 text-green">{parseFloat(ethers.utils.formatUnits(rewardsMice, 9).toString()).toFixed(3)}</p> CHEEZ in the Maze</span>
                         ) : (
                           <Skeleton style={{ margin: "0 auto", width: "25px" }} />
                         )}
@@ -522,10 +461,11 @@ function Play() {
             <div className="play-timer">
               <GameTimer />
             </div>
+
           </Col>
-          <Col lg={4} md={8} sm={12} className="mt-5">
+          <Col lg={4} md={6} sm={12} className="mt-5">
             <div className="yellow-play text-center">
-              <img src={require("./cat.png").default} alt="" width={150} />
+              <img src={require('./cat.png').default} alt="" width={150} />
               {!address ? (
                 <>
                   <p>Connect your wallet to stake Cats</p>
@@ -538,15 +478,11 @@ function Play() {
                       <>
                         <div className="data-sub">
                           <span>ready for the Maze</span>
-                          <span>_ _ _ _ _ _ _</span>
-                          <span>
-                            {catBalance} {catBalance > 1 ? "Cats" : "Cat"}
-                          </span>
+                          <span>_ _ _ _ _ _  _</span>
+                          <span>{catBalance} {catBalance > 1 ? 'Cats' : 'Cat'}</span>
                         </div>
                       </>
-                    ) : (
-                      <></>
-                    )}
+                    ) : (<></>)}
                   </div>
 
                   <div className="data-row">
@@ -554,10 +490,8 @@ function Play() {
                       <>
                         <div className="data-sub">
                           <span>in the Maze</span>
-                          <span>_ _ _ _ _ _ _</span>
-                          <span>
-                            {stakedCats} {stakedCats > 1 ? "Cats" : "Cat"}
-                          </span>
+                          <span>_ _ _ _ _ _  _</span>
+                          <span>{stakedCats} {stakedCats > 1 ? 'Cats' : 'Cat'}</span>
                         </div>
                       </>
                     ) : (
@@ -570,7 +504,7 @@ function Play() {
                       <>
                         <div className="data-sub">
                           <span>CHEEZ in the Maze</span>
-                          <span>_ _ _ _ _ _ _</span>
+                          <span>_ _ _ _ _ _  _</span>
                           <span>{parseFloat(ethers.utils.formatUnits(rewardsCats, 9).toString()).toFixed(3)}</span>
                         </div>
                       </>
@@ -584,7 +518,7 @@ function Play() {
                       <>
                         <div className="data-sub">
                           <span>The Cat Pool has </span>
-                          <span>_ _ _ _ _ _ _</span>
+                          <span>_ _ _ _ _ _  _</span>
                           <span>{nextCatPool}🧀</span>
                         </div>
                       </>
@@ -592,7 +526,12 @@ function Play() {
                       <Skeleton style={{ margin: "0 auto", width: "25px" }} />
                     )}
                   </div>
-                  <Button className="stake-wallet-btn mt-5" onClick={catModalShow} variant="outlined" color="primary">
+                  <Button
+                    className="stake-wallet-btn mt-5"
+                    onClick={catModalShow}
+                    variant="outlined"
+                    color="primary"
+                  >
                     Enter the Maze
                   </Button>
                   <Modal show={catModal} onHide={catModalClose}>
@@ -600,6 +539,7 @@ function Play() {
                       <div className="mini-tab mt-4">
                         <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
                           <Tab eventKey="home" title="Stake">
+
                             {isAllowanceDataLoading ? (
                               <Skeleton />
                             ) : address && isGameApproved ? (
@@ -607,32 +547,22 @@ function Play() {
                                 <span>{`Max Available: ${catBalance}`}</span>
                                 <div className="d-flex align-items-center gap">
                                   <div className="search-box d-flex align-items-center justify-content-between w-100">
-                                    <input
-                                      type="text"
-                                      className="w-100"
-                                      value={catStakeAmount}
-                                      onChange={e => {
-                                        setCatStakeAmount(e.target.value);
-                                      }}
-                                    />
+                                    <input type="text" className="w-100" value={catStakeAmount}
+                                      onChange={(e) => { setCatStakeAmount(e.target.value) }} />
                                   </div>
-                                  <Button
-                                    className="green"
+                                  <Button className="green"
                                     disabled={isPendingTxn(pendingTransactions, "game_stake")}
                                     onClick={() => {
                                       onStake(1, catStakeAmount);
-                                    }}
-                                  >
+                                    }}>
                                     {txnButtonText(pendingTransactions, "Entering Maze", "Stake Cats")}
                                   </Button>
                                 </div>
                               </div>
                             ) : (
-                              <Button
-                                className="green"
+                              <Button className="green"
                                 disabled={isPendingTxn(pendingTransactions, "approve_game")}
-                                onClick={onSeekApproval}
-                              >
+                                onClick={onSeekApproval}>
                                 {txnButtonText(pendingTransactions, "approve_game", "Approve")}
                               </Button>
                             )}
@@ -645,22 +575,15 @@ function Play() {
                                 <span>{`Max Available: ${stakedCats}`}</span>
                                 <div className="d-flex align-items-center gap">
                                   <div className="search-box d-flex align-items-center justify-content-between w-100">
-                                    <input
-                                      type="text"
-                                      className="w-100"
-                                      value={catUnstakeAmount}
-                                      onChange={e => {
-                                        setCatUnstakeAmount(e.target.value);
-                                      }}
-                                    />
+                                    <input type="text" className="w-100" value={catUnstakeAmount}
+                                      onChange={(e) => { setCatUnstakeAmount(e.target.value) }} />
+                          
                                   </div>
-                                  <Button
-                                    className="pink text-white"
+                                  <Button className="pink text-white"
                                     disabled={isPendingTxn(pendingTransactions, "game_unstake")}
                                     onClick={() => {
                                       onUnstake(1, catUnstakeAmount);
-                                    }}
-                                  >
+                                    }}>
                                     {txnButtonText(pendingTransactions, "Leaving Maze", "Unstake Cats")}
                                   </Button>
                                 </div>
@@ -669,24 +592,15 @@ function Play() {
                               <Button
                                 className="pink text-white"
                                 disabled={isPendingTxn(pendingTransactions, "approve_unstaking")}
-                                onClick={onSeekApproval}
-                              >
+                                onClick={onSeekApproval}>
                                 {txnButtonText(pendingTransactions, "approve_unstaking", "Approve")}
                               </Button>
                             )}
                           </Tab>
                         </Tabs>
                         {catBalance != null || undefined ? (
-                          <span className="d-flex mini-def mt-3">
-                            Your {catBalance > 1 ? "Cats have" : "Cat has"} found{" "}
-                            <p className="mb-0 text-green">
-                              {parseFloat(ethers.utils.formatUnits(rewardsCats, 9).toString()).toFixed(3)}
-                            </p>{" "}
-                            CHEEZ in the Maze
-                          </span>
-                        ) : (
-                          <></>
-                        )}
+                          <span className="d-flex mini-def mt-3">Your {catBalance > 1 ? 'Cats have' : 'Cat has'} found <p className="mb-0 text-green">{parseFloat(ethers.utils.formatUnits(rewardsCats, 9).toString()).toFixed(3)}</p> CHEEZ in the Maze</span>
+                        ) : (<></>)}
 
                         <Button
                           className="stake-button"
@@ -702,12 +616,13 @@ function Play() {
                   </Modal>
                 </>
               )}
+
             </div>
           </Col>
 
-          <Col lg={4} md={8} sm={12} className="mt-5">
+          <Col lg={4} md={6} sm={12} className="mt-5">
             <div className="yellow-play text-center">
-              <img src={require("./mouse-trap.png").default} alt="" width={150} />
+              <img src={require('./mouse-trap.png').default} alt="" width={150} />
 
               {!address ? (
                 <>
@@ -721,15 +636,11 @@ function Play() {
                       <>
                         <div className="data-sub">
                           <span>ready for the Maze</span>
-                          <span>_ _ _ _ _ _ _</span>
-                          <span>
-                            {trapBalance} {trapBalance > 1 ? "Traps" : "Trap"}
-                          </span>
+                          <span>_ _ _ _ _ _  _</span>
+                          <span>{trapBalance} {trapBalance > 1 ? 'Traps' : 'Trap'}</span>
                         </div>
                       </>
-                    ) : (
-                      <></>
-                    )}
+                    ) : (<></>)}
                   </div>
 
                   <div className="data-row">
@@ -737,17 +648,20 @@ function Play() {
                       <>
                         <div className="data-sub">
                           <span>in the Maze</span>
-                          <span>_ _ _ _ _ _ _</span>
-                          <span>
-                            {stakedTraps} {stakedTraps > 1 ? "Traps" : "Trap"}
-                          </span>
+                          <span>_ _ _ _ _ _  _</span>
+                          <span>{stakedTraps} {stakedTraps > 1 ? 'Traps' : 'Trap'}</span>
                         </div>
                       </>
                     ) : (
                       <Skeleton style={{ margin: "0 auto", width: "25px" }} />
                     )}
                   </div>
-                  <Button className="stake-wallet-btn mt-5" variant="outlined" color="primary" onClick={cardModalShow}>
+                  <Button
+                    className="stake-wallet-btn mt-5"
+                    variant="outlined"
+                    color="primary"
+                    onClick={cardModalShow}
+                  >
                     Enter the Maze
                   </Button>
                   <Modal show={cardModal} onHide={cardModalClose}>
@@ -755,6 +669,7 @@ function Play() {
                       <div className="mini-tab mt-4">
                         <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
                           <Tab eventKey="home" title="Stake">
+
                             {isAllowanceDataLoading ? (
                               <Skeleton />
                             ) : address && isGameApproved ? (
@@ -762,38 +677,30 @@ function Play() {
                                 <span>{`Max Available: ${trapBalance}`}</span>
                                 <div className="d-flex align-items-center gap">
                                   <div className="search-box d-flex align-items-center justify-content-between w-100">
-                                    <input
-                                      type="text"
-                                      className="w-100"
-                                      value={trapStakeAmount}
-                                      onChange={e => {
-                                        setTrapStakeAmount(e.target.value);
-                                      }}
-                                      style={{ marginBottom: "5%" }}
-                                    />
+                                    <input type="text" className="w-100" value={trapStakeAmount}
+                                      onChange={(e) => { setTrapStakeAmount(e.target.value) }}
+                                      style={{ marginBottom: "5%" }} />
+                          
                                   </div>
-                                  <Button
-                                    className="green"
+                                  <Button className="green"
                                     disabled={isPendingTxn(pendingTransactions, "game_stake")}
                                     onClick={() => {
                                       onStake(2, trapStakeAmount);
-                                    }}
-                                  >
+                                    }}>
                                     {txnButtonText(pendingTransactions, "Entering Maze", "Stake Traps")}
                                   </Button>
                                 </div>
                               </div>
                             ) : (
-                              <Button
-                                className="green"
+                              <Button className="green"
                                 disabled={isPendingTxn(pendingTransactions, "approve_game")}
-                                onClick={onSeekApproval}
-                              >
+                                onClick={onSeekApproval}>
                                 {txnButtonText(pendingTransactions, "approve_game", "Approve")}
                               </Button>
                             )}
                           </Tab>
                           <Tab eventKey="profile" title="Unstake">
+
                             {isAllowanceDataLoading ? (
                               <Skeleton />
                             ) : address ? (
@@ -801,32 +708,23 @@ function Play() {
                                 <span>{`Max Available: ${stakedTraps}`}</span>
                                 <div className="d-flex align-items-center gap">
                                   <div className="search-box d-flex align-items-center justify-content-between w-100">
-                                    <input
-                                      type="text"
-                                      className="w-100"
-                                      value={trapUnstakeAmount}
-                                      onChange={e => {
-                                        setTrapUnstakeAmount(e.target.value);
-                                      }}
-                                    />
+                                    <input type="text" className="w-100" value={trapUnstakeAmount}
+                                      onChange={(e) => { setTrapUnstakeAmount(e.target.value) }} />
+                          
                                   </div>
-                                  <Button
-                                    className="pink text-white"
+                                  <Button className="pink text-white"
                                     disabled={isPendingTxn(pendingTransactions, "game_unstake")}
                                     onClick={() => {
                                       onUnstake(2, trapUnstakeAmount);
-                                    }}
-                                  >
+                                    }}>
                                     {txnButtonText(pendingTransactions, "Leaving Maze", "Unstake Traps")}
                                   </Button>
                                 </div>
                               </div>
                             ) : (
-                              <Button
-                                className="pink text-white"
+                              <Button className="pink text-white"
                                 disabled={isPendingTxn(pendingTransactions, "approve_unstaking")}
-                                onClick={onSeekApproval}
-                              >
+                                onClick={onSeekApproval}>
                                 {txnButtonText(pendingTransactions, "approve_unstaking", "Approve")}
                               </Button>
                             )}

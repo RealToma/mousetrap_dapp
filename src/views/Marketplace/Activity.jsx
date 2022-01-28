@@ -85,6 +85,14 @@ function Activity() {
   const [trapFloor, setTrapFloor] = useState(null);
   const [passFloor, setPassFloor] = useState(null);
 
+  // pagination 
+  const [parPage, setParPage] = useState(10)
+  const [totalPage, setTotalPage] = useState(0)
+  const [currentPage, setCurrentPage] = useState(0)
+  const [newArr, setNewArr] = useState([])
+
+
+
   useEffect(() => {
     if (item) {
       let it = item.toLowerCase()
@@ -194,6 +202,7 @@ function Activity() {
       arr.push(mouseListingsDsc[key])
     })
     setMouseListingsFinalDsc(arr)
+    paginationHandler(null, 1, arr)
 
     arr = []
     Object.keys(catListings).forEach((key) => {
@@ -302,6 +311,20 @@ function Activity() {
   const buyButtonMdalClose = () => setBuyButtonMdal(false);
   const buyButtonMdalShow = () => setBuyButtonMdal(true);
 
+  // pagination function
+  const paginationHandler = (e, page, dataArray) => {
+    const pages = dataArray.length / parPage
+    setTotalPage(Math.ceil(pages))
+
+    const indexOfLastTodo = page * parPage;
+    const indexOfFirstTodo = indexOfLastTodo - parPage;
+    const currentTodos = dataArray.slice(indexOfFirstTodo, indexOfLastTodo);
+
+    setCurrentPage(page)
+    setNewArr(currentTodos)
+
+  }
+
   return (
     <>
       <div className="market-main px-3">
@@ -346,19 +369,19 @@ function Activity() {
 
         <div className="main mt-5">
           <div className="main-btn-box">
-            <Button className={`${btnActive === 1 ? "active" : ""}`} onClick={() => setBtnActive(1)}>
+            <Button className={`${btnActive === 1 ? "active" : ""}`} onClick={(e) => { setBtnActive(1); paginationHandler(e, 1, mouseListingsFinalAsc) }}>
               <img src={require('./mouse-market.png').default} alt="" width={60} />
               <h4 className="mb-0">Mouse Listings</h4>
             </Button>
-            <Button className={`${btnActive === 2 ? "active" : ""}`} onClick={() => setBtnActive(2)}>
+            <Button className={`${btnActive === 2 ? "active" : ""}`} onClick={(e) => { setBtnActive(2); paginationHandler(e, 1, catListingsFinalAsc) }}>
               <img src={require('./cat.png').default} alt="" width={50} />
               <h4 className="mb-0">Cat Listings</h4>
             </Button>
-            <Button className={`${btnActive === 3 ? "active" : ""}`} onClick={() => setBtnActive(3)}>
+            <Button className={`${btnActive === 3 ? "active" : ""}`} onClick={(e) => { setBtnActive(3); paginationHandler(e, 1, trapListingsFinalAsc) }}>
               <img src={require('./mouse-trap.png').default} alt="" width={50} />
               <h4 className="mb-0">MouseTrap Listings</h4>
             </Button>
-            <Button className={`${btnActive === 4 ? "active" : ""}`} onClick={() => setBtnActive(4)}>
+            <Button className={`${btnActive === 4 ? "active" : ""}`} onClick={(e) => { setBtnActive(4); paginationHandler(e, 1, passListingsFinalAsc) }}>
               <img src={require('./card.png').default} alt="" width={50} />
               <h4 className="mb-0">CHEEZ Pass Listings</h4>
             </Button>
@@ -369,22 +392,38 @@ function Activity() {
               <div className="pagination mt-3 px-3">
                 {sort === false ? (
                   <>
-                    <Button className="short" onClick={toggleSort}>Low to High <img src={require('./shorting.png').default} alt="" /></Button>
+                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, mouseListingsFinalAsc) }}>Low to High <img src={require('./shorting.png').default} alt="" /></Button>
                   </>
                 ) : (
                   <>
-                    <Button className="short" onClick={toggleSort}>High to Low <img src={require('./shorting.png').default} alt="" /></Button>
+                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, mouseListingsFinalDsc) }}>High to Low <img src={require('./shorting.png').default} alt="" /></Button>
                   </>
                 )}
 
+                  {/* pagination */}
                 <div className="pagination-btns ms-auto d-flex align-items-center">
-                  <Button><img src={require('./left-arrow.png').default} alt="" /></Button>
-                  <Button className="pages active">1</Button>
-                  <Button className="pages">2</Button>
-                  <Button className="pages">3</Button>
-                  <Button>...</Button>
-                  <Button className="pages">5</Button>
-                  <Button><img src={require('./right-arrow.png').default} alt="" /></Button>
+                  {
+                    totalPage > 3
+                    &&
+                    <Button onClick={e => paginationHandler(e, 1, sort ? mouseListingsFinalDsc : catListingsFinalAsc)}><img src={require('./left-arrow.png').default} alt="" /></Button>
+                  }
+                  {
+                    [...Array(totalPage)].map((data, i) => {
+                      if (i <= (currentPage + 2) && i > (currentPage - 3)) {
+                        return <>
+                          <Button className={`${i === currentPage - 1 && "active"} pages`} onClick={e => paginationHandler(e, i + 1, sort ? mouseListingsFinalDsc : mouseListingsFinalAsc)}>{i + 1}</Button>
+                        </>
+                      }
+                    })
+                  }
+                  {totalPage > 3
+                    &&
+                    <>
+                      <Button>...</Button>
+                      <Button className="pages">{totalPage}</Button>
+                      <Button onClick={e => paginationHandler(e, totalPage, sort ? mouseListingsFinalDsc : mouseListingsFinalAsc)}><img src={require('./right-arrow.png').default} alt="" /></Button>
+                    </>
+                  }
                 </div>
               </div>
               <div className="px-3">
@@ -392,7 +431,7 @@ function Activity() {
                   <tbody>
                     {sort === false ? (
                       <>
-                        {mouseListingsFinalAsc.map((listing) => (
+                        {newArr.length > 0 && newArr.map((listing) => (
                           <tr>
                             <td className="no-wrap">Price {ethers.utils.formatUnits(`${listing.price}`, 9)} 🧀</td>
                             <td>
@@ -417,7 +456,7 @@ function Activity() {
                       </>
                     ) : (
                       <>
-                        {mouseListingsFinalDsc.map((listing) => (
+                        {newArr.length > 0 && newArr.map((listing) => (
                           <tr>
                             <td className="no-wrap">Price {ethers.utils.formatUnits(`${listing.price}`, 9)} 🧀</td>
                             <td>
@@ -452,22 +491,38 @@ function Activity() {
               <div className="pagination mt-3 px-3">
                 {sort === false ? (
                   <>
-                    <Button className="short" onClick={toggleSort}>Low to High <img src={require('./shorting.png').default} alt="" /></Button>
+                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, catListingsFinalAsc) }}>Low to High <img src={require('./shorting.png').default} alt="" /></Button>
                   </>
                 ) : (
                   <>
-                    <Button className="short" onClick={toggleSort}>High to Low <img src={require('./shorting.png').default} alt="" /></Button>
+                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, catListingsFinalDsc) }}>High to Low <img src={require('./shorting.png').default} alt="" /></Button>
                   </>
                 )}
-
+                {/* pagination */}
                 <div className="pagination-btns ms-auto d-flex align-items-center">
-                  <Button><img src={require('./left-arrow.png').default} alt="" /></Button>
-                  <Button className="pages active">1</Button>
-                  <Button className="pages">2</Button>
-                  <Button className="pages">3</Button>
-                  <Button>...</Button>
-                  <Button className="pages">5</Button>
-                  <Button><img src={require('./right-arrow.png').default} alt="" /></Button>
+                  {
+                    totalPage > 3
+                    &&
+                    <Button onClick={e => paginationHandler(e, 1, sort ? catListingsFinalDsc : catListingsFinalAsc)}><img src={require('./left-arrow.png').default} alt="" /></Button>
+                  }
+                  {
+                    [...Array(totalPage)].map((data, i) => {
+                      if (i <= (currentPage + 2) && i > (currentPage - 3)) {
+                        return <>
+                          <Button className={`${i === currentPage - 1 && "active"} pages`} onClick={e => paginationHandler(e, i + 1, sort ? catListingsFinalDsc : catListingsFinalAsc)}>{i + 1}</Button>
+                        </>
+                      }
+                    })
+                  }
+                  {totalPage > 3
+                    &&
+                    <>
+                      <Button>...</Button>
+                      <Button className="pages">{totalPage}</Button>
+                      <Button onClick={e => paginationHandler(e, totalPage, sort ? catListingsFinalDsc : catListingsFinalAsc)}><img src={require('./right-arrow.png').default} alt="" /></Button>
+                    </>
+                  }
+
                 </div>
               </div>
               <div className="px-3">
@@ -475,7 +530,7 @@ function Activity() {
                   <tbody>
                     {sort === false ? (
                       <>
-                        {catListingsFinalAsc.map((listing) => (
+                        {newArr.length > 0 && newArr.map((listing) => (
                           <tr>
                             <td className="no-wrap">Price {ethers.utils.formatUnits(`${listing.price}`, 9)} 🧀</td>
                             <td>
@@ -501,7 +556,7 @@ function Activity() {
                       </>
                     ) : (
                       <>
-                        {mouseListingsFinalDsc.map((listing) => (
+                        {newArr.length > 0 && newArr.map((listing) => (
                           <tr>
                             <td className="no-wrap">Price {ethers.utils.formatUnits(`${listing.price}`, 9)} 🧀</td>
                             <td>
@@ -517,7 +572,10 @@ function Activity() {
                               </div>
                             </td>
                             <td>
-                              <Button className="by no-wrap" onClick={() => { buyButtonMdalShow(), setCatPurchaseOrder(`${listing.offerId}`), toggleCatModal(), setAmount(`${listing.amount}`), setTotal(`${listing.price}`), setFrom(`${listing.admin}`), setAvailable(`${listing.amount}`) }}>Buy mouse</Button>
+                              <div className="d-flex justify-content-end">
+                                <Button className="by no-wrap" onClick={() => { buyButtonMdalShow(), setCatPurchaseOrder(`${listing.offerId}`), toggleCatModal(), setAmount(`${listing.amount}`), setTotal(`${listing.price}`), setFrom(`${listing.admin}`), setAvailable(`${listing.amount}`) }}>Buy mouse</Button>
+                              </div>
+
                             </td>
                           </tr>
                         ))}
@@ -534,22 +592,37 @@ function Activity() {
               <div className="pagination mt-3 px-3">
                 {sort === false ? (
                   <>
-                    <Button className="short" onClick={toggleSort}>Low to High <img src={require('./shorting.png').default} alt="" /></Button>
+                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, trapListingsFinalAsc) }}>Low to High <img src={require('./shorting.png').default} alt="" /></Button>
                   </>
                 ) : (
                   <>
-                    <Button className="short" onClick={toggleSort}>High to Low <img src={require('./shorting.png').default} alt="" /></Button>
+                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, trapListingsFinalDsc) }}>High to Low <img src={require('./shorting.png').default} alt="" /></Button>
                   </>
                 )}
-
+                {/* pagination */}
                 <div className="pagination-btns ms-auto d-flex align-items-center">
-                  <Button><img src={require('./left-arrow.png').default} alt="" /></Button>
-                  <Button className="pages active">1</Button>
-                  <Button className="pages">2</Button>
-                  <Button className="pages">3</Button>
-                  <Button>...</Button>
-                  <Button className="pages">5</Button>
-                  <Button><img src={require('./right-arrow.png').default} alt="" /></Button>
+                  {
+                    totalPage > 3
+                    &&
+                    <Button onClick={e => paginationHandler(e, 1, sort ? trapListingsFinalDsc : trapListingsFinalAsc)}><img src={require('./left-arrow.png').default} alt="" /></Button>
+                  }
+                  {
+                    [...Array(totalPage)].map((data, i) => {
+                      if (i <= (currentPage + 2) && i > (currentPage - 3)) {
+                        return <>
+                          <Button className={`${i === currentPage - 1 && "active"} pages`} onClick={e => paginationHandler(e, i + 1, sort ? trapListingsFinalDsc : trapListingsFinalAsc)}>{i + 1}</Button>
+                        </>
+                      }
+                    })
+                  }
+                  {totalPage > 3
+                    &&
+                    <>
+                      <Button>...</Button>
+                      <Button className="pages">{totalPage}</Button>
+                      <Button onClick={e => paginationHandler(e, totalPage, sort ? trapListingsFinalDsc : trapListingsFinalAsc)}><img src={require('./right-arrow.png').default} alt="" /></Button>
+                    </>
+                  }
                 </div>
               </div>
               <div className="px-3">
@@ -557,7 +630,7 @@ function Activity() {
                   <tbody>
                     {sort === false ? (
                       <>
-                        {trapListingsFinalAsc.map((listing) => (
+                        {newArr.length > 0 && newArr.map((listing) => (
                           <tr>
                             <td className="no-wrap">Price {ethers.utils.formatUnits(`${listing.price}`, 9)} 🧀</td>
                             <td>
@@ -583,7 +656,7 @@ function Activity() {
                       </>
                     ) : (
                       <>
-                        {mouseListingsFinalDsc.map((listing) => (
+                        {newArr.length > 0 && newArr.map((listing) => (
                           <tr>
                             <td className="no-wrap">Price {ethers.utils.formatUnits(`${listing.price}`, 9)} 🧀</td>
                             <td>
@@ -599,7 +672,9 @@ function Activity() {
                               </div>
                             </td>
                             <td>
-                              <Button className="by no-wrap" onClick={() => { buyButtonMdalShow(), setTrapPurchaseOrder(`${listing.offerId}`), toggleTrapModal(), setTotal(`${listing.price}`), setFrom(`${listing.admin}`), setAvailable(`${listing.amount}`) }}>Buy mouse</Button>
+                              <div className="d-flex justify-content-end">
+                                <Button className="by no-wrap" onClick={() => { buyButtonMdalShow(), setTrapPurchaseOrder(`${listing.offerId}`), toggleTrapModal(), setTotal(`${listing.price}`), setFrom(`${listing.admin}`), setAvailable(`${listing.amount}`) }}>Buy mouse</Button>
+                              </div>
                             </td>
                           </tr>
                         ))}
@@ -616,22 +691,37 @@ function Activity() {
               <div className="pagination mt-3 px-3">
                 {sort === false ? (
                   <>
-                    <Button className="short" onClick={toggleSort}>Low to High <img src={require('./shorting.png').default} alt="" /></Button>
+                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, passListingsFinalAsc) }}>Low to High <img src={require('./shorting.png').default} alt="" /></Button>
                   </>
                 ) : (
                   <>
-                    <Button className="short" onClick={toggleSort}>High to Low <img src={require('./shorting.png').default} alt="" /></Button>
+                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, passListingsFinalDsc) }}>High to Low <img src={require('./shorting.png').default} alt="" /></Button>
                   </>
                 )}
-
+                {/* pagination */}
                 <div className="pagination-btns ms-auto d-flex align-items-center">
-                  <Button><img src={require('./left-arrow.png').default} alt="" /></Button>
-                  <Button className="pages active">1</Button>
-                  <Button className="pages">2</Button>
-                  <Button className="pages">3</Button>
-                  <Button>...</Button>
-                  <Button className="pages">5</Button>
-                  <Button><img src={require('./right-arrow.png').default} alt="" /></Button>
+                  {
+                    totalPage > 3
+                    &&
+                    <Button onClick={e => paginationHandler(e, 1, sort ? passListingsFinalDsc : passListingsFinalAsc)}><img src={require('./left-arrow.png').default} alt="" /></Button>
+                  }
+                  {
+                    [...Array(totalPage)].map((data, i) => {
+                      if (i <= (currentPage + 2) && i > (currentPage - 3)) {
+                        return <>
+                          <Button className={`${i === currentPage - 1 && "active"} pages`} onClick={e => paginationHandler(e, i + 1, sort ? passListingsFinalDsc : passListingsFinalAsc)}>{i + 1}</Button>
+                        </>
+                      }
+                    })
+                  }
+                  {totalPage > 3
+                    &&
+                    <>
+                      <Button>...</Button>
+                      <Button className="pages">{totalPage}</Button>
+                      <Button onClick={e => paginationHandler(e, totalPage, sort ? passListingsFinalDsc : passListingsFinalAsc)}><img src={require('./right-arrow.png').default} alt="" /></Button>
+                    </>
+                  }
                 </div>
               </div>
               <div className="px-3">
@@ -639,7 +729,7 @@ function Activity() {
                   <tbody>
                     {sort === false ? (
                       <>
-                        {passListingsFinalAsc.map((listing) => (
+                        {newArr.length > 0 && newArr.map((listing) => (
                           <tr>
                             <td className="no-wrap">Price {ethers.utils.formatUnits(`${listing.price}`, 9)} 🧀</td>
                             <td>
@@ -665,7 +755,7 @@ function Activity() {
                       </>
                     ) : (
                       <>
-                        {mouseListingsFinalDsc.map((listing) => (
+                        {newArr.length > 0 && newArr.map((listing) => (
                           <tr>
                             <td className="no-wrap">Price {ethers.utils.formatUnits(`${listing.price}`, 9)} 🧀</td>
                             <td>
@@ -681,7 +771,9 @@ function Activity() {
                               </div>
                             </td>
                             <td>
-                              <Button className="by no-wrap" onClick={() => { buyButtonMdalShow(), setPassPurchaseOrder(`${listing.offerId}`), togglePassModal(), setAmount(`${listing.amount}`), setTotal(`${listing.price}`), setFrom(`${listing.admin}`), setAvailable(`${listing.amount}`) }}>Buy mouse</Button>
+                              <div className="d-flex justify-content-end">
+                                <Button className="by no-wrap" onClick={() => { buyButtonMdalShow(), setPassPurchaseOrder(`${listing.offerId}`), togglePassModal(), setAmount(`${listing.amount}`), setTotal(`${listing.price}`), setFrom(`${listing.admin}`), setAvailable(`${listing.amount}`) }}>Buy mouse</Button>
+                              </div>
                             </td>
                           </tr>
                         ))}

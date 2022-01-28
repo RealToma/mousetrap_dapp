@@ -28,14 +28,14 @@ import Activity from "./views/Marketplace/Activity";
 import NFTStaking from "./views/NFTStaking/NFTStaking";
 import Play from "./views/Game/Play";
 import Governance from "./views/Governance/Governance";
-import WidgetBot from "@widgetbot/react-embed";
-import MarketGate from "./views/MarketGate/MarketGate";
+import WidgetBot from '@widgetbot/react-embed'
+import MarketGate from './views/MarketGate/MarketGate';
 import CheezPass from "./views/CheezPass/CheezPass";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import { Button } from "@material-ui/core";
+import { Button } from "@material-ui/core"
 
 import { dark as darkTheme } from "./themes/dark.js";
 
@@ -201,51 +201,15 @@ function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      {location.pathname === "/" && (
-        <>
-          <img className="cartoon" src={require("./cartoon.png").default} alt="" />
-        </>
-      )}
-      {location.pathname === "/dashboard" && (
-        <>
-          <img className="cartoon" src={require("./cartoon.png").default} alt="" />
-        </>
-      )}
-      {location.pathname === "/play" && (
-        <>
-          <img className="cartoon2" src={require("./cartoon.png").default} alt="" />
-        </>
-      )}
-      {location.pathname === "/ageing" && (
-        <>
-          <img className="cartoon3" src={require("./cartoon.png").default} alt="" />
-        </>
-      )}
-      {location.pathname === "/nfts" && (
-        <>
-          <img className="cartoon4" src={require("./cartoon.png").default} alt="" />
-        </>
-      )}
-      {location.pathname === "/marketplace" && (
-        <>
-          <img className="cartoon5" src={require("./cartoon.png").default} alt="" />
-        </>
-      )}
-      {location.pathname === "/bridge" && (
-        <>
-          <img className="cartoon" src={require("./cartoon.png").default} alt="" />
-        </>
-      )}
-      {location.pathname === "/bonds" && (
-        <>
-          <img className="cartoon5" src={require("./cartoon.png").default} alt="" />
-        </>
-      )}
-      {location.pathname === "/governance" && (
-        <>
-          <img className="cartoon6" src={require("./cartoon.png").default} alt="" />
-        </>
-      )}
+      {location.pathname === '/' && <><img className="cartoon" src={require('./cartoon.png').default} alt="" /></>}
+      {location.pathname === '/dashboard' && <><img className="cartoon" src={require('./cartoon.png').default} alt="" /></>}
+      {location.pathname === '/play' && <><img className="cartoon2" src={require('./cartoon.png').default} alt="" /></>}
+      {location.pathname === '/ageing' && <><img className="cartoon3" src={require('./cartoon.png').default} alt="" /></>}
+      {location.pathname === '/nfts' && <><img className="cartoon4" src={require('./cartoon.png').default} alt="" /></>}
+      {location.pathname === '/marketplace' && <><img className="cartoon5" src={require('./cartoon.png').default} alt="" /></>}
+      {location.pathname === '/bridge' && <><img className="cartoon" src={require('./cartoon.png').default} alt="" /></>}
+      {location.pathname === '/bonds' && <><img className="cartoon5" src={require('./cartoon.png').default} alt="" /></>}
+      {location.pathname === '/governance' && <><img className="cartoon6" src={require('./cartoon.png').default} alt="" /></>}
 
       <CssBaseline />
       <div className={`app ${isSmallerScreen && "tablet"} ${isSmallScreen && "mobile"} ${theme}`}>
@@ -337,18 +301,22 @@ function App() {
           )}
         </div>
         <div className={classes.closeTrollbox}>
-          {isSmallerScreen || !trollboxOpen ? <></> : <Button onClick={toggleTrollbox}>__</Button>}
+          {isSmallerScreen || !trollboxOpen ? (
+            <></>
+          ) : (
+            <Button onClick={toggleTrollbox}>__</Button>
+          )}
         </div>
         <div className={classes.openTrollbox}>
           {isSmallerScreen || trollboxOpen ? (
             <></>
           ) : (
-            <Button color="primary" onClick={toggleTrollbox}>
-              <img className="chat" src={require("./chat.png").default} alt="" />
-            </Button>
+            <Button color="primary" onClick={toggleTrollbox}><img className="chat" src={require('./chat.png').default} alt="" /></Button>
           )}
         </div>
+
       </div>
+
     </ThemeProvider>
   );
 }
