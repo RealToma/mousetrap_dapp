@@ -12,8 +12,8 @@ import { useWeb3Context } from "../../hooks/web3Context";
 
 import CheezImg from "src/assets/tokens/cheez.png";
 import sCheezImg from "src/assets/tokens/cheezstakedc.png";
-import { Button } from 'react-bootstrap'
-import { AiFillShopping } from 'react-icons/ai'
+import { Button } from "react-bootstrap";
+import { AiFillShopping } from "react-icons/ai";
 
 const addTokenToWallet = (tokenSymbol, tokenAddress) => async () => {
   if (window.ethereum) {
@@ -74,16 +74,34 @@ function CheezMenu() {
       // onMouseLeave={e => handleClick(e)}
       id="cheez-menu-button-hover"
     >
-      <Button id="cheez-menu-button" className="bg-dark by-cheese" size="large" variant="contained" color="secondary" aria-describedby={id} onClick={e => handleClick(e)}>
-        <Typography><span className="cheez-menu">
-          By Cheez</span></Typography>
+      <Button
+        id="cheez-menu-button"
+        className="bg-dark by-cheese"
+        size="large"
+        variant="contained"
+        color="secondary"
+        aria-describedby={id}
+        onClick={e => handleClick(e)}
+      >
+        <Typography>
+          <span className="cheez-menu">Buy Cheez</span>
+        </Typography>
       </Button>
-      <Button id="cheez-menu-button" className="bg-dark3" size="large" variant="contained" color="secondary" aria-describedby={id} onClick={e => handleClick(e)}> 
-        <Typography><span className="cheez-menu">
-          < AiFillShopping /></span></Typography>
+      <Button
+        id="cheez-menu-button"
+        className="bg-dark3"
+        size="large"
+        variant="contained"
+        color="secondary"
+        aria-describedby={id}
+        onClick={e => handleClick(e)}
+      >
+        <Typography>
+          <span className="cheez-menu">
+            <AiFillShopping />
+          </span>
+        </Typography>
       </Button>
-
-
 
       <Popper id={id} open={open} anchorEl={anchorEl} placement="bottom-start" transition>
         {({ TransitionProps }) => {
@@ -95,12 +113,18 @@ function CheezMenu() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <Button className="buy" onClick={e => handleClick(e)}>Buy on Sushiswap ↗️</Button>
+                  <Button className="buy" onClick={e => handleClick(e)}>
+                    Buy on Sushiswap ↗️
+                  </Button>
                 </Link>
                 <p className="my-3">Add token to wallet</p>
                 <div>
-                  <Button className="yellow-box" onClick={addTokenToWallet("CHEEZ", OHM_ADDRESS)}>🧀CHEEZ</Button>
-                  <Button className="yellow-box" onClick={addTokenToWallet("CHEEZ", OHM_ADDRESS)}>🧀sCHEEZ</Button>
+                  <Button className="yellow-box" onClick={addTokenToWallet("CHEEZ", OHM_ADDRESS)}>
+                    🧀CHEEZ
+                  </Button>
+                  <Button className="yellow-box" onClick={addTokenToWallet("CHEEZ", OHM_ADDRESS)}>
+                    🧀sCHEEZ
+                  </Button>
                 </div>
               </div>
             </>
@@ -138,7 +162,6 @@ function CheezMenu() {
             //     </Box>
             //   </Paper>
             // </Fade>
-
           );
         }}
       </Popper>
