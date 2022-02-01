@@ -91,15 +91,19 @@
 
 .stake-wallet-btn{
     font-family: 'VT323';
-    background-image: url(green-btn-bg.png);
+    background-image: url(black-bg-play.png);
     background-size: 100% 100%;
-    color: #000 !important;
+    color: #fff !important;
     width: 100% !important;
-    max-width: 100%;
     align-self: center;
     justify-self: center;
-    padding: 20px 0 !important;
+    padding: 30px 30px !important;
     border: none !important;
+    border-radius: 0;
+}
+
+.mt-25{
+    margin-top:25px !important
 }
 
 .play-timer{
@@ -121,6 +125,26 @@
 .caution{
     text-align: center;
     color: #D41F56;
+}
+
+.play-table h1{
+    color: #000;
+    font-family: 'VT323';
+}
+
+.play-table  table thead tr th{
+    font-family: 'VT323';
+    font-size: 25px;
+    color: #FFAC01;
+    font-weight: normal;
+}
+
+.play-table  table tbody tr td{
+    color: #000 !important; 
+}
+
+.play-table  table tbody tr td span{
+    color: #000 !important;
 }
 
 .caution p{
@@ -172,10 +196,10 @@
 .stake-button{
     background-size: 100% 100%;
     background-image: url(mini-wight.png);
-    padding: 20px;
+    padding: 30px 30px !important;
     width: fit-content;
     border-radius: 0 !important;
-    margin-top: 15px !important;
+    margin-top: 23px !important;
     color: #000 !important;
     font-family: "VT323" !important;
     font-size: 20px !important;
@@ -191,6 +215,15 @@
     color: #fff !important;
 }
 
+@media (max-width: 1666px) {
+    .btn2{
+        flex-direction:column;
+    }
+    .stake-button{
+        margin-top: 10px !important;
+    }
+}
+
 @media (max-width: 425px) {
     .cheese-docs{
         flex-direction: column;
@@ -199,3 +232,183 @@
         margin-top: 20px;
     }
 }
+
+.bg-pink-header{
+    background-color: #D41F56;
+    box-shadow: 5px 5px 0px #A2143F;
+    color: #ffff !important;
+    padding: 10px 0;
+}
+
+.white-header{
+    background-color: #E5E5E5;
+    box-shadow: 5px 5px 0px #939393;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.white-header span{
+    color: #000;
+    font-size: 15px;
+}
+
+.white-header h1{
+    font-weight: 800;
+}
+
+.unstake-modal{
+    background-image: url(unstakmodal.png);
+    background-size: 100% 100%;
+    padding: 40px 60px !important;
+    color: #000;
+    font-family: "VT323";
+    text-align: center;
+}
+
+.unstake-modal .unsstake-result-header p{
+    font-size: 20px;
+}
+
+.unstake-modal .unsstake-result-header, .last-modal-header{
+    text-align: center;
+}
+
+.text-yellow{
+    color: rgb(196, 196, 25) !important;
+}
+
+.breen-mc{
+    background-color: #5ECA70;
+    box-shadow: 5px 5px 0px #008d18;
+}
+
+.breen-mpuse{
+    background-color: #7DD88D;
+    text-align: center;
+}
+
+.text-bg-green{
+    background-color: #7DD88D;
+}
+
+.sum-def{
+    font-size: 20px;
+}
+.text{
+    text-align: center;
+}
+
+.pink-mc{
+    background-color: #D41F56;
+    box-shadow: 5px 5px 0px #a70e3c;
+}
+
+.text-bg-pink{
+    background-color: #E2557F;
+}
+
+.pink-mpuse{
+    background-color: #E2557F;
+}
+
+
+.last-btn{
+    background-color: #E5E5E5 !important;
+    box-shadow: 5px 5px 0px #939393 !important;
+    border-radius: 0 !important;
+    color: #000 !important;
+}
+
+.last-modal{
+    background-image: url(last-modal-bg.png);
+    background-size: 100% 100%;
+    padding: 30px 50px;
+    color: #000;
+    font-family: "VT323";
+}
+
+.last-modal-header p{
+    font-size: 20px;
+}
+
+.text-gren-last{
+    color: #7DD88D !important;
+}
+
+.result-left span{
+    font-size: 20px;
+}
+
+.result-right{
+    text-align: center;
+}
+
+.result-box{
+    background-color: #ffff;
+    padding: 15px;
+    border: 2px solid rgb(218, 218, 15);
+}
+
+.pagination1 .short{
+    padding: 0;
+    font-family: 'VT323';
+    color: #FFAC01;
+    background-color: transparent !important;
+    border: none;
+    font-size: 20px;
+    box-shadow: none !important;
+  }
+  
+  .pagination-btns{
+    column-gap: 5px;
+  }
+  
+  .pagination-btns button{
+    padding: 0;
+    background-color: transparent !important;
+    border: none;
+    box-shadow: none !important;
+  }
+  
+  .pagination-btns .pages{
+    border: 2px solid gray;
+    color: gray;
+    padding: 5px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+  }
+  
+  .pagination-btns button{
+    color: gray;
+  }
+  
+  .pagination-btns .pages.active{
+    background-color: #FFAC01 !important;
+    color: #000 !important;
+    border: 2px solid #FFAC01;
+  }
+  
+  .pagination1{
+    padding-bottom: 18px;
+    border: none !important;
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (max-width: 425px) {
+      .result-box-sub{
+          display: flex;
+          flex-direction: column !important;
+      }
+      .last-modal{
+        padding: 50px 25px !important;
+      }
+      .unstake-modal{
+          padding: 40px !important;
+      }
+  }
+

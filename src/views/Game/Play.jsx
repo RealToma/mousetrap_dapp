@@ -17,7 +17,7 @@ import UnlockTimer from "../../components/GameTimer/UnlockTimer";
 
 import "./Play.css";
 import { textAlign } from "@material-ui/system";
-import { Col, Row, Modal, Tabs, Tab } from "react-bootstrap";
+import { Col, Row, Modal, Tabs, Tab, Table } from "react-bootstrap";
 
 
 function a11yProps(index) {
@@ -266,6 +266,24 @@ function Play() {
   const cardModalClose = () => setCardModal(false);
   const cardModalShow = () => setCardModal(true);
 
+  const [unstakingResult, setUnstakingResult] = useState(false);
+  const unstakingResultModalClose = () => setUnstakingResult(false);
+  const unstakingResultModalShow = () => setUnstakingResult(true);
+
+  const [unstakingResult2, setUnstakingResult2] = useState(false);
+  const unstakingResultModalClose2 = () => setUnstakingResult2(false);
+  const unstakingResultModalShow2 = () => setUnstakingResult2(true);
+
+  const [unstaking, setUnstaking] = useState(false);
+  const unstakingModalClose = () => setUnstaking(false);
+  const unstakingModalShow = () => setUnstaking(true);
+
+  const [unstaking2, setUnstaking2] = useState(false);
+  const unstakingModalClose2 = () => setUnstaking2(false);
+  const unstakingModalShow2 = () => setUnstaking2(true);
+
+  const [key, setKey] = useState('stake');
+
   return (
     <>
       <div className="play-main px-3">
@@ -338,16 +356,35 @@ function Play() {
                       <Skeleton style={{ margin: "0 auto", width: "25px" }} />
                     )}
                   </div>
-                  <Button
-                    className="stake-wallet-btn mt-5"
-                    onClick={getStartModalShow}
-                    variant="outlined"
-                    color="primary"
-                  >
-                    Enter the Maze
-                  </Button>
+                  <div className="btn2 d-flex align-items-center gap-2">
+                    <Button
+                      className="stake-wallet-btn mt-4"
+                      onClick={getStartModalShow}
+                      variant="outlined"
+                      color="primary"
+                    >
+                      Enter/Exit the Maze
+                    </Button>
+                    <Button
+                      className="stake-button w-100 mt-25"
+                      disabled={isPendingTxn(pendingTransactions, "game_claim")}
+                      onClick={() => {
+                        onClaim(0);
+                      }}
+                    >
+                      {txnButtonText(pendingTransactions, "game_claim", "Claim Rewards")}
+                    </Button>
+                  </div>
+                  <div className="text">
+                    {stakedMice != undefined && rewardsMice != undefined ? (
+                      <span className="d-flex justify-content-center mini-def mt-3">Your {stakedMice > 1 ? 'Mice have' : 'Mouse has'} found <p className="mb-0 text-green" style={{ color: '#21865B' }}>{parseFloat(ethers.utils.formatUnits(rewardsMice, 9).toString()).toFixed(3)}</p> CHEEZ in the Maze</span>
+                    ) : (
+                      <Skeleton style={{ margin: "0 auto", width: "25px" }} />
+                    )}
+                  </div>
                   <Modal show={getStartModal} onHide={getStartModalClose}>
                     <Modal.Body className="mini-modal-1">
+
                       <button style={{
                         position: "absolute",
                         right: "0",
@@ -357,36 +394,49 @@ function Play() {
                         background: "transparent",
                         border: "none"
                       }} onClick={getStartModalClose}></button>
-                      <div className="caution">
-                        <h2 className="mb-0">Caution</h2>
-                        <p>Entering the Maze is not without risk!</p>
-                        <div className="list">
-                          <span>Make sure you understand the following:</span>
-                          <div className="d-flex mt-3 align-items-start gap">
-                            <img src={require('./chees.png').default} alt="" />
-                            <p>You have a 5% chance of losing your Mouse to a MouseTrap when unstaking</p>
+                      {key === "unstake" ?
+                        <div className="white-header">
+                          <span>You will be able to unstake in  </span>
+                          <h1 className="mb-0">34:21:05</h1>
+                        </div>
+                        :
+                        <div className="caution">
+                          <div className="bg-pink-header mb-3">
+                            <h2 className="mb-0">Caution</h2 >
+                            <p className="mb-0">Entering the Maze is not without risk!</p>
                           </div>
-                          <div className="d-flex mt-1 align-items-start gap">
-                            <img src={require('./chees.png').default} alt="" />
-                            <p>You have a 45% chance of losing your CHEEZ rewards to Cats when unstaking</p>
-                          </div>
-                          <div className="d-flex mt-1 align-items-start gap">
-                            <img src={require('./chees.png').default} alt="" />
-                            <p>Claiming rewards has a 25% extortion fee paid to Cats</p>
-                          </div>
-                          <div className="d-flex mt-1 align-items-start gap">
-                            <img src={require('./chees.png').default} alt="" />
-                            <p>Unstaking requires 2 days worth of unclaimed rewards</p>
-                          </div>
-                          <div className="d-flex mt-1 align-items-start gap">
-                            <img src={require('./chees.png').default} alt="" />
-                            <p>Staking additional Mice will claim rewards and reset your 2-day staking lockup</p>
+                          <div className="list">
+                            <span>Make sure you understand the following:</span>
+                            <div className="d-flex mt-3 align-items-start gap">
+                              <img src={require('./chees.png').default} alt="" />
+                              <p>You have a 5% chance of losing your Mouse to a MouseTrap when unstaking</p>
+                            </div>
+                            <div className="d-flex mt-1 align-items-start gap">
+                              <img src={require('./chees.png').default} alt="" />
+                              <p>You have a 45% chance of losing your CHEEZ rewards to Cats when unstaking</p>
+                            </div>
+                            <div className="d-flex mt-1 align-items-start gap">
+                              <img src={require('./chees.png').default} alt="" />
+                              <p>Claiming rewards has a 25% extortion fee paid to Cats</p>
+                            </div>
+                            <div className="d-flex mt-1 align-items-start gap">
+                              <img src={require('./chees.png').default} alt="" />
+                              <p>Unstaking requires 2 days worth of unclaimed rewards</p>
+                            </div>
+                            <div className="d-flex mt-1 align-items-start gap">
+                              <img src={require('./chees.png').default} alt="" />
+                              <p>Staking additional Mice will claim rewards and reset your 2-day staking lockup</p>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      }
+
+
                       <div className="mini-tab mt-4">
-                        <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
-                          <Tab eventKey="home" title="Stake">
+                        <Tabs id="controlled-tab-example"
+                          activeKey={key}
+                          onSelect={(k) => setKey(k)} className="mb-3">
+                          <Tab eventKey="stake" title="Stake">
                             {isAllowanceDataLoading ? (
                               <Skeleton />
                             ) : address && isGameApproved ? (
@@ -416,7 +466,7 @@ function Play() {
                             )}
                           </Tab>
 
-                          <Tab eventKey="profile" title="Unstake">
+                          <Tab eventKey="unstake" title="Unstake">
                             {isAllowanceDataLoading ? (
                               <Skeleton />
                             ) : address ? (
@@ -432,6 +482,9 @@ function Play() {
                                     disabled={isPendingTxn(pendingTransactions, "unstaking")}
                                     onClick={() => {
                                       onUnstake(0, mouseUnstakeAmount);
+                                      getStartModalClose();
+                                      unstakingModalShow();
+
                                     }} >
                                     {txnButtonText(pendingTransactions, "Leaving Maze", "Unstake Mice")}
                                   </Button>
@@ -446,21 +499,189 @@ function Play() {
                             )}
                           </Tab>
                         </Tabs>
-                        {stakedMice != undefined && rewardsMice != undefined ? (
-                          <span className="d-flex mini-def mt-3">Your {stakedMice > 1 ? 'Mice have' : 'Mouse has'} found <p className="mb-0 text-green">{parseFloat(ethers.utils.formatUnits(rewardsMice, 9).toString()).toFixed(3)}</p> CHEEZ in the Maze</span>
-                        ) : (
-                          <Skeleton style={{ margin: "0 auto", width: "25px" }} />
-                        )}
-                        <Button
-                          className="stake-button"
-                          disabled={isPendingTxn(pendingTransactions, "game_claim")}
-                          onClick={() => {
-                            onClaim(0);
-                          }}
-                        >
-                          {txnButtonText(pendingTransactions, "game_claim", "Claim Rewards")}
-                        </Button>
                       </div>
+                    </Modal.Body>
+                  </Modal>
+                  <Modal show={unstaking} onHide={unstakingModalClose}>
+                    <Modal.Body className="unstake-modal">
+                      <div className="unsstake-result-header px-4">naz
+                        <h2>Unstaking Result</h2>
+                        <p>You attempted to unstake <span className="text-yellow">46 Mice</span> and <span className="text-yellow">25 CHEEZ</span> from the Maze </p>
+                      </div>
+                      <Row className="breen-mc">
+                        <Col lg={6} md={6} sm={12} className="mt-3">
+                          <div className="breen-mpuse">
+                            <img src={require('./mouse.png').default} alt="" width={100} />
+                            <h4>x41</h4>
+                          </div>
+                        </Col>
+                        <Col lg={6} md={6} sm={12} className="mt-3">
+                          <div className="breen-mpuse">
+                            <img src={require('./green-cheese.png').default} className="mt-4" alt="" width={70} />
+                            <h4 className="mt-2">x0</h4>
+                          </div>
+                        </Col>
+                      </Row>
+                      <p className="sum-def mt-3"><span className="text-bg-green">41 Mice</span> and <span className="text-bg-green" className="text-bg-green">0 CHEEZ</span> made it out of the Maze</p>
+                      <Row className="pink-mc pb-2">
+                        <Col lg={6} md={6} sm={12} className="mt-3">
+                          <div className="pink-mpuse d-flex align-items-center justify-content-center gap-2">
+                            <img src={require('./mouse.png').default} alt="" width={45} />
+                            <h4 className="mb-0">x41</h4>
+                          </div>
+                        </Col>
+                        <Col lg={6} md={6} sm={12} className="mt-3">
+                          <div className="pink-mpuse d-flex align-items-center justify-content-center gap-2">
+                            <img src={require('./green-cheese.png').default} alt="" width={30} />
+                            <h4 className="mt-2">x0</h4>
+                          </div>
+                        </Col>
+                      </Row>
+                      <p className="sum-def mt-3"><span className="text-bg-pink">5 Mice</span> were caught in Traps and <span className="text-bg-pink">25 CHEEZ</span> was stolen by Cats</p>
+                      <Button className="last-btn w-100" onClick={() => {
+                        unstakingModalClose();
+                        unstakingResultModalShow2()
+                      }}>Got it!</Button>
+                    </Modal.Body>
+                  </Modal>
+                  <Modal show={unstakingResult2} onHide={unstakingResultModalClose2}>
+                    <Modal.Body className="last-modal">
+                      <div className="last-modal-header px-2">
+                        <h2>Unstaking Result</h2>
+                        <p>You attempted to unstake 46 Mice & 25.34 CHEEZ. <span className="text-gren-last">40 Mice</span> & <span className="text-gren-last">15.32 CHEEZ</span> made it out safety.</p>
+                      </div>
+                      <div className="result-box mt-3">
+                        <div className="result-box-sub d-flex align-items-center justify-content-between">
+                          <div className="result-left ">
+                            <div className="result-left-sub d-flex align-items-center gap-2">
+                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>Mouse 1 -----------------</span>
+                                <img src={require('./check-green.png').default} alt="" />
+                              </div>
+                            </div>
+                            <div className="d-flex align-items-center gap-2">
+                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>0.65 CHEEZ --------------</span>
+                                <img src={require('./check-green.png').default} alt="" />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="result-right">
+                            <img src={require('./flag.png').default} alt="" />
+                            <h5>Made it!</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="result-box mt-3">
+                        <div className="result-box-sub d-flex align-items-center justify-content-between">
+                          <div className="result-left ">
+                            <div className="result-left-sub d-flex align-items-center gap-2">
+                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>Mouse 1 ----------------</span>
+                                <img src={require('./check-green.png').default} alt="" />
+                              </div>
+                            </div>
+                            <div className="d-flex align-items-center gap-2">
+                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>0.65 CHEEZ -------------</span>
+                                <img src={require('./redclose.png').default} alt="" />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="result-right">
+                            <img src={require('./cat.png').default} alt="" width={45} />
+                            <h6>Robbed by Cats!</h6>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="result-box mt-3">
+                        <div className="result-box-sub d-flex align-items-center justify-content-between">
+                          <div className="result-left ">
+                            <div className="result-left-sub d-flex align-items-center gap-2">
+                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>Mouse 1 -----------------</span>
+                                <img src={require('./check-green.png').default} alt="" />
+                              </div>
+                            </div>
+                            <div className="d-flex align-items-center gap-2">
+                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>0.65 CHEEZ --------------</span>
+                                <img src={require('./check-green.png').default} alt="" />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="result-right">
+                            <img src={require('./flag.png').default} alt="" />
+                            <h5>Made it!</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="result-box mt-3">
+                        <div className="result-box-sub d-flex align-items-center justify-content-between">
+                          <div className="result-left ">
+                            <div className="result-left-sub d-flex align-items-center gap-2">
+                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>Mouse 1 -----------------</span>
+                                <img src={require('./check-green.png').default} alt="" />
+                              </div>
+                            </div>
+                            <div className="d-flex align-items-center gap-2">
+                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>0.65 CHEEZ --------------</span>
+                                <img src={require('./check-green.png').default} alt="" />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="result-right">
+                            <img src={require('./flag.png').default} alt="" />
+                            <h5>Made it!</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="result-box mt-3">
+                        <div className="result-box-sub d-flex align-items-center justify-content-between">
+                          <div className="result-left ">
+                            <div className="result-left-sub d-flex align-items-center gap-2">
+                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>Mouse 1 -------------</span>
+                                <img src={require('./redclose.png').default} alt="" />
+                              </div>
+                            </div>
+                            <div className="d-flex align-items-center gap-2">
+                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>0.65 CHEEZ ----------</span>
+                                <img src={require('./redclose.png').default} alt="" />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="result-right">
+                            <img src={require('./mouse-trap.png').default} alt="" width={45} />
+                            <h5>Trapped!<br />(Owner: 0x1234)</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="pagination1 mt-3 px-3">
+                        <div className="pagination-btns d-flex align-items-center">
+                          <Button><img src={require('./left-arrow.png').default} alt="" /></Button>
+                          <Button className="pages active">1</Button>
+                          <Button className="pages">2</Button>
+                          <Button className="pages">3</Button>
+                          <Button>...</Button>
+                          <Button className="pages">5</Button>
+                          <Button><img src={require('./right-arrow.png').default} alt="" /></Button>
+                        </div>
+                      </div>
+                      <Button className="last-btn w-100">Got it!</Button>
                     </Modal.Body>
                   </Modal>
                 </>
@@ -535,14 +756,31 @@ function Play() {
                       <Skeleton style={{ margin: "0 auto", width: "25px" }} />
                     )}
                   </div>
-                  <Button
-                    className="stake-wallet-btn mt-5"
-                    onClick={catModalShow}
-                    variant="outlined"
-                    color="primary"
-                  >
-                    Enter the Maze
-                  </Button>
+                  <div className="btn2 d-flex align-items-center gap-2">
+                    <Button
+                      className="stake-wallet-btn mt-4"
+                      onClick={catModalShow}
+                      variant="outlined"
+                      color="primary"
+                    >
+                      Enter/Exit the Maze
+                    </Button>
+                    <Button
+                      className="stake-button w-100 mt-25"
+                      disabled={isPendingTxn(pendingTransactions, "game_claim")}
+                      onClick={() => {
+                        onClaim(1);
+
+                      }}
+                    >
+                      {txnButtonText(pendingTransactions, "game_claim", "Claim Rewards")}
+                    </Button>
+                  </div>
+                  <div className="text">
+                    {catBalance != null || undefined ? (
+                      <span className="d-flex mini-def mt-3">Your {catBalance > 1 ? 'Cats have' : 'Cat has'} found <p className="mb-0 text-green" style={{ color: '#21865B' }}>{parseFloat(ethers.utils.formatUnits(rewardsCats, 9).toString()).toFixed(3)}</p> CHEEZ in the Maze</span>
+                    ) : (<></>)}
+                  </div>
                   <Modal show={catModal} onHide={catModalClose}>
                     <Modal.Body className="mini-modal-1">
                       <button style={{
@@ -557,13 +795,12 @@ function Play() {
                       <div className="mini-tab mt-4">
                         <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
                           <Tab eventKey="home" title="Stake">
-
                             {isAllowanceDataLoading ? (
                               <Skeleton />
                             ) : address && isGameApproved ? (
                               <div className="search-bar mt-3">
                                 <span>{`Max Available: ${catBalance}`}</span>
-                                <div className="d-flex align-items-center gap">
+                                <div className="d-flex align-items-center gap" on>
                                   <div className="search-box d-flex align-items-center justify-content-between w-100">
                                     <input type="text" className="w-100" value={catStakeAmount}
                                       onChange={(e) => { setCatStakeAmount(e.target.value) }} />
@@ -572,6 +809,7 @@ function Play() {
                                     disabled={isPendingTxn(pendingTransactions, "game_stake")}
                                     onClick={() => {
                                       onStake(1, catStakeAmount);
+                                      setIsTimer(false)
                                     }}>
                                     {txnButtonText(pendingTransactions, "Entering Maze", "Stake Cats")}
                                   </Button>
@@ -601,6 +839,9 @@ function Play() {
                                     disabled={isPendingTxn(pendingTransactions, "game_unstake")}
                                     onClick={() => {
                                       onUnstake(1, catUnstakeAmount);
+                                      catModalClose();
+                                      unstakingResultModalShow();
+                                      setIsTimer(true)
                                     }}>
                                     {txnButtonText(pendingTransactions, "Leaving Maze", "Unstake Cats")}
                                   </Button>
@@ -610,25 +851,12 @@ function Play() {
                               <Button
                                 className="pink text-white"
                                 disabled={isPendingTxn(pendingTransactions, "approve_unstaking")}
-                                onClick={onSeekApproval}>
+                                onClick={() => { onSeekApproval; }}>
                                 {txnButtonText(pendingTransactions, "approve_unstaking", "Approve")}
                               </Button>
                             )}
                           </Tab>
                         </Tabs>
-                        {catBalance != null || undefined ? (
-                          <span className="d-flex mini-def mt-3">Your {catBalance > 1 ? 'Cats have' : 'Cat has'} found <p className="mb-0 text-green">{parseFloat(ethers.utils.formatUnits(rewardsCats, 9).toString()).toFixed(3)}</p> CHEEZ in the Maze</span>
-                        ) : (<></>)}
-
-                        <Button
-                          className="stake-button"
-                          disabled={isPendingTxn(pendingTransactions, "game_claim")}
-                          onClick={() => {
-                            onClaim(1);
-                          }}
-                        >
-                          {txnButtonText(pendingTransactions, "game_claim", "Claim Rewards")}
-                        </Button>
                       </div>
                     </Modal.Body>
                   </Modal>
@@ -675,15 +903,19 @@ function Play() {
                     )}
                   </div>
                   <Button
-                    className="stake-wallet-btn mt-5"
+                    className="stake-wallet-btn  mt-5"
                     variant="outlined"
                     color="primary"
                     onClick={cardModalShow}
                   >
                     Enter the Maze
                   </Button>
-                  <Modal show={cardModal} onHide={cardModalClose}>
+                  {/* <Modal show={cardModal} onHide={cardModalClose}>
                     <Modal.Body className="mini-modal-1">
+                      <div className="white-header">
+                        <span>You will be able to unstake in  </span>
+                        <h1 className="mb-0">34:21:05</h1>
+                      </div>
                       <button style={{
                         position: "absolute",
                         right: "0",
@@ -713,6 +945,7 @@ function Play() {
                                     disabled={isPendingTxn(pendingTransactions, "game_stake")}
                                     onClick={() => {
                                       onStake(2, trapStakeAmount);
+
                                     }}>
                                     {txnButtonText(pendingTransactions, "Entering Maze", "Stake Traps")}
                                   </Button>
@@ -743,6 +976,8 @@ function Play() {
                                     disabled={isPendingTxn(pendingTransactions, "game_unstake")}
                                     onClick={() => {
                                       onUnstake(2, trapUnstakeAmount);
+                                      cardModalClose();
+                                      unstakingModalShow();
                                     }}>
                                     {txnButtonText(pendingTransactions, "Leaving Maze", "Unstake Traps")}
                                   </Button>
@@ -760,11 +995,319 @@ function Play() {
                       </div>
                     </Modal.Body>
                   </Modal>
+                  <Modal show={unstaking} onHide={unstakingModalClose}>
+                    <Modal.Body className="unstake-modal">
+                      <div className="unsstake-result-header px-4">
+                        <h2>Unstaking Result</h2>
+                        <p>You attempted to unstake <span className="text-yellow">46 Mice</span> and <span className="text-yellow">25 CHEEZ</span> from the Maze </p>
+                      </div>
+                      <Row className="breen-mc">
+                        <Col lg={6} md={6} sm={12} className="mt-3">
+                          <div className="breen-mpuse">
+                            <img src={require('./mouse.png').default} alt="" width={100} />
+                            <h4>x41</h4>
+                          </div>
+                        </Col>
+                        <Col lg={6} md={6} sm={12} className="mt-3">
+                          <div className="breen-mpuse">
+                            <img src={require('./green-cheese.png').default} className="mt-4" alt="" width={70} />
+                            <h4 className="mt-2">x0</h4>
+                          </div>
+                        </Col>
+                      </Row>
+                      <p className="sum-def mt-3"><span className="text-bg-green">41 Mice</span> and <span className="text-bg-green" className="text-bg-green">0 CHEEZ</span> made it out of the Maze</p>
+                      <Row className="pink-mc pb-2">
+                        <Col lg={6} md={6} sm={12} className="mt-3">
+                          <div className="pink-mpuse d-flex align-items-center justify-content-center gap-2">
+                            <img src={require('./mouse.png').default} alt="" width={45} />
+                            <h4 className="mb-0">x41</h4>
+                          </div>
+                        </Col>
+                        <Col lg={6} md={6} sm={12} className="mt-3">
+                          <div className="pink-mpuse d-flex align-items-center justify-content-center gap-2">
+                            <img src={require('./green-cheese.png').default} alt="" width={30} />
+                            <h4 className="mt-2">x0</h4>
+                          </div>
+                        </Col>
+                      </Row>
+                      <p className="sum-def mt-3"><span className="text-bg-pink">5 Mice</span> were caught in Traps and <span className="text-bg-pink">25 CHEEZ</span> was stolen by Cats</p>
+                      <Button className="last-btn w-100" onClick={() => {
+                        unstakingModalClose();
+                        unstakingModalShow2()
+                      }}>Got it!</Button>
+                    </Modal.Body>
+                  </Modal>
+                  <Modal show={unstaking2} onHide={unstakingModalClose2}>
+                    <Modal.Body className="last-modal">
+                      <div className="last-modal-header px-2">
+                        <h2>Unstaking Result</h2>
+                        <p>You attempted to unstake 46 Mice & 25.34 CHEEZ. <span className="text-gren-last">40 Mice</span> & <span className="text-gren-last">15.32 CHEEZ</span> made it out safety.</p>
+                      </div>
+                      <div className="result-box mt-3">
+                        <div className="result-box-sub d-flex align-items-center justify-content-between">
+                          <div className="result-left ">
+                            <div className="result-left-sub d-flex align-items-center gap-2">
+                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>Mouse 1 -----------------</span>
+                                <img src={require('./check-green.png').default} alt="" />
+                              </div>
+                            </div>
+                            <div className="d-flex align-items-center gap-2">
+                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>0.65 CHEEZ --------------</span>
+                                <img src={require('./check-green.png').default} alt="" />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="result-right">
+                            <img src={require('./flag.png').default} alt="" />
+                            <h5>Made it!</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="result-box mt-3">
+                        <div className="result-box-sub d-flex align-items-center justify-content-between">
+                          <div className="result-left ">
+                            <div className="result-left-sub d-flex align-items-center gap-2">
+                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>Mouse 1 ----------------</span>
+                                <img src={require('./check-green.png').default} alt="" />
+                              </div>
+                            </div>
+                            <div className="d-flex align-items-center gap-2">
+                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>0.65 CHEEZ -------------</span>
+                                <img src={require('./redclose.png').default} alt="" />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="result-right">
+                            <img src={require('./cat.png').default} alt="" width={45} />
+                            <h6>Robbed by Cats!</h6>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="result-box mt-3">
+                        <div className="result-box-sub d-flex align-items-center justify-content-between">
+                          <div className="result-left ">
+                            <div className="result-left-sub d-flex align-items-center gap-2">
+                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>Mouse 1 -----------------</span>
+                                <img src={require('./check-green.png').default} alt="" />
+                              </div>
+                            </div>
+                            <div className="d-flex align-items-center gap-2">
+                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>0.65 CHEEZ --------------</span>
+                                <img src={require('./check-green.png').default} alt="" />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="result-right">
+                            <img src={require('./flag.png').default} alt="" />
+                            <h5>Made it!</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="result-box mt-3">
+                        <div className="result-box-sub d-flex align-items-center justify-content-between">
+                          <div className="result-left ">
+                            <div className="result-left-sub d-flex align-items-center gap-2">
+                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>Mouse 1 -----------------</span>
+                                <img src={require('./check-green.png').default} alt="" />
+                              </div>
+                            </div>
+                            <div className="d-flex align-items-center gap-2">
+                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>0.65 CHEEZ --------------</span>
+                                <img src={require('./check-green.png').default} alt="" />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="result-right">
+                            <img src={require('./flag.png').default} alt="" />
+                            <h5>Made it!</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="result-box mt-3">
+                        <div className="result-box-sub d-flex align-items-center justify-content-between">
+                          <div className="result-left ">
+                            <div className="result-left-sub d-flex align-items-center gap-2">
+                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>Mouse 1 -------------</span>
+                                <img src={require('./redclose.png').default} alt="" />
+                              </div>
+                            </div>
+                            <div className="d-flex align-items-center gap-2">
+                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <div className="d-flex align-items-center">
+                                <span>0.65 CHEEZ ----------</span>
+                                <img src={require('./redclose.png').default} alt="" />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="result-right">
+                            <img src={require('./mouse-trap.png').default} alt="" width={45} />
+                            <h5>Trapped!<br />(Owner: 0x1234)</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="pagination1 mt-3 px-3">
+                        <div className="pagination-btns d-flex align-items-center">
+                          <Button><img src={require('./left-arrow.png').default} alt="" /></Button>
+                          <Button className="pages active">1</Button>
+                          <Button className="pages">2</Button>
+                          <Button className="pages">3</Button>
+                          <Button>...</Button>
+                          <Button className="pages">5</Button>
+                          <Button><img src={require('./right-arrow.png').default} alt="" /></Button>
+                        </div>
+                      </div>
+                      <Button className="last-btn w-100">Got it!</Button>
+                    </Modal.Body>
+                  </Modal> */}
                 </>
               )}
             </div>
           </Col>
         </Row>
+      </div>
+      <div className="play-table mt-5">
+        <h1>Kill feed</h1>
+        <div className="play-table">
+          <Table responsive>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Trap owner</th>
+                <th>Mouse owner</th>
+                <th>CHEEZ Stolen</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><img src={require('./mouse.png').default} alt="" width={70} /></td>
+                <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
+                <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
+                <td>
+                  <div>
+                    <span>0.345</span>
+                    <img src={require('./cheese-mini.png').default} alt="" />
+                  </div>
+                </td>
+                <td>1 day ago</td>
+              </tr>
+              <tr>
+                <td><img src={require('./mouse.png').default} alt="" width={70} /></td>
+                <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
+                <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
+                <td>
+                  <div>
+                    <span>0.345</span>
+                    <img src={require('./cheese-mini.png').default} alt="" />
+                  </div>
+                </td>
+                <td>1 day ago</td>
+              </tr>
+              <tr>
+                <td><img src={require('./mouse.png').default} alt="" width={70} /></td>
+                <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
+                <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
+                <td>
+                  <div>
+                    <span>0.345</span>
+                    <img src={require('./cheese-mini.png').default} alt="" />
+                  </div>
+                </td>
+                <td>1 day ago</td>
+              </tr>
+              <tr>
+                <td><img src={require('./mouse.png').default} alt="" width={70} /></td>
+                <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
+                <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
+                <td>
+                  <div>
+                    <span>0.345</span>
+                    <img src={require('./cheese-mini.png').default} alt="" />
+                  </div>
+                </td>
+                <td>1 day ago</td>
+              </tr>
+              <tr>
+                <td><img src={require('./mouse.png').default} alt="" width={70} /></td>
+                <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
+                <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
+                <td>
+                  <div>
+                    <span>0.345</span>
+                    <img src={require('./cheese-mini.png').default} alt="" />
+                  </div>
+                </td>
+                <td>1 day ago</td>
+              </tr>
+              <tr>
+                <td><img src={require('./mouse.png').default} alt="" width={70} /></td>
+                <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
+                <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
+                <td>
+                  <div>
+                    <span>0.345</span>
+                    <img src={require('./cheese-mini.png').default} alt="" />
+                  </div>
+                </td>
+                <td>1 day ago</td>
+              </tr>
+              <tr>
+                <td><img src={require('./mouse.png').default} alt="" width={70} /></td>
+                <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
+                <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
+                <td>
+                  <div>
+                    <span>0.345</span>
+                    <img src={require('./cheese-mini.png').default} alt="" />
+                  </div>
+                </td>
+                <td>1 day ago</td>
+              </tr>
+              <tr>
+                <td><img src={require('./mouse.png').default} alt="" width={70} /></td>
+                <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
+                <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
+                <td>
+                  <div>
+                    <span>0.345</span>
+                    <img src={require('./cheese-mini.png').default} alt="" />
+                  </div>
+                </td>
+                <td>1 day ago</td>
+              </tr>
+            </tbody>
+          </Table>
+          <div className='pagination  b-0 px-2'>
+            <span>Showing 1 to 10 out of 894 stakers</span>
+            <div className="pagination-btns ms-auto d-flex align-items-center">
+              <Button><img src={require('./left-arrow.png').default} alt="" /></Button>
+              <Button className="pages active">1</Button>
+              <Button className="pages">2</Button>
+              <Button className="pages">3</Button>
+              <Button>...</Button>
+              <Button className="pages">5</Button>
+              <Button><img src={require('./right-arrow.png').default} alt="" /></Button>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
