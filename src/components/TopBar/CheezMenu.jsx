@@ -76,7 +76,7 @@ function CheezMenu() {
     >
       <Button id="cheez-menu-button" className="bg-dark by-cheese" size="large" variant="contained" color="secondary" aria-describedby={id} onClick={e => handleClick(e)}>
         <Typography><span className="cheez-menu">
-          By Cheez</span></Typography>
+          Buy CHEEZ</span></Typography>
       </Button>
       <Button id="cheez-menu-button" className="bg-dark3" size="large" variant="contained" color="secondary" aria-describedby={id} onClick={e => handleClick(e)}> 
         <Typography><span className="cheez-menu">

@@ -43,11 +43,23 @@
 }
 
 .yellow-play {
-    background-image: url(yellow-play.png);
+    background-image: url(yellow-play-bg.svg);
     background-size: 100% 100%;
-    padding: 20px !important;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    padding-top: 10px;
 }
+
+.yellow-play .img-container {
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 
 .yellow-play p {
     font-family: 'VT323';
@@ -61,7 +73,17 @@
     padding: 25px 20px !important;
     font-size: 25px;
     font-family: 'VT323';
-    margin-bottom: 30px !important;
+    margin-bottom: 0px !important;
+    margin-top: 0px!important;
+}
+
+
+.play-game-connect{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 .data-sub span{
@@ -127,9 +149,22 @@
     color: #D41F56;
 }
 
-.play-table h1{
+.play-table-container{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 40px;
+}
+
+.play-table-container h1{
     color: #000;
     font-family: 'VT323';
+    font-size: 44px;
+    font-weight: normal;
+}
+
+.play-table{
+    background-color: #FDFFF4;
+    box-shadow: 6px 7px 0 #8080807a;
 }
 
 .play-table  table thead tr th{
@@ -137,6 +172,12 @@
     font-size: 25px;
     color: #FFAC01;
     font-weight: normal;
+    line-height: 60px;
+    height: 60px;
+}
+
+.play-table  table thead tr {
+    border-color: #FFAC01;
 }
 
 .play-table  table tbody tr td{
@@ -145,6 +186,11 @@
 
 .play-table  table tbody tr td span{
     color: #000 !important;
+}
+
+.play-table  table tbody tr {
+    border-color: #FFAC01;
+    border-style: solid;
 }
 
 .caution p{
@@ -397,6 +443,24 @@
     border: none !important;
     display: flex;
     justify-content: center;
+  }
+
+
+  .dashed-border{
+    
+    border-bottom: 1px dashed #000000;
+  }
+
+  .dashed-border .data-text{
+    font-size: 20px;
+    line-height: 20px;
+    color: #292828;
+    border-bottom: 1px solid #ffd441;
+    margin-bottom: -1px;
+  }
+
+  .dashed-border .data-empty{
+    border-bottom: 1px dashed #000000;
   }
 
   @media (max-width: 425px) {

@@ -206,31 +206,31 @@ function Marketplace() {
         </Paper>
         <Grid container spacing={4} justifyContent="center">
           <Grid item md={6} lg={4}>
-          <Paper style={{display: "flex", flexDirection: "row", justifyContent: "space-between", background: "transparent", border: "1px solid #3ce8a6"}}>
-          <Typography variant="h5" color="textPrimary" style={{textAlign: "center", paddingTop: "2%", paddingBottom: "2%", marginTop: "4%", marginBottom: "2%", marginLeft: "5%"}}>Floor:</Typography>
-            <Typography variant="h3" color="textPrimary" style={{textAlign: "center", paddingTop: "1%", paddingBottom: "2%", marginTop: "5%", marginBottom: "2%", marginLeft: "2%"}}>{mouseFloor != null || undefined ? `${ethers.utils.formatUnits(`${mouseFloor.price}`, 9)}` : ''} 🧀</Typography>
-            <div style={{display: "flex", justifyContent: "center"}}>
-              <img src={Mouse} alt="mouse trap mouse pixelated" style={{height: "60px", height: "60px", marginRight: "5%"}} />
-            </div>
-          </Paper>
+            <Paper style={{display: "flex", flexDirection: "row", justifyContent: "space-between", background: "transparent", border: "1px solid #3ce8a6"}}>
+            <Typography variant="h5" color="textPrimary" style={{textAlign: "center", paddingTop: "2%", paddingBottom: "2%", marginTop: "4%", marginBottom: "2%", marginLeft: "5%"}}>Floor:</Typography>
+              <Typography variant="h3" color="textPrimary" style={{textAlign: "center", paddingTop: "1%", paddingBottom: "2%", marginTop: "5%", marginBottom: "2%", marginLeft: "2%"}}>{mouseFloor != null || undefined ? `${ethers.utils.formatUnits(`${mouseFloor.price}`, 9)}` : ''} 🧀</Typography>
+              <div style={{display: "flex", justifyContent: "center"}}>
+                <img src={Mouse} alt="mouse trap mouse pixelated" style={{height: "60px", height: "60px", marginRight: "5%"}} />
+              </div>
+            </Paper>
           </Grid>
           <Grid item md={6} lg={4}>
-          <Paper style={{display: "flex", flexDirection: "row", justifyContent: "space-between", background: "transparent", border: "1px solid #3ce8a6"}}>
-          <Typography variant="h5" color="textPrimary" style={{textAlign: "center", paddingTop: "2%", paddingBottom: "2%", marginTop: "4%", marginBottom: "2%", marginLeft: "5%"}}>Floor:</Typography>
-            <Typography variant="h3" color="textPrimary" style={{textAlign: "center", paddingTop: "1%", paddingBottom: "2%", marginTop: "5%", marginBottom: "2%", marginLeft: "2%"}}>{catFloor != null || undefined ? `${ethers.utils.formatUnits(`${catFloor.price}`, 9)}` : ''} 🧀</Typography>
-            <div style={{display: "flex", justifyContent: "center"}}>
-              <img src={Cat} alt="mouse trap cat pixelated" style={{height: "60px", height: "60px", marginRight: "5%"}} />
-            </div>
-          </Paper>
+            <Paper style={{display: "flex", flexDirection: "row", justifyContent: "space-between", background: "transparent", border: "1px solid #3ce8a6"}}>
+            <Typography variant="h5" color="textPrimary" style={{textAlign: "center", paddingTop: "2%", paddingBottom: "2%", marginTop: "4%", marginBottom: "2%", marginLeft: "5%"}}>Floor:</Typography>
+              <Typography variant="h3" color="textPrimary" style={{textAlign: "center", paddingTop: "1%", paddingBottom: "2%", marginTop: "5%", marginBottom: "2%", marginLeft: "2%"}}>{catFloor != null || undefined ? `${ethers.utils.formatUnits(`${catFloor.price}`, 9)}` : ''} 🧀</Typography>
+              <div style={{display: "flex", justifyContent: "center"}}>
+                <img src={Cat} alt="mouse trap cat pixelated" style={{height: "60px", height: "60px", marginRight: "5%"}} />
+              </div>
+            </Paper>
           </Grid>
           <Grid item md={6} lg={4}>
-          <Paper style={{display: "flex", flexDirection: "row", justifyContent: "space-between", background: "transparent", border: "1px solid #3ce8a6"}}>
-          <Typography variant="h5" color="textPrimary" style={{textAlign: "center", paddingTop: "2%", paddingBottom: "2%", marginTop: "4%", marginBottom: "2%", marginLeft: "5%"}}>Floor:</Typography>
-            <Typography variant="h3" color="textPrimary" style={{textAlign: "center", paddingTop: "1%", paddingBottom: "2%", marginTop: "5%", marginBottom: "2%", marginLeft: "2%"}}>{trapFloor != null || undefined ? `${ethers.utils.formatUnits(`${trapFloor.price}`, 9)}` : ''} 🧀</Typography>
-            <div style={{display: "flex", justifyContent: "center"}}>
-              <img src={MouseTrap} alt="mouse trap mousetrap pixelated" style={{height: "60px", height: "60px", marginRight: "5%"}} />
-            </div>
-          </Paper>
+            <Paper style={{display: "flex", flexDirection: "row", justifyContent: "space-between", background: "transparent", border: "1px solid #3ce8a6"}}>
+            <Typography variant="h5" color="textPrimary" style={{textAlign: "center", paddingTop: "2%", paddingBottom: "2%", marginTop: "4%", marginBottom: "2%", marginLeft: "5%"}}>Floor:</Typography>
+              <Typography variant="h3" color="textPrimary" style={{textAlign: "center", paddingTop: "1%", paddingBottom: "2%", marginTop: "5%", marginBottom: "2%", marginLeft: "2%"}}>{trapFloor != null || undefined ? `${ethers.utils.formatUnits(`${trapFloor.price}`, 9)}` : ''} 🧀</Typography>
+              <div style={{display: "flex", justifyContent: "center"}}>
+                <img src={MouseTrap} alt="mouse trap mousetrap pixelated" style={{height: "60px", height: "60px", marginRight: "5%"}} />
+              </div>
+            </Paper>
           </Grid>
         </Grid>
         <Grid container justifyContent="center" spacing={4}>

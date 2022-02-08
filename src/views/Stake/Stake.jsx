@@ -31,7 +31,6 @@ import "./treasury.css";
 import { addQuarters } from "date-fns/esm";
 import { Button, Col, Row } from "react-bootstrap";
 
-
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
@@ -112,11 +111,10 @@ function Ageing() {
   };
 
   const onChangeStake = async action => {
-    console.log(quantity)
     // eslint-disable-next-line no-restricted-globals
     if (action === "claim") {
       await dispatch(changeStake({ address, action, value: quantity.toString(), provider, networkID: chainID }));
-      return
+      return;
     }
     if (isNaN(quantity) || quantity === 0 || quantity === "") {
       // eslint-disable-next-line no-alert
@@ -178,8 +176,10 @@ function Ageing() {
       .toFixed(4),
   );
 
-  const trimmedStakingAPY = trim(stakingAPY * 100, 1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  const correctAPY = (stakingAPY * 100)
+  const trimmedStakingAPY = trim(stakingAPY * 100, 1)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const correctAPY = stakingAPY * 100;
   const stakingRebasePercentage = trim(stakingRebase * 100, 4);
   const nextRewardValue = trim((stakingRebasePercentage / 100) * (trimmedBalance + trimmedDeposit), 4);
 
@@ -188,33 +188,45 @@ function Ageing() {
   const [tabActive, setTabActive] = useState(1);
 
   return (
-
     <>
       <div className="ageing-main">
-        <div className="btn-full"><RebaseTimer /></div>
+        <div className="btn-full">
+          <RebaseTimer />
+        </div>
         <Row className="mt-5 justify-content-center">
-          <Col lg={4} md={6} sm={12} className="mt-3">
+          <Col lg={4} md={8} sm={12} className="mt-3">
             <div className="bg-wight">
               <p className="mb-0">APY</p>
-              <h3>{correctAPY ? correctAPY.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "% APY" : <Skeleton type="text" />}</h3>
+              <h3>
+                {correctAPY ? (
+                  correctAPY
+                    .toFixed(0)
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "% APY"
+                ) : (
+                  <Skeleton type="text" />
+                )}
+              </h3>
             </div>
           </Col>
-          <Col lg={4} md={6} sm={12} className="mt-3">
+          <Col lg={4} md={8} sm={12} className="mt-3">
             <div className="bg-wight">
               <p className="mb-0">Total Value Deposited</p>
-              <h3>{stakingTVL ? (
-                new Intl.NumberFormat("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                  maximumFractionDigits: 0,
-                  minimumFractionDigits: 0,
-                }).format(stakingTVL)
-              ) : (
-                <Skeleton width="150px" />
-              )}</h3>
+              <h3>
+                {stakingTVL ? (
+                  new Intl.NumberFormat("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                    maximumFractionDigits: 0,
+                    minimumFractionDigits: 0,
+                  }).format(stakingTVL)
+                ) : (
+                  <Skeleton width="150px" />
+                )}
+              </h3>
             </div>
           </Col>
-          <Col lg={4} md={6} sm={12} className="mt-3">
+          <Col lg={4} md={8} sm={12} className="mt-3">
             <div className="bg-wight">
               <p className="mb-0">Current Index</p>
               <h3>{currentIndex ? <>{trim(currentIndex, 1)} CHEEZ</> : <Skeleton width="150px" />}</h3>
@@ -245,23 +257,49 @@ function Ageing() {
                       onChange={changeView}
                       aria-label="stake tabs"
                     >
-                      <Tab className={`${tabActive === 1 ? "active" : ""} green`} label="Stake" {...a11yProps(0)} onClick={() => setTabActive(1)} />
-                      <Tab className={`${tabActive === 2 ? "active" : ""} pink`} label="Unstake" {...a11yProps(1)} onClick={() => setTabActive(2)} />
+                      <Tab
+                        className={`${tabActive === 1 ? "active" : ""} green`}
+                        label="Stake"
+                        {...a11yProps(0)}
+                        onClick={() => setTabActive(1)}
+                      />
+                      <Tab
+                        className={`${tabActive === 2 ? "active" : ""} pink`}
+                        label="Unstake"
+                        {...a11yProps(1)}
+                        onClick={() => setTabActive(2)}
+                      />
                     </Tabs>
                   </Box>
                   <div className="search-bar mt-3 px-3">
-                    <span>Max Available: 0</span>
+                    <span>Max Available: {view === 0 ? ohmBalance : sohmBalance}</span>
                     <div className="d-flex align-items-center gap max-search">
                       <div className="search-box d-flex align-items-center justify-content-between w-100">
-                        <input type="text" className="w-100" />
-                        <span>MAX</span>
+                        <input
+                          type="number"
+                          className="w-100"
+                          value={quantity}
+                          onChange={e => setQuantity(e.currentTarget.value)}
+                        />
+                        <span onClick={setMax} style={{ cursor: "pointer" }}>
+                          MAX
+                        </span>
                       </div>
-                      {tabActive === 1 ?
-                        <Button className={`${tabActive === 1 ? "active" : ""} green`}>Stake CHEEZ</Button> :
-                        <Button className={`${tabActive === 2 ? "active" : ""} pink`}>Unstake CHEEZ</Button>
-                      }
-
-
+                      {tabActive === 1 ? (
+                        <Button
+                          className={`${tabActive === 1 ? "active" : ""} green`}
+                          onClick={() => onChangeStake("stake")}
+                        >
+                          Stake CHEEZ
+                        </Button>
+                      ) : (
+                        <Button
+                          className={`${tabActive === 2 ? "active" : ""} pink`}
+                          onClick={() => onChangeStake("unstake")}
+                        >
+                          Unstake CHEEZ
+                        </Button>
+                      )}
                     </div>
                   </div>
 
@@ -270,7 +308,7 @@ function Ageing() {
                       <>
                         <div className="data-sub mt-3">
                           <span>Your Balance</span>
-                          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _</span>
+                          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
                           <span>{isAppLoading ? <Skeleton width="80px" /> : <>{trim(ohmBalance, 4)} CHEEZ</>}</span>
                         </div>
                       </>
@@ -280,7 +318,7 @@ function Ageing() {
                       <>
                         <div className="data-sub mt-3">
                           <span>Your Staked Balance</span>
-                          <span>_ _ _ _ _ _ _ _ _ _ _ _ __  _</span>
+                          <span>_ _ _ _ _ _ _ _ _ _ _ _ __ _</span>
                           <span>{isAppLoading ? <Skeleton width="80px" /> : <>{trimmedBalance} sCHEEZ</>}</span>
                         </div>
                       </>
@@ -301,13 +339,18 @@ function Ageing() {
                         <div className="data-sub mt-3">
                           <span>Epochs Left in Warmup</span>
                           <span>_ _ _ _ _ _ _ _ _ _ _ _ _</span>
-                          <span> {isAppLoading ? <Skeleton width="80px" /> :
-                            epochsLeft > 1 ?
-                              <>{epochsLeft} Epochs</> :
-                              epochsLeft == 1 ?
-                                <>{epochsLeft} Epoch</> :
-                                <>Available</>
-                          }</span>
+                          <span>
+                            {" "}
+                            {isAppLoading ? (
+                              <Skeleton width="80px" />
+                            ) : epochsLeft > 1 ? (
+                              <>{epochsLeft} Epochs</>
+                            ) : epochsLeft == 1 ? (
+                              <>{epochsLeft} Epoch</>
+                            ) : (
+                              <>Available</>
+                            )}
+                          </span>
                         </div>
                       </>
                     </div>
@@ -316,7 +359,7 @@ function Ageing() {
                       <>
                         <div className="data-sub mt-3">
                           <span>Next Reward Amount</span>
-                          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _  _</span>
+                          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
                           <span>{isAppLoading ? <Skeleton width="80px" /> : <>{nextRewardValue} sCHEEZ</>}</span>
                         </div>
                       </>
@@ -337,17 +380,17 @@ function Ageing() {
                         <div className="data-sub mt-3">
                           <span>ROI (5-Day Rate)</span>
                           <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
-                          <span>  {isAppLoading ? <Skeleton width="80px" /> : <>{trim(fiveDayRate * 100, 4)}%</>}</span>
+                          <span> {isAppLoading ? <Skeleton width="80px" /> : <>{trim(fiveDayRate * 100, 4)}%</>}</span>
                         </div>
                       </>
                     </div>
 
-                    <Box style={{ width: "fit-content", marginTop: '15px', marginBottom: "15px" }} >
+                    <Box style={{ width: "fit-content", marginTop: "15px", marginBottom: "15px" }}>
                       {isAllowanceDataLoading ? (
                         <Skeleton width="75px" style={{ margin: "0 auto" }} />
                       ) : (
                         <Button
-                          className="stake-button modal-footer"
+                          className="stake-claim-button modal-footer"
                           variant="outlined"
                           color="primary"
                           disabled={isPendingTxn(pendingTransactions, "claim")}
@@ -362,10 +405,10 @@ function Ageing() {
                     </Box>
 
                     {/* <Box className="stake-action-row " display="flex" style={{ flexDirection: "column" }}>
-                      <TabPanel value={view} index={0} className="stake-tab-panel">
+                    <TabPanel value={view} index={0} className="stake-tab-panel">
 
-                      </TabPanel>
-                    </Box> */}
+                    </TabPanel>
+                  </Box> */}
                   </div>
                 </div>
               </div>
@@ -375,205 +418,203 @@ function Ageing() {
       </div>
 
       {/* <Tabs defaultActiveKey="stake" id="uncontrolled-tab-example">
-        <Tab eventKey="stake" title="Stake">
-          <div className="search-bar mt-3">
-            <span>Max Available: 0</span>
-            <div className="d-flex align-items-center gap">
-              <div className="search-box d-flex align-items-center justify-content-between w-100">
-                <input type="text" className="w-100" />
-                <span>MAX</span>
-              </div>
-              <Button className="green">Stake Mice</Button>
+      <Tab eventKey="stake" title="Stake">
+        <div className="search-bar mt-3">
+          <span>Max Available: 0</span>
+          <div className="d-flex align-items-center gap">
+            <div className="search-box d-flex align-items-center justify-content-between w-100">
+              <input type="text" className="w-100" />
+              <span>MAX</span>
             </div>
-            <div className={`stake-user-data px-3`}>
-              <div className="data-row">
-                <>
-                  <div className="data-sub mt-3">
-                    <span>Your Balance</span>
-                    <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _</span>
-                    <span>{isAppLoading ? <Skeleton width="80px" /> : <>{trim(ohmBalance, 4)} CHEEZ</>}</span>
-                  </div>
-                </>
-              </div>
+            <Button className="green">Stake Mice</Button>
+          </div>
+          <div className={`stake-user-data px-3`}>
+            <div className="data-row">
+              <>
+                <div className="data-sub mt-3">
+                  <span>Your Balance</span>
+                  <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _</span>
+                  <span>{isAppLoading ? <Skeleton width="80px" /> : <>{trim(ohmBalance, 4)} CHEEZ</>}</span>
+                </div>
+              </>
+            </div>
 
-              <div className="data-row">
-                <>
-                  <div className="data-sub mt-3">
-                    <span>Your Staked Balance</span>
-                    <span>_ _ _ _ _ _ _ _ _ _ _ _ __  _</span>
-                    <span>{isAppLoading ? <Skeleton width="80px" /> : <>{trimmedBalance} sCHEEZ</>}</span>
-                  </div>
-                </>
-              </div>
+            <div className="data-row">
+              <>
+                <div className="data-sub mt-3">
+                  <span>Your Staked Balance</span>
+                  <span>_ _ _ _ _ _ _ _ _ _ _ _ __  _</span>
+                  <span>{isAppLoading ? <Skeleton width="80px" /> : <>{trimmedBalance} sCHEEZ</>}</span>
+                </div>
+              </>
+            </div>
 
-              <div className="data-row">
-                <>
-                  <div className="data-sub mt-3">
-                    <span>Your Warmup Balance</span>
-                    <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
-                    <span>{isAppLoading ? <Skeleton width="80px" /> : <>{trimmedDeposit} sCHEEZ</>}</span>
-                  </div>
-                </>
-              </div>
+            <div className="data-row">
+              <>
+                <div className="data-sub mt-3">
+                  <span>Your Warmup Balance</span>
+                  <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
+                  <span>{isAppLoading ? <Skeleton width="80px" /> : <>{trimmedDeposit} sCHEEZ</>}</span>
+                </div>
+              </>
+            </div>
 
-              <div className="data-row">
-                <>
-                  <div className="data-sub mt-3">
-                    <span>Epochs Left in Warmup</span>
-                    <span>_ _ _ _ _ _ _ _ _ _ _ _ _</span>
-                    <span> {isAppLoading ? <Skeleton width="80px" /> :
-                      epochsLeft > 1 ?
-                        <>{epochsLeft} Epochs</> :
-                        epochsLeft == 1 ?
-                          <>{epochsLeft} Epoch</> :
-                          <>Available</>
-                    }</span>
-                  </div>
-                </>
-              </div>
+            <div className="data-row">
+              <>
+                <div className="data-sub mt-3">
+                  <span>Epochs Left in Warmup</span>
+                  <span>_ _ _ _ _ _ _ _ _ _ _ _ _</span>
+                  <span> {isAppLoading ? <Skeleton width="80px" /> :
+                    epochsLeft > 1 ?
+                      <>{epochsLeft} Epochs</> :
+                      epochsLeft == 1 ?
+                        <>{epochsLeft} Epoch</> :
+                        <>Available</>
+                  }</span>
+                </div>
+              </>
+            </div>
 
-              <div className="data-row">
-                <>
-                  <div className="data-sub mt-3">
-                    <span>Next Reward Amount</span>
-                    <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _  _</span>
-                    <span>{isAppLoading ? <Skeleton width="80px" /> : <>{nextRewardValue} sCHEEZ</>}</span>
-                  </div>
-                </>
-              </div>
+            <div className="data-row">
+              <>
+                <div className="data-sub mt-3">
+                  <span>Next Reward Amount</span>
+                  <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _  _</span>
+                  <span>{isAppLoading ? <Skeleton width="80px" /> : <>{nextRewardValue} sCHEEZ</>}</span>
+                </div>
+              </>
+            </div>
 
-              <div className="data-row">
-                <>
-                  <div className="data-sub mt-3">
-                    <span>Next Reward Yield</span>
-                    <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
-                    <span>{isAppLoading ? <Skeleton width="80px" /> : <>{stakingRebasePercentage}%</>}</span>
-                  </div>
-                </>
-              </div>
+            <div className="data-row">
+              <>
+                <div className="data-sub mt-3">
+                  <span>Next Reward Yield</span>
+                  <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
+                  <span>{isAppLoading ? <Skeleton width="80px" /> : <>{stakingRebasePercentage}%</>}</span>
+                </div>
+              </>
+            </div>
 
-              <div className="data-row">
-                <>
-                  <div className="data-sub mt-3">
-                    <span>ROI (5-Day Rate)</span>
-                    <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
-                    <span>  {isAppLoading ? <Skeleton width="80px" /> : <>{trim(fiveDayRate * 100, 4)}%</>}</span>
-                  </div>
-                </>
-              </div>
+            <div className="data-row">
+              <>
+                <div className="data-sub mt-3">
+                  <span>ROI (5-Day Rate)</span>
+                  <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
+                  <span>  {isAppLoading ? <Skeleton width="80px" /> : <>{trim(fiveDayRate * 100, 4)}%</>}</span>
+                </div>
+              </>
             </div>
           </div>
+        </div>
 
-        </Tab>
-        <Tab eventKey="unstake" title="Unstake">
-          <div className="search-bar mt-3">
-            <span>Max Available: 0</span>
-            <div className="d-flex align-items-center gap">
-              <div className="search-box d-flex align-items-center justify-content-between w-100">
-                <input type="text" className="w-100" />
-                <span>MAX</span>
-              </div>
-              <Button className="pink text-white">Unstake Cats</Button>
+      </Tab>
+      <Tab eventKey="unstake" title="Unstake">
+        <div className="search-bar mt-3">
+          <span>Max Available: 0</span>
+          <div className="d-flex align-items-center gap">
+            <div className="search-box d-flex align-items-center justify-content-between w-100">
+              <input type="text" className="w-100" />
+              <span>MAX</span>
             </div>
-            <div className={`stake-user-data px-3`}>
-              <div className="data-row">
-                <>
-                  <div className="data-sub mt-3">
-                    <span>Your Balance</span>
-                    <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _</span>
-                    <span>{isAppLoading ? <Skeleton width="80px" /> : <>{trim(ohmBalance, 4)} CHEEZ</>}</span>
-                  </div>
-                </>
-              </div>
+            <Button className="pink text-white">Unstake Cats</Button>
+          </div>
+          <div className={`stake-user-data px-3`}>
+            <div className="data-row">
+              <>
+                <div className="data-sub mt-3">
+                  <span>Your Balance</span>
+                  <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _</span>
+                  <span>{isAppLoading ? <Skeleton width="80px" /> : <>{trim(ohmBalance, 4)} CHEEZ</>}</span>
+                </div>
+              </>
+            </div>
 
-              <div className="data-row">
-                <>
-                  <div className="data-sub mt-3">
-                    <span>Your Staked Balance</span>
-                    <span>_ _ _ _ _ _ _ _ _ _ _ _ __  _</span>
-                    <span>{isAppLoading ? <Skeleton width="80px" /> : <>{trimmedBalance} sCHEEZ</>}</span>
-                  </div>
-                </>
-              </div>
+            <div className="data-row">
+              <>
+                <div className="data-sub mt-3">
+                  <span>Your Staked Balance</span>
+                  <span>_ _ _ _ _ _ _ _ _ _ _ _ __  _</span>
+                  <span>{isAppLoading ? <Skeleton width="80px" /> : <>{trimmedBalance} sCHEEZ</>}</span>
+                </div>
+              </>
+            </div>
 
-              <div className="data-row">
-                <>
-                  <div className="data-sub mt-3">
-                    <span>Your Warmup Balance</span>
-                    <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
-                    <span>{isAppLoading ? <Skeleton width="80px" /> : <>{trimmedDeposit} sCHEEZ</>}</span>
-                  </div>
-                </>
-              </div>
+            <div className="data-row">
+              <>
+                <div className="data-sub mt-3">
+                  <span>Your Warmup Balance</span>
+                  <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
+                  <span>{isAppLoading ? <Skeleton width="80px" /> : <>{trimmedDeposit} sCHEEZ</>}</span>
+                </div>
+              </>
+            </div>
 
-              <div className="data-row">
-                <>
-                  <div className="data-sub mt-3">
-                    <span>Epochs Left in Warmup</span>
-                    <span>_ _ _ _ _ _ _ _ _ _ _ _ _</span>
-                    <span> {isAppLoading ? <Skeleton width="80px" /> :
-                      epochsLeft > 1 ?
-                        <>{epochsLeft} Epochs</> :
-                        epochsLeft == 1 ?
-                          <>{epochsLeft} Epoch</> :
-                          <>Available</>
-                    }</span>
-                  </div>
-                </>
-              </div>
+            <div className="data-row">
+              <>
+                <div className="data-sub mt-3">
+                  <span>Epochs Left in Warmup</span>
+                  <span>_ _ _ _ _ _ _ _ _ _ _ _ _</span>
+                  <span> {isAppLoading ? <Skeleton width="80px" /> :
+                    epochsLeft > 1 ?
+                      <>{epochsLeft} Epochs</> :
+                      epochsLeft == 1 ?
+                        <>{epochsLeft} Epoch</> :
+                        <>Available</>
+                  }</span>
+                </div>
+              </>
+            </div>
 
-              <div className="data-row">
-                <>
-                  <div className="data-sub mt-3">
-                    <span>Next Reward Amount</span>
-                    <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _  _</span>
-                    <span>{isAppLoading ? <Skeleton width="80px" /> : <>{nextRewardValue} sCHEEZ</>}</span>
-                  </div>
-                </>
-              </div>
+            <div className="data-row">
+              <>
+                <div className="data-sub mt-3">
+                  <span>Next Reward Amount</span>
+                  <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _  _</span>
+                  <span>{isAppLoading ? <Skeleton width="80px" /> : <>{nextRewardValue} sCHEEZ</>}</span>
+                </div>
+              </>
+            </div>
 
-              <div className="data-row">
-                <>
-                  <div className="data-sub mt-3">
-                    <span>Next Reward Yield</span>
-                    <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
-                    <span>{isAppLoading ? <Skeleton width="80px" /> : <>{stakingRebasePercentage}%</>}</span>
-                  </div>
-                </>
-              </div>
+            <div className="data-row">
+              <>
+                <div className="data-sub mt-3">
+                  <span>Next Reward Yield</span>
+                  <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
+                  <span>{isAppLoading ? <Skeleton width="80px" /> : <>{stakingRebasePercentage}%</>}</span>
+                </div>
+              </>
+            </div>
 
-              <div className="data-row">
-                <>
-                  <div className="data-sub mt-3">
-                    <span>ROI (5-Day Rate)</span>
-                    <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
-                    <span>  {isAppLoading ? <Skeleton width="80px" /> : <>{trim(fiveDayRate * 100, 4)}%</>}</span>
-                  </div>
-                </>
-              </div>
+            <div className="data-row">
+              <>
+                <div className="data-sub mt-3">
+                  <span>ROI (5-Day Rate)</span>
+                  <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</span>
+                  <span>  {isAppLoading ? <Skeleton width="80px" /> : <>{trim(fiveDayRate * 100, 4)}%</>}</span>
+                </div>
+              </>
             </div>
           </div>
-        </Tab>
-      </Tabs>
-      {isAllowanceDataLoading ? (
-        <Skeleton width="75px" style={{ margin: "0 auto" }} />
-      ) : (
-        <Button
-          className="stake-button modal-footer"
-          variant="outlined"
-          color="primary"
-          disabled={isPendingTxn(pendingTransactions, "claim")}
-          onClick={() => {
-            onChangeStake("claim");
-          }}
-          style={{ marginLeft: "2%" }}
-        >
-          {txnButtonText(pendingTransactions, "claiming", "Claim Warmup")}
-        </Button>
-      )} */}
-
+        </div>
+      </Tab>
+    </Tabs>
+    {isAllowanceDataLoading ? (
+      <Skeleton width="75px" style={{ margin: "0 auto" }} />
+    ) : (
+      <Button
+        className="stake-button modal-footer"
+        variant="outlined"
+        color="primary"
+        disabled={isPendingTxn(pendingTransactions, "claim")}
+        onClick={() => {
+          onChangeStake("claim");
+        }}
+        style={{ marginLeft: "2%" }}
+      >
+        {txnButtonText(pendingTransactions, "claiming", "Claim Warmup")}
+      </Button>
+    )} */}
     </>
-
   );
 }
 

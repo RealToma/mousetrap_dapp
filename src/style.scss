@@ -1,147 +1,152 @@
 * {
-    outline: none;
-    -ms-overflow-style: none !important;
-    /* IE and Edge */
-    scrollbar-width: none !important;
-    /* Firefox */
-    &::-webkit-scrollbar {
-        display: none !important;
-    }
+  outline: none;
+  -ms-overflow-style: none !important;
+  /* IE and Edge */
+  scrollbar-width: none !important;
+  /* Firefox */
+  &::-webkit-scrollbar {
+    display: none !important;
+  }
 }
 
 html,
 body,
 #root {
-    font-family: "Square";
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow: hidden;
+  font-family: "Square";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 
 body {
-    margin: 0;
-    box-sizing: border-box;
-    background-color: transparent !important;
-    background-image: url(./bg-light.png), url(./bg-gray.png) !important;
-    background-repeat: no-repeat;
-    background-position: left center, right center !important;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: transparent !important;
+  background-image: url(./bg-light.png), url(./bg-gray.png) !important;
+  background-repeat: no-repeat;
+  background-position: left center, right center !important;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
 }
 
 .cartoon {
-    position: fixed;
-    bottom: -40px;
-    left: 400px;
-    z-index: 999;
+  position: fixed;
+  bottom: -40px;
+  left: 400px;
+  z-index: 999;
 }
 
 .cartoon2 {
-    position: fixed;
-    top: 200px;
-    right: -40px;
-    z-index: 999;
-    transform: rotate(-90deg);
+  position: fixed;
+  top: 200px;
+  right: -40px;
+  z-index: 999;
+  transform: rotate(-90deg);
 }
 
 .cartoon3 {
-    position: fixed;
-    top: -40px;
-    left: 500px;
-    z-index: 999;
-    transform: rotate(180deg);
+  position: fixed;
+  top: -40px;
+  left: 500px;
+  z-index: 999;
+  transform: rotate(180deg);
 }
 
 .cartoon4 {
-    position: fixed;
-    bottom: 50px;
-    left: -40px;
-    z-index: 999;
-    transform: rotate(90deg);
+  position: fixed;
+  bottom: 50px;
+  left: -40px;
+  z-index: 999;
+  transform: rotate(90deg);
 }
 
 .cartoon5 {
-    position: fixed;
-    bottom: 400px;
-    left: -40px;
-    z-index: 999;
-    transform: rotate(90deg);
+  position: fixed;
+  bottom: 400px;
+  left: -40px;
+  z-index: 999;
+  transform: rotate(90deg);
 }
 
-.cartoon6{
-    position: fixed;
-    top: 200px;
-    left: -40px;
-    z-index: 999;
-    transform: rotate(90deg);
+.cartoon6 {
+  position: fixed;
+  top: 200px;
+  left: -40px;
+  z-index: 999;
+  transform: rotate(90deg);
 }
 
 .chat {
-    position: fixed;
-    bottom: 0px;
-    right: 50px;
-    z-index: 999;
+  position: fixed;
+  bottom: 0px;
+  right: 50px;
+  z-index: 999;
 }
 
 .app {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-flow: column;
-    flex-direction: column;
-    z-index: 1;
-    background-size: cover;
-    font-family: "Square";
-    overflow: hidden;
-    transition: all ease 0.33ms;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-flow: column;
+  flex-direction: column;
+  z-index: 1;
+  background-size: cover;
+  font-family: "Square";
+  overflow: hidden;
+  transition: all ease 0.33ms;
 }
 
 .MuiDrawer-paperAnchorDockedLeft {
-    border-right: 0 !important;
+  border-right: 0 !important;
 }
 
 .cheez-card {
-    max-width: 833px;
-    .card-header {
-        width: 100%;
-        min-height: 33px;
-        margin-bottom: 10px;
-        h5 {
-            font-weight: 600 !important;
-        }
+  max-width: 833px;
+  .card-header {
+    width: 100%;
+    min-height: 33px;
+    margin-bottom: 10px;
+    h5 {
+      font-weight: 600 !important;
     }
-    .help-text {
-        margin: 10px 0px;
+  }
+  .help-text {
+    margin: 10px 0px;
+  }
+  .data-row {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 12px 0px;
+  }
+  .data-row-centered {
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    margin: 12px 0px;
+    .marginedBtn {
+      margin: 0.3rem;
     }
-    .data-row {
-        display: flex;
-        justify-content: space-between;
-        flex-direction: row;
-        margin: 12px 0px;
-    }
-    .data-row-centered {
-        display: flex;
-        justify-content: center;
-        flex-flow: row wrap;
-        margin: 12px 0px;
-        .marginedBtn {
-            margin: 0.3rem;
-        }
-    }
+  }
 }
 
 .cheez-pairs {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none !important;
+  -webkit-appearance: none !important;
 }
 
 input[type="number"] {
-    -moz-appearance: textfield !important;
+  -moz-appearance: textfield !important;
 }
 
 a:hover svg {
-    color: inherit;
+  color: inherit;
 }

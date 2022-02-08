@@ -69,13 +69,16 @@ function UnlockTimer() {
       <Box className="rebase-timer">
         <Typography variant="body2">
           {currentBlock ? (
-            secondsToRebase > 0 ? (
-              <>
-                <strong>{rebaseString}</strong> to unlock
-              </>
+            <Box className="unlocker-timer">
+            {secondsToRebase > 0 ? (
+              <div className="remain-details">
+                <p>You will be able to unstake in</p>
+                <strong>{rebaseString}</strong>
+              </div>
             ) : (
               <strong>unlocked</strong>
-            )
+            )}
+            </Box>
           ) : (
             <Skeleton width="155px" />
           )}

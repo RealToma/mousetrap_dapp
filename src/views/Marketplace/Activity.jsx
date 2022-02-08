@@ -358,7 +358,7 @@ function Activity() {
           </Col>
           <Col lg={3} md={6} sm={12} className="mt-3">
             <div className="floor-box d-flex align-items-center gap">
-              <img src={require('./card.png').default} alt="" width={100} />
+              <img src={require('./cheezpass.gif').default} alt="" width={100} />
               <div className="floor-text">
                 <span>Floor:</span>
                 <h3>{passFloor != null || undefined ? `${ethers.utils.formatUnits(`${passFloor.price}`, 9)}` : ''} 🧀</h3>
@@ -382,7 +382,7 @@ function Activity() {
               <h4 className="mb-0">MouseTrap Listings</h4>
             </Button>
             <Button className={`${btnActive === 4 ? "active" : ""}`} onClick={(e) => { setBtnActive(4); paginationHandler(e, 1, passListingsFinalAsc) }}>
-              <img src={require('./card.png').default} alt="" width={50} />
+              <img src={require('./cheezpass.gif').default} alt="" width={50} />
               <h4 className="mb-0">CHEEZ Pass Listings</h4>
             </Button>
           </div>

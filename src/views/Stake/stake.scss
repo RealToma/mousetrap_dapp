@@ -295,11 +295,17 @@
 }
 
 .modal-bg-stake{
-    background-image: url(modal.png);
     background-size: 100% 100%;
     max-width: 500px;
     margin: 0 auto;
     margin-top: 50px;
+}
+
+.modal-bg-stake .wall-con{
+    background: #F4FBD7;
+    border: 8px solid #FFE895;
+    box-shadow: 8px 8px 0px #FFAC01;
+
 }
 
 .MuiBox-root-19{
@@ -349,6 +355,19 @@
     border: none !important;
     box-shadow: none !important;
     white-space: nowrap;
+}
+
+.stake-claim-button{
+    background-size: 100% 100%;
+    background-image: url(mini-wight.png);
+    padding: 10px !important;
+    width: fit-content;
+    border-radius: 0 !important;
+    margin-top: 23px !important;
+    color: #000 !important;
+    font-family: "VT323" !important;
+    font-size: 20px !important;
+    min-width: 150px;
 }
 
 .gap{

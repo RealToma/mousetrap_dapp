@@ -298,21 +298,24 @@ function Play() {
         <Row className=" justify-content-center mb-5">
           <Col lg={4} md={6} sm={12} className="mt-5">
             <div className="yellow-play text-center">
-              <img src={require('./mouse.png').default} alt="" width={150} />
+
+              <div className="img-container">
+                <img src={require('./mouse.png').default} alt="" width={150} />
+              </div>
               {!address ? (
-                <>
+                <div className="play-game-connect">
                   <p>Connect your wallet to stake Mice</p>
                   {modalButton}
-                </>
+                </div>
               ) : (
                 <>
                   <div className="data-row mt-3">
                     {mouseBalance != undefined || null ? (
                       <>
-                        <div className="data-sub mt-2">
-                          <span>Ready for the Maze</span>
-                          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _</span>
-                          <span>{mouseBalance} {mouseBalance > 1 ? 'Mice' : 'Mouse'}</span>
+                        <div className="data-sub dashed-border d-flex justify-content-between">
+                          <span className="data-text">Ready for the Maze</span>
+                          <span className="data-empty"></span>
+                          <span className="data-text">{mouseBalance} {mouseBalance > 1 ? 'Mice' : 'Mouse'}</span>
                         </div>
                       </>) : (<></>)}
                   </div>
@@ -320,10 +323,10 @@ function Play() {
                   <div className="data-row">
                     {stakedMice != null || undefined ? (
                       <>
-                        <div className="data-sub">
-                          <span>In the Maze</span>
-                          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _ _ __ _  _</span>
-                          <span>{stakedMice} {stakedMice > 1 ? 'Mice' : 'Mouse'}</span>
+                        <div className="data-sub dashed-border d-flex justify-content-between">
+                          <span className="data-text">In the Maze</span>
+                          <span className="data-empty"></span>
+                          <span className="data-text">{stakedMice} {stakedMice > 1 ? 'Mice' : 'Mouse'}</span>
                         </div>
                       </>) : (
                       <></>
@@ -333,10 +336,10 @@ function Play() {
                   <div className="data-row">
                     {rewardsMice != undefined && stakedMice != undefined ? (
                       <>
-                        <div className="data-sub">
-                          <span>CHEEZ in the Maze</span>
-                          <span>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _</span>
-                          <span>{stakedMice > 1 ? 'Mice have' : 'Mouse has'}</span>
+                        <div className="data-sub dashed-border d-flex justify-content-between">
+                          <span className="data-text">CHEEZ in the Maze</span>
+                          <span className="data-empty"></span>
+                          <span className="data-text">{stakedMice > 1 ? 'Mice have' : 'Mouse has'}</span>
                         </div>
                       </>) : (
                       <></>
@@ -346,10 +349,10 @@ function Play() {
                   <div className="data-row">
                     {miceReward != undefined && stakedMice != undefined ? (
                       <>
-                        <div className="data-sub">
-                          <span>My next reward is</span>
-                          <span>_ _ _ _ _ _  _</span>
-                          <span>{myNextReward}🧀 ({miceReward} 🧀/ Mouse)</span>
+                        <div className="data-sub dashed-border d-flex justify-content-between">
+                          <span className="data-text">My next reward is</span>
+                          <span className="data-empty"></span>
+                          <span className="data-text">{myNextReward}🧀 ({miceReward} 🧀/ Mouse)</span>
                         </div>
                       </>
                     ) : (
@@ -394,12 +397,8 @@ function Play() {
                         background: "transparent",
                         border: "none"
                       }} onClick={getStartModalClose}></button>
-                      {key === "unstake" ?
-                        <div className="white-header">
-                          <span>You will be able to unstake in  </span>
-                          <h1 className="mb-0">34:21:05</h1>
-                        </div>
-                        :
+
+                      
                         <div className="caution">
                           <div className="bg-pink-header mb-3">
                             <h2 className="mb-0">Caution</h2 >
@@ -429,8 +428,8 @@ function Play() {
                             </div>
                           </div>
                         </div>
-                      }
 
+                      {key === "unstake" && <UnlockTimer />}
 
                       <div className="mini-tab mt-4">
                         <Tabs id="controlled-tab-example"
@@ -482,9 +481,8 @@ function Play() {
                                     disabled={isPendingTxn(pendingTransactions, "unstaking")}
                                     onClick={() => {
                                       onUnstake(0, mouseUnstakeAmount);
-                                      getStartModalClose();
-                                      unstakingModalShow();
-
+                                      // getStartModalClose();
+                                      // unstakingModalShow();
                                     }} >
                                     {txnButtonText(pendingTransactions, "Leaving Maze", "Unstake Mice")}
                                   </Button>
@@ -695,21 +693,24 @@ function Play() {
           </Col>
           <Col lg={4} md={6} sm={12} className="mt-5">
             <div className="yellow-play text-center">
-              <img src={require('./cat.png').default} alt="" width={150} />
+              <div className="img-container">
+                <img src={require('./cat.png').default} alt="" width={150} />
+              </div>
+              
               {!address ? (
-                <>
+                <div className="play-game-connect">
                   <p>Connect your wallet to stake Cats</p>
                   {modalButton}
-                </>
+                </div>
               ) : (
                 <>
                   <div className="data-row mt-3">
                     {catBalance ? (
                       <>
-                        <div className="data-sub">
-                          <span>ready for the Maze</span>
-                          <span>_ _ _ _ _ _  _</span>
-                          <span>{catBalance} {catBalance > 1 ? 'Cats' : 'Cat'}</span>
+                        <div className="data-sub dashed-border d-flex justify-content-between">
+                          <span className="data-text">Ready for the Maze</span>
+                          <span className="data-empty"></span>
+                          <span className="data-text">{catBalance} {catBalance > 1 ? 'Cats' : 'Cat'}</span>
                         </div>
                       </>
                     ) : (<></>)}
@@ -718,10 +719,10 @@ function Play() {
                   <div className="data-row">
                     {stakedCats != undefined ? (
                       <>
-                        <div className="data-sub">
-                          <span>in the Maze</span>
-                          <span>_ _ _ _ _ _  _</span>
-                          <span>{stakedCats} {stakedCats > 1 ? 'Cats' : 'Cat'}</span>
+                        <div className="data-sub dashed-border d-flex justify-content-between">
+                          <span className="data-text">In the Maze</span>
+                          <span className="data-empty"></span>
+                          <span className="data-text">{stakedCats} {stakedCats > 1 ? 'Cats' : 'Cat'}</span>
                         </div>
                       </>
                     ) : (
@@ -732,10 +733,10 @@ function Play() {
                   <div className="data-row">
                     {rewardsCats != undefined && stakedCats != undefined ? (
                       <>
-                        <div className="data-sub">
-                          <span>CHEEZ in the Maze</span>
-                          <span>_ _ _ _ _ _  _</span>
-                          <span>{parseFloat(ethers.utils.formatUnits(rewardsCats, 9).toString()).toFixed(3)}</span>
+                        <div className="data-sub dashed-border d-flex justify-content-between">
+                          <span className="data-text">Claimable CHEEZ</span>
+                          <span className="data-empty"></span>
+                          <span className="data-text">{parseFloat(ethers.utils.formatUnits(rewardsCats, 9).toString()).toFixed(3)}</span>
                         </div>
                       </>
                     ) : (
@@ -746,10 +747,10 @@ function Play() {
                   <div className="data-row">
                     {nextCatPool != undefined ? (
                       <>
-                        <div className="data-sub">
-                          <span>The Cat Pool has </span>
-                          <span>_ _ _ _ _ _  _</span>
-                          <span>{nextCatPool}🧀</span>
+                        <div className="data-sub dashed-border d-flex justify-content-between">
+                          <span className="data-text">The Cat pool has </span>
+                          <span className="data-empty"></span>
+                          <span className="data-text">{nextCatPool}🧀</span>
                         </div>
                       </>
                     ) : (
@@ -778,7 +779,7 @@ function Play() {
                   </div>
                   <div className="text">
                     {catBalance != null || undefined ? (
-                      <span className="d-flex mini-def mt-3">Your {catBalance > 1 ? 'Cats have' : 'Cat has'} found <p className="mb-0 text-green" style={{ color: '#21865B' }}>{parseFloat(ethers.utils.formatUnits(rewardsCats, 9).toString()).toFixed(3)}</p> CHEEZ in the Maze</span>
+                      <span className="d-flex justify-content-center mini-def mt-3">Your {catBalance > 1 ? 'Cats have' : 'Cat has'} found <p className="mb-0 text-green" style={{ color: '#21865B' }}>{parseFloat(ethers.utils.formatUnits(rewardsCats, 9).toString()).toFixed(3)}</p> CHEEZ in the Maze</span>
                     ) : (<></>)}
                   </div>
                   <Modal show={catModal} onHide={catModalClose}>
@@ -866,24 +867,25 @@ function Play() {
             </div>
           </Col>
 
-          <Col lg={4} md={6} sm={12} className="mt-5">
+          <Col lg={4} md={6} sm={12} className="mt-5" >
             <div className="yellow-play text-center">
-              <img src={require('./mouse-trap.png').default} alt="" width={150} />
-
+              <div className="img-container">
+                <img src={require('./mouse-trap.png').default} alt="" width={150} />
+              </div>
               {!address ? (
-                <>
+                <div className="play-game-connect">
                   <p>Connect your wallet to stake Traps</p>
                   {modalButton}
-                </>
+                </div>
               ) : (
                 <>
                   <div className="data-row mt-3">
                     {trapBalance != null || undefined ? (
                       <>
-                        <div className="data-sub">
-                          <span>ready for the Maze</span>
-                          <span>_ _ _ _ _ _  _</span>
-                          <span>{trapBalance} {trapBalance > 1 ? 'Traps' : 'Trap'}</span>
+                        <div className="data-sub dashed-border d-flex justify-content-between">
+                          <span className="data-text">Ready for the Maze</span>
+                          <span className="data-empty"></span>
+                          <span className="data-text">{trapBalance} {trapBalance > 1 ? 'Traps' : 'Trap'}</span>
                         </div>
                       </>
                     ) : (<></>)}
@@ -892,10 +894,10 @@ function Play() {
                   <div className="data-row">
                     {stakedTraps != undefined ? (
                       <>
-                        <div className="data-sub">
-                          <span>in the Maze</span>
-                          <span>_ _ _ _ _ _  _</span>
-                          <span>{stakedTraps} {stakedTraps > 1 ? 'Traps' : 'Trap'}</span>
+                        <div className="data-sub dashed-border d-flex justify-content-between">
+                          <span className="data-text">In the Maze</span>
+                          <span className="data-empty"></span>
+                          <span className="data-text">{stakedTraps} {stakedTraps > 1 ? 'Traps' : 'Trap'}</span>
                         </div>
                       </>
                     ) : (
@@ -1183,7 +1185,7 @@ function Play() {
           </Col>
         </Row>
       </div>
-      <div className="play-table mt-5">
+      <div className="play-table-container mt-5">
         <h1>Kill feed</h1>
         <div className="play-table">
           <Table responsive>

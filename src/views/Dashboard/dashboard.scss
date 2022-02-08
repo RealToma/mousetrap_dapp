@@ -155,8 +155,9 @@ body {
 }
 
 .dashboard-home .box1.active {
-  background-image: url(yellow.png);
+  background-image: url(active.png);
   background-size: 100% 100%;
+  cursor: pointer;
 }
 
 .dashboard-home .bigbox1 {
@@ -305,7 +306,7 @@ body {
   color: #000;
 }
 
-.back-color{
+.back-color {
   color: gray !important;
 }
 
@@ -327,12 +328,14 @@ body {
   justify-content: center;
 }
 
-.modal2 h2, .modal3 h2 {
+.modal2 h2,
+.modal3 h2 {
   color: #000;
   font-family: "VT323";
 }
 
-.modal2 p, .modal3 p {
+.modal2 p,
+.modal3 p {
   font-family: "VT323";
   font-size: 18px;
   text-align: left;
@@ -346,24 +349,73 @@ body {
   width: 100%;
 }
 
-.modal3{
-    text-align: center;
+.modal3 {
+  text-align: center;
 }
 
-.text-blue{
-  color: #0500FF;
+.text-blue {
+  color: #0500ff;
 }
 
-.text-yelow{
-  color: #FFAC01;
+.text-yelow {
+  color: #ffac01;
 }
 
-.banner img{
+.banner img {
   width: 100%;
   // height: 200px;
 }
 
-.dashboard-home-2{
+.banner-btn-cont {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transform: translateY(-50%);
+  z-index: 100;
+}
+
+.banner-btn-cont a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+.banner-btn {
+  width: 40%;
+  margin: 0 0.5rem !important;
+  padding: 0.5rem 0.8rem !important;
+  font-family: "VT323";
+  font-family: "VT323";
+  background-size: 100% 100%;
+  color: #000 !important;
+}
+
+.btn-success {
+  background-image: url(green-btn-bg.png);
+}
+
+.btn-danger {
+  background-image: url(pink.png);
+  color: #fff !important;
+}
+
+.btn-white {
+  background-image: url(wight.png);
+}
+
+.btn-yellow {
+  background-image: url(yellow.png);
+}
+
+@media (min-width: 768px) {
+  .banner-btn {
+    padding: 1.6rem 3.5rem !important;
+  }
+}
+
+.dashboard-home-2 {
   margin-top: 30px;
 }
 
@@ -375,10 +427,10 @@ body {
 }
 
 @media (max-width: 425px) {
-  .dashboard-home-1{
+  .dashboard-home-1 {
     margin-top: 50px !important;
   }
-  .dashboard-home-2{
+  .dashboard-home-2 {
     margin-top: 0px;
   }
 }

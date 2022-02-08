@@ -1,5 +1,32 @@
 .rebase-timer {
     position: relative;
-    width: max-content;
+    width: 100%;
   }
   
+.unlocker-timer{
+  background: #E5E5E5;
+  box-shadow: 4px 4px 0px #939393;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+
+.remain-details{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.remain-details p{
+  font-size: 18px;
+  line-height: 18px;
+  margin: 0px;
+}
+
+.remain-details strong{
+  font-size: 24px;
+  line-height: 28px;
+  margin: 0px;
+}
