@@ -125,7 +125,7 @@ body {
 }
 
 .bg-light {
-  background-image: url(../../assets/images/bg-light.png), url(../../assets/images/bg-gray.png);
+  background-image: url(bg-light.png), url(bg-gray.png);
   background-repeat: no-repeat;
   background-position: left center, right center;
 }
@@ -135,7 +135,7 @@ body {
 }
 
 .dashboard-home .box1 {
-  background-image: url(../../assets/images/wight.png);
+  background-image: url(wight.png);
   background-size: 100% 100%;
   padding: 10px;
 }
@@ -155,13 +155,12 @@ body {
 }
 
 .dashboard-home .box1.active {
-  background-image: url(../../assets/images/active.png);
+  background-image: url(yellow.png);
   background-size: 100% 100%;
-  cursor: pointer;
 }
 
 .dashboard-home .bigbox1 {
-  background-image: url(../../assets/images/yellow-big.png);
+  background-image: url(yellow-big.png);
   background-size: 100% 100%;
   display: flex;
   align-items: center;
@@ -169,10 +168,11 @@ body {
 }
 
 .get-start-main {
-  background-image: url(../../assets/images/pink.png);
+  background-image: url(pink.png);
   background-size: 100% 100%;
   padding: 60px 40px;
   display: flex;
+  width: 75%;
 }
 
 .get-start-main p {
@@ -182,14 +182,15 @@ body {
 }
 
 .get-start-main .start-btn {
-  background-image: url(../../assets/images/get-start.png);
+  background-image: url(get-start.png);
   background-size: 100% 100%;
   font-family: "VT323";
   width: 100%;
-  height: 60px;
   font-size: 30px;
+  white-space: nowrap;
   border: none;
   border-radius: 0;
+  color: #000;
   box-shadow: none !important;
 }
 
@@ -205,7 +206,7 @@ body {
 } */
 
 .modal1 {
-  background-image: url(../../assets/images/modal1.png);
+  background-image: url(modal1.png);
   background-size: 100% 100%;
   padding: 50px !important;
   color: #000 !important;
@@ -213,7 +214,7 @@ body {
 }
 
 .modal2 {
-  background-image: url(../../assets/images/modal3.png);
+  background-image: url(modal3.png);
   background-size: 100% 100%;
   padding: 50px !important;
   color: #000 !important;
@@ -221,7 +222,7 @@ body {
 }
 
 .modal3 {
-  background-image: url(../../assets/images/modal3.png);
+  background-image: url(modal3.png);
   background-size: 100% 100%;
   padding: 50px !important;
   color: #000 !important;
@@ -296,7 +297,7 @@ body {
 }
 
 .back-next .back {
-  background-image: url(../../assets/images/light-btn.png);
+  background-image: url(light-btn.png);
   background-size: 100% 100%;
   font-family: "VT323";
   border: none;
@@ -306,12 +307,12 @@ body {
   color: #000;
 }
 
-.back-color {
+.back-color{
   color: gray !important;
 }
 
 .back-next .next {
-  background-image: url(../../assets/images/green-btn.png);
+  background-image: url(green-btn.png);
   background-size: 100% 100%;
   color: #000;
   font-family: "VT323";
@@ -328,14 +329,12 @@ body {
   justify-content: center;
 }
 
-.modal2 h2,
-.modal3 h2 {
+.modal2 h2, .modal3 h2 {
   color: #000;
   font-family: "VT323";
 }
 
-.modal2 p,
-.modal3 p {
+.modal2 p, .modal3 p {
   font-family: "VT323";
   font-size: 18px;
   text-align: left;
@@ -349,73 +348,24 @@ body {
   width: 100%;
 }
 
-.modal3 {
-  text-align: center;
+.modal3{
+    text-align: center;
 }
 
-.text-blue {
-  color: #0500ff;
+.text-blue{
+  color: #0500FF;
 }
 
-.text-yelow {
-  color: #ffac01;
+.text-yelow{
+  color: #FFAC01;
 }
 
-.banner img {
+.banner img{
   width: 100%;
   // height: 200px;
 }
 
-.banner-btn-cont {
-  position: absolute;
-  top: 50%;
-  right: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transform: translateY(-50%);
-  z-index: 100;
-}
-
-.banner-btn-cont a {
-  color: currentColor;
-  text-decoration: none;
-}
-
-.banner-btn {
-  width: 40%;
-  margin: 0 0.5rem !important;
-  padding: 0.5rem 0.8rem !important;
-  font-family: "VT323";
-  font-family: "VT323";
-  background-size: 100% 100%;
-  color: #000 !important;
-}
-
-.btn-success {
-  background-image: url(../../assets/images/green-btn-bg.png);
-}
-
-.btn-danger {
-  background-image: url(../../assets/images/pink.png);
-  color: #fff !important;
-}
-
-.btn-white {
-  background-image: url(../../assets/images/wight.png);
-}
-
-.btn-yellow {
-  background-image: url(../../assets/images/yellow.png);
-}
-
-@media (min-width: 768px) {
-  .banner-btn {
-    padding: 1.6rem 3.5rem !important;
-  }
-}
-
-.dashboard-home-2 {
+.dashboard-home-2{
   margin-top: 30px;
 }
 
@@ -424,13 +374,45 @@ body {
     margin-left: 0;
     width: 100%;
   }
+  .get-start-main{
+    width: 100% !important;
+  }
 }
 
 @media (max-width: 425px) {
-  .dashboard-home-1 {
+  .dashboard-home-1{
     margin-top: 50px !important;
   }
-  .dashboard-home-2 {
+  .dashboard-home-2{
     margin-top: 0px;
+  }
+}
+
+
+
+.game-btn{
+  background-image: url(yellow-dash.png);
+  background-size: 100% 100%;
+  color: #000 !important;
+  font-family: "VT323";
+  font-size: 30px !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 821px) {
+  .new-here{
+    flex-direction: column !important;
+  }
+  .btn-100{
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 512px) {
+  .btn-100{
+    flex-direction: column !important;
   }
 }

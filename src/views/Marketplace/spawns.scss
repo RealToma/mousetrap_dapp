@@ -255,7 +255,7 @@
 }
 
 .floor-box{
-  background-image: url(../../assets/images/yellow.png);
+  background-image: url(yellow.png);
   background-size: 100% 100%;
   padding: 20px;
 }
@@ -365,7 +365,7 @@
   background-color: transparent !important;
   color: #000 !important;
   border: none;
-  background-image: url(../../assets/images/yellow.png);
+  background-image: url(yellow.png);
   background-size: 100% 100%;
   font-size: 20px;
 }
@@ -382,7 +382,7 @@
 
 .sales-box{
   text-align: center;
-  background-image: url(../../assets/images/wight-bg.png);
+  background-image: url(wight-bg.png);
   background-size: 100% 100%;
   padding: 20px 30px 30px 30px;
 }
@@ -433,7 +433,7 @@
 }
 
 .approve{
-  background-image: url(../../assets/images/green-bg.png);
+  background-image: url(green-bg.png);
   background-size: 100% 100%;
   color: #000 !important;
   font-family: 'VT323';
@@ -459,5 +459,55 @@
     margin: 0 !important;
     margin-top: 20px !important;
     justify-content: center !important;
+  }
+}
+
+.carete-list-btns{
+  display: flex;
+  align-items: center;
+  color: #000 !important;
+}
+
+
+
+.carete-list-btns button{
+  background-color: transparent !important;
+  color: #000;
+  font-family: 'VT323';
+  font-size: 25px;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+
+.carete-list-btns button:hover{
+  color: #000 !important;
+}
+
+.dishable{
+  color: gray !important;
+}
+
+.create-list-modal{
+  background-image: url(create-btn.png);
+  background-size: 100% 100%;
+  padding-bottom: 20px;
+  margin-top: 10px;
+  color: #000 !important;
+}
+
+.modal-content{
+  flex-direction: row !important;
+}
+
+@media (max-width: 469px) {
+  .mt-c{
+    margin-bottom: -35px;
+  }
+}
+
+@media (max-width: 350px) {
+  .carete-list-btns{
+    flex-direction: column;
   }
 }
