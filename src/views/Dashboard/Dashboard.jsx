@@ -8,13 +8,13 @@ import { trim, formatCurrency } from "../../helpers";
 import { useTheme } from "@material-ui/core/styles";
 import "./dashboard.scss";
 import InfoTooltip from "src/components/InfoTooltip/InfoTooltip.jsx";
-import Cheez from "./cheezChristmas.png";
+import Cheez from "../../assets/images/cheezChristmas.png";
 //bond imports
 import { allBondsMap } from "src/helpers/AllBonds";
 import useBonds from "../../hooks/Bonds";
 import { dai } from "src/helpers/AllBonds";
-import Cheesin from "./cheesin.png";
-import Farm from "./farm.jpeg";
+import Cheesin from "../../assets/images/cheesin.png";
+import Farm from "../../assets/images/farm.jpeg";
 import { useWeb3Context } from "../../hooks/web3Context";
 import { Row, Col, Modal } from "react-bootstrap";
 import Slider from "react-slick";
@@ -150,11 +150,11 @@ function Dashboard() {
         {/* slider  */}
         <Slider {...settings}>
           <div>
-            <img src={require("./banner.png").default} alt="" />
+            <img src={require("../../assets/images/banner.png").default} alt="" />
           </div>
           <div>
             <div style={{ position: "relative" }}>
-              <img src={require("./dash-banner-cows.png").default} alt="" />
+              <img src={require("../../assets/images/dash-banner-cows.png").default} alt="" />
               <div className="banner-btn-cont">
                 <Link to="/play">
                   <Button className="banner-btn btn-white" variant="outlined" color="primary">
@@ -171,7 +171,7 @@ function Dashboard() {
           </div>
           <div>
             <div style={{ position: "relative" }}>
-              <img src={require("./dash-banner-need-help.png").default} alt="" />
+              <img src={require("../../assets/images/dash-banner-need-help.png").default} alt="" />
               <div className="banner-btn-cont">
                 <a href="https://discord.gg/cheesedao" target="_blank" rel="noopener noreferrer">
                   <Button className="banner-btn btn-danger" variant="outlined" color="primary">
@@ -278,7 +278,7 @@ function Dashboard() {
         <Row className="m-0 justify-content-center">
           <Col lg={4} md={8} sm={12}>
             <div className="bigbox1 p-4 d-flex flex-column justify-content-center align-items-center mb-1">
-              <img src={require("./mouse.png").default} alt="" width={150} />
+              <img src={require("../../assets/images/mouse.png").default} alt="" width={150} />
               <div className="bigbox-text">
                 <span>Mouse in Maze</span>
                 <h4>
@@ -293,7 +293,7 @@ function Dashboard() {
           </Col>
           <Col lg={4} md={8} sm={12}>
             <div className="bigbox1 p-4 d-flex flex-column justify-content-center align-items-center">
-              <img src={require("./cat.png").default} alt="" />
+              <img src={require("../../assets/images/cat.png").default} alt="" />
               <div className="bigbox-text">
                 <span>Cats in Maze</span>
                 <h4>
@@ -308,7 +308,7 @@ function Dashboard() {
           </Col>
           <Col lg={4} md={8} sm={12}>
             <div className="bigbox1 p-4 d-flex flex-column justify-content-center align-items-center">
-              <img src={require("./mouse-trap.png").default} alt="" />
+              <img src={require("../../assets/images/mouse-trap.png").default} alt="" />
               <div className="bigbox-text">
                 <span>Traps in Maze</span>
                 <h4>
@@ -362,7 +362,7 @@ function Dashboard() {
               }}
               onClick={getStartModalClose}
             ></button>
-            <img src={require("./mouse-modal.png").default} alt="" />
+            <img src={require("../../assets/images/mouse-modal.png").default} alt="" />
             <h3>Getting to Know You</h3>
             <div className="text-align-left">
               <p>Welcome! It’s really gouda to have you here.</p>
@@ -373,10 +373,10 @@ function Dashboard() {
               </p>
             </div>
             <div className="browser">
-              <img src={require("./crom.png").default} alt="" />
-              <img src={require("./firefox.png").default} alt="" />
-              <img src={require("./brave.png").default} alt="" />
-              <img src={require("./crom2.png").default} alt="" />
+              <img src={require("../../assets/images/crom.png").default} alt="" />
+              <img src={require("../../assets/images/firefox.png").default} alt="" />
+              <img src={require("../../assets/images/brave.png").default} alt="" />
+              <img src={require("../../assets/images/crom2.png").default} alt="" />
             </div>
             <div className="input-check mt-3">
               <input type="radio" id="check1" name="browser" />
@@ -387,7 +387,7 @@ function Dashboard() {
               <label for="check2">I don’t use these browsers</label>
             </div>
             <div className="metamask text-align-left mt-3">
-              <img src={require("./metamask.png").default} alt="" />
+              <img src={require("../../assets/images/metamask.png").default} alt="" />
               <div className="input-check mt-3">
                 <input type="radio" id="check3" name="browser2" checked />
                 <label for="check3">I have Metamask</label>
@@ -398,7 +398,7 @@ function Dashboard() {
               </div>
             </div>
             <div className="metamask text-align-left mt-3">
-              <img src={require("./harmony.png").default} alt="" />
+              <img src={require("../../assets/images/harmony.png").default} alt="" />
               <div className="input-check mt-3">
                 <input type="radio" id="check5" name="harmony" checked />
                 <label for="check5">I have some Harmony ONE</label>
@@ -439,10 +439,10 @@ function Dashboard() {
               onClick={getStartModalClose}
             ></button>
             <div className="browser justify-content-center">
-              <img src={require("./crom.png").default} alt="" />
-              <img src={require("./firefox.png").default} alt="" />
-              <img src={require("./brave.png").default} alt="" />
-              <img src={require("./crom2.png").default} alt="" />
+              <img src={require("../../assets/images/crom.png").default} alt="" />
+              <img src={require("../../assets/images/firefox.png").default} alt="" />
+              <img src={require("../../assets/images/brave.png").default} alt="" />
+              <img src={require("../../assets/images/crom2.png").default} alt="" />
             </div>
             <h2 className="mt-2">Browser Setup</h2>
             <p>
@@ -485,7 +485,7 @@ function Dashboard() {
               }}
               onClick={getStartModalClose}
             ></button>
-            <img src={require("./metamask-icon.png").default} alt="" />
+            <img src={require("../../assets/images/metamask-icon.png").default} alt="" />
             <h2>Metamask</h2>
             <p>
               To interact with CheeseDAO, you’ll need a browser extension called Metamask wallet. You can{" "}
@@ -494,13 +494,13 @@ function Dashboard() {
             </p>
             <div className="d-flex align-items-center">
               <Button>
-                <img src={require("./left-side.png").default} alt="" />
+                <img src={require("../../assets/images/left-side.png").default} alt="" />
               </Button>
               <div className="slider">
-                <img src={require("./slide1.png").default} alt="" />
+                <img src={require("../../assets/images/slide1.png").default} alt="" />
               </div>
               <Button>
-                <img src={require("./right-side.png").default} alt="" />
+                <img src={require("../../assets/images/right-side.png").default} alt="" />
               </Button>
             </div>
             <p className="mt-3">
@@ -543,7 +543,7 @@ function Dashboard() {
               }}
               onClick={getStartModalClose}
             ></button>
-            <img src={require("./metamask-icon.png").default} alt="" />
+            <img src={require("../../assets/images/metamask-icon.png").default} alt="" />
             <h2>Metamask</h2>
             <p>Excellent.</p>
             <p>
@@ -593,7 +593,7 @@ function Dashboard() {
               }}
               onClick={getStartModalClose}
             ></button>
-            <img src={require("./metamask-icon.png").default} alt="" />
+            <img src={require("../../assets/images/metamask-icon.png").default} alt="" />
             <h2>Metamask</h2>
             <p>You’re doing grate! Make sure to keep a hard copy of your seed phrase in a safe location.</p>
             <p>
@@ -647,7 +647,7 @@ function Dashboard() {
               }}
               onClick={getStartModalClose}
             ></button>
-            <img src={require("./harmony-icon.png").default} alt="" />
+            <img src={require("../../assets/images/harmony-icon.png").default} alt="" />
             <h2>Harmony ONE Tokens</h2>
             <p>
               Before I release you into the Cheesyverse, you’ll need to own some Harmony ONE tokens. CheeseDAO is hosted
@@ -702,7 +702,7 @@ function Dashboard() {
               }}
               onClick={getStartModalClose}
             ></button>
-            <img src={require("./harmony-icon.png").default} alt="" />
+            <img src={require("../../assets/images/harmony-icon.png").default} alt="" />
             <h2>Harmony ONE Tokens</h2>
             <p>Queso, what’s next?</p>
             <p>
@@ -752,7 +752,7 @@ function Dashboard() {
               }}
               onClick={getStartModalClose}
             ></button>
-            <img src={require("./mouse-modal.png").default} alt="" />
+            <img src={require("../../assets/images/mouse-modal.png").default} alt="" />
             <p className="mt-3">
               Gouda, very gouda. Now that we’ve set up the necessary tools, you may enter into the Cheesyverse.
             </p>

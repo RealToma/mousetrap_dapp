@@ -1,4 +1,4 @@
-import CatLogo from "./catandmouse.png";
+import CatLogo from "../../assets/images/catandmouse.png";
 import "./notfound.scss";
 
 export default function NotFound() {

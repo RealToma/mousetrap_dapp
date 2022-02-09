@@ -137,13 +137,13 @@ const Governance = () => {
                                         <div className='pagination  b-0 px-2'>
                                             <span>Showing 1 to 10 out of 894 stakers</span>
                                             <div className="pagination-btns ms-auto d-flex align-items-center">
-                                                <Button><img src={require('./left-arrow.png').default} alt="" /></Button>
+                                                <Button><img src={require('../../assets/images/left-arrow.png').default} alt="" /></Button>
                                                 <Button className="pages active">1</Button>
                                                 <Button className="pages">2</Button>
                                                 <Button className="pages">3</Button>
                                                 <Button>...</Button>
                                                 <Button className="pages">5</Button>
-                                                <Button><img src={require('./right-arrow.png').default} alt="" /></Button>
+                                                <Button><img src={require('../../assets/images/right-arrow.png').default} alt="" /></Button>
                                             </div>
                                         </div>
                                     </div>
@@ -161,7 +161,7 @@ const Governance = () => {
                                                     <tr>
                                                         <td>
                                                             <div className='d-flex align-items-center'>
-                                                                <img src={require('./chees.png').default} alt="" />
+                                                                <img src={require('../../assets/images/chees.png').default} alt="" />
                                                                 <span className='ms-2'>CHEEZ</span>
                                                             </div>
                                                         </td>
@@ -184,7 +184,7 @@ const Governance = () => {
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <img src={require('./toggle.png').default} alt="" />
+                                                            <img src={require('../../assets/images/toggle.png').default} alt="" />
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -200,7 +200,7 @@ const Governance = () => {
                                                             <tr>
                                                                 <td>
                                                                     <div className='d-flex align-items-center'>
-                                                                        <img src={require('./chees.png').default} alt="" />
+                                                                        <img src={require('../../assets/images/chees.png').default} alt="" />
                                                                         <span className='ms-2'>CHEEZ</span>
                                                                     </div>
                                                                 </td>
@@ -256,7 +256,7 @@ const Governance = () => {
                                                             <input type="text" />
                                                         </div>
                                                         <div className='def-yellow mt-4 d-flex align-items-center gap'>
-                                                            <img src={require('./warning.svg').default} alt="" />
+                                                            <img src={require('../../assets/images/warning.svg').default} alt="" />
                                                             <p>Your locked balances will be unavailable for withdrawal until the lock timer ends. Any future deposits will be locked for the same time.</p>
                                                         </div>
                                                         <Button className="lock mt-4">Lock</Button>
@@ -319,7 +319,7 @@ const Governance = () => {
                                                             <tr>
                                                                 <td>
                                                                     <div className='d-flex align-items-center'>
-                                                                        <img src={require('./chees.png').default} alt="" />
+                                                                        <img src={require('../../assets/images/chees.png').default} alt="" />
                                                                         <span className='ms-2'>CHEEZ</span>
                                                                     </div>
                                                                 </td>
@@ -354,7 +354,7 @@ const Governance = () => {
                                                             <input type="text" />
                                                         </div>
                                                         <div className='def-yellow mt-4 d-flex align-items-center gap'>
-                                                            <img src={require('./warning.svg').default} alt="" />
+                                                            <img src={require('../../assets/images/warning.svg').default} alt="" />
                                                             <p>Delegating your voting power to this address means that they will be able to vote in your place. You can’t delegate the voting bonus, only the staked balance.</p>
                                                         </div>
                                                         <Button className="lock mt-4">Lock</Button>
@@ -417,7 +417,7 @@ const Governance = () => {
                                                             <tr>
                                                                 <td>
                                                                     <div className='d-flex align-items-center'>
-                                                                        <img src={require('./chees.png').default} alt="" />
+                                                                        <img src={require('../../assets/images/chees.png').default} alt="" />
                                                                         <span className='ms-2'>CHEEZ</span>
                                                                     </div>
                                                                 </td>
@@ -452,7 +452,7 @@ const Governance = () => {
                                                             <input type="text" />
                                                         </div>
                                                         <div className='def-yellow mt-4 d-flex align-items-center gap'>
-                                                            <img src={require('./warning.svg').default} alt="" />
+                                                            <img src={require('../../assets/images/warning.svg').default} alt="" />
                                                             <p>Delegating your voting power to this address means that they will be able to vote in your place. You can’t delegate the voting bonus, only the staked balance.</p>
                                                         </div>
                                                         <Button className="lock mt-4">Lock</Button>
@@ -541,31 +541,11 @@ const Governance = () => {
                                                 <td>
                                                     <div className="d-flex align-items-center gap justify-content-center">
                                                         <div>
-                                                            <img src={require('./green-line.png').default} alt="" />
+                                                            <img src={require('../../assets/images/green-line.png').default} alt="" />
                                                             <span className='ms-3'>100%</span>
                                                         </div>
                                                         <div>
-                                                            <img src={require('./pink-line.png').default} alt="" />
-                                                            <span className='ms-3'>100%</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div className="my-2">
-                                                        <span className="mb-2 d-block">PID-3: NFT.NYC Event Sponsorship Funding</span>
-                                                        <span className="token">EXECUTED</span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div className="d-flex align-items-center gap justify-content-center">
-                                                        <div>
-                                                            <img src={require('./green-line.png').default} alt="" />
-                                                            <span className='ms-3'>100%</span>
-                                                        </div>
-                                                        <div>
-                                                            <img src={require('./pink-line.png').default} alt="" />
+                                                            <img src={require('../../assets/images/pink-line.png').default} alt="" />
                                                             <span className='ms-3'>100%</span>
                                                         </div>
                                                     </div>
@@ -581,11 +561,31 @@ const Governance = () => {
                                                 <td>
                                                     <div className="d-flex align-items-center gap justify-content-center">
                                                         <div>
-                                                            <img src={require('./green-line.png').default} alt="" />
+                                                            <img src={require('../../assets/images/green-line.png').default} alt="" />
                                                             <span className='ms-3'>100%</span>
                                                         </div>
                                                         <div>
-                                                            <img src={require('./pink-line.png').default} alt="" />
+                                                            <img src={require('../../assets/images/pink-line.png').default} alt="" />
+                                                            <span className='ms-3'>100%</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div className="my-2">
+                                                        <span className="mb-2 d-block">PID-3: NFT.NYC Event Sponsorship Funding</span>
+                                                        <span className="token">EXECUTED</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="d-flex align-items-center gap justify-content-center">
+                                                        <div>
+                                                            <img src={require('../../assets/images/green-line.png').default} alt="" />
+                                                            <span className='ms-3'>100%</span>
+                                                        </div>
+                                                        <div>
+                                                            <img src={require('../../assets/images/pink-line.png').default} alt="" />
                                                             <span className='ms-3'>100%</span>
                                                         </div>
                                                     </div>
@@ -596,9 +596,9 @@ const Governance = () => {
                                     <div className='pagination  b-0 px-2'>
                                         <span>Showing 1 to 3 out of 3 proposals</span>
                                         <div className="pagination-btns ms-auto d-flex align-items-center">
-                                            <Button><img src={require('./left-arrow.png').default} alt="" /></Button>
+                                            <Button><img src={require('../../assets/images/left-arrow.png').default} alt="" /></Button>
                                             <Button className="pages active">1</Button>
-                                            <Button><img src={require('./right-arrow.png').default} alt="" /></Button>
+                                            <Button><img src={require('../../assets/images/right-arrow.png').default} alt="" /></Button>
                                         </div>
                                     </div>
                                 </div>
@@ -614,7 +614,7 @@ const Governance = () => {
                                     <Col lg={4} md={6} sm={12} className="mt-3">
                                         <div className={`${isActive === 1 ? "active" : ""} trasury-box`} onClick={() => setIsActive(1)} >
                                             <div className="d-flex align-items-center ">
-                                                <img src={require('./eth.png').default} alt="" />
+                                                <img src={require('../../assets/images/eth.png').default} alt="" />
                                                 <span>ETH</span>
                                             </div>
                                             <h2 className='mb-0'>741.48</h2>
@@ -624,7 +624,7 @@ const Governance = () => {
                                     <Col lg={4} md={6} sm={12} className="mt-3">
                                         <div className={`${isActive === 2 ? "active" : ""} trasury-box`} onClick={() => setIsActive(2)}>
                                             <div className="d-flex align-items-center ">
-                                                <img src={require('./chees.png').default} alt="" />
+                                                <img src={require('../../assets/images/chees.png').default} alt="" />
                                                 <span>CHEEZ</span>
                                             </div>
                                             <h2 className='mb-0'>71,190,000</h2>
@@ -654,7 +654,7 @@ const Governance = () => {
                                                 <tr>
                                                     <td>
                                                         <div className='d-flex align-items-center'>
-                                                            <img src={require('./chees.png').default} alt="" />
+                                                            <img src={require('../../assets/images/chees.png').default} alt="" />
                                                             <span className='ms-2'>CHEEZ</span>
                                                         </div>
                                                     </td>
@@ -678,7 +678,7 @@ const Governance = () => {
                                                 <tr>
                                                     <td>
                                                         <div className='d-flex align-items-center'>
-                                                            <img src={require('./chees.png').default} alt="" />
+                                                            <img src={require('../../assets/images/chees.png').default} alt="" />
                                                             <span className='ms-2'>CHEEZ</span>
                                                         </div>
                                                     </td>
@@ -702,7 +702,7 @@ const Governance = () => {
                                                 <tr>
                                                     <td>
                                                         <div className='d-flex align-items-center'>
-                                                            <img src={require('./chees.png').default} alt="" />
+                                                            <img src={require('../../assets/images/chees.png').default} alt="" />
                                                             <span className='ms-2'>CHEEZ</span>
                                                         </div>
                                                     </td>
@@ -728,9 +728,9 @@ const Governance = () => {
                                         <div className='pagination  b-0 px-2'>
                                             <span>Showing 1 to 3 out of 3 proposals</span>
                                             <div className="pagination-btns ms-auto d-flex align-items-center">
-                                                <Button><img src={require('./left-arrow.png').default} alt="" /></Button>
+                                                <Button><img src={require('../../assets/images/left-arrow.png').default} alt="" /></Button>
                                                 <Button className="pages active">1</Button>
-                                                <Button><img src={require('./right-arrow.png').default} alt="" /></Button>
+                                                <Button><img src={require('../../assets/images/right-arrow.png').default} alt="" /></Button>
                                             </div>
                                         </div>
                                     </div>

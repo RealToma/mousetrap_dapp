@@ -201,15 +201,15 @@ function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      {location.pathname === '/' && <><img className="cartoon" src={require('./cartoon.png').default} alt="" /></>}
-      {location.pathname === '/dashboard' && <><img className="cartoon" src={require('./cartoon.png').default} alt="" /></>}
-      {location.pathname === '/play' && <><img className="cartoon2" src={require('./cartoon.png').default} alt="" /></>}
-      {location.pathname === '/ageing' && <><img className="cartoon3" src={require('./cartoon.png').default} alt="" /></>}
-      {location.pathname === '/nfts' && <><img className="cartoon4" src={require('./cartoon.png').default} alt="" /></>}
-      {location.pathname === '/marketplace' && <><img className="cartoon5" src={require('./cartoon.png').default} alt="" /></>}
-      {location.pathname === '/bridge' && <><img className="cartoon" src={require('./cartoon.png').default} alt="" /></>}
-      {location.pathname === '/bonds' && <><img className="cartoon5" src={require('./cartoon.png').default} alt="" /></>}
-      {location.pathname === '/governance' && <><img className="cartoon6" src={require('./cartoon.png').default} alt="" /></>}
+      {location.pathname === '/' && <><img className="cartoon" src={require('./assets/images/main/cartoon.png').default} alt="" /></>}
+      {location.pathname === '/dashboard' && <><img className="cartoon" src={require('./assets/images/main/cartoon.png').default} alt="" /></>}
+      {location.pathname === '/play' && <><img className="cartoon2" src={require('./assets/images/main/cartoon.png').default} alt="" /></>}
+      {location.pathname === '/ageing' && <><img className="cartoon3" src={require('./assets/images/main/cartoon.png').default} alt="" /></>}
+      {location.pathname === '/nfts' && <><img className="cartoon4" src={require('./assets/images/main/cartoon.png').default} alt="" /></>}
+      {location.pathname === '/marketplace' && <><img className="cartoon5" src={require('./assets/images/main/cartoon.png').default} alt="" /></>}
+      {location.pathname === '/bridge' && <><img className="cartoon" src={require('./assets/images/main/cartoon.png').default} alt="" /></>}
+      {location.pathname === '/bonds' && <><img className="cartoon5" src={require('./assets/images/main/cartoon.png').default} alt="" /></>}
+      {location.pathname === '/governance' && <><img className="cartoon6" src={require('./assets/images/main/cartoon.png').default} alt="" /></>}
 
       <CssBaseline />
       <div className={`app ${isSmallerScreen && "tablet"} ${isSmallScreen && "mobile"} ${theme}`}>
@@ -311,7 +311,7 @@ function App() {
           {isSmallerScreen || trollboxOpen ? (
             <></>
           ) : (
-            <Button color="primary" onClick={toggleTrollbox}><img className="chat" src={require('./chat.png').default} alt="" /></Button>
+            <Button color="primary" onClick={toggleTrollbox}><img className="chat" src={require('./assets/images/main/chat.png').default} alt="" /></Button>
           )}
         </div>
 

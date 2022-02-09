@@ -20,7 +20,7 @@
 .pending-txn-container {
   display: flex;
   align-items: center;
-  background-image: url(contact.png);
+  background-image: url("../../assets/images/contact.png");
   background-size: 100% 100%;
   border: none;
   color: #000 !important;
@@ -54,7 +54,7 @@
 
 //
 .header{
-  background-image:url(header.png);
+  background-image:url(../../assets/images/header.png);
   background-size: 100% 100%;
   width: 100%;
   padding: 8px 20px;
@@ -73,7 +73,7 @@
 
 .header .connect,
 .connect2{
-  background-image: url(contact.png);
+  background-image: url("../../assets/images/contact.png");
   background-size: 100% 100%;
   border: none;
   color: #000 !important;
@@ -128,7 +128,7 @@
 
 
 .cheese-modal{
-  background-image: url(modal-bg.png);
+  background-image: url(../../assets/images/modal-bg.png);
   background-size: 100% 100%;
   position: fixed !important;
   padding: 44px 32px 21px 18px;
@@ -159,7 +159,7 @@
 }
 
 .buy{
-  background-image: url(green.png);
+  background-image: url(../../assets/images/green.png);
   background-size: 100% 100%;
   padding: 20px;
   width: 100%;
@@ -171,7 +171,7 @@
 }
 
 .yellow-box{
-  background-image: url(yellow-box.png);
+  background-image: url(../../assets/images/yellow-box.png);
   background-size: 100% 100%;
   padding: 10px 20px;
   border: none !important;
@@ -182,13 +182,13 @@
 }
 
 .by-cheese{
-  background-image: url(contact.png);
+  background-image: url("../../assets/images/contact.png");
   background-size: 100% 100%;
   color: #000 !important;
 }
 
 .disconnect{
-  background-image: url(white.png) !important;
+  background-image: url(../../assets/images/white.png) !important;
   background-size: 100% 100%;
   color: #000 !important;
 }

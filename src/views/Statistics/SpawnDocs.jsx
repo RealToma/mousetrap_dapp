@@ -4,8 +4,8 @@ import {loadAppDetails} from "../../slices/AppSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useWeb3Context } from "src/hooks/web3Context";
 import { Skeleton } from "@material-ui/lab";
-import Mouse from "./mouse.png";
-import Cat from "./catlogo.png";
+import Mouse from "../../assets/images/mouse.png";
+import Cat from "../../assets/images/catlogo.png";
 
 function SpawnDocs() {
 

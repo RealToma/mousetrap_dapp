@@ -17,8 +17,8 @@ import {
 } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 
-import CloseIcon from "./close.png";
-import CheezPassGif from "./cheezpass.gif";
+import CloseIcon from "../../assets/images/close.png";
+import CheezPassGif from "../../assets/images/cheezpass.gif";
 import { useWeb3Context } from "src/hooks/web3Context";
 import Merkle from "./merkle.json";
 

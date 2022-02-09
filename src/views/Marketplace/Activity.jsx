@@ -36,14 +36,14 @@ import { useWeb3Context } from "src/hooks/web3Context";
 import { error } from "../../slices/MessagesSlice";
 import { ethers } from "ethers";
 
-import Mouse from "./mouse.png";
-import Cat from "./catlogo.png";
-import MouseTrap from "./mousetrap.png";
-import Plus from "./plus.png";
-import CloseIcon from "./close.png";
-import SortIcon from "./sort.png";
-import PurchaseIcon from "./shop.png";
-import CheezPassGif from "./cheezpass.gif";
+import Mouse from "../../assets/images/mouse.png";
+import Cat from "../../assets/images/catlogo.png";
+import MouseTrap from "../../assets/images/mousetrap.png";
+import Plus from "../../assets/images/plus.png";
+import CloseIcon from "../../assets/images/close.png";
+import SortIcon from "../../assets/images/sort.png";
+import PurchaseIcon from "../../assets/images/shop.png";
+import CheezPassGif from "../../assets/images/cheezpass.gif";
 import { Col, Row, Button, Table, Modal } from "react-bootstrap";
 
 
@@ -331,7 +331,7 @@ function Activity() {
         <Row className="justify-content-center">
           <Col lg={3} md={6} sm={12} className="mt-3">
             <div className="floor-box d-flex align-items-center gap">
-              <img src={require('./mouse-market.png').default} alt="" width={100} />
+              <img src={require('../../assets/images/mouse-market.png').default} alt="" width={100} />
               <div className="floor-text">
                 <span>Floor:</span>
                 <h3>{mouseFloor != null || undefined ? `${ethers.utils.formatUnits(`${mouseFloor.price}`, 9)}` : ''} 🧀</h3>
@@ -340,7 +340,7 @@ function Activity() {
           </Col>
           <Col lg={3} md={6} sm={12} className="mt-3">
             <div className="floor-box d-flex align-items-center gap">
-              <img src={require('./cat.png').default} alt="" width={100} />
+              <img src={require('../../assets/images/cat.png').default} alt="" width={100} />
               <div className="floor-text">
                 <span>Floor:</span>
                 <h3>{catFloor != null || undefined ? `${ethers.utils.formatUnits(`${catFloor.price}`, 9)}` : ''} 🧀</h3>
@@ -349,7 +349,7 @@ function Activity() {
           </Col>
           <Col lg={3} md={6} sm={12} className="mt-3">
             <div className="floor-box d-flex align-items-center gap">
-              <img src={require('./mouse-trap.png').default} alt="" width={100} />
+              <img src={require('../../assets/images/mouse-trap.png').default} alt="" width={100} />
               <div className="floor-text">
                 <span>Floor:</span>
                 <h3>{trapFloor != null || undefined ? `${ethers.utils.formatUnits(`${trapFloor.price}`, 9)}` : ''} 🧀</h3>
@@ -358,7 +358,7 @@ function Activity() {
           </Col>
           <Col lg={3} md={6} sm={12} className="mt-3">
             <div className="floor-box d-flex align-items-center gap">
-              <img src={require('./cheezpass.gif').default} alt="" width={100} />
+              <img src={require('../../assets/images/cheezpass.gif').default} alt="" width={100} />
               <div className="floor-text">
                 <span>Floor:</span>
                 <h3>{passFloor != null || undefined ? `${ethers.utils.formatUnits(`${passFloor.price}`, 9)}` : ''} 🧀</h3>
@@ -370,19 +370,19 @@ function Activity() {
         <div className="main mt-5">
           <div className="main-btn-box">
             <Button className={`${btnActive === 1 ? "active" : ""}`} onClick={(e) => { setBtnActive(1); paginationHandler(e, 1, mouseListingsFinalAsc) }}>
-              <img src={require('./mouse-market.png').default} alt="" width={60} />
+              <img src={require('../../assets/images/mouse-market.png').default} alt="" width={60} />
               <h4 className="mb-0">Mouse Listings</h4>
             </Button>
             <Button className={`${btnActive === 2 ? "active" : ""}`} onClick={(e) => { setBtnActive(2); paginationHandler(e, 1, catListingsFinalAsc) }}>
-              <img src={require('./cat.png').default} alt="" width={50} />
+              <img src={require('../../assets/images/cat.png').default} alt="" width={50} />
               <h4 className="mb-0">Cat Listings</h4>
             </Button>
             <Button className={`${btnActive === 3 ? "active" : ""}`} onClick={(e) => { setBtnActive(3); paginationHandler(e, 1, trapListingsFinalAsc) }}>
-              <img src={require('./mouse-trap.png').default} alt="" width={50} />
+              <img src={require('../../assets/images/mouse-trap.png').default} alt="" width={50} />
               <h4 className="mb-0">MouseTrap Listings</h4>
             </Button>
             <Button className={`${btnActive === 4 ? "active" : ""}`} onClick={(e) => { setBtnActive(4); paginationHandler(e, 1, passListingsFinalAsc) }}>
-              <img src={require('./cheezpass.gif').default} alt="" width={50} />
+              <img src={require('../../assets/images/cheezpass.gif').default} alt="" width={50} />
               <h4 className="mb-0">CHEEZ Pass Listings</h4>
             </Button>
           </div>
@@ -392,11 +392,11 @@ function Activity() {
               <div className="pagination mt-3 px-3">
                 {sort === false ? (
                   <>
-                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, mouseListingsFinalAsc) }}>Low to High <img src={require('./shorting.png').default} alt="" /></Button>
+                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, mouseListingsFinalAsc) }}>Low to High <img src={require('../../assets/images/shorting.png').default} alt="" /></Button>
                   </>
                 ) : (
                   <>
-                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, mouseListingsFinalDsc) }}>High to Low <img src={require('./shorting.png').default} alt="" /></Button>
+                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, mouseListingsFinalDsc) }}>High to Low <img src={require('../../assets/images/shorting.png').default} alt="" /></Button>
                   </>
                 )}
 
@@ -405,7 +405,7 @@ function Activity() {
                   {
                     totalPage > 3
                     &&
-                    <Button onClick={e => paginationHandler(e, 1, sort ? mouseListingsFinalDsc : catListingsFinalAsc)}><img src={require('./left-arrow.png').default} alt="" /></Button>
+                    <Button onClick={e => paginationHandler(e, 1, sort ? mouseListingsFinalDsc : catListingsFinalAsc)}><img src={require('../../assets/images/left-arrow.png').default} alt="" /></Button>
                   }
                   {
                     [...Array(totalPage)].map((data, i) => {
@@ -421,7 +421,7 @@ function Activity() {
                     <>
                       <Button>...</Button>
                       <Button className="pages">{totalPage}</Button>
-                      <Button onClick={e => paginationHandler(e, totalPage, sort ? mouseListingsFinalDsc : mouseListingsFinalAsc)}><img src={require('./right-arrow.png').default} alt="" /></Button>
+                      <Button onClick={e => paginationHandler(e, totalPage, sort ? mouseListingsFinalDsc : mouseListingsFinalAsc)}><img src={require('../../assets/images/right-arrow.png').default} alt="" /></Button>
                     </>
                   }
                 </div>
@@ -491,11 +491,11 @@ function Activity() {
               <div className="pagination mt-3 px-3">
                 {sort === false ? (
                   <>
-                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, catListingsFinalAsc) }}>Low to High <img src={require('./shorting.png').default} alt="" /></Button>
+                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, catListingsFinalAsc) }}>Low to High <img src={require('../../assets/images/shorting.png').default} alt="" /></Button>
                   </>
                 ) : (
                   <>
-                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, catListingsFinalDsc) }}>High to Low <img src={require('./shorting.png').default} alt="" /></Button>
+                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, catListingsFinalDsc) }}>High to Low <img src={require('../../assets/images/shorting.png').default} alt="" /></Button>
                   </>
                 )}
                 {/* pagination */}
@@ -503,7 +503,7 @@ function Activity() {
                   {
                     totalPage > 3
                     &&
-                    <Button onClick={e => paginationHandler(e, 1, sort ? catListingsFinalDsc : catListingsFinalAsc)}><img src={require('./left-arrow.png').default} alt="" /></Button>
+                    <Button onClick={e => paginationHandler(e, 1, sort ? catListingsFinalDsc : catListingsFinalAsc)}><img src={require('../../assets/images/left-arrow.png').default} alt="" /></Button>
                   }
                   {
                     [...Array(totalPage)].map((data, i) => {
@@ -519,7 +519,7 @@ function Activity() {
                     <>
                       <Button>...</Button>
                       <Button className="pages">{totalPage}</Button>
-                      <Button onClick={e => paginationHandler(e, totalPage, sort ? catListingsFinalDsc : catListingsFinalAsc)}><img src={require('./right-arrow.png').default} alt="" /></Button>
+                      <Button onClick={e => paginationHandler(e, totalPage, sort ? catListingsFinalDsc : catListingsFinalAsc)}><img src={require('../../assets/images/right-arrow.png').default} alt="" /></Button>
                     </>
                   }
 
@@ -592,11 +592,11 @@ function Activity() {
               <div className="pagination mt-3 px-3">
                 {sort === false ? (
                   <>
-                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, trapListingsFinalAsc) }}>Low to High <img src={require('./shorting.png').default} alt="" /></Button>
+                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, trapListingsFinalAsc) }}>Low to High <img src={require('../../assets/images/shorting.png').default} alt="" /></Button>
                   </>
                 ) : (
                   <>
-                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, trapListingsFinalDsc) }}>High to Low <img src={require('./shorting.png').default} alt="" /></Button>
+                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, trapListingsFinalDsc) }}>High to Low <img src={require('../../assets/images/shorting.png').default} alt="" /></Button>
                   </>
                 )}
                 {/* pagination */}
@@ -604,7 +604,7 @@ function Activity() {
                   {
                     totalPage > 3
                     &&
-                    <Button onClick={e => paginationHandler(e, 1, sort ? trapListingsFinalDsc : trapListingsFinalAsc)}><img src={require('./left-arrow.png').default} alt="" /></Button>
+                    <Button onClick={e => paginationHandler(e, 1, sort ? trapListingsFinalDsc : trapListingsFinalAsc)}><img src={require('../../assets/images/left-arrow.png').default} alt="" /></Button>
                   }
                   {
                     [...Array(totalPage)].map((data, i) => {
@@ -620,7 +620,7 @@ function Activity() {
                     <>
                       <Button>...</Button>
                       <Button className="pages">{totalPage}</Button>
-                      <Button onClick={e => paginationHandler(e, totalPage, sort ? trapListingsFinalDsc : trapListingsFinalAsc)}><img src={require('./right-arrow.png').default} alt="" /></Button>
+                      <Button onClick={e => paginationHandler(e, totalPage, sort ? trapListingsFinalDsc : trapListingsFinalAsc)}><img src={require('../../assets/images/right-arrow.png').default} alt="" /></Button>
                     </>
                   }
                 </div>
@@ -691,11 +691,11 @@ function Activity() {
               <div className="pagination mt-3 px-3">
                 {sort === false ? (
                   <>
-                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, passListingsFinalAsc) }}>Low to High <img src={require('./shorting.png').default} alt="" /></Button>
+                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, passListingsFinalAsc) }}>Low to High <img src={require('../../assets/images/shorting.png').default} alt="" /></Button>
                   </>
                 ) : (
                   <>
-                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, passListingsFinalDsc) }}>High to Low <img src={require('./shorting.png').default} alt="" /></Button>
+                    <Button className="short" onClick={(e) => { toggleSort(); paginationHandler(e, 1, passListingsFinalDsc) }}>High to Low <img src={require('../../assets/images/shorting.png').default} alt="" /></Button>
                   </>
                 )}
                 {/* pagination */}
@@ -703,7 +703,7 @@ function Activity() {
                   {
                     totalPage > 3
                     &&
-                    <Button onClick={e => paginationHandler(e, 1, sort ? passListingsFinalDsc : passListingsFinalAsc)}><img src={require('./left-arrow.png').default} alt="" /></Button>
+                    <Button onClick={e => paginationHandler(e, 1, sort ? passListingsFinalDsc : passListingsFinalAsc)}><img src={require('../../assets/images/left-arrow.png').default} alt="" /></Button>
                   }
                   {
                     [...Array(totalPage)].map((data, i) => {
@@ -719,7 +719,7 @@ function Activity() {
                     <>
                       <Button>...</Button>
                       <Button className="pages">{totalPage}</Button>
-                      <Button onClick={e => paginationHandler(e, totalPage, sort ? passListingsFinalDsc : passListingsFinalAsc)}><img src={require('./right-arrow.png').default} alt="" /></Button>
+                      <Button onClick={e => paginationHandler(e, totalPage, sort ? passListingsFinalDsc : passListingsFinalAsc)}><img src={require('../../assets/images/right-arrow.png').default} alt="" /></Button>
                     </>
                   }
                 </div>
@@ -793,7 +793,7 @@ function Activity() {
               <Col lg={3} md={6} sm={12} className="mt-3">
                 <div className="sales-box">
                   {listing.tokenId === 0 && listing.amount > 1 && listing.token === addresses[chainID].NFT_CONTRACT_ADDRESS ? <img src={Mouse} alt="mouse icon" style={{ height: "60px", width: "60px" }} /> : listing.tokenId === 0 && listing.amount === 1 && listing.token === addresses[chainID].NFT_CONTRACT_ADDRESS ? <img src={Mouse} alt="mouse icon" style={{ height: "60px", width: "60px" }} /> : listing.tokenId === 1 && listing.amount > 1 ? <img src={Cat} alt="cat icon" style={{ height: "60px", width: "60px" }} /> : listing.tokenId === 1 && listing.amount <= 1 ? <img src={Cat} alt="cat icon" style={{ height: "60px", width: "60px" }} /> : listing.tokenId === 2 && listing.amount > 1 ? <img src={MouseTrap} alt="mouse trap icon" style={{ height: "60px", width: "60px" }} /> : listing.tokenId === 2 ? <img src={MouseTrap} alt="mouse trap icon" style={{ height: "60px", width: "60px" }} /> : listing.token === addresses[chainID].CHEEZPASS_CONTRACT_ADDRESS ? <img src={CheezPassGif} alt="cheesepass spinning gif" style={{ height: "60px", width: "60px" }} /> : ''}
-                  {/* <img src={require('./mouse-market.png').default} alt="" width={100} /> */}
+                  {/* <img src={require('../../assets/images/mouse-market.png').default} alt="" width={100} /> */}
                   <span>for {(parseFloat(ethers.utils.formatUnits(`${listing.price}`, 9)) / listing.amount).toFixed(2)} 🧀 {listing.amount > 1 ? "each!" : ""}</span>
                   <span className="mt-2">{shorten(`${listing.admin}`)}</span>
                   <div className="box-total d-flex align-items-center justify-content-between mt-2">

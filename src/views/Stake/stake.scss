@@ -234,7 +234,7 @@
 // 
 @font-face {
     font-family: 'VT323';
-    src: url('VT323-Regular.woff') format('woff2'), url('VT323-Regular.woff2') format('woff');
+    src: url('../../assets/fonts/VT323-Regular.woff') format('woff2'), url('../../assets/fonts/VT323-Regular.woff2') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -245,7 +245,7 @@
 }
 
 .btn-full {
-    background-image: url(ageing.png);
+    background-image: url(../../assets/images/ageing.png);
     background-size: 100% 100%;
     width: 100%;
     border: none !important;
@@ -260,7 +260,7 @@
 }
 
 .bg-wight {
-    background-image: url(./bg-wight.png);
+    background-image: url(../../assets/images/./bg-wight.png);
     background-size: 100% 100%;
     padding: 30px 25px !important;
     color: #000 !important;
@@ -282,7 +282,7 @@
 }
 
 .wall-btn .wallet-btn {
-    background-image: url(black-bg.png);
+    background-image: url(../../assets/images/black-bg.png);
     background-size: 100% 100%;
     padding: 15px 20px !important;
     font-size: 25px;
@@ -315,7 +315,7 @@
 .modal-footer{
     font-family: 'VT323';
     font-size: 20px !important;
-    background-image: url(modal-footer.png);
+    background-image: url(../../assets/images/modal-footer.png);
     background-size: 100% 100%;
     padding: 0 !important;
     justify-content: center !important;
@@ -359,7 +359,7 @@
 
 .stake-claim-button{
     background-size: 100% 100%;
-    background-image: url(mini-wight.png);
+    background-image: url(../../assets/images/mini-wight.png);
     padding: 10px !important;
     width: fit-content;
     border-radius: 0 !important;
@@ -392,7 +392,7 @@
 }
 
 .green.active{
-    background-image: url(green-bg.png) !important;
+    background-image: url(../../assets/images/green-bg.png) !important;
     background-size: 100% 100% !important;
 }
 
@@ -407,7 +407,7 @@
 }
 
 .pink.active{
-    background-image: url(pink-bg.png);
+    background-image: url(../../assets/images/pink-bg.png);
     background-size: 100% 100%;
     color: #ffff !important;
 }

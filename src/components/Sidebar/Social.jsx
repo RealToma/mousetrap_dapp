@@ -14,16 +14,16 @@ export default function Social() {
       <div className="social">
         <div className="icon">
           <Button>
-            <img src={require('./discord.png').default} alt="" />
+            <img src={require('../../assets/images/discord.png').default} alt="" />
           </Button>
           <Button>
-            <img src={require('./twitter.png').default} alt="" />
+            <img src={require('../../assets/images/twitter.png').default} alt="" />
           </Button>
           <Button>
-            <img src={require('./medium-monogram.png').default} alt="" />
+            <img src={require('../../assets/images/medium-monogram.png').default} alt="" />
           </Button>
           <Button>
-            <img src={require('./github.png').default} alt="" />
+            <img src={require('../../assets/images/github.png').default} alt="" />
           </Button>
         </div>
       </div>

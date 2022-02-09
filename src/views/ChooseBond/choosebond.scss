@@ -148,7 +148,7 @@
 
 @font-face {
   font-family: 'VT323';
-  src: url('VT323-Regular.woff') format('woff2'), url('VT323-Regular.woff2') format('woff');
+  src: url('../../assets/fonts/VT323-Regular.woff') format('woff2'), url('../../assets/fonts/VT323-Regular.woff2') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -161,7 +161,7 @@
 }
 
 .wight-bg{
-  background-image: url(wight-fram.png);
+  background-image: url(../../assets/images/wight-fram.png);
   background-size: 100% 100%;
   padding: 30px;
   color: #000;
@@ -170,7 +170,7 @@
 }
 
 .wight-bg.active{
-  background-image: url(active.png) !important;
+  background-image: url(../../assets/images/active.png) !important;
   background-size: 100% 100%;
 }
 
@@ -230,7 +230,7 @@
 }
 
 .modal-bond{
-  background-image: url(bond-modal.png);
+  background-image: url(../../assets/images/bond-modal.png);
   background-size: 100% 100%;
   padding: 50px 40px !important;
   color: #000;
@@ -238,7 +238,7 @@
 }
 
 .bond-btn{
-  background-image: url(bond-btn.png);
+  background-image: url(../../assets/images/bond-btn.png);
   background-size: 100% 100%;
   background-color: transparent !important;
   border: none !important;
@@ -249,7 +249,7 @@
 }
 
 .bg-wight-bond{
-  background-image: url(wight-modal-img.png);
+  background-image: url(../../assets/images/wight-modal-img.png);
   background-size: 100% 100%;
   padding: 20px;
 }
@@ -269,7 +269,7 @@
 }
 
 .tabs-btn.active{
-  background-image: url(tabs-green.png);
+  background-image: url(../../assets/images/tabs-green.png);
   background-size: 100% 100%;
 }
 
@@ -293,7 +293,7 @@
 }
 
 .approve-btn{
-  background-image: url(approve.png);
+  background-image: url(../../assets/images/approve.png);
   background-size: 100% 100%;
   color: #000 !important;
   font-size: 20px !important;
@@ -313,7 +313,7 @@
 }
 
 .setting-modal{
-  background-image: url(setting-modal-bg.png);
+  background-image: url(../../assets/images/setting-modal-bg.png);
   background-size: 100% 100%;
   padding: 40px 40px !important;
   color: #000;
@@ -359,7 +359,7 @@
 }
 
 .mini-bg-gray{
-  background-image: url(bg-gray.png);
+  background-image: url(../../assets/images/bg-gray.png);
   background-size: 100% 100%;
   text-align: center;
   padding: 10px 20px;

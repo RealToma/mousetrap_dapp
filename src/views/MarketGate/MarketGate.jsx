@@ -17,8 +17,8 @@ import {
 
 import "./MarketGate.css";
 
-import CheezPass from "./cheezpass.gif";
-import Both from "./both.png";
+import CheezPass from "../../assets/images/cheezpass.gif";
+import Both from "../../assets/images/both.png";
 
 const MarketGate = () => {
 

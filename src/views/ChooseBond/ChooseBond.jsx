@@ -209,7 +209,7 @@ function ChooseBond() {
               <h3 className="mb-0">CHEEZ-DAI LP</h3>
             </div>
             <Button className="setting" onClick={() => { Modal1Close(); Modal2Open(); }}>
-              <img src={require('./setting.svg').default} alt="" />
+              <img src={require('../../assets/images/setting.svg').default} alt="" />
             </Button>
           </div>
           <Row className="mt-3">

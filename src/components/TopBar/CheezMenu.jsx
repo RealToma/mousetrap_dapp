@@ -4,7 +4,7 @@ import { getTokenImage } from "../../helpers";
 import { useSelector } from "react-redux";
 import { Link, SvgIcon, Popper, Paper, Typography, Divider, Box, Fade, Slide } from "@material-ui/core";
 import { ReactComponent as ArrowUpIcon } from "../../assets/icons/arrow-up.svg";
-import cheez from "./cheez.png";
+import cheez from "../../assets/images/cheez.png";
 
 import "./cheezmenu.scss";
 import { dai } from "src/helpers/AllBonds";

@@ -57,7 +57,7 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }) {
         <div className="header">
           <div className="d-flex justify-content-between align-items-center">
             <div className="logo d-flex align-items-center">
-              <img src={require("./logo.png").default} alt="" />
+              <img src={require("../../assets/images/logo.png").default} alt="" />
               <h1>
                 {location.pathname === "/" && <>Dashboard</>}
                 {location.pathname === "/dashboard" && <>Dashboard</>}

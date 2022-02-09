@@ -29,13 +29,13 @@ import { useWeb3Context } from "src/hooks/web3Context";
 import { error } from "../../slices/MessagesSlice";
 import { ethers } from "ethers";
 
-import Mouse from "./mouse.png";
-import Cat from "./catlogo.png";
-import MouseTrap from "./mousetrap.png";
-import Plus from "./plus.png";
-import CloseIcon from "./close.png";
+import Mouse from "../../assets/images/mouse.png";
+import Cat from "../../assets/images/catlogo.png";
+import MouseTrap from "../../assets/images/mousetrap.png";
+import Plus from "../../assets/images/plus.png";
+import CloseIcon from "../../assets/images/close.png";
 import { eachHourOfInterval } from "date-fns/esm";
-import CheezPassGif from "./cheezpass.gif";
+import CheezPassGif from "../../assets/images/cheezpass.gif";
 import CheezPass from "../CheezPass/CheezPass";
 import { Col, Row, Button, Modal, Table } from "react-bootstrap";
 import { responsiveFontSizes } from '@material-ui/core/styles';
@@ -279,28 +279,28 @@ function Spawns() {
         <Row className="justify-content-center">
           <Col lg={3} md={6} sm={12} className="mt-3">
             <div className="nft-box">
-              <img src={require('./mouse.png').default} alt="" width={150} />
+              <img src={require('../../assets/images/mouse.png').default} alt="" width={150} />
               <h3>Mouse</h3>
               <p>x0</p>
             </div>
           </Col>
           <Col lg={3} md={6} sm={12} className="mt-3">
             <div className="nft-box">
-              <img src={require('./cat.png').default} alt="" width={150} />
+              <img src={require('../../assets/images/cat.png').default} alt="" width={150} />
               <h3>Cat</h3>
               <p>x0</p>
             </div>
           </Col>
           <Col lg={3} md={6} sm={12} className="mt-3">
             <div className="nft-box">
-              <img src={require('./mouse-trap.png').default} alt="" width={150} />
+              <img src={require('../../assets/images/mouse-trap.png').default} alt="" width={150} />
               <h3>Trap</h3>
               <p>x0</p>
             </div>
           </Col>
           <Col lg={3} md={6} sm={12} className="mt-3">
             <div className="nft-box">
-              <img src={require('./cheezpass.gif').default} alt="" width={150} />
+              <img src={require('../../assets/images/cheezpass.gif').default} alt="" width={150} />
               <h3>CHEEZ Pass</h3>
               <p>x0</p>
             </div>

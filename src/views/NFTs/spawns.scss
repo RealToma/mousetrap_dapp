@@ -243,7 +243,7 @@
 // 
 @font-face {
     font-family: 'VT323';
-    src: url('./VT323-Regular.woff') format('woff2'), url('./VT323-Regular.woff') format('woff');
+    src: url('../../assets/fonts/VT323-Regular.woff') format('woff2'), url('../../assets/fonts/VT323-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -254,7 +254,7 @@
 }
 
 .nft-box {
-    background-image: url(yellow-play.png);
+    background-image: url(../../assets/images/yellow-play.png);
     background-size: 100% 100%;
     padding: 20px !important;
     text-align: center;
@@ -273,7 +273,7 @@
 }
 
 .transfer {
-    background-image: url(bg-wight.png);
+    background-image: url(../../assets/images/bg-wight.png);
     background-size: 100% 100%;
     padding: 15px !important;
     border-radius: 0 !important;
@@ -286,7 +286,7 @@
 }
 
 .get-start-main {
-    background-image: url(pink.png);
+    background-image: url(../../assets/images/pink.png);
     background-size: 100% 100%;
     padding: 60px 40px;
     display: flex;
@@ -299,7 +299,7 @@
 }
 
 .get-start-main .start-btn {
-    background-image: url(get-start.png);
+    background-image: url(../../assets/images/get-start.png);
     background-size: 100% 100%;
     font-family: 'VT323';
     width: 100%;
@@ -314,7 +314,7 @@
 
 .modal-bg{
     width: calc(100% - 40px);
-    background-image: url(modal-bg.png) !important;
+    background-image: url(../../assets/images/modal-bg.png) !important;
     background-size: 100% 100%;
     background-color: transparent !important;
     padding: 40px 50px;
@@ -382,7 +382,7 @@
 }
 
 .transfer-btn{
-    background-image: url(green-btn-bg.png);
+    background-image: url(../../assets/images/green-btn-bg.png);
     background-size: 100% 100%;
     color:rgb(0, 0, 0) !important;
     font-size: 20px;
@@ -438,7 +438,7 @@
 .create-btn{
     color: #000;
     font-size: 20px;
-    background-image: url(create-green.png);
+    background-image: url(../../assets/images/create-green.png);
     background-size: 100% 100%;
     font-family: 'VT323';
     border: none;
@@ -449,7 +449,7 @@
 .remove{
     color: #fff;
     font-size: 20px;
-    background-image: url(remove-pink.png);
+    background-image: url(../../assets/images/remove-pink.png);
     background-size: 100% 100%;
     font-family: 'VT323';
     border: none;

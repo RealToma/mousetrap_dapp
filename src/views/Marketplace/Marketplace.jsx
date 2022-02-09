@@ -15,12 +15,12 @@ import { getCatListingsDsc } from "../../slices/CatListingSliceDsc";
 import { getTrapListings } from "../../slices/TrapListingSlice";
 import { getTrapListingsDsc } from "../../slices/TrapListingSliceDsc";
 
-import Mouse from "./mouse.png";
-import Cat from "./catlogo.png";
-import MouseTrap from "./mousetrap.png";
-import SortIcon from "./sort.png";
-import PurchaseIcon from "./shop.png";
-import CloseIcon from "./close.png";
+import Mouse from "../../assets/images/mouse.png";
+import Cat from "../../assets/images/catlogo.png";
+import MouseTrap from "../../assets/images/mousetrap.png";
+import SortIcon from "../../assets/images/sort.png";
+import PurchaseIcon from "../../assets/images/shop.png";
+import CloseIcon from "../../assets/images/close.png";
 
 import "./dashboard.scss";
 

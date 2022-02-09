@@ -8,18 +8,18 @@ import useBonds from "../../hooks/Bonds";
 import { Paper, Link, Box, Typography, SvgIcon } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 
-import CheeseIcon from "./cheeseicon.png";
-import BondIcon from "./bondicon.png";
-import HomeIcon from "./homeicon.png";
-import BeakerIcon from "./beakericon.png";
-import StatusIcon from "./status.png";
-import UnlockIcon from "./unlock.png";
-import ShoppingIcon from "./shopping-cart-icon.png";
-import Juggling from "./juggling.png";
-import Factory from "./factory.png";
-import Spinning from "./spinningLogo.gif";
-import BridgeIcon from "./bridge.png";
-import ControllerIcon from "./joystick.png";
+import CheeseIcon from "../../assets/images/cheeseicon.png";
+import BondIcon from "../../assets/images/bondicon.png";
+import HomeIcon from "../../assets/images/homeicon.png";
+import BeakerIcon from "../../assets/images/beakericon.png";
+import StatusIcon from "../../assets/images/status.png";
+import UnlockIcon from "../../assets/images/unlock.png";
+import ShoppingIcon from "../../assets/images/shopping-cart-icon.png";
+import Juggling from "../../assets/images/juggling.png";
+import Factory from "../../assets/images/factory.png";
+import Spinning from "../../assets/images/spinningLogo.gif";
+import BridgeIcon from "../../assets/images/bridge.png";
+import ControllerIcon from "../../assets/images/joystick.png";
 import BondPurchase from "../../views/Bond/BondPurchase";
 import BondRedeem from "../../views/Bond/BondRedeem";
 import BondLogo from "../../components/BondLogo";
@@ -30,7 +30,6 @@ import Slider from "react-slick";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./sidebar.scss";
-// import {  useLocation } from 'react-router';
 
 function NavContent({ mobileOpen, setMobileOpen }) {
   const [isActive] = useState();
@@ -303,7 +302,7 @@ function NavContent({ mobileOpen, setMobileOpen }) {
                 Modal2Open();
               }}
             >
-              <img src={require("./setting.svg").default} alt="" />
+              <img src={require("../../assets/images/setting.svg").default} alt="" />
             </Button>
           </div>
           <Row className="mt-3">

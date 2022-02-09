@@ -125,7 +125,7 @@ body {
 }
 
 .bg-light {
-  background-image: url(bg-light.png), url(bg-gray.png);
+  background-image: url(../../assets/images/bg-light.png), url(../../assets/images/bg-gray.png);
   background-repeat: no-repeat;
   background-position: left center, right center;
 }
@@ -135,7 +135,7 @@ body {
 }
 
 .dashboard-home .box1 {
-  background-image: url(wight.png);
+  background-image: url(../../assets/images/wight.png);
   background-size: 100% 100%;
   padding: 10px;
 }
@@ -155,13 +155,13 @@ body {
 }
 
 .dashboard-home .box1.active {
-  background-image: url(active.png);
+  background-image: url(../../assets/images/active.png);
   background-size: 100% 100%;
   cursor: pointer;
 }
 
 .dashboard-home .bigbox1 {
-  background-image: url(yellow-big.png);
+  background-image: url(../../assets/images/yellow-big.png);
   background-size: 100% 100%;
   display: flex;
   align-items: center;
@@ -169,7 +169,7 @@ body {
 }
 
 .get-start-main {
-  background-image: url(pink.png);
+  background-image: url(../../assets/images/pink.png);
   background-size: 100% 100%;
   padding: 60px 40px;
   display: flex;
@@ -182,7 +182,7 @@ body {
 }
 
 .get-start-main .start-btn {
-  background-image: url(get-start.png);
+  background-image: url(../../assets/images/get-start.png);
   background-size: 100% 100%;
   font-family: "VT323";
   width: 100%;
@@ -205,7 +205,7 @@ body {
 } */
 
 .modal1 {
-  background-image: url(modal1.png);
+  background-image: url(../../assets/images/modal1.png);
   background-size: 100% 100%;
   padding: 50px !important;
   color: #000 !important;
@@ -213,7 +213,7 @@ body {
 }
 
 .modal2 {
-  background-image: url(modal3.png);
+  background-image: url(../../assets/images/modal3.png);
   background-size: 100% 100%;
   padding: 50px !important;
   color: #000 !important;
@@ -221,7 +221,7 @@ body {
 }
 
 .modal3 {
-  background-image: url(modal3.png);
+  background-image: url(../../assets/images/modal3.png);
   background-size: 100% 100%;
   padding: 50px !important;
   color: #000 !important;
@@ -296,7 +296,7 @@ body {
 }
 
 .back-next .back {
-  background-image: url(light-btn.png);
+  background-image: url(../../assets/images/light-btn.png);
   background-size: 100% 100%;
   font-family: "VT323";
   border: none;
@@ -311,7 +311,7 @@ body {
 }
 
 .back-next .next {
-  background-image: url(green-btn.png);
+  background-image: url(../../assets/images/green-btn.png);
   background-size: 100% 100%;
   color: #000;
   font-family: "VT323";
@@ -393,20 +393,20 @@ body {
 }
 
 .btn-success {
-  background-image: url(green-btn-bg.png);
+  background-image: url(../../assets/images/green-btn-bg.png);
 }
 
 .btn-danger {
-  background-image: url(pink.png);
+  background-image: url(../../assets/images/pink.png);
   color: #fff !important;
 }
 
 .btn-white {
-  background-image: url(wight.png);
+  background-image: url(../../assets/images/wight.png);
 }
 
 .btn-yellow {
-  background-image: url(yellow.png);
+  background-image: url(../../assets/images/yellow.png);
 }
 
 @media (min-width: 768px) {

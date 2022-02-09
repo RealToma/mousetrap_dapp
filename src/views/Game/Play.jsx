@@ -4,9 +4,9 @@ import { useWeb3Context } from "src/hooks/web3Context";
 import { loadAccountDetails } from "../../slices/AccountSlice";
 import { useSelector, useDispatch, useAppSelector } from "react-redux";
 import { ethers } from "ethers";
-import Mouse from "./mouse.png";
-import Cat from "./catlogo.png";
-import MouseTrap from "./mousetrap.png";
+import Mouse from "../../assets/images/mouse.png";
+import Cat from "../../assets/images/catlogo.png";
+import MouseTrap from "../../assets/images/mousetrap.png";
 import TabPanel from "../../components/TabPanel";
 import { changeApproval, gameStake, gameUnstake, gameClaimRewards } from "../../slices/GameThunk";
 import { isPendingTxn, txnButtonText } from "src/slices/PendingTxnsSlice";
@@ -300,7 +300,7 @@ function Play() {
             <div className="yellow-play text-center">
 
               <div className="img-container">
-                <img src={require('./mouse.png').default} alt="" width={150} />
+                <img src={require('../../assets/images/mouse.png').default} alt="" width={150} />
               </div>
               {!address ? (
                 <div className="play-game-connect">
@@ -407,23 +407,23 @@ function Play() {
                           <div className="list">
                             <span>Make sure you understand the following:</span>
                             <div className="d-flex mt-3 align-items-start gap">
-                              <img src={require('./chees.png').default} alt="" />
+                              <img src={require('../../assets/images/chees.png').default} alt="" />
                               <p>You have a 5% chance of losing your Mouse to a MouseTrap when unstaking</p>
                             </div>
                             <div className="d-flex mt-1 align-items-start gap">
-                              <img src={require('./chees.png').default} alt="" />
+                              <img src={require('../../assets/images/chees.png').default} alt="" />
                               <p>You have a 45% chance of losing your CHEEZ rewards to Cats when unstaking</p>
                             </div>
                             <div className="d-flex mt-1 align-items-start gap">
-                              <img src={require('./chees.png').default} alt="" />
+                              <img src={require('../../assets/images/chees.png').default} alt="" />
                               <p>Claiming rewards has a 25% extortion fee paid to Cats</p>
                             </div>
                             <div className="d-flex mt-1 align-items-start gap">
-                              <img src={require('./chees.png').default} alt="" />
+                              <img src={require('../../assets/images/chees.png').default} alt="" />
                               <p>Unstaking requires 2 days worth of unclaimed rewards</p>
                             </div>
                             <div className="d-flex mt-1 align-items-start gap">
-                              <img src={require('./chees.png').default} alt="" />
+                              <img src={require('../../assets/images/chees.png').default} alt="" />
                               <p>Staking additional Mice will claim rewards and reset your 2-day staking lockup</p>
                             </div>
                           </div>
@@ -509,13 +509,13 @@ function Play() {
                       <Row className="breen-mc">
                         <Col lg={6} md={6} sm={12} className="mt-3">
                           <div className="breen-mpuse">
-                            <img src={require('./mouse.png').default} alt="" width={100} />
+                            <img src={require('../../assets/images/mouse.png').default} alt="" width={100} />
                             <h4>x41</h4>
                           </div>
                         </Col>
                         <Col lg={6} md={6} sm={12} className="mt-3">
                           <div className="breen-mpuse">
-                            <img src={require('./green-cheese.png').default} className="mt-4" alt="" width={70} />
+                            <img src={require('../../assets/images/green-cheese.png').default} className="mt-4" alt="" width={70} />
                             <h4 className="mt-2">x0</h4>
                           </div>
                         </Col>
@@ -524,13 +524,13 @@ function Play() {
                       <Row className="pink-mc pb-2">
                         <Col lg={6} md={6} sm={12} className="mt-3">
                           <div className="pink-mpuse d-flex align-items-center justify-content-center gap-2">
-                            <img src={require('./mouse.png').default} alt="" width={45} />
+                            <img src={require('../../assets/images/mouse.png').default} alt="" width={45} />
                             <h4 className="mb-0">x41</h4>
                           </div>
                         </Col>
                         <Col lg={6} md={6} sm={12} className="mt-3">
                           <div className="pink-mpuse d-flex align-items-center justify-content-center gap-2">
-                            <img src={require('./green-cheese.png').default} alt="" width={30} />
+                            <img src={require('../../assets/images/green-cheese.png').default} alt="" width={30} />
                             <h4 className="mt-2">x0</h4>
                           </div>
                         </Col>
@@ -552,22 +552,22 @@ function Play() {
                         <div className="result-box-sub d-flex align-items-center justify-content-between">
                           <div className="result-left ">
                             <div className="result-left-sub d-flex align-items-center gap-2">
-                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/mouse.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>Mouse 1 -----------------</span>
-                                <img src={require('./check-green.png').default} alt="" />
+                                <img src={require('../../assets/images/check-green.png').default} alt="" />
                               </div>
                             </div>
                             <div className="d-flex align-items-center gap-2">
-                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/green-cheese.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>0.65 CHEEZ --------------</span>
-                                <img src={require('./check-green.png').default} alt="" />
+                                <img src={require('../../assets/images/check-green.png').default} alt="" />
                               </div>
                             </div>
                           </div>
                           <div className="result-right">
-                            <img src={require('./flag.png').default} alt="" />
+                            <img src={require('../../assets/images/flag.png').default} alt="" />
                             <h5>Made it!</h5>
                           </div>
                         </div>
@@ -576,22 +576,22 @@ function Play() {
                         <div className="result-box-sub d-flex align-items-center justify-content-between">
                           <div className="result-left ">
                             <div className="result-left-sub d-flex align-items-center gap-2">
-                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/mouse.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>Mouse 1 ----------------</span>
-                                <img src={require('./check-green.png').default} alt="" />
+                                <img src={require('../../assets/images/check-green.png').default} alt="" />
                               </div>
                             </div>
                             <div className="d-flex align-items-center gap-2">
-                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/green-cheese.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>0.65 CHEEZ -------------</span>
-                                <img src={require('./redclose.png').default} alt="" />
+                                <img src={require('../../assets/images/redclose.png').default} alt="" />
                               </div>
                             </div>
                           </div>
                           <div className="result-right">
-                            <img src={require('./cat.png').default} alt="" width={45} />
+                            <img src={require('../../assets/images/cat.png').default} alt="" width={45} />
                             <h6>Robbed by Cats!</h6>
                           </div>
                         </div>
@@ -600,22 +600,22 @@ function Play() {
                         <div className="result-box-sub d-flex align-items-center justify-content-between">
                           <div className="result-left ">
                             <div className="result-left-sub d-flex align-items-center gap-2">
-                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/mouse.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>Mouse 1 -----------------</span>
-                                <img src={require('./check-green.png').default} alt="" />
+                                <img src={require('../../assets/images/check-green.png').default} alt="" />
                               </div>
                             </div>
                             <div className="d-flex align-items-center gap-2">
-                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/green-cheese.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>0.65 CHEEZ --------------</span>
-                                <img src={require('./check-green.png').default} alt="" />
+                                <img src={require('../../assets/images/check-green.png').default} alt="" />
                               </div>
                             </div>
                           </div>
                           <div className="result-right">
-                            <img src={require('./flag.png').default} alt="" />
+                            <img src={require('../../assets/images/flag.png').default} alt="" />
                             <h5>Made it!</h5>
                           </div>
                         </div>
@@ -624,22 +624,22 @@ function Play() {
                         <div className="result-box-sub d-flex align-items-center justify-content-between">
                           <div className="result-left ">
                             <div className="result-left-sub d-flex align-items-center gap-2">
-                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/mouse.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>Mouse 1 -----------------</span>
-                                <img src={require('./check-green.png').default} alt="" />
+                                <img src={require('../../assets/images/check-green.png').default} alt="" />
                               </div>
                             </div>
                             <div className="d-flex align-items-center gap-2">
-                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/green-cheese.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>0.65 CHEEZ --------------</span>
-                                <img src={require('./check-green.png').default} alt="" />
+                                <img src={require('../../assets/images/check-green.png').default} alt="" />
                               </div>
                             </div>
                           </div>
                           <div className="result-right">
-                            <img src={require('./flag.png').default} alt="" />
+                            <img src={require('../../assets/images/flag.png').default} alt="" />
                             <h5>Made it!</h5>
                           </div>
                         </div>
@@ -648,35 +648,35 @@ function Play() {
                         <div className="result-box-sub d-flex align-items-center justify-content-between">
                           <div className="result-left ">
                             <div className="result-left-sub d-flex align-items-center gap-2">
-                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/mouse.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>Mouse 1 -------------</span>
-                                <img src={require('./redclose.png').default} alt="" />
+                                <img src={require('../../assets/images/redclose.png').default} alt="" />
                               </div>
                             </div>
                             <div className="d-flex align-items-center gap-2">
-                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/green-cheese.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>0.65 CHEEZ ----------</span>
-                                <img src={require('./redclose.png').default} alt="" />
+                                <img src={require('../../assets/images/redclose.png').default} alt="" />
                               </div>
                             </div>
                           </div>
                           <div className="result-right">
-                            <img src={require('./mouse-trap.png').default} alt="" width={45} />
+                            <img src={require('../../assets/images/mouse-trap.png').default} alt="" width={45} />
                             <h5>Trapped!<br />(Owner: 0x1234)</h5>
                           </div>
                         </div>
                       </div>
                       <div className="pagination1 mt-3 px-3">
                         <div className="pagination-btns d-flex align-items-center">
-                          <Button><img src={require('./left-arrow.png').default} alt="" /></Button>
+                          <Button><img src={require('../../assets/images/left-arrow.png').default} alt="" /></Button>
                           <Button className="pages active">1</Button>
                           <Button className="pages">2</Button>
                           <Button className="pages">3</Button>
                           <Button>...</Button>
                           <Button className="pages">5</Button>
-                          <Button><img src={require('./right-arrow.png').default} alt="" /></Button>
+                          <Button><img src={require('../../assets/images/right-arrow.png').default} alt="" /></Button>
                         </div>
                       </div>
                       <Button className="last-btn w-100">Got it!</Button>
@@ -694,7 +694,7 @@ function Play() {
           <Col lg={4} md={6} sm={12} className="mt-5">
             <div className="yellow-play text-center">
               <div className="img-container">
-                <img src={require('./cat.png').default} alt="" width={150} />
+                <img src={require('../../assets/images/cat.png').default} alt="" width={150} />
               </div>
               
               {!address ? (
@@ -870,7 +870,7 @@ function Play() {
           <Col lg={4} md={6} sm={12} className="mt-5" >
             <div className="yellow-play text-center">
               <div className="img-container">
-                <img src={require('./mouse-trap.png').default} alt="" width={150} />
+                <img src={require('../../assets/images/mouse-trap.png').default} alt="" width={150} />
               </div>
               {!address ? (
                 <div className="play-game-connect">
@@ -1006,13 +1006,13 @@ function Play() {
                       <Row className="breen-mc">
                         <Col lg={6} md={6} sm={12} className="mt-3">
                           <div className="breen-mpuse">
-                            <img src={require('./mouse.png').default} alt="" width={100} />
+                            <img src={require('../../assets/images/mouse.png').default} alt="" width={100} />
                             <h4>x41</h4>
                           </div>
                         </Col>
                         <Col lg={6} md={6} sm={12} className="mt-3">
                           <div className="breen-mpuse">
-                            <img src={require('./green-cheese.png').default} className="mt-4" alt="" width={70} />
+                            <img src={require('../../assets/images/green-cheese.png').default} className="mt-4" alt="" width={70} />
                             <h4 className="mt-2">x0</h4>
                           </div>
                         </Col>
@@ -1021,13 +1021,13 @@ function Play() {
                       <Row className="pink-mc pb-2">
                         <Col lg={6} md={6} sm={12} className="mt-3">
                           <div className="pink-mpuse d-flex align-items-center justify-content-center gap-2">
-                            <img src={require('./mouse.png').default} alt="" width={45} />
+                            <img src={require('../../assets/images/mouse.png').default} alt="" width={45} />
                             <h4 className="mb-0">x41</h4>
                           </div>
                         </Col>
                         <Col lg={6} md={6} sm={12} className="mt-3">
                           <div className="pink-mpuse d-flex align-items-center justify-content-center gap-2">
-                            <img src={require('./green-cheese.png').default} alt="" width={30} />
+                            <img src={require('../../assets/images/green-cheese.png').default} alt="" width={30} />
                             <h4 className="mt-2">x0</h4>
                           </div>
                         </Col>
@@ -1049,22 +1049,22 @@ function Play() {
                         <div className="result-box-sub d-flex align-items-center justify-content-between">
                           <div className="result-left ">
                             <div className="result-left-sub d-flex align-items-center gap-2">
-                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/mouse.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>Mouse 1 -----------------</span>
-                                <img src={require('./check-green.png').default} alt="" />
+                                <img src={require('../../assets/images/check-green.png').default} alt="" />
                               </div>
                             </div>
                             <div className="d-flex align-items-center gap-2">
-                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/green-cheese.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>0.65 CHEEZ --------------</span>
-                                <img src={require('./check-green.png').default} alt="" />
+                                <img src={require('../../assets/images/check-green.png').default} alt="" />
                               </div>
                             </div>
                           </div>
                           <div className="result-right">
-                            <img src={require('./flag.png').default} alt="" />
+                            <img src={require('../../assets/images/flag.png').default} alt="" />
                             <h5>Made it!</h5>
                           </div>
                         </div>
@@ -1073,22 +1073,22 @@ function Play() {
                         <div className="result-box-sub d-flex align-items-center justify-content-between">
                           <div className="result-left ">
                             <div className="result-left-sub d-flex align-items-center gap-2">
-                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/mouse.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>Mouse 1 ----------------</span>
-                                <img src={require('./check-green.png').default} alt="" />
+                                <img src={require('../../assets/images/check-green.png').default} alt="" />
                               </div>
                             </div>
                             <div className="d-flex align-items-center gap-2">
-                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/green-cheese.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>0.65 CHEEZ -------------</span>
-                                <img src={require('./redclose.png').default} alt="" />
+                                <img src={require('../../assets/images/redclose.png').default} alt="" />
                               </div>
                             </div>
                           </div>
                           <div className="result-right">
-                            <img src={require('./cat.png').default} alt="" width={45} />
+                            <img src={require('../../assets/images/cat.png').default} alt="" width={45} />
                             <h6>Robbed by Cats!</h6>
                           </div>
                         </div>
@@ -1097,22 +1097,22 @@ function Play() {
                         <div className="result-box-sub d-flex align-items-center justify-content-between">
                           <div className="result-left ">
                             <div className="result-left-sub d-flex align-items-center gap-2">
-                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/mouse.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>Mouse 1 -----------------</span>
-                                <img src={require('./check-green.png').default} alt="" />
+                                <img src={require('../../assets/images/check-green.png').default} alt="" />
                               </div>
                             </div>
                             <div className="d-flex align-items-center gap-2">
-                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/green-cheese.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>0.65 CHEEZ --------------</span>
-                                <img src={require('./check-green.png').default} alt="" />
+                                <img src={require('../../assets/images/check-green.png').default} alt="" />
                               </div>
                             </div>
                           </div>
                           <div className="result-right">
-                            <img src={require('./flag.png').default} alt="" />
+                            <img src={require('../../assets/images/flag.png').default} alt="" />
                             <h5>Made it!</h5>
                           </div>
                         </div>
@@ -1121,22 +1121,22 @@ function Play() {
                         <div className="result-box-sub d-flex align-items-center justify-content-between">
                           <div className="result-left ">
                             <div className="result-left-sub d-flex align-items-center gap-2">
-                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/mouse.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>Mouse 1 -----------------</span>
-                                <img src={require('./check-green.png').default} alt="" />
+                                <img src={require('../../assets/images/check-green.png').default} alt="" />
                               </div>
                             </div>
                             <div className="d-flex align-items-center gap-2">
-                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/green-cheese.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>0.65 CHEEZ --------------</span>
-                                <img src={require('./check-green.png').default} alt="" />
+                                <img src={require('../../assets/images/check-green.png').default} alt="" />
                               </div>
                             </div>
                           </div>
                           <div className="result-right">
-                            <img src={require('./flag.png').default} alt="" />
+                            <img src={require('../../assets/images/flag.png').default} alt="" />
                             <h5>Made it!</h5>
                           </div>
                         </div>
@@ -1145,35 +1145,35 @@ function Play() {
                         <div className="result-box-sub d-flex align-items-center justify-content-between">
                           <div className="result-left ">
                             <div className="result-left-sub d-flex align-items-center gap-2">
-                              <img src={require('./mouse.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/mouse.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>Mouse 1 -------------</span>
-                                <img src={require('./redclose.png').default} alt="" />
+                                <img src={require('../../assets/images/redclose.png').default} alt="" />
                               </div>
                             </div>
                             <div className="d-flex align-items-center gap-2">
-                              <img src={require('./green-cheese.png').default} alt="" width={40} />
+                              <img src={require('../../assets/images/green-cheese.png').default} alt="" width={40} />
                               <div className="d-flex align-items-center">
                                 <span>0.65 CHEEZ ----------</span>
-                                <img src={require('./redclose.png').default} alt="" />
+                                <img src={require('../../assets/images/redclose.png').default} alt="" />
                               </div>
                             </div>
                           </div>
                           <div className="result-right">
-                            <img src={require('./mouse-trap.png').default} alt="" width={45} />
+                            <img src={require('../../assets/images/mouse-trap.png').default} alt="" width={45} />
                             <h5>Trapped!<br />(Owner: 0x1234)</h5>
                           </div>
                         </div>
                       </div>
                       <div className="pagination1 mt-3 px-3">
                         <div className="pagination-btns d-flex align-items-center">
-                          <Button><img src={require('./left-arrow.png').default} alt="" /></Button>
+                          <Button><img src={require('../../assets/images/left-arrow.png').default} alt="" /></Button>
                           <Button className="pages active">1</Button>
                           <Button className="pages">2</Button>
                           <Button className="pages">3</Button>
                           <Button>...</Button>
                           <Button className="pages">5</Button>
-                          <Button><img src={require('./right-arrow.png').default} alt="" /></Button>
+                          <Button><img src={require('../../assets/images/right-arrow.png').default} alt="" /></Button>
                         </div>
                       </div>
                       <Button className="last-btn w-100">Got it!</Button>
@@ -1200,97 +1200,97 @@ function Play() {
             </thead>
             <tbody>
               <tr>
-                <td><img src={require('./mouse.png').default} alt="" width={70} /></td>
+                <td><img src={require('../../assets/images/mouse.png').default} alt="" width={70} /></td>
                 <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
                 <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
                 <td>
                   <div>
                     <span>0.345</span>
-                    <img src={require('./cheese-mini.png').default} alt="" />
+                    <img src={require('../../assets/images/cheese-mini.png').default} alt="" />
                   </div>
                 </td>
                 <td>1 day ago</td>
               </tr>
               <tr>
-                <td><img src={require('./mouse.png').default} alt="" width={70} /></td>
+                <td><img src={require('../../assets/images/mouse.png').default} alt="" width={70} /></td>
                 <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
                 <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
                 <td>
                   <div>
                     <span>0.345</span>
-                    <img src={require('./cheese-mini.png').default} alt="" />
+                    <img src={require('../../assets/images/cheese-mini.png').default} alt="" />
                   </div>
                 </td>
                 <td>1 day ago</td>
               </tr>
               <tr>
-                <td><img src={require('./mouse.png').default} alt="" width={70} /></td>
+                <td><img src={require('../../assets/images/mouse.png').default} alt="" width={70} /></td>
                 <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
                 <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
                 <td>
                   <div>
                     <span>0.345</span>
-                    <img src={require('./cheese-mini.png').default} alt="" />
+                    <img src={require('../../assets/images/cheese-mini.png').default} alt="" />
                   </div>
                 </td>
                 <td>1 day ago</td>
               </tr>
               <tr>
-                <td><img src={require('./mouse.png').default} alt="" width={70} /></td>
+                <td><img src={require('../../assets/images/mouse.png').default} alt="" width={70} /></td>
                 <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
                 <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
                 <td>
                   <div>
                     <span>0.345</span>
-                    <img src={require('./cheese-mini.png').default} alt="" />
+                    <img src={require('../../assets/images/cheese-mini.png').default} alt="" />
                   </div>
                 </td>
                 <td>1 day ago</td>
               </tr>
               <tr>
-                <td><img src={require('./mouse.png').default} alt="" width={70} /></td>
+                <td><img src={require('../../assets/images/mouse.png').default} alt="" width={70} /></td>
                 <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
                 <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
                 <td>
                   <div>
                     <span>0.345</span>
-                    <img src={require('./cheese-mini.png').default} alt="" />
+                    <img src={require('../../assets/images/cheese-mini.png').default} alt="" />
                   </div>
                 </td>
                 <td>1 day ago</td>
               </tr>
               <tr>
-                <td><img src={require('./mouse.png').default} alt="" width={70} /></td>
+                <td><img src={require('../../assets/images/mouse.png').default} alt="" width={70} /></td>
                 <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
                 <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
                 <td>
                   <div>
                     <span>0.345</span>
-                    <img src={require('./cheese-mini.png').default} alt="" />
+                    <img src={require('../../assets/images/cheese-mini.png').default} alt="" />
                   </div>
                 </td>
                 <td>1 day ago</td>
               </tr>
               <tr>
-                <td><img src={require('./mouse.png').default} alt="" width={70} /></td>
+                <td><img src={require('../../assets/images/mouse.png').default} alt="" width={70} /></td>
                 <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
                 <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
                 <td>
                   <div>
                     <span>0.345</span>
-                    <img src={require('./cheese-mini.png').default} alt="" />
+                    <img src={require('../../assets/images/cheese-mini.png').default} alt="" />
                   </div>
                 </td>
                 <td>1 day ago</td>
               </tr>
               <tr>
-                <td><img src={require('./mouse.png').default} alt="" width={70} /></td>
+                <td><img src={require('../../assets/images/mouse.png').default} alt="" width={70} /></td>
                 <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
                 <td><span className="my-3 d-block">0x8a90cab2b38dba80c64b7734e58ee1db38b8992e</span></td>
                 <td>
                   <div>
                     <span>0.345</span>
-                    <img src={require('./cheese-mini.png').default} alt="" />
+                    <img src={require('../../assets/images/cheese-mini.png').default} alt="" />
                   </div>
                 </td>
                 <td>1 day ago</td>
@@ -1300,13 +1300,13 @@ function Play() {
           <div className='pagination  b-0 px-2'>
             <span>Showing 1 to 10 out of 894 stakers</span>
             <div className="pagination-btns ms-auto d-flex align-items-center">
-              <Button><img src={require('./left-arrow.png').default} alt="" /></Button>
+              <Button><img src={require('../../assets/images/left-arrow.png').default} alt="" /></Button>
               <Button className="pages active">1</Button>
               <Button className="pages">2</Button>
               <Button className="pages">3</Button>
               <Button>...</Button>
               <Button className="pages">5</Button>
-              <Button><img src={require('./right-arrow.png').default} alt="" /></Button>
+              <Button><img src={require('../../assets/images/right-arrow.png').default} alt="" /></Button>
             </div>
           </div>
         </div>

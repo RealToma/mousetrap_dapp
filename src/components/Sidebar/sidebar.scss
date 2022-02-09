@@ -174,7 +174,7 @@
 // ======redevelop
 @font-face {
     font-family: 'VT323';
-    src: url('VT323-Regular.woff') format('woff2'), url('VT323-Regular.woff') format('woff');
+    src: url('../../assets/fonts/VT323-Regular.woff') format('woff2'), url('../../assets/fonts/VT323-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -199,7 +199,7 @@
 }
 
 .sidebar-con {
-    background-image: url(sidebar.png);
+    background-image: url(../../assets/images/sidebar.png);
     background-size: 100% 100%;
     text-align: center;
     display: flex;
@@ -212,7 +212,7 @@
 }
 
 .sidebar-head {
-    background-image: url(sidebar-text.png) !important;
+    background-image: url("../../assets/images/sidebar-text.png") !important;
     background-size: 100% 100%;
     color: #FFD500 !important;
     text-decoration: none !important;
@@ -237,7 +237,7 @@
 }
 
 .sidebar-head.active {
-    background-image: url(./contact.png) !important;
+    background-image: url(../../assets//images/contact.png) !important;
     background-size: 100% 100%;
     color: #000 !important;
 }

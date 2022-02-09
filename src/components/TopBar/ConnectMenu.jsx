@@ -72,7 +72,7 @@ function ConnectMenu({ theme, handleDrawerToggle }) {
       {/* <div className="header">
         <div className="d-flex align-items-center justify-content-between">
           <div className="logo d-flex align-items-center">
-            <img src={require('./logo.png').default} alt="" />
+            <img src={require('../../assets/images/logo.png').default} alt="" />
             <h1>Dashboard</h1>
           </div>
           <div className="d-flex align-items-center gap">

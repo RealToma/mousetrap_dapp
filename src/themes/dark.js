@@ -1,7 +1,7 @@
 import { createTheme, responsiveFontSizes } from "@material-ui/core/styles";
 import fonts from "./fonts";
 import commonSettings from "./global.js";
-import Cheese from "./lightest.png";
+import Cheese from "../assets/images/lightest.png";
 
 // TODO: Break repeated use color values out into list of consts declared here
 // then set the values in darkTheme using the global color variables
