@@ -34,7 +34,7 @@
 }
 
 .cheese-btn {
-    background-image: url(../../assets/images/small.png);
+    background-image: url(../../assets/images/../../assets/images/small.png);
     background-size: 100% 100%;
     color: #000 !important;
     padding: 20px !important;
@@ -43,7 +43,7 @@
 }
 
 .yellow-play {
-    background-image: url(../../assets/images/yellow-play-bg.svg);
+    background-image: url(../../assets/images/../../assets/images/yellow-play-bg.svg);
     background-size: 100% 100%;
     height: 100%;
     display: flex;
@@ -68,7 +68,7 @@
 }
 
 .yellow-play .wallet-btn {
-    background-image: url(../../assets/images/black-bg.png);
+    background-image: url(../../assets/images/../../assets/images/black-bg.png);
     background-size: 100% 100%;
     padding: 25px 20px !important;
     font-size: 25px;
@@ -93,7 +93,7 @@
 }
 
 .modal-bg-main{
-    background-image: url(../../assets/images/modal-play.png) !important;
+    background-image: url(../../assets/images/../../assets/images/modal-play.png) !important;
     background-size: 100% 100%;
     background-color: transparent !important;
     padding: 40px 50px;
@@ -113,7 +113,7 @@
 
 .stake-wallet-btn{
     font-family: 'VT323';
-    background-image: url(../../assets/images/black-bg-play.png);
+    background-image: url(../../assets/images/../../assets/images/black-bg-play.png);
     background-size: 100% 100%;
     color: #fff !important;
     width: 100% !important;
@@ -137,7 +137,7 @@
 }
 
 .mini-modal-1{
-    background-image: url(../../assets/images/mini-modal.png);
+    background-image: url(../../assets/images/../../assets/images/mini-modal.png);
     background-size: 100% 100%;
     padding: 50px 50px;
     color: #000;
@@ -227,7 +227,7 @@
 }
 
 .green{
-    background-image: url(../../assets/images/mini-green.png);
+    background-image: url(../../assets/images/../../assets/images/mini-green.png);
     background-size: 100% 100%;
     padding: 20px;
 }
@@ -241,7 +241,7 @@
 
 .stake-button{
     background-size: 100% 100%;
-    background-image: url(../../assets/images/mini-wight.png);
+    background-image: url(../../assets/images/../../assets/images/mini-wight.png);
     padding: 30px 30px !important;
     width: fit-content;
     border-radius: 0 !important;
@@ -252,7 +252,7 @@
 }
 
 .mini-tab .pink{
-    background-image: url(../../assets/images/pink-btn.png);
+    background-image: url(../../assets/images/../../assets/images/pink-btn.png);
     background-size: 100% 100%;
     border-radius: 0 !important;
 }
@@ -303,7 +303,7 @@
 }
 
 .unstake-modal{
-    background-image: url(../../assets/images/unstakmodal.png);
+    background-image: url(../../assets/images/../../assets/images/unstakmodal.png);
     background-size: 100% 100%;
     padding: 40px 60px !important;
     color: #000;
@@ -366,7 +366,7 @@
 }
 
 .last-modal{
-    background-image: url(../../assets/images/last-modal-bg.png);
+    background-image: url(../../assets/images/../../assets/images/last-modal-bg.png);
     background-size: 100% 100%;
     padding: 30px 50px;
     color: #000;
